@@ -416,7 +416,7 @@ def setup_game_dir_drive():
             }
 
             for directory in drive_map.keys():
-                if os.path.exists(directory) and not is_directory_empty(directory):
+                if os.access(directory, os.R_OK) and not is_directory_empty(directory):
                     setup_dir_drive("gamedrive", drive_map[directory], directory)
         else:
             setup_dir_drive("gamedrive", "s:", try_get_game_library_dir())
