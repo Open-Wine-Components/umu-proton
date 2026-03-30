@@ -1,0 +1,25 @@
+diff --git a/dlls/kernelbase/registry.c b/dlls/kernelbase/registry.c
+index 7908501..ad6a981 100644
+--- a/dlls/kernelbase/registry.c
++++ b/dlls/kernelbase/registry.c
+@@ -1914,10 +1914,6 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
+     if (pvData && !pcbData)
+         return ERROR_INVALID_PARAMETER;
+ 
+-    if ((dwFlags & RRF_RT_REG_EXPAND_SZ) && !(dwFlags & RRF_NOEXPAND) &&
+-            ((dwFlags & RRF_RT_ANY) != RRF_RT_ANY))
+-        return ERROR_INVALID_PARAMETER;
+-
+     if ((dwFlags & RRF_WOW64_MASK) == RRF_WOW64_MASK)
+         return ERROR_INVALID_PARAMETER;
+ 
+@@ -1933,6 +1929,9 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
+     }
+ 
+     ret = RegQueryValueExW(hKey, pszValue, NULL, &dwType, pvData, &cbData);
++    if ((dwFlags & RRF_RT_REG_EXPAND_SZ) && !(dwFlags & RRF_NOEXPAND) &&
++            ((dwFlags & RRF_RT_ANY) != RRF_RT_ANY) && (dwFlags & dwType))
++        return ERROR_INVALID_PARAMETER;
+ 
+     /* If the value is a string, we need to read in the whole value to be able
+      * to know exactly how many bytes are needed after expanding the string and

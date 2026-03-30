@@ -178,6 +178,7 @@ GST_BASE_MESON_ARGS := \
 	-Dx11=enabled \
 	-Dgl=enabled \
 	-Dgl-graphene=enabled \
+	-Dgl_winsys=surfaceless,x11,wayland,egl \
 	-Dgl_platform=glx,egl \
 	--wrap-mode nodownload \
 
@@ -355,24 +356,6 @@ $(eval $(call rules-source,openxr,$(SRCDIR)/OpenXR-SDK))
 # $(eval $(call rules-cmake,openxr,i386,unix))
 $(eval $(call rules-cmake,openxr,x86_64,unix))
 
-##
-## wineopenxr
-## Note 32-bit is not supported by SteamVR, so we don't build it.
-##
-
-WINEOPENXR_LDFLAGS = -lopenxr_loader
-WINEOPENXR_DEPENDS = wine openxr
-
-$(eval $(call rules-source,wineopenxr,$(SRCDIR)/wineopenxr))
-$(eval $(call rules-makedep,wineopenxr,x86_64))
-
-DIST_WINEOPENXR64_JSON := $(DIST_PREFIX)/drive_c/openxr/wineopenxr64.json
-$(WINEOPENXR_SRC)/wineopenxr64.json: wineopenxr
-$(DIST_WINEOPENXR64_JSON): $(WINEOPENXR_SRC)/wineopenxr64.json default_pfx
-	mkdir -p $(dir $@)
-	cp -a $< $@
-
-all-dist: $(DIST_WINEOPENXR64_JSON)
 
 ##
 ## umu.exe
@@ -1171,7 +1154,7 @@ all-dist: $(OVR_i386_DIST) $(OVR_x86_64_DIST)
 ## default_pfx
 ##
 
-default_pfx: wine gst_good gst_bad gst_libav gst_plugins_rs lsteamclient steamexe vrclient wineopenxr dxvk dxvk-nvapi vkd3d-proton
+default_pfx: wine gst_good gst_bad gst_libav gst_plugins_rs lsteamclient steamexe vrclient dxvk dxvk-nvapi vkd3d-proton
 	find $(DST_LIBDIR)/wine -type f -execdir chmod a-w '{}' '+'
 	rm -rf $(abspath $(DIST_PREFIX))
 	python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX)) $(abspath $(DST_DIR))

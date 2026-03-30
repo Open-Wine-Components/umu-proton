@@ -1,0 +1,71 @@
+diff --git a/dlls/ws2_32/protocol.c b/dlls/ws2_32/protocol.c
+index eef2c34b3e4..7d1c137ec7d 100644
+--- a/dlls/ws2_32/protocol.c
++++ b/dlls/ws2_32/protocol.c
+@@ -148,6 +148,40 @@ static int dns_only_query( const char *node, const struct addrinfo *hints, struc
+     return 0;
+ }
+ 
++static BOOL should_block_host(const char *name)
++{
++    const char *blk = getenv("WINE_BLOCK_HOSTS");
++    char *copy, *p, *end;
++
++    if (!blk || !*blk || !name || !*name) return FALSE;
++
++    copy = strdup(blk);
++    if (!copy) return FALSE;
++
++    p = copy;
++    while (*p)
++    {
++        /* skip delimiters */
++        p += strspn(p, ",; \t\r\n");
++        if (!*p) break;
++
++        /* find token end */
++        end = p + strcspn(p, ",; \t\r\n");
++        if (*end) *end++ = '\0';
++
++        if (*p && !strcasecmp(name, p))
++        {
++            free(copy);
++            return TRUE;
++        }
++
++        p = end;
++    }
++
++    free(copy);
++    return FALSE;
++}
++
+ static BOOL eac_download_hack(void)
+ {
+     static int eac_download_hack_enabled = -1;
+@@ -188,6 +222,12 @@ int WINAPI getaddrinfo( const char *node, const char *service,
+ 
+     if (node)
+     {
++        if (should_block_host(node))
++        {
++            SetLastError(WSAHOST_NOT_FOUND);
++            return WSAHOST_NOT_FOUND;
++        }
++
+         if (eac_download_hack() && !strcmp(node, "download-alt.easyanticheat.net"))
+         {
+             SetLastError(WSAHOST_NOT_FOUND);
+@@ -952,6 +992,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
+         return NULL;
+     }
+ 
++    if (should_block_host(name))
++    {
++        SetLastError( WSAHOST_NOT_FOUND );
++        return NULL;
++    }
++
+     if (eac_download_hack() && name && !strcmp(name, "download-alt.easyanticheat.net"))
+     {
+         SetLastError( WSAHOST_NOT_FOUND );
