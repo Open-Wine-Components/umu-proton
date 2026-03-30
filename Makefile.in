@@ -521,7 +521,7 @@ WINE_x86_64_AUTOCONF_ARGS += \
   VKD3D_PE_LIBS="-L$(VKD3D_x86_64_LIBDIR)/vkd3d/x86_64-windows -l:libvkd3d-1.dll -l:libvkd3d-shader-1.dll"
 
 WINE_DEPENDS = gst_orc gstreamer gst_base vkd3d ffmpeg openfst kaldi vosk
-WINE_x86_64_DEPENDS = piper
+WINE_x86_64_DEPENDS = piper openxr
 
 WINE_i386_LIBDIR = $(WINE_i386_DST)/lib
 WINE_x86_64_LIBDIR = $(WINE_x86_64_DST)/lib
@@ -539,6 +539,9 @@ $(OBJ)/.wine-post-source:
 	cd $(WINE_SRC) && XDG_CACHE_HOME=$(OBJ) dlls/winevulkan/make_vulkan -x vk.xml -X video.xml
 	-cd $(WINE_SRC) && tools/make_specfiles
 	touch $@
+
+WINEOPENXR64_JSON := $(DST_DIR)/share/openxr/wineopenxr64.json
+WINEOPENXR64_JSON_SRC := $(SRCDIR)/wine/dlls/wineopenxr/wineopenxr64.json
 
 $(OBJ)/.wine-x86_64-post-build:
 ifeq ($(findstring i386,$(unix_ARCHS)),)
@@ -563,9 +566,15 @@ else
 	$(call install-strip,$(WINE_x86_64_DST)/bin/wineserver,$(DST_DIR)/bin-wow64)
 	cp -a $(WINE_x86_64_DST)/bin/msidb $(DST_DIR)/bin-wow64/
 endif
-
 	mkdir -p $(DST_DIR)/share
 	cp -a $(WINE_x86_64_DST)/share/wine $(DST_DIR)/share
+
+	# Install wineopenxr runtime json
+	mkdir -p $(DST_DIR)/share/openxr
+	if [ -f "$(WINEOPENXR64_JSON_SRC)" ]; then \
+		cp -a "$(WINEOPENXR64_JSON_SRC)" "$(WINEOPENXR64_JSON)"; \
+	fi
+
 	touch $@
 
 $(OBJ)/.wine-i386-post-build:
@@ -1214,7 +1223,6 @@ all-dist: $(DIST_LICENSE) $(DIST_OFL_LICENSE) $(DIST_AV1_PATENTS)
 
 $(eval $(call rules-source,protonfixes,$(SRCDIR)/protonfixes))
 $(eval $(call rules-common,protonfixes,x86_64,unix))
-$(eval $(call rules-common,protonfixes,aarch64,unix))
 
 $(OBJ)/.protonfixes-x86_64-build:
 	cd $(PROTONFIXES_SRC) && \
@@ -1223,23 +1231,11 @@ $(OBJ)/.protonfixes-x86_64-build:
 	env $(PROTONFIXES_x86_64_ENV) BUILD=$(PROTONFIXES_x86_64_OBJ) DIST=$(PROTONFIXES_x86_64_DST) TARGET_ARCH=$(TARGET_ARCH) make install
 	touch $@
 
-$(OBJ)/.protonfixes-aarch64-build:
-	cd $(PROTONFIXES_SRC) && \
-	env $(PROTONFIXES_aarch64_ENV) BUILD=$(PROTONFIXES_aarch64_OBJ) TARGET_ARCH=$(TARGET_ARCH) make
-	cd $(PROTONFIXES_SRC) && \
-	env $(PROTONFIXES_aarch64_ENV) BUILD=$(PROTONFIXES_aarch64_OBJ) DIST=$(PROTONFIXES_aarch64_DST) TARGET_ARCH=$(TARGET_ARCH) make install
-	touch $@
-
 PROTONFIXES_TARGET := $(addprefix $(DST_BASE)/,protonfixes)
 
 $(OBJ)/.protonfixes-x86_64-dist:
 	mkdir -p $(PROTONFIXES_TARGET)
 	rsync --delete -arx $(PROTONFIXES_x86_64_DST)/ $(PROTONFIXES_TARGET)
-	touch $@
-
-$(OBJ)/.protonfixes-aarch64-dist:
-	mkdir -p $(PROTONFIXES_TARGET)
-	rsync --delete -arx $(PROTONFIXES_aarch64_DST)/ $(PROTONFIXES_TARGET)
 	touch $@
 
 ##

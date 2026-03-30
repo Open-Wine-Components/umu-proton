@@ -12601,7 +12601,7 @@ index 00000000000..958bddbcec4
 +
 +static BOOL should_silence_openxr_loader_errors(void)
 +{
-+  const char *value = getenv("PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES");
++  const char *value = getenv("PROTON_USE_EXTERNAL_VR");
 +
 +  return !value || !value[0] || !strcmp(value, "0");
 +}
@@ -14979,7 +14979,7 @@ index 00000000000..35a64e22dc9
 +
 +  vulkan_create_info = *createInfo->vulkanCreateInfo;
 +  callback.sType = VK_STRUCTURE_TYPE_CREATE_INFO_WINE_INSTANCE_CALLBACK;
-+  callback.native_create_callback = (UINT64)(ULONG_PTR)g_vk_create_instance_callback;
++  callback.native_create_callback = (PFN_native_vkCreateInstance)(ULONG_PTR)g_vk_create_instance_callback;
 +  callback.context = &context;
 +  callback.pNext = vulkan_create_info.pNext;
 +  vulkan_create_info.pNext = &callback;
@@ -15014,7 +15014,7 @@ index 00000000000..35a64e22dc9
 +
 +  vulkan_create_info = *createInfo->vulkanCreateInfo;
 +  callback.sType = VK_STRUCTURE_TYPE_CREATE_INFO_WINE_DEVICE_CALLBACK;
-+  callback.native_create_callback = (UINT64)(ULONG_PTR)g_vk_create_device_callback;
++  callback.native_create_callback = (PFN_native_vkCreateDevice)(ULONG_PTR)g_vk_create_device_callback;
 +  callback.context = &context;
 +  callback.pNext = vulkan_create_info.pNext;
 +  vulkan_create_info.pNext = &callback;

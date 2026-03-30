@@ -2100,8 +2100,8 @@ class Session:
         if "disablenvapi" not in self.compat_config or "forcenvapi" in self.compat_config:
             self.env["DXVK_ENABLE_NVAPI"] = "1"
 
-	# Surfaceless supports less formats than x11
-	self.env["GST_GL_WINDOW"] = "x11"
+        # Surfaceless supports less formats than x11
+        self.env["GST_GL_WINDOW"] = "x11"
 
         if "forcenvapi" in self.compat_config:
             self.env["DXVK_NVAPI_ALLOW_OTHER_DRIVERS"] = "1"
