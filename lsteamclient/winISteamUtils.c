@@ -18,66 +18,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils002_IsAPICallCompleted, 16)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils002_GetAPICallFailureReason, 12)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils002_GetAPICallResult, 28)
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils002_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils002_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils002_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils002_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils002_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -87,11 +87,11 @@ int8_t __thiscall winISteamUtils_SteamUtils002_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils002_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils002_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils002_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -101,11 +101,11 @@ int8_t __thiscall winISteamUtils_SteamUtils002_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils002_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils002_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils002_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -114,44 +114,44 @@ int8_t __thiscall winISteamUtils_SteamUtils002_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils002_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils002_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils002_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils002_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils002_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils002_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils002_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils002_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils002_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils002_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -160,11 +160,11 @@ int8_t __thiscall winISteamUtils_SteamUtils002_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils002_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils002_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils002_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -172,11 +172,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils002_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils002_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils002_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils002_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -211,9 +211,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils002(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils002_vtable, 14, "SteamUtils002");
     r->u_iface = u_iface;
@@ -239,66 +239,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils004_GetIPCCallCount, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils004_SetWarningMessageHook, 8)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils004_IsOverlayEnabled, 4)
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils004_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils004_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils004_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils004_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -308,11 +308,11 @@ int8_t __thiscall winISteamUtils_SteamUtils004_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils004_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils004_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -322,11 +322,11 @@ int8_t __thiscall winISteamUtils_SteamUtils004_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils004_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils004_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -335,44 +335,44 @@ int8_t __thiscall winISteamUtils_SteamUtils004_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils004_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils004_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils004_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils004_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils004_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils004_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils004_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -381,11 +381,11 @@ int8_t __thiscall winISteamUtils_SteamUtils004_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils004_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -393,11 +393,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils004_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils004_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils004_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -409,43 +409,43 @@ int8_t __thiscall winISteamUtils_SteamUtils004_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils004_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils004_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils004_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils004_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils004_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils004_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils004_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils004_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils004_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils004_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils004_IsOverlayEnabled, &params );
@@ -479,9 +479,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils004_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils004(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils004( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils004");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils004");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils004_vtable, 18, "SteamUtils004");
     r->u_iface = u_iface;
@@ -512,66 +512,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils005_ShowGamepadTextInput, 20)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils005_GetEnteredGamepadTextLength, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils005_GetEnteredGamepadTextInput, 12)
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils005_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils005_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils005_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils005_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -581,11 +581,11 @@ int8_t __thiscall winISteamUtils_SteamUtils005_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils005_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils005_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -595,11 +595,11 @@ int8_t __thiscall winISteamUtils_SteamUtils005_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils005_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils005_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -608,44 +608,44 @@ int8_t __thiscall winISteamUtils_SteamUtils005_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils005_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils005_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils005_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils005_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils005_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils005_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils005_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -654,11 +654,11 @@ int8_t __thiscall winISteamUtils_SteamUtils005_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils005_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -666,11 +666,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils005_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils005_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils005_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -682,65 +682,65 @@ int8_t __thiscall winISteamUtils_SteamUtils005_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils005_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils005_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils005_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils005_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils005_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils005_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils005_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils005_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils005_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils005_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -749,11 +749,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils005_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax)
+int8_t __thiscall winISteamUtils_SteamUtils005_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax)
 {
     struct ISteamUtils_SteamUtils005_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -765,22 +765,22 @@ int8_t __thiscall winISteamUtils_SteamUtils005_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils005_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils005_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils005_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils005_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils005_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils005_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils005_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -821,9 +821,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils005_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils005(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils005( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils005");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils005");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils005_vtable, 23, "SteamUtils005");
     r->u_iface = u_iface;
@@ -856,66 +856,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils006_GetEnteredGamepadTextInput,
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils006_GetSteamUILanguage, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils006_IsSteamRunningInVR, 4)
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils006_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils006_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils006_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils006_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -925,11 +925,11 @@ int8_t __thiscall winISteamUtils_SteamUtils006_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils006_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils006_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -939,11 +939,11 @@ int8_t __thiscall winISteamUtils_SteamUtils006_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils006_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils006_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -952,44 +952,44 @@ int8_t __thiscall winISteamUtils_SteamUtils006_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils006_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils006_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils006_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils006_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils006_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils006_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils006_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -998,11 +998,11 @@ int8_t __thiscall winISteamUtils_SteamUtils006_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils006_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -1010,11 +1010,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils006_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils006_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils006_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -1026,65 +1026,65 @@ int8_t __thiscall winISteamUtils_SteamUtils006_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils006_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils006_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils006_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils006_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils006_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils006_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils006_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils006_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils006_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils006_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -1093,11 +1093,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils006_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax)
+int8_t __thiscall winISteamUtils_SteamUtils006_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax)
 {
     struct ISteamUtils_SteamUtils006_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -1109,22 +1109,22 @@ int8_t __thiscall winISteamUtils_SteamUtils006_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils006_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils006_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils006_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils006_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -1133,22 +1133,22 @@ int8_t __thiscall winISteamUtils_SteamUtils006_GetEnteredGamepadTextInput(struct
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils006_GetSteamUILanguage(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils006_GetSteamUILanguage(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_GetSteamUILanguage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_GetSteamUILanguage, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils006_IsSteamRunningInVR(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils006_IsSteamRunningInVR(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils006_IsSteamRunningInVR_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils006_IsSteamRunningInVR, &params );
@@ -1189,9 +1189,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils006_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils006(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils006( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils006");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils006");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils006_vtable, 25, "SteamUtils006");
     r->u_iface = u_iface;
@@ -1225,66 +1225,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils007_GetSteamUILanguage, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils007_IsSteamRunningInVR, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils007_SetOverlayNotificationInset, 12)
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils007_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils007_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils007_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils007_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -1294,11 +1294,11 @@ int8_t __thiscall winISteamUtils_SteamUtils007_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils007_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils007_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -1308,11 +1308,11 @@ int8_t __thiscall winISteamUtils_SteamUtils007_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils007_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils007_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -1321,44 +1321,44 @@ int8_t __thiscall winISteamUtils_SteamUtils007_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils007_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils007_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils007_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils007_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils007_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils007_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils007_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -1367,11 +1367,11 @@ int8_t __thiscall winISteamUtils_SteamUtils007_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils007_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -1379,11 +1379,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils007_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils007_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils007_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -1395,65 +1395,65 @@ int8_t __thiscall winISteamUtils_SteamUtils007_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils007_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils007_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils007_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils007_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils007_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils007_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils007_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils007_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils007_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils007_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -1462,11 +1462,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils007_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
+int8_t __thiscall winISteamUtils_SteamUtils007_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
 {
     struct ISteamUtils_SteamUtils007_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -1480,22 +1480,22 @@ int8_t __thiscall winISteamUtils_SteamUtils007_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils007_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils007_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils007_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils007_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -1504,33 +1504,33 @@ int8_t __thiscall winISteamUtils_SteamUtils007_GetEnteredGamepadTextInput(struct
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils007_GetSteamUILanguage(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils007_GetSteamUILanguage(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_GetSteamUILanguage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_GetSteamUILanguage, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils007_IsSteamRunningInVR(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils007_IsSteamRunningInVR(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils007_IsSteamRunningInVR_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils007_IsSteamRunningInVR, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils007_SetOverlayNotificationInset(struct w_steam_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
+void __thiscall winISteamUtils_SteamUtils007_SetOverlayNotificationInset(struct w_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
 {
     struct ISteamUtils_SteamUtils007_SetOverlayNotificationInset_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nHorizontalInset = nHorizontalInset,
         .nVerticalInset = nVerticalInset,
     };
@@ -1573,9 +1573,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils007_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils007(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils007( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils007");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils007");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils007_vtable, 26, "SteamUtils007");
     r->u_iface = u_iface;
@@ -1611,66 +1611,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils008_SetOverlayNotificationInset
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils008_IsSteamInBigPictureMode, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils008_StartVRDashboard, 4)
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils008_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils008_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils008_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils008_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -1680,11 +1680,11 @@ int8_t __thiscall winISteamUtils_SteamUtils008_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils008_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils008_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -1694,11 +1694,11 @@ int8_t __thiscall winISteamUtils_SteamUtils008_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils008_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils008_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -1707,44 +1707,44 @@ int8_t __thiscall winISteamUtils_SteamUtils008_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils008_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils008_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils008_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils008_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils008_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils008_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils008_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -1753,11 +1753,11 @@ int8_t __thiscall winISteamUtils_SteamUtils008_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils008_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -1765,11 +1765,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils008_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils008_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils008_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -1781,65 +1781,65 @@ int8_t __thiscall winISteamUtils_SteamUtils008_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils008_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils008_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils008_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils008_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils008_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils008_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils008_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils008_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils008_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils008_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -1848,11 +1848,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils008_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
+int8_t __thiscall winISteamUtils_SteamUtils008_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
 {
     struct ISteamUtils_SteamUtils008_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -1866,22 +1866,22 @@ int8_t __thiscall winISteamUtils_SteamUtils008_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils008_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils008_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils008_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils008_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -1890,33 +1890,33 @@ int8_t __thiscall winISteamUtils_SteamUtils008_GetEnteredGamepadTextInput(struct
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils008_GetSteamUILanguage(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils008_GetSteamUILanguage(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_GetSteamUILanguage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_GetSteamUILanguage, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_IsSteamRunningInVR(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils008_IsSteamRunningInVR(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_IsSteamRunningInVR_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_IsSteamRunningInVR, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils008_SetOverlayNotificationInset(struct w_steam_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
+void __thiscall winISteamUtils_SteamUtils008_SetOverlayNotificationInset(struct w_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
 {
     struct ISteamUtils_SteamUtils008_SetOverlayNotificationInset_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nHorizontalInset = nHorizontalInset,
         .nVerticalInset = nVerticalInset,
     };
@@ -1924,22 +1924,22 @@ void __thiscall winISteamUtils_SteamUtils008_SetOverlayNotificationInset(struct 
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_SetOverlayNotificationInset, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils008_IsSteamInBigPictureMode(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils008_IsSteamInBigPictureMode(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_IsSteamInBigPictureMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_IsSteamInBigPictureMode, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils008_StartVRDashboard(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils008_StartVRDashboard(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils008_StartVRDashboard_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils008_StartVRDashboard, &params );
@@ -1982,9 +1982,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils008_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils008(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils008( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils008");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils008");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils008_vtable, 28, "SteamUtils008");
     r->u_iface = u_iface;
@@ -2026,66 +2026,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils009_InitFilterText, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils009_FilterText, 20)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils009_GetIPv6ConnectivityState, 8)
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils009_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils009_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils009_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils009_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -2095,11 +2095,11 @@ int8_t __thiscall winISteamUtils_SteamUtils009_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils009_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils009_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -2109,11 +2109,11 @@ int8_t __thiscall winISteamUtils_SteamUtils009_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils009_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils009_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -2122,44 +2122,44 @@ int8_t __thiscall winISteamUtils_SteamUtils009_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils009_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils009_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils009_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils009_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils009_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -2168,11 +2168,11 @@ int8_t __thiscall winISteamUtils_SteamUtils009_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils009_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -2180,11 +2180,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils009_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils009_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils009_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -2196,65 +2196,65 @@ int8_t __thiscall winISteamUtils_SteamUtils009_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils009_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils009_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils009_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils009_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils009_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils009_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -2263,11 +2263,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils009_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
+int8_t __thiscall winISteamUtils_SteamUtils009_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
 {
     struct ISteamUtils_SteamUtils009_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -2281,22 +2281,22 @@ int8_t __thiscall winISteamUtils_SteamUtils009_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils009_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils009_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -2305,33 +2305,33 @@ int8_t __thiscall winISteamUtils_SteamUtils009_GetEnteredGamepadTextInput(struct
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils009_GetSteamUILanguage(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils009_GetSteamUILanguage(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_GetSteamUILanguage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_GetSteamUILanguage, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamRunningInVR(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamRunningInVR(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_IsSteamRunningInVR_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_IsSteamRunningInVR, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_SetOverlayNotificationInset(struct w_steam_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
+void __thiscall winISteamUtils_SteamUtils009_SetOverlayNotificationInset(struct w_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
 {
     struct ISteamUtils_SteamUtils009_SetOverlayNotificationInset_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nHorizontalInset = nHorizontalInset,
         .nVerticalInset = nVerticalInset,
     };
@@ -2339,76 +2339,76 @@ void __thiscall winISteamUtils_SteamUtils009_SetOverlayNotificationInset(struct 
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_SetOverlayNotificationInset, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamInBigPictureMode(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamInBigPictureMode(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_IsSteamInBigPictureMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_IsSteamInBigPictureMode, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_StartVRDashboard(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils009_StartVRDashboard(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_StartVRDashboard_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_StartVRDashboard, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsVRHeadsetStreamingEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsVRHeadsetStreamingEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_IsVRHeadsetStreamingEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_IsVRHeadsetStreamingEnabled, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils009_SetVRHeadsetStreamingEnabled(struct w_steam_iface *_this, int8_t bEnabled)
+void __thiscall winISteamUtils_SteamUtils009_SetVRHeadsetStreamingEnabled(struct w_iface *_this, int8_t bEnabled)
 {
     struct ISteamUtils_SteamUtils009_SetVRHeadsetStreamingEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bEnabled = bEnabled,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_SetVRHeadsetStreamingEnabled, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamChinaLauncher(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_IsSteamChinaLauncher(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_IsSteamChinaLauncher_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_IsSteamChinaLauncher, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils009_InitFilterText(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils009_InitFilterText(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils009_InitFilterText_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils009_InitFilterText, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamUtils_SteamUtils009_FilterText(struct w_steam_iface *_this, char *pchOutFilteredText, uint32_t nByteSizeOutFilteredText, const char *pchInputMessage, int8_t bLegalOnly)
+int32_t __thiscall winISteamUtils_SteamUtils009_FilterText(struct w_iface *_this, char *pchOutFilteredText, uint32_t nByteSizeOutFilteredText, const char *pchInputMessage, int8_t bLegalOnly)
 {
     struct ISteamUtils_SteamUtils009_FilterText_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchOutFilteredText = pchOutFilteredText,
         .nByteSizeOutFilteredText = nByteSizeOutFilteredText,
         .pchInputMessage = pchInputMessage,
@@ -2420,11 +2420,11 @@ int32_t __thiscall winISteamUtils_SteamUtils009_FilterText(struct w_steam_iface 
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils009_GetIPv6ConnectivityState(struct w_steam_iface *_this, uint32_t eProtocol)
+uint32_t __thiscall winISteamUtils_SteamUtils009_GetIPv6ConnectivityState(struct w_iface *_this, uint32_t eProtocol)
 {
     struct ISteamUtils_SteamUtils009_GetIPv6ConnectivityState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eProtocol = eProtocol,
     };
     TRACE("%p\n", _this);
@@ -2475,9 +2475,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils009_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils009(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils009( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils009");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils009");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils009_vtable, 34, "SteamUtils009");
     r->u_iface = u_iface;
@@ -2524,66 +2524,66 @@ DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils010_SetGameLauncherMode, 8)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils010_DismissFloatingGamepadTextInput, 4)
 DEFINE_THISCALL_WRAPPER(winISteamUtils_SteamUtils010_DismissGamepadTextInput, 4)
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetSecondsSinceAppActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetSecondsSinceAppActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetSecondsSinceAppActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetSecondsSinceAppActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetSecondsSinceComputerActive(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetSecondsSinceComputerActive(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetSecondsSinceComputerActive_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetSecondsSinceComputerActive, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetConnectedUniverse(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetConnectedUniverse(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetConnectedUniverse_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetConnectedUniverse, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetServerRealTime(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetServerRealTime(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetServerRealTime_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetServerRealTime, &params );
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils010_GetIPCountry(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils010_GetIPCountry(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetIPCountry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetIPCountry, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_GetImageSize(struct w_steam_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
+int8_t __thiscall winISteamUtils_SteamUtils010_GetImageSize(struct w_iface *_this, int32_t iImage, uint32_t *pnWidth, uint32_t *pnHeight)
 {
     struct ISteamUtils_SteamUtils010_GetImageSize_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pnWidth = pnWidth,
         .pnHeight = pnHeight,
@@ -2593,11 +2593,11 @@ int8_t __thiscall winISteamUtils_SteamUtils010_GetImageSize(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_GetImageRGBA(struct w_steam_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
+int8_t __thiscall winISteamUtils_SteamUtils010_GetImageRGBA(struct w_iface *_this, int32_t iImage, uint8_t *pubDest, int32_t nDestBufferSize)
 {
     struct ISteamUtils_SteamUtils010_GetImageRGBA_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iImage = iImage,
         .pubDest = pubDest,
         .nDestBufferSize = nDestBufferSize,
@@ -2607,11 +2607,11 @@ int8_t __thiscall winISteamUtils_SteamUtils010_GetImageRGBA(struct w_steam_iface
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_GetCSERIPPort(struct w_steam_iface *_this, uint32_t *unIP, uint16_t *usPort)
+int8_t __thiscall winISteamUtils_SteamUtils010_GetCSERIPPort(struct w_iface *_this, uint32_t *unIP, uint16_t *usPort)
 {
     struct ISteamUtils_SteamUtils010_GetCSERIPPort_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIP = unIP,
         .usPort = usPort,
     };
@@ -2620,44 +2620,44 @@ int8_t __thiscall winISteamUtils_SteamUtils010_GetCSERIPPort(struct w_steam_ifac
     return params._ret;
 }
 
-uint8_t __thiscall winISteamUtils_SteamUtils010_GetCurrentBatteryPower(struct w_steam_iface *_this)
+uint8_t __thiscall winISteamUtils_SteamUtils010_GetCurrentBatteryPower(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetCurrentBatteryPower_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetCurrentBatteryPower, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetAppID(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetAppID(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetAppID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetAppID, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_SetOverlayNotificationPosition(struct w_steam_iface *_this, uint32_t eNotificationPosition)
+void __thiscall winISteamUtils_SteamUtils010_SetOverlayNotificationPosition(struct w_iface *_this, uint32_t eNotificationPosition)
 {
     struct ISteamUtils_SteamUtils010_SetOverlayNotificationPosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eNotificationPosition = eNotificationPosition,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_SetOverlayNotificationPosition, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsAPICallCompleted(struct w_steam_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsAPICallCompleted(struct w_iface *_this, uint64_t hSteamAPICall, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils010_IsAPICallCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pbFailed = pbFailed,
     };
@@ -2666,11 +2666,11 @@ int8_t __thiscall winISteamUtils_SteamUtils010_IsAPICallCompleted(struct w_steam
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetAPICallFailureReason(struct w_steam_iface *_this, uint64_t hSteamAPICall)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetAPICallFailureReason(struct w_iface *_this, uint64_t hSteamAPICall)
 {
     struct ISteamUtils_SteamUtils010_GetAPICallFailureReason_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
     };
     TRACE("%p\n", _this);
@@ -2678,11 +2678,11 @@ uint32_t __thiscall winISteamUtils_SteamUtils010_GetAPICallFailureReason(struct 
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_GetAPICallResult(struct w_steam_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
+int8_t __thiscall winISteamUtils_SteamUtils010_GetAPICallResult(struct w_iface *_this, uint64_t hSteamAPICall, void *pCallback, int32_t cubCallback, int32_t iCallbackExpected, int8_t *pbFailed)
 {
     struct ISteamUtils_SteamUtils010_GetAPICallResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .hSteamAPICall = hSteamAPICall,
         .pCallback = pCallback,
         .cubCallback = cubCallback,
@@ -2694,65 +2694,65 @@ int8_t __thiscall winISteamUtils_SteamUtils010_GetAPICallResult(struct w_steam_i
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_RunFrame(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils010_RunFrame(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_RunFrame_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_RunFrame, &params );
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetIPCCallCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetIPCCallCount(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetIPCCallCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetIPCCallCount, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_SetWarningMessageHook(struct w_steam_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
+void __thiscall winISteamUtils_SteamUtils010_SetWarningMessageHook(struct w_iface *_this, void (*W_CDECL pFunction)(int32_t, const char *))
 {
     struct ISteamUtils_SteamUtils010_SetWarningMessageHook_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pFunction = pFunction,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_SetWarningMessageHook, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsOverlayEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsOverlayEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsOverlayEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsOverlayEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_BOverlayNeedsPresent(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_BOverlayNeedsPresent(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_BOverlayNeedsPresent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_BOverlayNeedsPresent, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamUtils_SteamUtils010_CheckFileSignature(struct w_steam_iface *_this, const char *szFileName)
+uint64_t __thiscall winISteamUtils_SteamUtils010_CheckFileSignature(struct w_iface *_this, const char *szFileName)
 {
     struct ISteamUtils_SteamUtils010_CheckFileSignature_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .szFileName = szFileName,
     };
     TRACE("%p\n", _this);
@@ -2761,11 +2761,11 @@ uint64_t __thiscall winISteamUtils_SteamUtils010_CheckFileSignature(struct w_ste
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_ShowGamepadTextInput(struct w_steam_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
+int8_t __thiscall winISteamUtils_SteamUtils010_ShowGamepadTextInput(struct w_iface *_this, uint32_t eInputMode, uint32_t eLineInputMode, const char *pchDescription, uint32_t unCharMax, const char *pchExistingText)
 {
     struct ISteamUtils_SteamUtils010_ShowGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eInputMode = eInputMode,
         .eLineInputMode = eLineInputMode,
         .pchDescription = pchDescription,
@@ -2779,22 +2779,22 @@ int8_t __thiscall winISteamUtils_SteamUtils010_ShowGamepadTextInput(struct w_ste
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetEnteredGamepadTextLength(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetEnteredGamepadTextLength(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetEnteredGamepadTextLength_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetEnteredGamepadTextLength, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_GetEnteredGamepadTextInput(struct w_steam_iface *_this, char *pchText, uint32_t cchText)
+int8_t __thiscall winISteamUtils_SteamUtils010_GetEnteredGamepadTextInput(struct w_iface *_this, char *pchText, uint32_t cchText)
 {
     struct ISteamUtils_SteamUtils010_GetEnteredGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
         .cchText = cchText,
     };
@@ -2803,33 +2803,33 @@ int8_t __thiscall winISteamUtils_SteamUtils010_GetEnteredGamepadTextInput(struct
     return params._ret;
 }
 
-const char * __thiscall winISteamUtils_SteamUtils010_GetSteamUILanguage(struct w_steam_iface *_this)
+const char * __thiscall winISteamUtils_SteamUtils010_GetSteamUILanguage(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_GetSteamUILanguage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_GetSteamUILanguage, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamRunningInVR(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamRunningInVR(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsSteamRunningInVR_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsSteamRunningInVR, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_SetOverlayNotificationInset(struct w_steam_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
+void __thiscall winISteamUtils_SteamUtils010_SetOverlayNotificationInset(struct w_iface *_this, int32_t nHorizontalInset, int32_t nVerticalInset)
 {
     struct ISteamUtils_SteamUtils010_SetOverlayNotificationInset_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nHorizontalInset = nHorizontalInset,
         .nVerticalInset = nVerticalInset,
     };
@@ -2837,65 +2837,65 @@ void __thiscall winISteamUtils_SteamUtils010_SetOverlayNotificationInset(struct 
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_SetOverlayNotificationInset, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamInBigPictureMode(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamInBigPictureMode(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsSteamInBigPictureMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsSteamInBigPictureMode, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_StartVRDashboard(struct w_steam_iface *_this)
+void __thiscall winISteamUtils_SteamUtils010_StartVRDashboard(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_StartVRDashboard_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_StartVRDashboard, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsVRHeadsetStreamingEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsVRHeadsetStreamingEnabled(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsVRHeadsetStreamingEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsVRHeadsetStreamingEnabled, &params );
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_SetVRHeadsetStreamingEnabled(struct w_steam_iface *_this, int8_t bEnabled)
+void __thiscall winISteamUtils_SteamUtils010_SetVRHeadsetStreamingEnabled(struct w_iface *_this, int8_t bEnabled)
 {
     struct ISteamUtils_SteamUtils010_SetVRHeadsetStreamingEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bEnabled = bEnabled,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_SetVRHeadsetStreamingEnabled, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamChinaLauncher(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamChinaLauncher(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsSteamChinaLauncher_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsSteamChinaLauncher, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_InitFilterText(struct w_steam_iface *_this, uint32_t unFilterOptions)
+int8_t __thiscall winISteamUtils_SteamUtils010_InitFilterText(struct w_iface *_this, uint32_t unFilterOptions)
 {
     struct ISteamUtils_SteamUtils010_InitFilterText_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unFilterOptions = unFilterOptions,
     };
     TRACE("%p\n", _this);
@@ -2903,11 +2903,11 @@ int8_t __thiscall winISteamUtils_SteamUtils010_InitFilterText(struct w_steam_ifa
     return params._ret;
 }
 
-int32_t __thiscall winISteamUtils_SteamUtils010_FilterText(struct w_steam_iface *_this, uint32_t eContext, CSteamID sourceSteamID, const char *pchInputMessage, char *pchOutFilteredText, uint32_t nByteSizeOutFilteredText)
+int32_t __thiscall winISteamUtils_SteamUtils010_FilterText(struct w_iface *_this, uint32_t eContext, CSteamID sourceSteamID, const char *pchInputMessage, char *pchOutFilteredText, uint32_t nByteSizeOutFilteredText)
 {
     struct ISteamUtils_SteamUtils010_FilterText_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eContext = eContext,
         .sourceSteamID = sourceSteamID,
         .pchInputMessage = pchInputMessage,
@@ -2920,11 +2920,11 @@ int32_t __thiscall winISteamUtils_SteamUtils010_FilterText(struct w_steam_iface 
     return params._ret;
 }
 
-uint32_t __thiscall winISteamUtils_SteamUtils010_GetIPv6ConnectivityState(struct w_steam_iface *_this, uint32_t eProtocol)
+uint32_t __thiscall winISteamUtils_SteamUtils010_GetIPv6ConnectivityState(struct w_iface *_this, uint32_t eProtocol)
 {
     struct ISteamUtils_SteamUtils010_GetIPv6ConnectivityState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eProtocol = eProtocol,
     };
     TRACE("%p\n", _this);
@@ -2932,22 +2932,22 @@ uint32_t __thiscall winISteamUtils_SteamUtils010_GetIPv6ConnectivityState(struct
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamRunningOnSteamDeck(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_IsSteamRunningOnSteamDeck(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_IsSteamRunningOnSteamDeck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_IsSteamRunningOnSteamDeck, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_ShowFloatingGamepadTextInput(struct w_steam_iface *_this, uint32_t eKeyboardMode, int32_t nTextFieldXPosition, int32_t nTextFieldYPosition, int32_t nTextFieldWidth, int32_t nTextFieldHeight)
+int8_t __thiscall winISteamUtils_SteamUtils010_ShowFloatingGamepadTextInput(struct w_iface *_this, uint32_t eKeyboardMode, int32_t nTextFieldXPosition, int32_t nTextFieldYPosition, int32_t nTextFieldWidth, int32_t nTextFieldHeight)
 {
     struct ISteamUtils_SteamUtils010_ShowFloatingGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eKeyboardMode = eKeyboardMode,
         .nTextFieldXPosition = nTextFieldXPosition,
         .nTextFieldYPosition = nTextFieldYPosition,
@@ -2959,33 +2959,33 @@ int8_t __thiscall winISteamUtils_SteamUtils010_ShowFloatingGamepadTextInput(stru
     return params._ret;
 }
 
-void __thiscall winISteamUtils_SteamUtils010_SetGameLauncherMode(struct w_steam_iface *_this, int8_t bLauncherMode)
+void __thiscall winISteamUtils_SteamUtils010_SetGameLauncherMode(struct w_iface *_this, int8_t bLauncherMode)
 {
     struct ISteamUtils_SteamUtils010_SetGameLauncherMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bLauncherMode = bLauncherMode,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_SetGameLauncherMode, &params );
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_DismissFloatingGamepadTextInput(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_DismissFloatingGamepadTextInput(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_DismissFloatingGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_DismissFloatingGamepadTextInput, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamUtils_SteamUtils010_DismissGamepadTextInput(struct w_steam_iface *_this)
+int8_t __thiscall winISteamUtils_SteamUtils010_DismissGamepadTextInput(struct w_iface *_this)
 {
     struct ISteamUtils_SteamUtils010_DismissGamepadTextInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamUtils_SteamUtils010_DismissGamepadTextInput, &params );
@@ -3040,9 +3040,9 @@ __ASM_BLOCK_BEGIN(winISteamUtils_SteamUtils010_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamUtils_SteamUtils010(void *u_iface)
+struct w_iface *create_winISteamUtils_SteamUtils010( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamUtils010");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamUtils010");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamUtils_SteamUtils010_vtable, 39, "SteamUtils010");
     r->u_iface = u_iface;
@@ -3051,7 +3051,7 @@ struct w_steam_iface *create_winISteamUtils_SteamUtils010(void *u_iface)
 
 void init_winISteamUtils_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamUtils_SteamUtils002_rtti( base );
     init_winISteamUtils_SteamUtils004_rtti( base );
     init_winISteamUtils_SteamUtils005_rtti( base );
@@ -3060,5 +3060,5 @@ void init_winISteamUtils_rtti( char *base )
     init_winISteamUtils_SteamUtils008_rtti( base );
     init_winISteamUtils_SteamUtils009_rtti( base );
     init_winISteamUtils_SteamUtils010_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

@@ -11,6 +11,7 @@ import os
 import re
 
 SDK_VERSIONS = [
+    "163",
     "162",
     "161",
     "160",
@@ -131,6 +132,9 @@ SDK_SOURCES = {
         "ISteamUtils",
         "ISteamVideo"
     ],
+    "isteambilling.h": [
+        "ISteamBilling"
+    ],
     "isteamappticket.h": [
         "ISteamAppTicket"
     ],
@@ -190,10 +194,12 @@ VERSION_ALIASES = {
 EXEMPT_STRUCTS = {
     "CSteamID",
     "CGameID",
-    "CCallbackBase",
+    "CCallbackBase", # not actually used
     "SteamIPAddress_t",
-    "SteamPS3Params_t",
-    "ValvePackingSentinel_t"
+    "SteamPS3Params_t", # not actually used
+    "ValvePackingSentinel_t", # not actually used
+    "CSteamAPIContext", # not actually used
+    "CSteamGameServerAPIContext", # not actually used
 }
 
 # structs for which the size is important, either because of arrays or size parameters
@@ -204,12 +210,40 @@ SIZED_STRUCTS = {
 
 # we have converters for these written by hand because they're too complicated to generate
 MANUAL_STRUCTS = [
-    "SteamNetworkingMessage_t"
+    "SteamNetworkingMessage_t",
+    "RemoteStorageUpdatePublishedFileRequest_t",
+]
+
+ARRAY_WOW64_STRUCTS = [
+    "SteamParamStringArray_t",
+]
+
+MANUAL_WOW64_STRUCTS = [
+    "CallbackMsg_t",
+    "HTML_ChangedTitle_t",
+    "HTML_ComboNeedsPaint_t",
+    "HTML_FileOpenDialog_t",
+    "HTML_FinishedRequest_t",
+    "HTML_JSAlert_t",
+    "HTML_JSConfirm_t",
+    "HTML_LinkAtPosition_t",
+    "HTML_NeedsPaint_t",
+    "HTML_NewWindow_t",
+    "HTML_OpenLinkInNewTab_t",
+    "HTML_ShowToolTip_t",
+    "HTML_StartRequest_t",
+    "HTML_StatusText_t",
+    "HTML_UpdateToolTip_t",
+    "HTML_URLChanged_t",
+    "RemoteStorageDownloadUGCResult_t",
+    "SteamParamStringArray_t",
 ]
 
 UNIX_FUNCS = [
     'steamclient_init',
+    'steamclient_init_registry',
     'steamclient_next_callback',
+    'steamclient_get_unix_buffer',
     'steamclient_CreateInterface',
     'steamclient_Steam_GetAPICallResult',
     'steamclient_Steam_BGetCallback',
@@ -231,19 +265,33 @@ MANUAL_METHODS = {
     "ISteamNetworkingSockets_ReceiveMessagesOnConnection": True,
     "ISteamNetworkingSockets_ReceiveMessagesOnListenSocket": True,
     "ISteamNetworkingSockets_ReceiveMessagesOnPollGroup": True,
+    "ISteamNetworkingSockets_RunCallbacks": lambda ver, abi: abi == 'w',
     "ISteamNetworkingSockets_SendMessages": True,
-    "ISteamNetworkingSockets_ConnectP2PCustomSignaling": lambda ver, abi: abi == 'u' and ver <= 8,
+    "ISteamNetworkingSockets_ConnectP2PCustomSignaling": lambda ver, abi: abi == 'u' and (ver <= 8 or ver >= 12),
     "ISteamNetworkingSockets_ReceivedP2PCustomSignal": lambda ver, abi: abi == 'u' and ver <= 8,
+    "ISteamNetworkingSockets_CreateListenSocketIP": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_ConnectByIPAddress": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_CreateListenSocketP2P": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_ConnectP2P": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_ConnectToHostedDedicatedServer": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_CreateHostedDedicatedServerListenSocket": lambda ver, abi: abi == 'u' and ver >= 12,
+    "ISteamNetworkingSockets_CreateListenSocketP2PFakeIP": lambda ver, abi: abi == 'u' and ver >= 12,
 
+    "ISteamMatchmakingServers_CancelQuery": lambda ver, abi: (abi == 'u' and ver >= 2) or (abi == 'w'),
+    "ISteamMatchmakingServers_GetServerCount": lambda ver, abi: abi == 'u' and ver >= 2,
+    "ISteamMatchmakingServers_GetServerDetails": lambda ver, abi: ver >= 2,
+    "ISteamMatchmakingServers_IsRefreshing": lambda ver, abi: abi == 'u' and ver >= 2,
     "ISteamMatchmakingServers_PingServer": lambda ver, abi: abi == 'u',
     "ISteamMatchmakingServers_PlayerDetails": lambda ver, abi: abi == 'u',
+    "ISteamMatchmakingServers_RefreshQuery": lambda ver, abi: abi == 'u' and ver >= 2,
+    "ISteamMatchmakingServers_RefreshServer": lambda ver, abi: abi == 'u' and ver >= 2,
     "ISteamMatchmakingServers_ReleaseRequest": lambda ver, abi: abi == 'w' or abi == 'u',
-    "ISteamMatchmakingServers_RequestFavoritesServerList": lambda ver, abi: abi == 'u',
-    "ISteamMatchmakingServers_RequestFriendsServerList": lambda ver, abi: abi == 'u',
-    "ISteamMatchmakingServers_RequestHistoryServerList": lambda ver, abi: abi == 'u',
-    "ISteamMatchmakingServers_RequestInternetServerList": lambda ver, abi: abi == 'u',
-    "ISteamMatchmakingServers_RequestLANServerList": lambda ver, abi: abi == 'u',
-    "ISteamMatchmakingServers_RequestSpectatorServerList": lambda ver, abi: abi == 'u',
+    "ISteamMatchmakingServers_RequestFavoritesServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_RequestFriendsServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_RequestHistoryServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_RequestInternetServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_RequestLANServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_RequestSpectatorServerList": lambda ver, abi: abi == 'u' or ver >= 2,
     "ISteamMatchmakingServers_ServerRules": lambda ver, abi: abi == 'u',
 
     "ISteamNetworkingUtils_AllocateMessage": True,
@@ -267,8 +315,9 @@ MANUAL_METHODS = {
     "ISteamClient_Set_SteamAPI_CCheckCallbackRegisteredInProcess": lambda ver, abi: abi == 'u' and ver >= 20,
 
     "ISteamUtils_GetAPICallResult": lambda ver, abi: abi == 'u',
-}
 
+    "ISteamRemoteStorage_UpdatePublishedFile": lambda ver, abi: abi == 'u' and ver >= 5,
+}
 
 DEFINE_INTERFACE_VERSION = re.compile(r'^#define\s*(?P<name>STEAM(?:\w*)_VERSION(?:\w*))\s*"(?P<version>.*)"')
 
@@ -420,6 +469,11 @@ PRETOUCH_TYPES = {
     "const char *": "    IsBadStringPtrA({0}, -1);\n",
 }
 
+OUTSTR_PARAMS = {
+    "GetUGCDetails": "ppchName",
+    "GetConfigValueInfo": "pOutName",
+}
+
 class Padding:
     def __init__(self, offset, size):
         self.offset = offset
@@ -464,8 +518,6 @@ class BasicType:
             return self._abi != other._abi
         return False
 
-
-written_converters = set()
 
 class Struct:
     def __init__(self, sdkver, abi, cursor):
@@ -553,6 +605,15 @@ class Struct:
             out(u'#ifdef __cplusplus\n')
             out(f'    operator {conv}{version}() const;\n')
             out(u'#endif /* __cplusplus */\n')
+
+        if self.name in ARRAY_WOW64_STRUCTS and '64' in prefix:
+            out(u'#if defined(__cplusplus) && (defined(__x86_64__) || defined(__aarch64__))\n')
+            out(f'    {prefix}{version}() = default;\n')
+            out(f'    {prefix}{version}( w32_{version} const& );\n')
+            out(f'    {prefix}{version}( w64_{version} const& );\n')
+            out(f'    ~{prefix}{version}();\n')
+            out(u'#endif /* __cplusplus */\n')
+
         out(u'};\n')
         out(u'#pragma pack( pop )\n\n')
 
@@ -565,35 +626,26 @@ class Struct:
             out(f'C_ASSERT( sizeof({prefix}{version}().{f.name}) >= {f.size} );\n')
         out(u'\n')
 
-    def write_converter(self, prefix, path_conv_fields):
+    def write_converter(self, abi, path_conv_fields):
         version = all_versions[sdkver][self.name]
-        from_abi = self._abi[0]
-        func_name = f'{version}_{prefix[0]}_from_{from_abi}'
-        if not func_name in written_converters:
-            written_converters.add(func_name)
-            out(f'static void {func_name}(void *dst, const void *src)\n')
-            out(u'{\n')
-            out(f'    {prefix[0]}_{version} *d = ({prefix[0]}_{version} *)dst;\n')
-            out(f'    const {from_abi}_{version} *s = (const {from_abi}_{version} *)src;\n\n')
-            for field in self.fields:
-                if field.name not in path_conv_fields:
-                    out(f'    d->{field.name} = s->{field.name};\n')
-                else:
-                    out(f'    steamclient_unix_path_to_dos_path(1, s->{field.name}, g_tmppath, TEMP_PATH_BUFFER_LENGTH, 1);\n')
-                    out(f'    d->{field.name} = g_tmppath;\n')
-            out(u'}\n')
+        u_bits = abi[1:3] if abi[0] == 'u' else self._abi[1:3]
 
-        if self._abi[1:3] == '64':
-            out(u'#ifdef __x86_64__\n')
-        elif self._abi[1:3] == '32':
+        if u_bits == '64':
+            out(u'#if defined(__x86_64__) || defined(__aarch64__)\n')
+        elif u_bits == '32':
             out(u'#ifdef __i386__\n')
         else:
             assert False
 
-        out(f'{self._abi}_{version}::operator {prefix}{version}() const\n')
+        out(f'{self._abi}_{version}::operator {abi}_{version}() const\n')
         out(u'{\n')
-        out(f'    {prefix}{version} ret;\n')
-        out(f'    {func_name}((void *)&ret, (const void *)this);\n')
+        out(f'    {abi}_{version} ret;\n')
+        for field in self.fields:
+            if field.name not in path_conv_fields:
+                out(f'    ret.{field.name} = this->{field.name};\n')
+            else:
+                out(f'    steamclient_unix_path_to_dos_path(1, this->{field.name}, g_tmppath, TEMP_PATH_BUFFER_LENGTH, 1);\n')
+                out(f'    ret.{field.name} = g_tmppath;\n')
         out(u'    return ret;\n')
         out(u'}\n')
         out(u'#endif\n\n')
@@ -656,26 +708,48 @@ class Method:
     def needs_conversion(self, other):
         if len(list(self.get_arguments())) != len(list(other.get_arguments())):
             return True
-        return False # FIXME
+        return False
 
-    def write_params(self, out):
+    def returns_unix_iface(self):
+        return self.result_type.spelling.startswith("ISteam") or "GetISteam" in self.name
+
+    def returns_string(self):
+        if self._klass.name == 'ISteamMatchmakingServers' and self.name == 'GetServerDetails':
+            return True
+        return self.result_type.spelling == "const char *"
+
+    def write_params(self, out, wow64):
         returns_record = self.result_type.get_canonical().kind == TypeKind.RECORD
+        prefix = "wow64_" if wow64 else ""
 
-        ret = "*_ret" if returns_record else "_ret"
-        ret = f'{declspec(self.result_type, ret, "w_")}'
+        if self.returns_unix_iface():
+            ret = 'struct u_iface _ret'
+        elif self.returns_string():
+            ret = 'struct u_buffer _ret'
+        elif returns_record and wow64:
+            ret = f'{declspec(self.result_type, "*_ret", "w32_" if wow64 else "w_", wow64)}'
+            typ = f'{declspec(self.result_type, "*", "w32_" if wow64 else "w_", wow64)}'
+            ret = f'W32_PTR({ret}, _ret, {typ})'
+        else:
+            assert not returns_record or not wow64
+            ret = "*_ret" if returns_record else "_ret"
+            ret = f'{declspec(self.result_type, ret, "w32_" if wow64 else "w_", wow64)}'
 
         names = [p.spelling if p.spelling != "" else f'_{chr(0x61 + i)}'
                  for i, p in enumerate(self.get_arguments())]
-        params = [declspec(p, names[i], "w_") for i, p in enumerate(self.get_arguments())]
+        params = [declspec(p, names[i], "w32_" if wow64 else "w_", wow64) for i, p in enumerate(self.get_arguments())]
 
         if self.result_type.kind != TypeKind.VOID:
             params = [ret] + params
             names = ['_ret'] + names
 
-        params = ['struct u_steam_iface *linux_side'] + params
-        names = ['linux_side'] + names
+        if self.name in OUTSTR_PARAMS and OUTSTR_PARAMS[self.name] in names:
+            params = ["struct u_buffer _str"] + params
 
-        out(f'struct {self.full_name}_params\n')
+        params = ['struct u_iface u_iface'] + params
+        names = ['u_iface'] + names
+
+        out(f'struct {prefix}{self.full_name}_params\n')
         out(u'{\n')
         for param in params:
             out(f'    {param};\n')
@@ -694,7 +768,7 @@ class Destructor(Method):
         if self._override > 1: return f'destructor_{self._override}'
         return 'destructor'
 
-    def write_params(self, out):
+    def write_params(self, out, wow64):
         pass
 
 
@@ -769,9 +843,9 @@ class Class:
             # CGameID -> CGameID &
             # Windows side follows the prototype in the header while Linux
             # steamclient treats gameID parameter as pointer
-            if self.full_name == 'ISteamUser_SteamUser008' \
-               and method.name == 'InitiateGameConnection':
-                types[3] = 'CGameID *'
+            for i, t in enumerate(types):
+                if t == 'CGameID':
+                    types[i] = 'CGameID &'
 
             if type(method) is Destructor:
                 out(f'    virtual ~{prefix}{self.full_name}( {", ".join(types)} ) = 0;\n')
@@ -825,9 +899,11 @@ def find_struct_abis(name):
     return structs[sdkver]
 
 
-def struct_needs_conversion(struct):
+def struct_needs_conversion(struct, wow64):
     name = canonical_typename(struct)
     if name in EXEMPT_STRUCTS:
+        return False
+    if name in unique_structs:
         return False
     if name in MANUAL_STRUCTS:
         return True
@@ -840,7 +916,7 @@ def struct_needs_conversion(struct):
         return True
     if abis['w64'].needs_conversion(abis['u64']):
         return True
-    return False
+    return wow64
 
 
 def underlying_type(decl):
@@ -852,10 +928,22 @@ def underlying_type(decl):
     return decl
 
 
-def param_needs_conversion(decl):
+def is_pointer_pointer(decl):
+    if type(decl) is Cursor:
+        decl = decl.type
+    decl = decl.get_canonical()
+    if decl.kind != TypeKind.POINTER:
+        return False
+    decl = decl.get_pointee().get_canonical()
+    return decl.kind == TypeKind.POINTER
+
+
+def param_needs_conversion(decl, wow64):
+    if is_pointer_pointer(decl) and wow64:
+        return True
     decl = underlying_type(decl)
     return decl.kind == TypeKind.RECORD and \
-           struct_needs_conversion(decl)
+           struct_needs_conversion(decl, wow64)
 
 
 def callconv(cursor, prefix):
@@ -898,7 +986,8 @@ def declspec(decl, name, prefix, wrapped=False):
         decl = decl.get_pointee()
         spec = declspec(decl, f"*{call}{const}{name}", prefix, False)
         if wrapped:
-            return f'{prefix.upper()}PTR({spec}, {name})'
+            typ = declspec(decl, f"*{call}{const}", prefix, False)
+            return f'{prefix.upper()}PTR({spec}, {name}, {typ})'
         return spec
     if decl.kind == TypeKind.CONSTANTARRAY:
         decl, count = decl.element_type, decl.element_count
@@ -937,25 +1026,31 @@ def declspec(decl, name, prefix, wrapped=False):
     return f'{decl.spelling}{name}'
 
 
-def handle_method_cpp(method, classname, out):
+def handle_method_cpp(method, classname, out, wow64):
     returns_void = method.result_type.kind == TypeKind.VOID
     returns_record = method.result_type.get_canonical().kind == TypeKind.RECORD
+    prefix = "wow64_" if wow64 else ""
 
     names = [p.spelling if p.spelling != "" else f'_{chr(0x61 + i)}'
              for i, p in enumerate(method.get_arguments())]
+    path_conv_wtou = PATH_CONV_METHODS_WTOU.get(f'{klass.name}_{method.spelling}', {})
+    outstr_param = OUTSTR_PARAMS.get(method.name, None)
 
     need_convert = {n: p for n, p in zip(names, method.get_arguments())
-                    if param_needs_conversion(p)}
+                    if param_needs_conversion(p, wow64) and n != outstr_param
+                    and n not in path_conv_wtou}
     manual_convert = {n: p for n, p in zip(names, method.get_arguments())
                       if underlying_type(p).spelling in MANUAL_TYPES
                       or p.spelling in MANUAL_PARAMS}
 
-    names = ['linux_side'] + names
+    names = ['u_iface'] + names
 
-    out(f'NTSTATUS {method.full_name}( void *args )\n')
+    out(f'NTSTATUS {prefix}{method.full_name}( void *args )\n')
     out(u'{\n')
-    out(f'    struct {method.full_name}_params *params = (struct {method.full_name}_params *)args;\n')
-    out(f'    struct u_{klass.full_name} *iface = (struct u_{klass.full_name} *)params->linux_side;\n')
+    out(f'    struct {prefix}{method.full_name}_params *params = (struct {prefix}{method.full_name}_params *)args;\n')
+    out(f'    struct u_{klass.full_name} *iface = (struct u_{klass.full_name} *)params->u_iface;\n')
+    if method.name in OUTSTR_PARAMS and OUTSTR_PARAMS[method.name] in names:
+        out(u'    char *u_str;\n')
 
     params = list(zip(names[1:], method.get_arguments()))
     for i, (name, param) in enumerate(params[:-1]):
@@ -975,14 +1070,13 @@ def handle_method_cpp(method, classname, out):
         if underlying_typename(param) not in SIZED_STRUCTS | EXEMPT_STRUCTS:
             print('Warning:', underlying_typename(param), name, 'following', prev_name)
 
-    path_conv_wtou = PATH_CONV_METHODS_WTOU.get(f'{klass.name}_{method.spelling}', {})
-
     for name, conv in filter(lambda x: x[0] in names, path_conv_wtou.items()):
         if conv['array']:
-            out(f'    const char **u_{name} = steamclient_dos_to_unix_path_array( params->{name} );\n')
+            out(f'    const char **u_{name} = {prefix}steamclient_dos_to_unix_path_array( params->{name} );\n')
         else:
             out(f'    char *u_{name} = steamclient_dos_to_unix_path( params->{name}, {int(conv["url"])} );\n')
 
+    wow64_convert = {}
     need_output = {}
 
     for name, param in sorted(need_convert.items()):
@@ -991,6 +1085,11 @@ def handle_method_cpp(method, classname, out):
             continue
 
         pointee = param.type.get_pointee()
+        if pointee.spelling.replace('const ', '') in ARRAY_WOW64_STRUCTS and wow64:
+            out(f'    {declspec(param, f"u_{name}", "u_")} = params->{name} ? new {declspec(pointee, "", "u_")}( *params->{name} ) : nullptr;\n')
+            wow64_convert[name] = param
+            continue
+
         if pointee.kind == TypeKind.POINTER:
             need_output[name] = param
             out(f'    {declspec(pointee, f"lin_{name}", "u_")};\n')
@@ -1016,24 +1115,23 @@ def handle_method_cpp(method, classname, out):
 
     def param_call(name, param):
         pfx = '&' if param.type.kind == TypeKind.POINTER else ''
+        if name in wow64_convert: return f"u_{name}"
         if name in need_convert: return f"{pfx}u_{name}"
         if name in manual_convert: return f"u_{name}"
         if name in path_conv_wtou: return f"u_{name}"
+        if name == OUTSTR_PARAMS.get(method.name, None):
+            return f'params->{name} ? ({declspec(param, "", "u_")})&u_str : nullptr'
         return f'params->{name}'
 
     params = [param_call(n, p) for n, p in zip(names[1:], method.get_arguments())]
-
-    # CGameID -> CGameID &
-    # Windows side follows the prototype in the header while Linux
-    # steamclient treats gameID parameter as pointer
-    if klass.full_name == 'ISteamUser_SteamUser008' \
-       and method.name == 'InitiateGameConnection':
-        params[3] = f'&{params[3]}'
 
     out(f'iface->{method.spelling}( {", ".join(params)} );\n')
 
     for name, param in sorted(need_output.items()):
         out(f'    *params->{name} = u_{name};\n')
+
+    for name, param in sorted(wow64_convert.items()):
+        out(f'    if (u_{name}) delete u_{name};\n')
 
     path_conv_utow = PATH_CONV_METHODS_UTOW.get(f'{klass.name}_{method.spelling}', {})
 
@@ -1049,8 +1147,11 @@ def handle_method_cpp(method, classname, out):
         else:
             out(f'    steamclient_free_path( u_{name} );\n')
 
+    if method.name in OUTSTR_PARAMS and OUTSTR_PARAMS[method.name] in names:
+        out(f'    if (params->{OUTSTR_PARAMS[method.name]}) params->_str = u_str;\n');
+
     out(u'    return 0;\n')
-    out(u'}\n\n')
+    out(u'}\n')
 
 
 def handle_thiscall_wrapper(klass, method, out):
@@ -1082,7 +1183,7 @@ def handle_method_c(klass, method, winclassname, out):
         params = [f'{declspec(method.result_type, "*_ret", "w_")}'] + params
         names = ['_ret'] + names
 
-    params = ['struct w_steam_iface *_this'] + params
+    params = ['struct w_iface *_this'] + params
     names = ['_this'] + names
 
     out(f'{ret}__thiscall {winclassname}_{method.name}({", ".join(params)})\n')
@@ -1090,7 +1191,7 @@ def handle_method_c(klass, method, winclassname, out):
 
     out(f'    struct {method.full_name}_params params =\n')
     out(u'    {\n')
-    out(u'        .linux_side = _this->u_iface,\n')
+    out(u'        .u_iface = _this->u_iface,\n')
     for name in names[1:]: out(f'        .{name} = {name},\n')
     out(u'    };\n')
 
@@ -1105,15 +1206,16 @@ def handle_method_c(klass, method, winclassname, out):
             out(pretouch.format(p.spelling))
 
     out(f'    STEAMCLIENT_CALL( {method.full_name}, &params );\n')
+    if method.name in OUTSTR_PARAMS and OUTSTR_PARAMS[method.name] in names:
+        out(f'    if ({OUTSTR_PARAMS[method.name]}) *{OUTSTR_PARAMS[method.name]} = get_unix_buffer( params._str );\n')
 
     if method.name.startswith('CreateFakeUDPPort'):
-        out(u'    params._ret = create_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001( params._ret );\n')
-    elif method.name.startswith("GetISteamGenericInterface"):
-        out(u'    params._ret = create_win_interface( pchVersion, params._ret );\n')
-    elif method.result_type.spelling.startswith("ISteam"):
-        out(u'    params._ret = create_win_interface( pchVersion, params._ret );\n')
-
-    if not returns_void:
+        out(u'    return create_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001( params._ret );\n')
+    elif method.returns_unix_iface():
+        out(u'    return create_win_interface( pchVersion, params._ret );\n')
+    elif method.returns_string():
+        out(u'    return get_unix_buffer( params._ret );\n')
+    elif not returns_void:
         out(u'    return params._ret;\n')
     out(u'}\n\n')
 
@@ -1136,7 +1238,10 @@ def handle_class(klass):
                 continue
             if is_manual_method(klass, method, "u"):
                 continue
-            handle_method_cpp(method, klass.name, out)
+            handle_method_cpp(method, klass.name, out, False)
+            out(u'\n#if defined(__x86_64__) || defined(__aarch64__)\n')
+            handle_method_cpp(method, klass.name, out, True)
+            out(u'#endif\n\n')
 
 
     winclassname = f"win{klass.full_name}"
@@ -1151,7 +1256,7 @@ def handle_class(klass):
             if is_manual_method(klass, method, "w"):
                 continue
             if type(method) is Destructor:
-                out(f'void __thiscall {winclassname}_{method.name}(struct w_steam_iface *_this)\n{{/* never called */}}\n\n')
+                out(f'void __thiscall {winclassname}_{method.name}(struct w_iface *_this)\n{{/* never called */}}\n\n')
             else:
                 handle_method_c(klass, method, winclassname, out)
 
@@ -1166,9 +1271,9 @@ def handle_class(klass):
         out(u'    );\n')
         out(u'__ASM_BLOCK_END\n')
         out(u'\n')
-        out(f'struct w_steam_iface *create_{winclassname}(void *u_iface)\n')
+        out(f'struct w_iface *create_{winclassname}( struct u_iface u_iface )\n')
         out(u'{\n')
-        out(f'    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "{klass.version}");\n')
+        out(f'    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "{klass.version}");\n')
         out(u'    TRACE("-> %p\\n", r);\n')
         out(f'    r->vtable = alloc_vtable(&{winclassname}_vtable, {len(klass.methods)}, "{klass.version}");\n')
         out(u'    r->u_iface = u_iface;\n')
@@ -1371,7 +1476,7 @@ for name in sorted(set(k.name for k in all_classes.values())):
         out = file.write
         out(f'void init_win{name}_rtti( char *base )\n')
         out(u'{\n')
-        out(u'#ifdef __x86_64__\n')
+        out(u'#if defined(__x86_64__) || defined(__aarch64__)\n')
 
 for _, klass in sorted(all_classes.items()):
     with open(f"win{klass.name}.c", "a") as file:
@@ -1381,7 +1486,7 @@ for _, klass in sorted(all_classes.items()):
 for name in sorted(set(k.name for k in all_classes.values())):
     with open(f"win{name}.c", "a") as file:
         out = file.write
-        out(u'#endif /* __x86_64__ */\n')
+        out(u'#endif /* defined(__x86_64__) || defined(__aarch64__) */\n')
         out(u'}\n')
 
 
@@ -1391,7 +1496,7 @@ with open("steamclient_generated.h", "w") as file:
     out(u'/* This file is auto-generated, do not edit. */\n\n')
 
     for _, klass in sorted(all_classes.items()):
-        out(f"extern struct w_steam_iface *create_win{klass.full_name}(void *);\n")
+        out(f"extern struct w_iface *create_win{klass.full_name}( struct u_iface );\n")
 
 
 with open("steamclient_generated.c", "w") as file:
@@ -1504,22 +1609,22 @@ with open('steamclient_structs_generated.h', 'w') as file:
                 continue
 
             if not abis["w64"].needs_conversion(abis["u64"]):
-                abis['w64'].write_definition(out, "w64_", [])
+                abis['w64'].write_definition(out, "w64_", ["w32_"])
             else:
                 abis['w64'].write_definition(out, "w64_", ["u64_"])
-                abis['u64'].write_definition(out, "u64_", ["w64_"])
+                abis['u64'].write_definition(out, "u64_", ["w64_", "w32_"])
 
             if not abis["w32"].needs_conversion(abis["u32"]):
-                abis['w32'].write_definition(out, "w32_", [])
+                abis['w32'].write_definition(out, "w32_", ["u64_"])
             else:
-                abis['w32'].write_definition(out, "w32_", ["u32_"])
+                abis['w32'].write_definition(out, "w32_", ["u32_", "u64_"])
                 abis['u32'].write_definition(out, "u32_", ["w32_"])
 
             out(u'#ifdef __i386__\n')
             out(f'typedef w32_{version} w_{version};\n')
             out(f'typedef u32_{version} u_{version};\n')
             out(u'#endif\n')
-            out(u'#ifdef __x86_64__\n')
+            out(u'#if defined(__x86_64__) || defined(__aarch64__)\n')
             out(f'typedef w64_{version} w_{version};\n')
             out(f'typedef u64_{version} u_{version};\n')
             out(u'#endif\n')
@@ -1548,6 +1653,7 @@ with open("unix_private_generated.h", "w") as file:
         if type(method) is Destructor:
             continue
         out(f'NTSTATUS {method.full_name}( void * );\n')
+        out(f'NTSTATUS wow64_{method.full_name}( void * );\n')
     out(u'\n')
 
     out(u'#ifdef __cplusplus\n')
@@ -1570,8 +1676,13 @@ with open(u"unixlib_generated.h", "w") as file:
 
     out(u'#include <pshpack1.h>\n\n')
     for klass, method in all_methods:
+        if type(method) is Destructor:
+            continue
+
         sdkver = klass._sdkver
-        method.write_params(out)
+        method.write_params(out, False)
+        method.write_params(out, True)
+
     out(u'#include <poppack.h>\n\n')
 
     out(u'enum unix_funcs\n')
@@ -1612,6 +1723,19 @@ with open('unixlib_generated.cpp', 'w') as file:
         out(f'    {method.full_name},\n')
     out(u'};\n')
     out(u'\n')
+
+    out(u'#if defined(__x86_64__) || defined(__aarch64__)\n')
+    out(u'extern "C" const unixlib_entry_t __wine_unix_call_wow64_funcs[] =\n')
+    out(u'{\n')
+    for func in UNIX_FUNCS:
+        out(f'    wow64_{func},\n')
+    for klass, method in all_methods:
+        sdkver = klass._sdkver
+        if type(method) is Destructor:
+            continue
+        out(f'    wow64_{method.full_name},\n')
+    out(u'};\n')
+    out(u'#endif\n')
 
     callbacks = []
 
@@ -1662,49 +1786,38 @@ with open('unixlib_generated.cpp', 'w') as file:
             path_conv_fields = PATH_CONV_STRUCTS.get(name, {})
 
             if abis["w64"].needs_conversion(abis["u64"]):
-                abis['w64'].write_converter('u64_', {})
-                out(u'\n')
-                abis['u64'].write_converter('w64_', path_conv_fields)
+                abis['w64'].write_converter('u64', {})
+                abis['u64'].write_converter('w64', path_conv_fields)
 
             if abis["w32"].needs_conversion(abis["u32"]):
-                abis['w32'].write_converter('u32_', {})
-                out(u'\n')
-                abis['u32'].write_converter('w32_', path_conv_fields)
+                abis['w32'].write_converter('u32', {})
+                abis['u32'].write_converter('w32', path_conv_fields)
+
+            if name not in MANUAL_WOW64_STRUCTS:
+                abis['w32'].write_converter('u64', {})
+                abis['u64'].write_converter('w32', path_conv_fields)
+
+    def write_callbacks(prefix, u_abi, w_abi):
+        out(f'const struct callback_def {prefix}callback_data[] =\n{{\n');
+        values = set()
+        for cbid, sdkver, abis in sorted(callbacks, key=lambda x: x[0]):
+            name, value = abis[u_abi].name, (cbid, abis[w_abi].size, abis[u_abi].size)
+            if name in all_versions[sdkver]: name = all_versions[sdkver][name]
+
+            if value not in values:
+                out(f'    {{ {cbid}, {sdkver}, {abis[w_abi].size}, {abis[u_abi].size}, []( void *d, const void *s ){{ *({w_abi}_{name} *)d = *(const {u_abi}_{name} *)s; }} }},\n')
+            else:
+                out(f'    /*{{ {cbid}, {sdkver}, {abis[w_abi].size}, {abis[u_abi].size} }},*/\n')
+            values.add(value)
+        out(u'};\n');
 
     out(u'#ifdef __i386__\n')
-    out(u'const struct callback_def callback_data[] =\n{\n');
-    values = set()
-    for cbid, sdkver, abis in sorted(callbacks, key=lambda x: x[0]):
-        name, value = abis["u32"].name, (cbid, abis["w32"].size, abis["u32"].size)
-        if name in all_versions[sdkver]: name = all_versions[sdkver][name]
-
-        w_from_u = f'{name}_w_from_u'
-        if not w_from_u in written_converters:
-            w_from_u = u'nullptr'
-
-        if value not in values:
-            out(f'    {{ {cbid}, {sdkver}, {abis["w32"].size}, {abis["u32"].size}, {w_from_u} }},\n')
-        else:
-            out(f'    /*{{ {cbid}, {sdkver}, {abis["w32"].size}, {abis["u32"].size}, {w_from_u} }},*/\n')
-        values.add(value)
-    out(u'};\n');
+    out(u'const struct callback_def wow64_callback_data[] = {};\n')
+    write_callbacks("", "u32", "w32")
     out(u'#endif\n')
-    out(u'#ifdef __x86_64__\n')
-    out(u'const struct callback_def callback_data[] =\n{\n');
-    values = set()
-    for cbid, sdkver, abis in sorted(callbacks, key=lambda x: x[0]):
-        name, value = abis["u64"].name, (cbid, abis["w64"].size, abis["u64"].size)
-        if name in all_versions[sdkver]: name = all_versions[sdkver][name]
-
-        w_from_u = f'{name}_w_from_u'
-        if not w_from_u in written_converters:
-            w_from_u = u'nullptr'
-
-        if value not in values:
-            out(f'    {{ {cbid}, {sdkver}, {abis["w64"].size}, {abis["u64"].size}, {w_from_u} }},\n')
-        else:
-            out(f'    /*{{ {cbid}, {sdkver}, {abis["w64"].size}, {abis["u64"].size}, {w_from_u} }},*/\n')
-        values.add(value)
-    out(u'};\n');
+    out(u'#if defined(__x86_64__) || defined(__aarch64__)\n')
+    write_callbacks("wow64_", "u64", "w32")
+    write_callbacks("", "u64", "w64")
     out(u'#endif\n')
+    out(u'const unsigned int wow64_callback_data_size = ARRAY_SIZE(wow64_callback_data);\n');
     out(u'const unsigned int callback_data_size = ARRAY_SIZE(callback_data);\n');

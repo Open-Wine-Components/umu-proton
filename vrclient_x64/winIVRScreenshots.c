@@ -16,11 +16,11 @@ DEFINE_THISCALL_WRAPPER(winIVRScreenshots_IVRScreenshots_001_UpdateScreenshotPro
 DEFINE_THISCALL_WRAPPER(winIVRScreenshots_IVRScreenshots_001_TakeStereoScreenshot, 16)
 DEFINE_THISCALL_WRAPPER(winIVRScreenshots_IVRScreenshots_001_SubmitScreenshot, 20)
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_RequestScreenshot(struct w_steam_iface *_this, uint32_t *pOutScreenshotHandle, uint32_t type, const char *pchPreviewFilename, const char *pchVRFilename)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_RequestScreenshot(struct w_iface *_this, uint32_t *pOutScreenshotHandle, uint32_t type, const char *pchPreviewFilename, const char *pchVRFilename)
 {
     struct IVRScreenshots_IVRScreenshots_001_RequestScreenshot_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOutScreenshotHandle = pOutScreenshotHandle,
         .type = type,
         .pchPreviewFilename = pchPreviewFilename,
@@ -31,11 +31,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_RequestScreenshot(struc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_HookScreenshot(struct w_steam_iface *_this, uint32_t *pSupportedTypes, int32_t numTypes)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_HookScreenshot(struct w_iface *_this, uint32_t *pSupportedTypes, int32_t numTypes)
 {
     struct IVRScreenshots_IVRScreenshots_001_HookScreenshot_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pSupportedTypes = pSupportedTypes,
         .numTypes = numTypes,
     };
@@ -44,11 +44,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_HookScreenshot(struct w
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyType(struct w_steam_iface *_this, uint32_t screenshotHandle, uint32_t *pError)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyType(struct w_iface *_this, uint32_t screenshotHandle, uint32_t *pError)
 {
     struct IVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .screenshotHandle = screenshotHandle,
         .pError = pError,
     };
@@ -57,11 +57,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyTy
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyFilename(struct w_steam_iface *_this, uint32_t screenshotHandle, uint32_t filenameType, char *pchFilename, uint32_t cchFilename, uint32_t *pError)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyFilename(struct w_iface *_this, uint32_t screenshotHandle, uint32_t filenameType, char *pchFilename, uint32_t cchFilename, uint32_t *pError)
 {
     struct IVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyFilename_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .screenshotHandle = screenshotHandle,
         .filenameType = filenameType,
         .pchFilename = pchFilename,
@@ -73,11 +73,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_GetScreenshotPropertyFi
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_UpdateScreenshotProgress(struct w_steam_iface *_this, uint32_t screenshotHandle, float flProgress)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_UpdateScreenshotProgress(struct w_iface *_this, uint32_t screenshotHandle, float flProgress)
 {
     struct IVRScreenshots_IVRScreenshots_001_UpdateScreenshotProgress_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .screenshotHandle = screenshotHandle,
         .flProgress = flProgress,
     };
@@ -86,11 +86,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_UpdateScreenshotProgres
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_TakeStereoScreenshot(struct w_steam_iface *_this, uint32_t *pOutScreenshotHandle, const char *pchPreviewFilename, const char *pchVRFilename)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_TakeStereoScreenshot(struct w_iface *_this, uint32_t *pOutScreenshotHandle, const char *pchPreviewFilename, const char *pchVRFilename)
 {
     struct IVRScreenshots_IVRScreenshots_001_TakeStereoScreenshot_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOutScreenshotHandle = pOutScreenshotHandle,
         .pchPreviewFilename = pchPreviewFilename,
         .pchVRFilename = pchVRFilename,
@@ -100,11 +100,11 @@ uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_TakeStereoScreenshot(st
     return params._ret;
 }
 
-uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_SubmitScreenshot(struct w_steam_iface *_this, uint32_t screenshotHandle, uint32_t type, const char *pchSourcePreviewFilename, const char *pchSourceVRFilename)
+uint32_t __thiscall winIVRScreenshots_IVRScreenshots_001_SubmitScreenshot(struct w_iface *_this, uint32_t screenshotHandle, uint32_t type, const char *pchSourcePreviewFilename, const char *pchSourceVRFilename)
 {
     struct IVRScreenshots_IVRScreenshots_001_SubmitScreenshot_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .screenshotHandle = screenshotHandle,
         .type = type,
         .pchSourcePreviewFilename = pchSourcePreviewFilename,
@@ -131,24 +131,24 @@ __ASM_BLOCK_BEGIN(winIVRScreenshots_IVRScreenshots_001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRScreenshots_IVRScreenshots_001(void *u_iface)
+struct w_iface *create_winIVRScreenshots_IVRScreenshots_001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRScreenshots_IVRScreenshots_001_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRScreenshots_IVRScreenshots_001(struct w_steam_iface *object)
+void destroy_winIVRScreenshots_IVRScreenshots_001(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRScreenshots_IVRScreenshots_001_FnTable(void *u_iface)
+struct w_iface *create_winIVRScreenshots_IVRScreenshots_001_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(7);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 7 * sizeof(*vtable));
     int i;
@@ -168,7 +168,7 @@ struct w_steam_iface *create_winIVRScreenshots_IVRScreenshots_001_FnTable(void *
     return r;
 }
 
-void destroy_winIVRScreenshots_IVRScreenshots_001_FnTable(struct w_steam_iface *object)
+void destroy_winIVRScreenshots_IVRScreenshots_001_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -178,7 +178,7 @@ void destroy_winIVRScreenshots_IVRScreenshots_001_FnTable(struct w_steam_iface *
 
 void init_winIVRScreenshots_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRScreenshots_IVRScreenshots_001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

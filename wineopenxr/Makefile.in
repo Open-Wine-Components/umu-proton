@@ -1,9 +1,11 @@
 MODULE     = wineopenxr.dll
-IMPORTS    = advapi32 dxgi
+UNIXLIB    = wineopenxr.so
+IMPORTS    = advapi32 user32 dxgi winevulkan
 
-EXTRADLLFLAGS = -mcygwin -lvulkan
-EXTRADEFS = -DWINE_NO_LONG_TYPES
+EXTRADEFS  = -DWINE_NO_LONG_TYPES
 
 SOURCES = \
 	openxr.c \
+	openxr_loader.c \
 	openxr_thunks.c \
+	loader_thunks.c \

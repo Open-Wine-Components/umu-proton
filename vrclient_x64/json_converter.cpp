@@ -31,7 +31,7 @@ static char *get_unix_file_name( const WCHAR *path )
 {
     UNICODE_STRING nt_name;
     OBJECT_ATTRIBUTES attr;
-    NTSTATUS status;
+    UINT status;
     ULONG size = 256;
     char *buffer;
 
@@ -55,8 +55,10 @@ static char *get_unix_file_name( const WCHAR *path )
 
 char *vrclient_dos_to_unix_path( const char *src )
 {
+    WCHAR srcW[PATH_MAX] = {'\\', '?', '?', '\\', 0}, *tmp;
     char buffer[4096], *dst = buffer;
-    uint32_t len;
+    char *unix_path;
+    uint32_t len, r;
 
     TRACE( "src %s\n", debugstr_a(src) );
 
@@ -65,49 +67,38 @@ char *vrclient_dos_to_unix_path( const char *src )
     *dst = 0;
     if (!*src) goto done;
 
-    if (IS_ABSOLUTE( src ))
+    len = 4;
+    if (!IS_ABSOLUTE( src ))
     {
-        /* absolute path, use wine conversion */
-        WCHAR srcW[PATH_MAX] = {'\\', '?', '?', '\\', 0}, *tmp;
-        char *unix_path;
-        uint32_t r;
+        CURDIR *curdir = &NtCurrentTeb()->Peb->ProcessParameters->CurrentDirectory;
 
-        r = ntdll_umbstowcs( src, strlen( src ) + 1, srcW + 4, PATH_MAX - 4 );
-        if (r == 0) unix_path = NULL;
-        else
-        {
-            for (tmp = srcW; *tmp; ++tmp) if (*tmp == '/') *tmp = '\\';
-            unix_path = get_unix_file_name( srcW );
-        }
-
-        if (!unix_path)
-        {
-            WARN( "Unable to convert DOS filename to unix: %s\n", src );
-            return NULL;
-        }
-
-        if (!realpath( unix_path, dst ))
-        {
-            ERR( "Could not get real path for %s.\n", unix_path );
-            lstrcpynA( dst, unix_path, PATH_MAX );
-        }
-
-        free( unix_path );
+        memcpy( srcW + len, curdir->DosPath.Buffer, curdir->DosPath.Length );
+        len += curdir->DosPath.Length / 2;
+        TRACE("relative, srcW %s.\n", debugstr_w(srcW));
     }
+
+    r = ntdll_umbstowcs( src, strlen( src ) + 1, srcW + len, PATH_MAX - len );
+
+    if (r == 0) unix_path = NULL;
     else
     {
-        /* relative path, just fix up backslashes */
-        const char *s;
-        char *d;
-
-        for (s = src, d = dst; *src; ++s, ++d)
-        {
-            if (*s == '\\') *d = '/';
-            else *d = *s;
-        }
-
-        *d = 0;
+        for (tmp = srcW; *tmp; ++tmp) if (*tmp == '/') *tmp = '\\';
+        unix_path = get_unix_file_name( srcW );
     }
+
+    if (!unix_path)
+    {
+        WARN( "Unable to convert DOS filename to unix: %s\n", src );
+        return NULL;
+    }
+
+    if (!realpath( unix_path, dst ))
+    {
+        ERR( "Could not get real path for %s.\n", unix_path );
+        lstrcpynA( dst, unix_path, PATH_MAX );
+    }
+
+    free( unix_path );
 
 done:
     len = strlen( buffer ) + 1;
@@ -126,7 +117,7 @@ void vrclient_free_path( char *path )
 /* returns the number of bytes written to dst, not including the NUL terminator */
 unsigned int vrclient_unix_path_to_dos_path( bool api_result, const char *src, char *dst, uint32_t dst_bytes )
 {
-    NTSTATUS status;
+    UINT status;
     uint32_t r = 0;
     ULONG size = 0;
     WCHAR *dosW;

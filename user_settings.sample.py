@@ -15,6 +15,9 @@ user_settings = {
     #DXVK debug logging
     "DXVK_LOG_LEVEL": "info",
 
+    #DXVK-NVAPI debug logging
+    "DXVK_NVAPI_LOG_LEVEL": "info",
+
     #vkd3d debug logging
     "VKD3D_DEBUG": "warn",
 
@@ -28,7 +31,7 @@ user_settings = {
     #general purpose media logging
 #    "GST_DEBUG": "4",
     #or, verbose converter logging (may impact playback performance):
-#    "GST_DEBUG": "4,WINE:7,protonaudioconverter:7,protonaudioconverterbin:7,protonvideoconverter:7",
+#    "GST_DEBUG": "4,WINE:7,protonmediaconverter:7",
     "GST_DEBUG_NO_COLOR": "1",
 
     #Enable DXVK's HUD

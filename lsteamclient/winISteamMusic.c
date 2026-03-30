@@ -13,95 +13,95 @@ DEFINE_THISCALL_WRAPPER(winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayNext,
 DEFINE_THISCALL_WRAPPER(winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_SetVolume, 8)
 DEFINE_THISCALL_WRAPPER(winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetVolume, 4)
 
-int8_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsEnabled(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsEnabled(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsEnabled, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsPlaying(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsPlaying(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsPlaying_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_BIsPlaying, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetPlaybackStatus(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetPlaybackStatus(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetPlaybackStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetPlaybackStatus, &params );
     return params._ret;
 }
 
-void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Play(struct w_steam_iface *_this)
+void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Play(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Play_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Play, &params );
 }
 
-void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Pause(struct w_steam_iface *_this)
+void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Pause(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Pause_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_Pause, &params );
 }
 
-void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayPrevious(struct w_steam_iface *_this)
+void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayPrevious(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayPrevious_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayPrevious, &params );
 }
 
-void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayNext(struct w_steam_iface *_this)
+void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayNext(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayNext_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_PlayNext, &params );
 }
 
-void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_SetVolume(struct w_steam_iface *_this, float flVolume)
+void __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_SetVolume(struct w_iface *_this, float flVolume)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_SetVolume_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flVolume = flVolume,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_SetVolume, &params );
 }
 
-float __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetVolume(struct w_steam_iface *_this)
+float __thiscall winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetVolume(struct w_iface *_this)
 {
     struct ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetVolume_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_GetVolume, &params );
@@ -126,9 +126,9 @@ __ASM_BLOCK_BEGIN(winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001(void *u_iface)
+struct w_iface *create_winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMMUSIC_INTERFACE_VERSION001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMMUSIC_INTERFACE_VERSION001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_vtable, 9, "STEAMMUSIC_INTERFACE_VERSION001");
     r->u_iface = u_iface;
@@ -137,7 +137,7 @@ struct w_steam_iface *create_winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001(void
 
 void init_winISteamMusic_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamMusic_STEAMMUSIC_INTERFACE_VERSION001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

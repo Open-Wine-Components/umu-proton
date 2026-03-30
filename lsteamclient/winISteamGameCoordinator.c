@@ -7,11 +7,11 @@ DEFINE_THISCALL_WRAPPER(winISteamGameCoordinator_SteamGameCoordinator001_SendMes
 DEFINE_THISCALL_WRAPPER(winISteamGameCoordinator_SteamGameCoordinator001_IsMessageAvailable, 8)
 DEFINE_THISCALL_WRAPPER(winISteamGameCoordinator_SteamGameCoordinator001_RetrieveMessage, 20)
 
-uint32_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_SendMessage(struct w_steam_iface *_this, uint32_t unMsgType, const void *pubData, uint32_t cubData)
+uint32_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_SendMessage(struct w_iface *_this, uint32_t unMsgType, const void *pubData, uint32_t cubData)
 {
     struct ISteamGameCoordinator_SteamGameCoordinator001_SendMessage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unMsgType = unMsgType,
         .pubData = pubData,
         .cubData = cubData,
@@ -21,11 +21,11 @@ uint32_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_SendMessage
     return params._ret;
 }
 
-int8_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_IsMessageAvailable(struct w_steam_iface *_this, uint32_t *pcubMsgSize)
+int8_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_IsMessageAvailable(struct w_iface *_this, uint32_t *pcubMsgSize)
 {
     struct ISteamGameCoordinator_SteamGameCoordinator001_IsMessageAvailable_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pcubMsgSize = pcubMsgSize,
     };
     TRACE("%p\n", _this);
@@ -33,11 +33,11 @@ int8_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_IsMessageAvai
     return params._ret;
 }
 
-uint32_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_RetrieveMessage(struct w_steam_iface *_this, uint32_t *punMsgType, void *pubDest, uint32_t cubDest, uint32_t *pcubMsgSize)
+uint32_t __thiscall winISteamGameCoordinator_SteamGameCoordinator001_RetrieveMessage(struct w_iface *_this, uint32_t *punMsgType, void *pubDest, uint32_t cubDest, uint32_t *pcubMsgSize)
 {
     struct ISteamGameCoordinator_SteamGameCoordinator001_RetrieveMessage_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .punMsgType = punMsgType,
         .pubDest = pubDest,
         .cubDest = cubDest,
@@ -60,9 +60,9 @@ __ASM_BLOCK_BEGIN(winISteamGameCoordinator_SteamGameCoordinator001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamGameCoordinator_SteamGameCoordinator001(void *u_iface)
+struct w_iface *create_winISteamGameCoordinator_SteamGameCoordinator001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamGameCoordinator001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamGameCoordinator001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamGameCoordinator_SteamGameCoordinator001_vtable, 3, "SteamGameCoordinator001");
     r->u_iface = u_iface;
@@ -71,7 +71,7 @@ struct w_steam_iface *create_winISteamGameCoordinator_SteamGameCoordinator001(vo
 
 void init_winISteamGameCoordinator_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamGameCoordinator_SteamGameCoordinator001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

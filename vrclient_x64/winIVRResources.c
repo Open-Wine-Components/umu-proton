@@ -11,11 +11,11 @@ WINE_DEFAULT_DEBUG_CHANNEL(vrclient);
 DEFINE_THISCALL_WRAPPER(winIVRResources_IVRResources_001_LoadSharedResource, 16)
 DEFINE_THISCALL_WRAPPER(winIVRResources_IVRResources_001_GetResourceFullPath, 20)
 
-uint32_t __thiscall winIVRResources_IVRResources_001_LoadSharedResource(struct w_steam_iface *_this, const char *pchResourceName, char *pchBuffer, uint32_t unBufferLen)
+uint32_t __thiscall winIVRResources_IVRResources_001_LoadSharedResource(struct w_iface *_this, const char *pchResourceName, char *pchBuffer, uint32_t unBufferLen)
 {
     struct IVRResources_IVRResources_001_LoadSharedResource_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchResourceName = pchResourceName,
         .pchBuffer = pchBuffer,
         .unBufferLen = unBufferLen,
@@ -25,11 +25,11 @@ uint32_t __thiscall winIVRResources_IVRResources_001_LoadSharedResource(struct w
     return params._ret;
 }
 
-uint32_t __thiscall winIVRResources_IVRResources_001_GetResourceFullPath(struct w_steam_iface *_this, const char *pchResourceName, const char *pchResourceTypeDirectory, char *pchPathBuffer, uint32_t unBufferLen)
+uint32_t __thiscall winIVRResources_IVRResources_001_GetResourceFullPath(struct w_iface *_this, const char *pchResourceName, const char *pchResourceTypeDirectory, char *pchPathBuffer, uint32_t unBufferLen)
 {
     struct IVRResources_IVRResources_001_GetResourceFullPath_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchResourceName = pchResourceName,
         .pchResourceTypeDirectory = pchResourceTypeDirectory,
         .pchPathBuffer = pchPathBuffer,
@@ -51,24 +51,24 @@ __ASM_BLOCK_BEGIN(winIVRResources_IVRResources_001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRResources_IVRResources_001(void *u_iface)
+struct w_iface *create_winIVRResources_IVRResources_001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRResources_IVRResources_001_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRResources_IVRResources_001(struct w_steam_iface *object)
+void destroy_winIVRResources_IVRResources_001(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRResources_IVRResources_001_FnTable(void *u_iface)
+struct w_iface *create_winIVRResources_IVRResources_001_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(2);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 2 * sizeof(*vtable));
     int i;
@@ -83,7 +83,7 @@ struct w_steam_iface *create_winIVRResources_IVRResources_001_FnTable(void *u_if
     return r;
 }
 
-void destroy_winIVRResources_IVRResources_001_FnTable(struct w_steam_iface *object)
+void destroy_winIVRResources_IVRResources_001_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -93,7 +93,7 @@ void destroy_winIVRResources_IVRResources_001_FnTable(struct w_steam_iface *obje
 
 void init_winIVRResources_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRResources_IVRResources_001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

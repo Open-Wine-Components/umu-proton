@@ -27,7 +27,7 @@
 	url = https://github.com/jp7677/dxvk-nvapi
 [submodule "vkd3d"]
 	path = vkd3d
-	url = https://github.com/ValveSoftware/vkd3d
+	url = https://gitlab.winehq.org/wine/vkd3d
 [submodule "Vulkan-Headers"]
 	path = Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers

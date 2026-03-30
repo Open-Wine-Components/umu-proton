@@ -1,10 +1,13 @@
 MODULE     = vrclient.dll
 UNIXLIB    = vrclient.so
-MODULE_x64 = vrclient_x64.dll
-UNIXLIB_x64= vrclient_x64.so
 IMPORTS    = advapi32
 
-EXTRADEFS = -DWINE_NO_LONG_TYPES -DGNUC
+x86_64_MODULE   = vrclient_x64.dll
+x86_64_UNIXLIB  = vrclient_x64.so
+aarch64_MODULE  = vrclient_x64.dll
+aarch64_UNIXLIB = vrclient_x64.so
+
+EXTRADEFS = -DGNUC
 
 SOURCES = \
 	flatapi.c \
@@ -72,6 +75,7 @@ SOURCES = \
 	cppIVRCompositor_IVRCompositor_026.cpp \
 	cppIVRCompositor_IVRCompositor_027.cpp \
 	cppIVRCompositor_IVRCompositor_028.cpp \
+	cppIVRCompositor_IVRCompositor_029.cpp \
 	cppIVRControlPanel_IVRControlPanel_006.cpp \
 	cppIVRDriverManager_IVRDriverManager_001.cpp \
 	cppIVRExtendedDisplay_IVRExtendedDisplay_001.cpp \
@@ -92,6 +96,7 @@ SOURCES = \
 	cppIVROverlay_IVROverlay_003.cpp \
 	cppIVROverlay_IVROverlay_004.cpp \
 	cppIVROverlay_IVROverlay_005.cpp \
+	cppIVROverlay_IVROverlay_006.cpp \
 	cppIVROverlay_IVROverlay_007.cpp \
 	cppIVROverlay_IVROverlay_008.cpp \
 	cppIVROverlay_IVROverlay_010.cpp \
@@ -110,6 +115,7 @@ SOURCES = \
 	cppIVROverlay_IVROverlay_025.cpp \
 	cppIVROverlay_IVROverlay_026.cpp \
 	cppIVROverlay_IVROverlay_027.cpp \
+	cppIVROverlay_IVROverlay_028.cpp \
 	cppIVROverlayView_IVROverlayView_003.cpp \
 	cppIVRRenderModels_IVRRenderModels_001.cpp \
 	cppIVRRenderModels_IVRRenderModels_002.cpp \
@@ -125,6 +131,7 @@ SOURCES = \
 	cppIVRSystem_IVRSystem_004.cpp \
 	cppIVRSystem_IVRSystem_005.cpp \
 	cppIVRSystem_IVRSystem_006.cpp \
+	cppIVRSystem_IVRSystem_007.cpp \
 	cppIVRSystem_IVRSystem_009.cpp \
 	cppIVRSystem_IVRSystem_010.cpp \
 	cppIVRSystem_IVRSystem_011.cpp \
@@ -137,6 +144,7 @@ SOURCES = \
 	cppIVRSystem_IVRSystem_020.cpp \
 	cppIVRSystem_IVRSystem_021.cpp \
 	cppIVRSystem_IVRSystem_022.cpp \
+	cppIVRSystem_IVRSystem_023.cpp \
 	cppIVRTrackedCamera_IVRTrackedCamera_001.cpp \
 	cppIVRTrackedCamera_IVRTrackedCamera_002.cpp \
 	cppIVRTrackedCamera_IVRTrackedCamera_003.cpp \

@@ -8,11 +8,11 @@ DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_ClearTime
 DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent, 32)
 DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineGameMode, 8)
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineStateDescription(struct w_steam_iface *_this, const char *pchDescription, float flTimeDelta)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineStateDescription(struct w_iface *_this, const char *pchDescription, float flTimeDelta)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineStateDescription_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchDescription = pchDescription,
         .flTimeDelta = flTimeDelta,
     };
@@ -21,22 +21,22 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineStateD
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineStateDescription, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_ClearTimelineStateDescription(struct w_steam_iface *_this, float flTimeDelta)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_ClearTimelineStateDescription(struct w_iface *_this, float flTimeDelta)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_ClearTimelineStateDescription_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flTimeDelta = flTimeDelta,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_ClearTimelineStateDescription, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent(struct w_steam_iface *_this, const char *pchIcon, const char *pchTitle, const char *pchDescription, uint32_t unPriority, float flStartOffsetSeconds, float flDurationSeconds, uint32_t ePossibleClip)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent(struct w_iface *_this, const char *pchIcon, const char *pchTitle, const char *pchDescription, uint32_t unPriority, float flStartOffsetSeconds, float flDurationSeconds, uint32_t ePossibleClip)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchIcon = pchIcon,
         .pchTitle = pchTitle,
         .pchDescription = pchDescription,
@@ -52,11 +52,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent(
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_AddTimelineEvent, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineGameMode(struct w_steam_iface *_this, uint32_t eMode)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineGameMode(struct w_iface *_this, uint32_t eMode)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V001_SetTimelineGameMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eMode = eMode,
     };
     TRACE("%p\n", _this);
@@ -76,9 +76,9 @@ __ASM_BLOCK_BEGIN(winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamTimeline_STEAMTIMELINE_INTERFACE_V001(void *u_iface)
+struct w_iface *create_winISteamTimeline_STEAMTIMELINE_INTERFACE_V001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMTIMELINE_INTERFACE_V001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMTIMELINE_INTERFACE_V001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_vtable, 4, "STEAMTIMELINE_INTERFACE_V001");
     r->u_iface = u_iface;
@@ -104,11 +104,11 @@ DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePh
 DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGamePhase, 8)
 DEFINE_THISCALL_WRAPPER(winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToTimelineEvent, 12)
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineTooltip(struct w_steam_iface *_this, const char *pchDescription, float flTimeDelta)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineTooltip(struct w_iface *_this, const char *pchDescription, float flTimeDelta)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineTooltip_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchDescription = pchDescription,
         .flTimeDelta = flTimeDelta,
     };
@@ -117,33 +117,33 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineToolti
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineTooltip, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_ClearTimelineTooltip(struct w_steam_iface *_this, float flTimeDelta)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_ClearTimelineTooltip(struct w_iface *_this, float flTimeDelta)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_ClearTimelineTooltip_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flTimeDelta = flTimeDelta,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_ClearTimelineTooltip, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineGameMode(struct w_steam_iface *_this, uint32_t eMode)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineGameMode(struct w_iface *_this, uint32_t eMode)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineGameMode_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eMode = eMode,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetTimelineGameMode, &params );
 }
 
-uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddInstantaneousTimelineEvent(struct w_steam_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unIconPriority, float flStartOffsetSeconds, uint32_t ePossibleClip)
+uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddInstantaneousTimelineEvent(struct w_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unIconPriority, float flStartOffsetSeconds, uint32_t ePossibleClip)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddInstantaneousTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTitle = pchTitle,
         .pchDescription = pchDescription,
         .pchIcon = pchIcon,
@@ -159,11 +159,11 @@ uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddInstantane
     return params._ret;
 }
 
-uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddRangeTimelineEvent(struct w_steam_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unIconPriority, float flStartOffsetSeconds, float flDuration, uint32_t ePossibleClip)
+uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddRangeTimelineEvent(struct w_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unIconPriority, float flStartOffsetSeconds, float flDuration, uint32_t ePossibleClip)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddRangeTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTitle = pchTitle,
         .pchDescription = pchDescription,
         .pchIcon = pchIcon,
@@ -180,11 +180,11 @@ uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddRangeTimel
     return params._ret;
 }
 
-uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartRangeTimelineEvent(struct w_steam_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unPriority, float flStartOffsetSeconds, uint32_t ePossibleClip)
+uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartRangeTimelineEvent(struct w_iface *_this, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unPriority, float flStartOffsetSeconds, uint32_t ePossibleClip)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartRangeTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTitle = pchTitle,
         .pchDescription = pchDescription,
         .pchIcon = pchIcon,
@@ -200,11 +200,11 @@ uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartRangeTim
     return params._ret;
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_UpdateRangeTimelineEvent(struct w_steam_iface *_this, uint64_t ulEvent, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unPriority, uint32_t ePossibleClip)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_UpdateRangeTimelineEvent(struct w_iface *_this, uint64_t ulEvent, const char *pchTitle, const char *pchDescription, const char *pchIcon, uint32_t unPriority, uint32_t ePossibleClip)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_UpdateRangeTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulEvent = ulEvent,
         .pchTitle = pchTitle,
         .pchDescription = pchDescription,
@@ -219,11 +219,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_UpdateRangeTimeli
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_UpdateRangeTimelineEvent, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndRangeTimelineEvent(struct w_steam_iface *_this, uint64_t ulEvent, float flEndOffsetSeconds)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndRangeTimelineEvent(struct w_iface *_this, uint64_t ulEvent, float flEndOffsetSeconds)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndRangeTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulEvent = ulEvent,
         .flEndOffsetSeconds = flEndOffsetSeconds,
     };
@@ -231,22 +231,22 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndRangeTimelineE
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndRangeTimelineEvent, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_RemoveTimelineEvent(struct w_steam_iface *_this, uint64_t ulEvent)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_RemoveTimelineEvent(struct w_iface *_this, uint64_t ulEvent)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_RemoveTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulEvent = ulEvent,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_RemoveTimelineEvent, &params );
 }
 
-uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesEventRecordingExist(struct w_steam_iface *_this, uint64_t ulEvent)
+uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesEventRecordingExist(struct w_iface *_this, uint64_t ulEvent)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesEventRecordingExist_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulEvent = ulEvent,
     };
     TRACE("%p\n", _this);
@@ -254,31 +254,31 @@ uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesEventReco
     return params._ret;
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartGamePhase(struct w_steam_iface *_this)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartGamePhase(struct w_iface *_this)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartGamePhase_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_StartGamePhase, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndGamePhase(struct w_steam_iface *_this)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndGamePhase(struct w_iface *_this)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndGamePhase_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_EndGamePhase, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseID(struct w_steam_iface *_this, const char *pchPhaseID)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseID(struct w_iface *_this, const char *pchPhaseID)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchPhaseID = pchPhaseID,
     };
     TRACE("%p\n", _this);
@@ -286,11 +286,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseID(st
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseID, &params );
 }
 
-uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesGamePhaseRecordingExist(struct w_steam_iface *_this, const char *pchPhaseID)
+uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesGamePhaseRecordingExist(struct w_iface *_this, const char *pchPhaseID)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesGamePhaseRecordingExist_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchPhaseID = pchPhaseID,
     };
     TRACE("%p\n", _this);
@@ -299,11 +299,11 @@ uint64_t __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_DoesGamePhase
     return params._ret;
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddGamePhaseTag(struct w_steam_iface *_this, const char *pchTagName, const char *pchTagIcon, const char *pchTagGroup, uint32_t unPriority)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddGamePhaseTag(struct w_iface *_this, const char *pchTagName, const char *pchTagIcon, const char *pchTagGroup, uint32_t unPriority)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddGamePhaseTag_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTagName = pchTagName,
         .pchTagIcon = pchTagIcon,
         .pchTagGroup = pchTagGroup,
@@ -316,11 +316,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddGamePhaseTag(s
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_AddGamePhaseTag, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseAttribute(struct w_steam_iface *_this, const char *pchAttributeGroup, const char *pchAttributeValue, uint32_t unPriority)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseAttribute(struct w_iface *_this, const char *pchAttributeGroup, const char *pchAttributeValue, uint32_t unPriority)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseAttribute_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAttributeGroup = pchAttributeGroup,
         .pchAttributeValue = pchAttributeValue,
         .unPriority = unPriority,
@@ -331,11 +331,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseAttri
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_SetGamePhaseAttribute, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGamePhase(struct w_steam_iface *_this, const char *pchPhaseID)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGamePhase(struct w_iface *_this, const char *pchPhaseID)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGamePhase_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchPhaseID = pchPhaseID,
     };
     TRACE("%p\n", _this);
@@ -343,11 +343,11 @@ void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGame
     STEAMCLIENT_CALL( ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToGamePhase, &params );
 }
 
-void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToTimelineEvent(struct w_steam_iface *_this, const uint64_t ulEvent)
+void __thiscall winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToTimelineEvent(struct w_iface *_this, const uint64_t ulEvent)
 {
     struct ISteamTimeline_STEAMTIMELINE_INTERFACE_V004_OpenOverlayToTimelineEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulEvent = ulEvent,
     };
     TRACE("%p\n", _this);
@@ -381,9 +381,9 @@ __ASM_BLOCK_BEGIN(winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamTimeline_STEAMTIMELINE_INTERFACE_V004(void *u_iface)
+struct w_iface *create_winISteamTimeline_STEAMTIMELINE_INTERFACE_V004( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMTIMELINE_INTERFACE_V004");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMTIMELINE_INTERFACE_V004");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_vtable, 18, "STEAMTIMELINE_INTERFACE_V004");
     r->u_iface = u_iface;
@@ -392,8 +392,8 @@ struct w_steam_iface *create_winISteamTimeline_STEAMTIMELINE_INTERFACE_V004(void
 
 void init_winISteamTimeline_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamTimeline_STEAMTIMELINE_INTERFACE_V001_rtti( base );
     init_winISteamTimeline_STEAMTIMELINE_INTERFACE_V004_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

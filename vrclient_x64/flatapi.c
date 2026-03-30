@@ -1,20 +1,24 @@
 /* This file is auto-generated, do not edit. */
 
+#if 0
+#pragma makedep arm64ec_x64
+#endif
+
 #include <stdarg.h>
 
 #include "windef.h"
 #include "winbase.h"
+#include "wine/debug.h"
 
-#include "cxx.h"
 #include "flatapi.h"
 
-#ifdef __i386__
+#if defined(__i386__)
 __ASM_GLOBAL_FUNC(call_flat_method,
     "popl %eax\n\t"
     "pushl %ecx\n\t"
     "pushl %eax\n\t"
     "jmp *%edx");
-#else
+#elif defined(__x86_64__)
 // handles "this" and up to 3 parameters
 __ASM_GLOBAL_FUNC(call_flat_method,
     "movq %r8, %r9\n\t" // shift over arguments
@@ -444,4 +448,15 @@ get_call_flat_method_pfn( int param_count, BOOL has_floats, BOOL is_4th_float )
     if (param_count == 8) return call_flat_method8_f;
     return call_flat_method9_f;
 }
+#else
+
+WINE_DEFAULT_DEBUG_CHANNEL(vrclient);
+
+pfn_call_flat_method
+get_call_flat_method_pfn( int param_count, BOOL has_floats, BOOL is_4th_float )
+{
+    ERR("Not implemented!\n");
+    return NULL;
+}
+
 #endif

@@ -13,11 +13,11 @@ DEFINE_THISCALL_WRAPPER(winIVROverlayView_IVROverlayView_003_ReleaseOverlayView,
 DEFINE_THISCALL_WRAPPER(winIVROverlayView_IVROverlayView_003_PostOverlayEvent, 16)
 DEFINE_THISCALL_WRAPPER(winIVROverlayView_IVROverlayView_003_IsViewingPermitted, 12)
 
-uint32_t __thiscall winIVROverlayView_IVROverlayView_003_AcquireOverlayView(struct w_steam_iface *_this, uint64_t ulOverlayHandle, w_VRNativeDevice_t *pNativeDevice, w_VROverlayView_t *pOverlayView, uint32_t unOverlayViewSize)
+uint32_t __thiscall winIVROverlayView_IVROverlayView_003_AcquireOverlayView(struct w_iface *_this, uint64_t ulOverlayHandle, w_VRNativeDevice_t *pNativeDevice, w_VROverlayView_t *pOverlayView, uint32_t unOverlayViewSize)
 {
     struct IVROverlayView_IVROverlayView_003_AcquireOverlayView_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulOverlayHandle = ulOverlayHandle,
         .pNativeDevice = pNativeDevice,
         .pOverlayView = pOverlayView,
@@ -28,11 +28,11 @@ uint32_t __thiscall winIVROverlayView_IVROverlayView_003_AcquireOverlayView(stru
     return params._ret;
 }
 
-uint32_t __thiscall winIVROverlayView_IVROverlayView_003_ReleaseOverlayView(struct w_steam_iface *_this, w_VROverlayView_t *pOverlayView)
+uint32_t __thiscall winIVROverlayView_IVROverlayView_003_ReleaseOverlayView(struct w_iface *_this, w_VROverlayView_t *pOverlayView)
 {
     struct IVROverlayView_IVROverlayView_003_ReleaseOverlayView_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOverlayView = pOverlayView,
     };
     TRACE("%p\n", _this);
@@ -40,11 +40,11 @@ uint32_t __thiscall winIVROverlayView_IVROverlayView_003_ReleaseOverlayView(stru
     return params._ret;
 }
 
-void __thiscall winIVROverlayView_IVROverlayView_003_PostOverlayEvent(struct w_steam_iface *_this, uint64_t ulOverlayHandle, const w_VREvent_t_223 *pvrEvent)
+void __thiscall winIVROverlayView_IVROverlayView_003_PostOverlayEvent(struct w_iface *_this, uint64_t ulOverlayHandle, const w_VREvent_t_223 *pvrEvent)
 {
     struct IVROverlayView_IVROverlayView_003_PostOverlayEvent_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulOverlayHandle = ulOverlayHandle,
         .pvrEvent = pvrEvent,
     };
@@ -52,11 +52,11 @@ void __thiscall winIVROverlayView_IVROverlayView_003_PostOverlayEvent(struct w_s
     VRCLIENT_CALL( IVROverlayView_IVROverlayView_003_PostOverlayEvent, &params );
 }
 
-int8_t __thiscall winIVROverlayView_IVROverlayView_003_IsViewingPermitted(struct w_steam_iface *_this, uint64_t ulOverlayHandle)
+int8_t __thiscall winIVROverlayView_IVROverlayView_003_IsViewingPermitted(struct w_iface *_this, uint64_t ulOverlayHandle)
 {
     struct IVROverlayView_IVROverlayView_003_IsViewingPermitted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulOverlayHandle = ulOverlayHandle,
     };
     TRACE("%p\n", _this);
@@ -77,24 +77,24 @@ __ASM_BLOCK_BEGIN(winIVROverlayView_IVROverlayView_003_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVROverlayView_IVROverlayView_003(void *u_iface)
+struct w_iface *create_winIVROverlayView_IVROverlayView_003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVROverlayView_IVROverlayView_003_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVROverlayView_IVROverlayView_003(struct w_steam_iface *object)
+void destroy_winIVROverlayView_IVROverlayView_003(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVROverlayView_IVROverlayView_003_FnTable(void *u_iface)
+struct w_iface *create_winIVROverlayView_IVROverlayView_003_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(4);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 4 * sizeof(*vtable));
     int i;
@@ -111,7 +111,7 @@ struct w_steam_iface *create_winIVROverlayView_IVROverlayView_003_FnTable(void *
     return r;
 }
 
-void destroy_winIVROverlayView_IVROverlayView_003_FnTable(struct w_steam_iface *object)
+void destroy_winIVROverlayView_IVROverlayView_003_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -121,7 +121,7 @@ void destroy_winIVROverlayView_IVROverlayView_003_FnTable(struct w_steam_iface *
 
 void init_winIVROverlayView_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVROverlayView_IVROverlayView_003_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

@@ -23,10 +23,9 @@ static uint64_t wrap_device( uint32_t type, VkInstance_T *instance, uint64_t dev
     return device;
 }
 
-NTSTATUS IVRSystem_IVRSystem_017_GetOutputDevice( void *args )
+template< typename Iface, typename Params >
+static NTSTATUS IVRSystem_GetOutputDevice( Iface *iface, Params *params, bool wow64 )
 {
-    struct IVRSystem_IVRSystem_017_GetOutputDevice_params *params = (struct IVRSystem_IVRSystem_017_GetOutputDevice_params *)args;
-    struct u_IVRSystem_IVRSystem_017 *iface = (struct u_IVRSystem_IVRSystem_017 *)params->linux_side;
     VkInstance_T *host_instance = unwrap_instance( params->textureType, params->pInstance );
     uint64_t host_device;
 
@@ -35,50 +34,9 @@ NTSTATUS IVRSystem_IVRSystem_017_GetOutputDevice( void *args )
     return 0;
 }
 
-NTSTATUS IVRSystem_IVRSystem_019_GetOutputDevice( void *args )
-{
-    struct IVRSystem_IVRSystem_019_GetOutputDevice_params *params = (struct IVRSystem_IVRSystem_019_GetOutputDevice_params *)args;
-    struct u_IVRSystem_IVRSystem_019 *iface = (struct u_IVRSystem_IVRSystem_019 *)params->linux_side;
-    VkInstance_T *host_instance = unwrap_instance( params->textureType, params->pInstance );
-    uint64_t host_device;
-
-    iface->GetOutputDevice( &host_device, params->textureType, host_instance );
-    *params->pnDevice = wrap_device( params->textureType, params->pInstance, host_device );
-    return 0;
-}
-
-NTSTATUS IVRSystem_IVRSystem_020_GetOutputDevice( void *args )
-{
-    struct IVRSystem_IVRSystem_020_GetOutputDevice_params *params = (struct IVRSystem_IVRSystem_020_GetOutputDevice_params *)args;
-    struct u_IVRSystem_IVRSystem_020 *iface = (struct u_IVRSystem_IVRSystem_020 *)params->linux_side;
-    VkInstance_T *host_instance = unwrap_instance( params->textureType, params->pInstance );
-    uint64_t host_device;
-
-    iface->GetOutputDevice( &host_device, params->textureType, host_instance );
-    *params->pnDevice = wrap_device( params->textureType, params->pInstance, host_device );
-    return 0;
-}
-
-NTSTATUS IVRSystem_IVRSystem_021_GetOutputDevice( void *args )
-{
-    struct IVRSystem_IVRSystem_021_GetOutputDevice_params *params = (struct IVRSystem_IVRSystem_021_GetOutputDevice_params *)args;
-    struct u_IVRSystem_IVRSystem_021 *iface = (struct u_IVRSystem_IVRSystem_021 *)params->linux_side;
-    VkInstance_T *host_instance = unwrap_instance( params->textureType, params->pInstance );
-    uint64_t host_device;
-
-    iface->GetOutputDevice( &host_device, params->textureType, host_instance );
-    *params->pnDevice = wrap_device( params->textureType, params->pInstance, host_device );
-    return 0;
-}
-
-NTSTATUS IVRSystem_IVRSystem_022_GetOutputDevice( void *args )
-{
-    struct IVRSystem_IVRSystem_022_GetOutputDevice_params *params = (struct IVRSystem_IVRSystem_022_GetOutputDevice_params *)args;
-    struct u_IVRSystem_IVRSystem_022 *iface = (struct u_IVRSystem_IVRSystem_022 *)params->linux_side;
-    VkInstance_T *host_instance = unwrap_instance( params->textureType, params->pInstance );
-    uint64_t host_device;
-
-    iface->GetOutputDevice( &host_device, params->textureType, host_instance );
-    *params->pnDevice = wrap_device( params->textureType, params->pInstance, host_device );
-    return 0;
-}
+VRCLIENT_UNIX_IMPL( IVRSystem, 017, GetOutputDevice );
+VRCLIENT_UNIX_IMPL( IVRSystem, 019, GetOutputDevice );
+VRCLIENT_UNIX_IMPL( IVRSystem, 020, GetOutputDevice );
+VRCLIENT_UNIX_IMPL( IVRSystem, 021, GetOutputDevice );
+VRCLIENT_UNIX_IMPL( IVRSystem, 022, GetOutputDevice );
+VRCLIENT_UNIX_IMPL( IVRSystem, 023, GetOutputDevice );

@@ -26,11 +26,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNe
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ParseString, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils001_destructor, 4)
 
-float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalPingLocation(struct w_steam_iface *_this, SteamNetworkPingLocation_t *result)
+float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalPingLocation(struct w_iface *_this, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalPingLocation_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .result = result,
     };
     TRACE("%p\n", _this);
@@ -38,11 +38,11 @@ float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalPingLo
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeBetweenTwoLocations(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeBetweenTwoLocations(struct w_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeBetweenTwoLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location1 = location1,
         .location2 = location2,
     };
@@ -51,11 +51,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePing
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeFromLocalHost(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeFromLocalHost(struct w_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePingTimeFromLocalHost_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteLocation = remoteLocation,
     };
     TRACE("%p\n", _this);
@@ -63,11 +63,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_EstimatePing
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ConvertPingLocationToString(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ConvertPingLocationToString(struct w_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_ConvertPingLocationToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location = location,
         .pszBuf = pszBuf,
         .cchBufSize = cchBufSize,
@@ -76,11 +76,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ConvertPingLoca
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_ConvertPingLocationToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ParsePingLocationString(struct w_steam_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ParsePingLocationString(struct w_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_ParsePingLocationString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pszString = pszString,
         .result = result,
     };
@@ -90,11 +90,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_ParsePingLoca
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_CheckPingDataUpToDate(struct w_steam_iface *_this, float flMaxAgeSeconds)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_CheckPingDataUpToDate(struct w_iface *_this, float flMaxAgeSeconds)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_CheckPingDataUpToDate_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flMaxAgeSeconds = flMaxAgeSeconds,
     };
     TRACE("%p\n", _this);
@@ -102,22 +102,22 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_CheckPingData
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_IsPingMeasurementInProgress(struct w_steam_iface *_this)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_IsPingMeasurementInProgress(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_IsPingMeasurementInProgress_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_IsPingMeasurementInProgress, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPingToDataCenter(struct w_steam_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPingToDataCenter(struct w_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetPingToDataCenter_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
         .pViaRelayPoP = pViaRelayPoP,
     };
@@ -126,11 +126,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPingToDat
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetDirectPingToPOP(struct w_steam_iface *_this, uint32_t popID)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetDirectPingToPOP(struct w_iface *_this, uint32_t popID)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetDirectPingToPOP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
     };
     TRACE("%p\n", _this);
@@ -138,22 +138,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetDirectPin
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPCount(struct w_steam_iface *_this)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPCount(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPCount, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPList(struct w_steam_iface *_this, uint32_t *list, int32_t nListSz)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPList(struct w_iface *_this, uint32_t *list, int32_t nListSz)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPList_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .list = list,
         .nListSz = nListSz,
     };
@@ -162,22 +162,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetPOPList(s
     return params._ret;
 }
 
-int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalTimestamp(struct w_steam_iface *_this)
+int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalTimestamp(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_GetLocalTimestamp, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetDebugOutputFunction(struct w_steam_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetDebugOutputFunction(struct w_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SetDebugOutputFunction_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eDetailLevel = eDetailLevel,
         .pfnFunc = pfnFunc,
     };
@@ -185,11 +185,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetDebugOutputF
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_SetDebugOutputFunction, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -201,11 +201,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SetConfigValu
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -218,11 +218,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigVa
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValueInfo(struct w_steam_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValueInfo(struct w_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValueInfo_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .pOutName = pOutName,
         .pOutDataType = pOutDataType,
@@ -231,25 +231,26 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValu
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_GetConfigValueInfo, &params );
+    if (pOutName) *pOutName = get_unix_buffer( params._str );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetFirstConfigValue(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_GetFirstConfigValue(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_GetFirstConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_GetFirstConfigValue, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ToString(struct w_steam_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ToString(struct w_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .addr = addr,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -259,11 +260,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ParseString(struct w_steam_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ParseString(struct w_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIPAddr_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pAddr = pAddr,
         .pszStr = pszStr,
     };
@@ -273,11 +274,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ToString(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ToString(struct w_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identity = identity,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -286,11 +287,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ParseString(struct w_steam_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ParseString(struct w_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworkingIdentity_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pIdentity = pIdentity,
         .pszStr = pszStr,
     };
@@ -300,7 +301,7 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_destructor(struct w_steam_iface *_this)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils001_destructor(struct w_iface *_this)
 {/* never called */}
 
 extern vtable_ptr winISteamNetworkingUtils_SteamNetworkingUtils001_vtable;
@@ -334,9 +335,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingUtils_SteamNetworkingUtils001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils001(void *u_iface)
+struct w_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingUtils001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingUtils001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingUtils_SteamNetworkingUtils001_vtable, 22, "SteamNetworkingUtils001");
     r->u_iface = u_iface;
@@ -366,11 +367,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNe
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ParseString, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils002_destructor, 4)
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetRelayNetworkStatus(struct w_steam_iface *_this, SteamRelayNetworkStatus_t *pDetails)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetRelayNetworkStatus(struct w_iface *_this, SteamRelayNetworkStatus_t *pDetails)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetRelayNetworkStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pDetails = pDetails,
     };
     TRACE("%p\n", _this);
@@ -378,11 +379,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetRelayNet
     return params._ret;
 }
 
-float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalPingLocation(struct w_steam_iface *_this, SteamNetworkPingLocation_t *result)
+float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalPingLocation(struct w_iface *_this, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalPingLocation_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .result = result,
     };
     TRACE("%p\n", _this);
@@ -390,11 +391,11 @@ float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalPingLo
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeBetweenTwoLocations(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeBetweenTwoLocations(struct w_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeBetweenTwoLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location1 = location1,
         .location2 = location2,
     };
@@ -403,11 +404,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePing
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeFromLocalHost(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeFromLocalHost(struct w_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePingTimeFromLocalHost_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteLocation = remoteLocation,
     };
     TRACE("%p\n", _this);
@@ -415,11 +416,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_EstimatePing
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ConvertPingLocationToString(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ConvertPingLocationToString(struct w_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_ConvertPingLocationToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location = location,
         .pszBuf = pszBuf,
         .cchBufSize = cchBufSize,
@@ -428,11 +429,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ConvertPingLoca
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_ConvertPingLocationToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ParsePingLocationString(struct w_steam_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ParsePingLocationString(struct w_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_ParsePingLocationString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pszString = pszString,
         .result = result,
     };
@@ -442,11 +443,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_ParsePingLoca
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_CheckPingDataUpToDate(struct w_steam_iface *_this, float flMaxAgeSeconds)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_CheckPingDataUpToDate(struct w_iface *_this, float flMaxAgeSeconds)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_CheckPingDataUpToDate_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flMaxAgeSeconds = flMaxAgeSeconds,
     };
     TRACE("%p\n", _this);
@@ -454,11 +455,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_CheckPingData
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPingToDataCenter(struct w_steam_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPingToDataCenter(struct w_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetPingToDataCenter_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
         .pViaRelayPoP = pViaRelayPoP,
     };
@@ -467,11 +468,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPingToDat
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetDirectPingToPOP(struct w_steam_iface *_this, uint32_t popID)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetDirectPingToPOP(struct w_iface *_this, uint32_t popID)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetDirectPingToPOP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
     };
     TRACE("%p\n", _this);
@@ -479,22 +480,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetDirectPin
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPCount(struct w_steam_iface *_this)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPCount(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPCount, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPList(struct w_steam_iface *_this, uint32_t *list, int32_t nListSz)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPList(struct w_iface *_this, uint32_t *list, int32_t nListSz)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPList_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .list = list,
         .nListSz = nListSz,
     };
@@ -503,22 +504,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetPOPList(s
     return params._ret;
 }
 
-int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalTimestamp(struct w_steam_iface *_this)
+int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalTimestamp(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_GetLocalTimestamp, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetDebugOutputFunction(struct w_steam_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetDebugOutputFunction(struct w_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SetDebugOutputFunction_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eDetailLevel = eDetailLevel,
         .pfnFunc = pfnFunc,
     };
@@ -526,11 +527,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetDebugOutputF
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_SetDebugOutputFunction, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -542,11 +543,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SetConfigValu
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -559,11 +560,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigVa
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValueInfo(struct w_steam_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValueInfo(struct w_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValueInfo_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .pOutName = pOutName,
         .pOutDataType = pOutDataType,
@@ -572,25 +573,26 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValu
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_GetConfigValueInfo, &params );
+    if (pOutName) *pOutName = get_unix_buffer( params._str );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetFirstConfigValue(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_GetFirstConfigValue(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_GetFirstConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_GetFirstConfigValue, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ToString(struct w_steam_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ToString(struct w_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .addr = addr,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -600,11 +602,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ParseString(struct w_steam_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ParseString(struct w_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIPAddr_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pAddr = pAddr,
         .pszStr = pszStr,
     };
@@ -614,11 +616,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ToString(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ToString(struct w_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identity = identity,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -627,11 +629,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ParseString(struct w_steam_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ParseString(struct w_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworkingIdentity_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pIdentity = pIdentity,
         .pszStr = pszStr,
     };
@@ -641,7 +643,7 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_destructor(struct w_steam_iface *_this)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils002_destructor(struct w_iface *_this)
 {/* never called */}
 
 extern vtable_ptr winISteamNetworkingUtils_SteamNetworkingUtils002_vtable;
@@ -675,9 +677,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingUtils_SteamNetworkingUtils002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils002(void *u_iface)
+struct w_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingUtils002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingUtils002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingUtils_SteamNetworkingUtils002_vtable, 22, "SteamNetworkingUtils002");
     r->u_iface = u_iface;
@@ -708,11 +710,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNe
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ParseString, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils003_destructor, 4)
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetRelayNetworkStatus(struct w_steam_iface *_this, SteamRelayNetworkStatus_t *pDetails)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetRelayNetworkStatus(struct w_iface *_this, SteamRelayNetworkStatus_t *pDetails)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetRelayNetworkStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pDetails = pDetails,
     };
     TRACE("%p\n", _this);
@@ -720,11 +722,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetRelayNet
     return params._ret;
 }
 
-float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalPingLocation(struct w_steam_iface *_this, SteamNetworkPingLocation_t *result)
+float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalPingLocation(struct w_iface *_this, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalPingLocation_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .result = result,
     };
     TRACE("%p\n", _this);
@@ -732,11 +734,11 @@ float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalPingLo
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeBetweenTwoLocations(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeBetweenTwoLocations(struct w_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeBetweenTwoLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location1 = location1,
         .location2 = location2,
     };
@@ -745,11 +747,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePing
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeFromLocalHost(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeFromLocalHost(struct w_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePingTimeFromLocalHost_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteLocation = remoteLocation,
     };
     TRACE("%p\n", _this);
@@ -757,11 +759,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_EstimatePing
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ConvertPingLocationToString(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ConvertPingLocationToString(struct w_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_ConvertPingLocationToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location = location,
         .pszBuf = pszBuf,
         .cchBufSize = cchBufSize,
@@ -770,11 +772,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ConvertPingLoca
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_ConvertPingLocationToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ParsePingLocationString(struct w_steam_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ParsePingLocationString(struct w_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_ParsePingLocationString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pszString = pszString,
         .result = result,
     };
@@ -784,11 +786,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_ParsePingLoca
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_CheckPingDataUpToDate(struct w_steam_iface *_this, float flMaxAgeSeconds)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_CheckPingDataUpToDate(struct w_iface *_this, float flMaxAgeSeconds)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_CheckPingDataUpToDate_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flMaxAgeSeconds = flMaxAgeSeconds,
     };
     TRACE("%p\n", _this);
@@ -796,11 +798,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_CheckPingData
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPingToDataCenter(struct w_steam_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPingToDataCenter(struct w_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetPingToDataCenter_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
         .pViaRelayPoP = pViaRelayPoP,
     };
@@ -809,11 +811,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPingToDat
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetDirectPingToPOP(struct w_steam_iface *_this, uint32_t popID)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetDirectPingToPOP(struct w_iface *_this, uint32_t popID)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetDirectPingToPOP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
     };
     TRACE("%p\n", _this);
@@ -821,22 +823,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetDirectPin
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPCount(struct w_steam_iface *_this)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPCount(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPCount, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPList(struct w_steam_iface *_this, uint32_t *list, int32_t nListSz)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPList(struct w_iface *_this, uint32_t *list, int32_t nListSz)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPList_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .list = list,
         .nListSz = nListSz,
     };
@@ -845,22 +847,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetPOPList(s
     return params._ret;
 }
 
-int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalTimestamp(struct w_steam_iface *_this)
+int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalTimestamp(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_GetLocalTimestamp, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetDebugOutputFunction(struct w_steam_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetDebugOutputFunction(struct w_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SetDebugOutputFunction_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eDetailLevel = eDetailLevel,
         .pfnFunc = pfnFunc,
     };
@@ -868,11 +870,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetDebugOutputF
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_SetDebugOutputFunction, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -884,11 +886,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SetConfigValu
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -901,11 +903,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigVa
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValueInfo(struct w_steam_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValueInfo(struct w_iface *_this, uint32_t eValue, const char **pOutName, uint32_t *pOutDataType, uint32_t *pOutScope, uint32_t *pOutNextValue)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValueInfo_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .pOutName = pOutName,
         .pOutDataType = pOutDataType,
@@ -914,25 +916,26 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValu
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_GetConfigValueInfo, &params );
+    if (pOutName) *pOutName = get_unix_buffer( params._str );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetFirstConfigValue(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_GetFirstConfigValue(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_GetFirstConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_GetFirstConfigValue, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ToString(struct w_steam_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ToString(struct w_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .addr = addr,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -942,11 +945,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ParseString(struct w_steam_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ParseString(struct w_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIPAddr_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pAddr = pAddr,
         .pszStr = pszStr,
     };
@@ -956,11 +959,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ToString(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ToString(struct w_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identity = identity,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -969,11 +972,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ParseString(struct w_steam_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ParseString(struct w_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworkingIdentity_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pIdentity = pIdentity,
         .pszStr = pszStr,
     };
@@ -983,7 +986,7 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_destructor(struct w_steam_iface *_this)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils003_destructor(struct w_iface *_this)
 {/* never called */}
 
 extern vtable_ptr winISteamNetworkingUtils_SteamNetworkingUtils003_vtable;
@@ -1018,9 +1021,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingUtils_SteamNetworkingUtils003_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils003(void *u_iface)
+struct w_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingUtils003");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingUtils003");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingUtils_SteamNetworkingUtils003_vtable, 23, "SteamNetworkingUtils003");
     r->u_iface = u_iface;
@@ -1054,11 +1057,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNe
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ParseString, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingUtils_SteamNetworkingUtils004_destructor, 4)
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRelayNetworkStatus(struct w_steam_iface *_this, SteamRelayNetworkStatus_t *pDetails)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRelayNetworkStatus(struct w_iface *_this, SteamRelayNetworkStatus_t *pDetails)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetRelayNetworkStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pDetails = pDetails,
     };
     TRACE("%p\n", _this);
@@ -1066,11 +1069,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRelayNet
     return params._ret;
 }
 
-float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalPingLocation(struct w_steam_iface *_this, SteamNetworkPingLocation_t *result)
+float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalPingLocation(struct w_iface *_this, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalPingLocation_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .result = result,
     };
     TRACE("%p\n", _this);
@@ -1078,11 +1081,11 @@ float __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalPingLo
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeBetweenTwoLocations(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeBetweenTwoLocations(struct w_iface *_this, const SteamNetworkPingLocation_t *location1, const SteamNetworkPingLocation_t *location2)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeBetweenTwoLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location1 = location1,
         .location2 = location2,
     };
@@ -1091,11 +1094,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePing
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeFromLocalHost(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeFromLocalHost(struct w_iface *_this, const SteamNetworkPingLocation_t *remoteLocation)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePingTimeFromLocalHost_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteLocation = remoteLocation,
     };
     TRACE("%p\n", _this);
@@ -1103,11 +1106,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_EstimatePing
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ConvertPingLocationToString(struct w_steam_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ConvertPingLocationToString(struct w_iface *_this, const SteamNetworkPingLocation_t *location, char *pszBuf, int32_t cchBufSize)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_ConvertPingLocationToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .location = location,
         .pszBuf = pszBuf,
         .cchBufSize = cchBufSize,
@@ -1116,11 +1119,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ConvertPingLoca
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_ConvertPingLocationToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ParsePingLocationString(struct w_steam_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ParsePingLocationString(struct w_iface *_this, const char *pszString, SteamNetworkPingLocation_t *result)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_ParsePingLocationString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pszString = pszString,
         .result = result,
     };
@@ -1130,11 +1133,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_ParsePingLoca
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_CheckPingDataUpToDate(struct w_steam_iface *_this, float flMaxAgeSeconds)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_CheckPingDataUpToDate(struct w_iface *_this, float flMaxAgeSeconds)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_CheckPingDataUpToDate_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flMaxAgeSeconds = flMaxAgeSeconds,
     };
     TRACE("%p\n", _this);
@@ -1142,11 +1145,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_CheckPingData
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPingToDataCenter(struct w_steam_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPingToDataCenter(struct w_iface *_this, uint32_t popID, uint32_t *pViaRelayPoP)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetPingToDataCenter_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
         .pViaRelayPoP = pViaRelayPoP,
     };
@@ -1155,11 +1158,11 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPingToDat
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetDirectPingToPOP(struct w_steam_iface *_this, uint32_t popID)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetDirectPingToPOP(struct w_iface *_this, uint32_t popID)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetDirectPingToPOP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .popID = popID,
     };
     TRACE("%p\n", _this);
@@ -1167,22 +1170,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetDirectPin
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPCount(struct w_steam_iface *_this)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPCount(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPCount, &params );
     return params._ret;
 }
 
-int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPList(struct w_steam_iface *_this, uint32_t *list, int32_t nListSz)
+int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPList(struct w_iface *_this, uint32_t *list, int32_t nListSz)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPList_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .list = list,
         .nListSz = nListSz,
     };
@@ -1191,22 +1194,22 @@ int32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetPOPList(s
     return params._ret;
 }
 
-int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalTimestamp(struct w_steam_iface *_this)
+int64_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalTimestamp(struct w_iface *_this)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_GetLocalTimestamp, &params );
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetDebugOutputFunction(struct w_steam_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetDebugOutputFunction(struct w_iface *_this, uint32_t eDetailLevel, void (*W_CDECL pfnFunc)(uint32_t, const char *))
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SetDebugOutputFunction_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eDetailLevel = eDetailLevel,
         .pfnFunc = pfnFunc,
     };
@@ -1214,11 +1217,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetDebugOutputF
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_SetDebugOutputFunction, &params );
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetIPv4FakeIPType(struct w_steam_iface *_this, uint32_t nIPv4)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetIPv4FakeIPType(struct w_iface *_this, uint32_t nIPv4)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetIPv4FakeIPType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nIPv4 = nIPv4,
     };
     TRACE("%p\n", _this);
@@ -1226,11 +1229,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetIPv4Fake
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRealIdentityForFakeIP(struct w_steam_iface *_this, const SteamNetworkingIPAddr *fakeIP, SteamNetworkingIdentity_144 *pOutRealIdentity)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRealIdentityForFakeIP(struct w_iface *_this, const SteamNetworkingIPAddr *fakeIP, SteamNetworkingIdentity_144 *pOutRealIdentity)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetRealIdentityForFakeIP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .fakeIP = fakeIP,
         .pOutRealIdentity = pOutRealIdentity,
     };
@@ -1239,11 +1242,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetRealIden
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t eDataType, const void *pArg)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -1255,11 +1258,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SetConfigValu
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValue(struct w_steam_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValue(struct w_iface *_this, uint32_t eValue, uint32_t eScopeType, int32_t scopeObj, uint32_t *pOutDataType, void *pResult, uint32_t *cbResult)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .eScopeType = eScopeType,
         .scopeObj = scopeObj,
@@ -1272,25 +1275,25 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigVa
     return params._ret;
 }
 
-const char * __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValueInfo(struct w_steam_iface *_this, uint32_t eValue, uint32_t *pOutDataType, uint32_t *pOutScope)
+const char * __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValueInfo(struct w_iface *_this, uint32_t eValue, uint32_t *pOutDataType, uint32_t *pOutScope)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValueInfo_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eValue = eValue,
         .pOutDataType = pOutDataType,
         .pOutScope = pOutScope,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_GetConfigValueInfo, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_IterateGenericEditableConfigValues(struct w_steam_iface *_this, uint32_t eCurrent, int8_t bEnumerateDevVars)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_IterateGenericEditableConfigValues(struct w_iface *_this, uint32_t eCurrent, int8_t bEnumerateDevVars)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_IterateGenericEditableConfigValues_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eCurrent = eCurrent,
         .bEnumerateDevVars = bEnumerateDevVars,
     };
@@ -1299,11 +1302,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_IterateGene
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ToString(struct w_steam_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ToString(struct w_iface *_this, const SteamNetworkingIPAddr *addr, char *buf, uint32_t cbBuf, int8_t bWithPort)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .addr = addr,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -1313,11 +1316,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ParseString(struct w_steam_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ParseString(struct w_iface *_this, SteamNetworkingIPAddr *pAddr, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pAddr = pAddr,
         .pszStr = pszStr,
     };
@@ -1327,11 +1330,11 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworki
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_GetFakeIPType(struct w_steam_iface *_this, const SteamNetworkingIPAddr *addr)
+uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_GetFakeIPType(struct w_iface *_this, const SteamNetworkingIPAddr *addr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIPAddr_GetFakeIPType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .addr = addr,
     };
     TRACE("%p\n", _this);
@@ -1339,11 +1342,11 @@ uint32_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetwor
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ToString(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ToString(struct w_iface *_this, const SteamNetworkingIdentity_144 *identity, char *buf, uint32_t cbBuf)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ToString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identity = identity,
         .buf = buf,
         .cbBuf = cbBuf,
@@ -1352,11 +1355,11 @@ void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworking
     STEAMCLIENT_CALL( ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ToString, &params );
 }
 
-int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ParseString(struct w_steam_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
+int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ParseString(struct w_iface *_this, SteamNetworkingIdentity_144 *pIdentity, const char *pszStr)
 {
     struct ISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworkingIdentity_ParseString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pIdentity = pIdentity,
         .pszStr = pszStr,
     };
@@ -1366,7 +1369,7 @@ int8_t __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_SteamNetworki
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_destructor(struct w_steam_iface *_this)
+void __thiscall winISteamNetworkingUtils_SteamNetworkingUtils004_destructor(struct w_iface *_this)
 {/* never called */}
 
 extern vtable_ptr winISteamNetworkingUtils_SteamNetworkingUtils004_vtable;
@@ -1404,9 +1407,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingUtils_SteamNetworkingUtils004_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils004(void *u_iface)
+struct w_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils004( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingUtils004");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingUtils004");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingUtils_SteamNetworkingUtils004_vtable, 26, "SteamNetworkingUtils004");
     r->u_iface = u_iface;
@@ -1415,10 +1418,10 @@ struct w_steam_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils004(vo
 
 void init_winISteamNetworkingUtils_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamNetworkingUtils_SteamNetworkingUtils001_rtti( base );
     init_winISteamNetworkingUtils_SteamNetworkingUtils002_rtti( base );
     init_winISteamNetworkingUtils_SteamNetworkingUtils003_rtti( base );
     init_winISteamNetworkingUtils_SteamNetworkingUtils004_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

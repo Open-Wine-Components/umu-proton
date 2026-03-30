@@ -16,15 +16,15 @@ DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_002_BIsHmdPresent, 4)
 DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_002_GetEnglishStringForHmdError, 8)
 DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_002_GetIDForVRInitError, 8)
 
-extern uint32_t __thiscall winIVRClientCore_IVRClientCore_002_Init(struct w_steam_iface *_this, uint32_t eApplicationType);
+extern uint32_t __thiscall winIVRClientCore_IVRClientCore_002_Init(struct w_iface *_this, uint32_t eApplicationType);
 
-extern void __thiscall winIVRClientCore_IVRClientCore_002_Cleanup(struct w_steam_iface *_this);
+extern void __thiscall winIVRClientCore_IVRClientCore_002_Cleanup(struct w_iface *_this);
 
-uint32_t __thiscall winIVRClientCore_IVRClientCore_002_IsInterfaceVersionValid(struct w_steam_iface *_this, const char *pchInterfaceVersion)
+uint32_t __thiscall winIVRClientCore_IVRClientCore_002_IsInterfaceVersionValid(struct w_iface *_this, const char *pchInterfaceVersion)
 {
     struct IVRClientCore_IVRClientCore_002_IsInterfaceVersionValid_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchInterfaceVersion = pchInterfaceVersion,
     };
     TRACE("%p\n", _this);
@@ -32,32 +32,32 @@ uint32_t __thiscall winIVRClientCore_IVRClientCore_002_IsInterfaceVersionValid(s
     return params._ret;
 }
 
-extern void * __thiscall winIVRClientCore_IVRClientCore_002_GetGenericInterface(struct w_steam_iface *_this, const char *pchNameAndVersion, uint32_t *peError);
+extern void * __thiscall winIVRClientCore_IVRClientCore_002_GetGenericInterface(struct w_iface *_this, const char *pchNameAndVersion, uint32_t *peError);
 
-extern int8_t __thiscall winIVRClientCore_IVRClientCore_002_BIsHmdPresent(struct w_steam_iface *_this);
+extern int8_t __thiscall winIVRClientCore_IVRClientCore_002_BIsHmdPresent(struct w_iface *_this);
 
-const char * __thiscall winIVRClientCore_IVRClientCore_002_GetEnglishStringForHmdError(struct w_steam_iface *_this, uint32_t eError)
+const char * __thiscall winIVRClientCore_IVRClientCore_002_GetEnglishStringForHmdError(struct w_iface *_this, uint32_t eError)
 {
     struct IVRClientCore_IVRClientCore_002_GetEnglishStringForHmdError_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eError = eError,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRClientCore_IVRClientCore_002_GetEnglishStringForHmdError, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-const char * __thiscall winIVRClientCore_IVRClientCore_002_GetIDForVRInitError(struct w_steam_iface *_this, uint32_t eError)
+const char * __thiscall winIVRClientCore_IVRClientCore_002_GetIDForVRInitError(struct w_iface *_this, uint32_t eError)
 {
     struct IVRClientCore_IVRClientCore_002_GetIDForVRInitError_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eError = eError,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRClientCore_IVRClientCore_002_GetIDForVRInitError, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
 extern vtable_ptr winIVRClientCore_IVRClientCore_002_vtable;
@@ -76,24 +76,24 @@ __ASM_BLOCK_BEGIN(winIVRClientCore_IVRClientCore_002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRClientCore_IVRClientCore_002(void *u_iface)
+struct w_iface *create_winIVRClientCore_IVRClientCore_002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRClientCore_IVRClientCore_002_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRClientCore_IVRClientCore_002(struct w_steam_iface *object)
+void destroy_winIVRClientCore_IVRClientCore_002(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRClientCore_IVRClientCore_002_FnTable(void *u_iface)
+struct w_iface *create_winIVRClientCore_IVRClientCore_002_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(7);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 7 * sizeof(*vtable));
     int i;
@@ -113,7 +113,7 @@ struct w_steam_iface *create_winIVRClientCore_IVRClientCore_002_FnTable(void *u_
     return r;
 }
 
-void destroy_winIVRClientCore_IVRClientCore_002_FnTable(struct w_steam_iface *object)
+void destroy_winIVRClientCore_IVRClientCore_002_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -129,15 +129,15 @@ DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_003_BIsHmdPresent, 4)
 DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_003_GetEnglishStringForHmdError, 8)
 DEFINE_THISCALL_WRAPPER(winIVRClientCore_IVRClientCore_003_GetIDForVRInitError, 8)
 
-extern uint32_t __thiscall winIVRClientCore_IVRClientCore_003_Init(struct w_steam_iface *_this, uint32_t eApplicationType, const char *pStartupInfo);
+extern uint32_t __thiscall winIVRClientCore_IVRClientCore_003_Init(struct w_iface *_this, uint32_t eApplicationType, const char *pStartupInfo);
 
-extern void __thiscall winIVRClientCore_IVRClientCore_003_Cleanup(struct w_steam_iface *_this);
+extern void __thiscall winIVRClientCore_IVRClientCore_003_Cleanup(struct w_iface *_this);
 
-uint32_t __thiscall winIVRClientCore_IVRClientCore_003_IsInterfaceVersionValid(struct w_steam_iface *_this, const char *pchInterfaceVersion)
+uint32_t __thiscall winIVRClientCore_IVRClientCore_003_IsInterfaceVersionValid(struct w_iface *_this, const char *pchInterfaceVersion)
 {
     struct IVRClientCore_IVRClientCore_003_IsInterfaceVersionValid_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchInterfaceVersion = pchInterfaceVersion,
     };
     TRACE("%p\n", _this);
@@ -145,32 +145,32 @@ uint32_t __thiscall winIVRClientCore_IVRClientCore_003_IsInterfaceVersionValid(s
     return params._ret;
 }
 
-extern void * __thiscall winIVRClientCore_IVRClientCore_003_GetGenericInterface(struct w_steam_iface *_this, const char *pchNameAndVersion, uint32_t *peError);
+extern void * __thiscall winIVRClientCore_IVRClientCore_003_GetGenericInterface(struct w_iface *_this, const char *pchNameAndVersion, uint32_t *peError);
 
-extern int8_t __thiscall winIVRClientCore_IVRClientCore_003_BIsHmdPresent(struct w_steam_iface *_this);
+extern int8_t __thiscall winIVRClientCore_IVRClientCore_003_BIsHmdPresent(struct w_iface *_this);
 
-const char * __thiscall winIVRClientCore_IVRClientCore_003_GetEnglishStringForHmdError(struct w_steam_iface *_this, uint32_t eError)
+const char * __thiscall winIVRClientCore_IVRClientCore_003_GetEnglishStringForHmdError(struct w_iface *_this, uint32_t eError)
 {
     struct IVRClientCore_IVRClientCore_003_GetEnglishStringForHmdError_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eError = eError,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRClientCore_IVRClientCore_003_GetEnglishStringForHmdError, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-const char * __thiscall winIVRClientCore_IVRClientCore_003_GetIDForVRInitError(struct w_steam_iface *_this, uint32_t eError)
+const char * __thiscall winIVRClientCore_IVRClientCore_003_GetIDForVRInitError(struct w_iface *_this, uint32_t eError)
 {
     struct IVRClientCore_IVRClientCore_003_GetIDForVRInitError_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .eError = eError,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRClientCore_IVRClientCore_003_GetIDForVRInitError, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
 extern vtable_ptr winIVRClientCore_IVRClientCore_003_vtable;
@@ -189,24 +189,24 @@ __ASM_BLOCK_BEGIN(winIVRClientCore_IVRClientCore_003_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRClientCore_IVRClientCore_003(void *u_iface)
+struct w_iface *create_winIVRClientCore_IVRClientCore_003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRClientCore_IVRClientCore_003_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRClientCore_IVRClientCore_003(struct w_steam_iface *object)
+void destroy_winIVRClientCore_IVRClientCore_003(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRClientCore_IVRClientCore_003_FnTable(void *u_iface)
+struct w_iface *create_winIVRClientCore_IVRClientCore_003_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(7);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 7 * sizeof(*vtable));
     int i;
@@ -226,7 +226,7 @@ struct w_steam_iface *create_winIVRClientCore_IVRClientCore_003_FnTable(void *u_
     return r;
 }
 
-void destroy_winIVRClientCore_IVRClientCore_003_FnTable(struct w_steam_iface *object)
+void destroy_winIVRClientCore_IVRClientCore_003_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -236,8 +236,8 @@ void destroy_winIVRClientCore_IVRClientCore_003_FnTable(struct w_steam_iface *ob
 
 void init_winIVRClientCore_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRClientCore_IVRClientCore_002_rtti( base );
     init_winIVRClientCore_IVRClientCore_003_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

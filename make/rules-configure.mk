@@ -1,37 +1,42 @@
 # parameters:
 #   $(1): lowercase package name
 #   $(2): uppercase package name
-#   $(3): 32/64, build type
-#   $(4): CROSS/<empty>, cross compile
+#   $(3): build target arch
+#   $(4): build target os
 #
 define create-rules-configure
 $(call create-rules-common,$(1),$(2),$(3),$(4))
+ifneq ($(findstring $(3)-$(4),$(ARCHS)),)
 
-$$(OBJ)/.$(1)-configure$(3):
-	@echo ":: configuring $(3)bit $(1)..." >&2
+ifeq ($(wildcard $($(2)_ORIGIN)/configure),)
+$(2)_CONFIGURE_DEPS = $$($(2)_SRC)/configure
 
-	cd "$$($(2)_OBJ$(3))" && env $$($(2)_ENV$(3)) \
+$$($(2)_SRC)/configure: $$($(2)_ORIGIN)/configure.ac | $$(OBJ)/.$(1)-post-source
+	@echo ":: autoreconfing $(1)..." >&2
+	cd "$$($(2)_SRC)" && autoreconf -fiv
+endif
+
+$$(OBJ)/.$(1)-$(3)-configure: $$($(2)_CONFIGURE_DEPS)
+	@echo ":: configuring $(1)-$(3)..." >&2
+
+	cd "$$($(2)_$(3)_OBJ)" && env $$($(2)_$(3)_ENV) \
 	$$($(2)_SRC)/configure $(--quiet?) \
-	    --cross-prefix=$$(TARGET_$(3))- \
-	    --arch=$(CONFIGURE_ARCH$(3)) \
-	    --target-os=linux \
-	    --prefix="$$($(2)_DST$(3))" \
-	    --libdir="$$($(2)_DST$(3))/lib$(subst 32,,$(3))" \
+	    --prefix="$$($(2)_$(3)_DST)" \
+	    --libdir="$$($(2)_$(3)_LIBDIR)/$$($(3)-$(4)_LIBDIR)" \
+	    $$($(2)_$(3)-$(4)_CONFIGURE_ARGS) \
 	    $$($(2)_CONFIGURE_ARGS) \
-	    $$($(2)_CONFIGURE_ARGS$(3))
+	    $$($(2)_$(3)_CONFIGURE_ARGS)
 
 	touch $$@
 
-$$(OBJ)/.$(1)-build$(3):
-	@echo ":: building $(3)bit $(1)..." >&2
-	+cd "$$($(2)_OBJ$(3))" && env $$($(2)_ENV$(3)) \
+$$(OBJ)/.$(1)-$(3)-build:
+	@echo ":: building $(1)-$(3)..." >&2
+	+cd "$$($(2)_$(3)_OBJ)" && env $$($(2)_$(3)_ENV) \
 	$$(BEAR) $$(MAKE)
-	cd "$$($(2)_OBJ$(3))" && env $$($(2)_ENV$(3)) \
+	cd "$$($(2)_$(3)_OBJ)" && env $$($(2)_$(3)_ENV) \
 	$$(MAKE) install
 	touch $$@
+endif
 endef
-
-CONFIGURE_ARCH32 = x86
-CONFIGURE_ARCH64 = x86_64
 
 rules-configure = $(call create-rules-configure,$(1),$(call toupper,$(1)),$(2),$(3))

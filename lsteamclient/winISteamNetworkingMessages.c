@@ -10,11 +10,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingMessages_SteamNetworkingMessages002_C
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingMessages_SteamNetworkingMessages002_CloseChannelWithUser, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingMessages_SteamNetworkingMessages002_GetSessionConnectionInfo, 16)
 
-uint32_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_SendMessageToUser(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, const void *pubData, uint32_t cubData, int32_t nSendFlags, int32_t nRemoteChannel)
+uint32_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_SendMessageToUser(struct w_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, const void *pubData, uint32_t cubData, int32_t nSendFlags, int32_t nRemoteChannel)
 {
     struct ISteamNetworkingMessages_SteamNetworkingMessages002_SendMessageToUser_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identityRemote = identityRemote,
         .pubData = pubData,
         .cubData = cubData,
@@ -26,11 +26,11 @@ uint32_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_SendM
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_AcceptSessionWithUser(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identityRemote)
+int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_AcceptSessionWithUser(struct w_iface *_this, const SteamNetworkingIdentity_144 *identityRemote)
 {
     struct ISteamNetworkingMessages_SteamNetworkingMessages002_AcceptSessionWithUser_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identityRemote = identityRemote,
     };
     TRACE("%p\n", _this);
@@ -38,11 +38,11 @@ int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_AcceptS
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseSessionWithUser(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identityRemote)
+int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseSessionWithUser(struct w_iface *_this, const SteamNetworkingIdentity_144 *identityRemote)
 {
     struct ISteamNetworkingMessages_SteamNetworkingMessages002_CloseSessionWithUser_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identityRemote = identityRemote,
     };
     TRACE("%p\n", _this);
@@ -50,11 +50,11 @@ int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseSe
     return params._ret;
 }
 
-int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseChannelWithUser(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, int32_t nLocalChannel)
+int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseChannelWithUser(struct w_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, int32_t nLocalChannel)
 {
     struct ISteamNetworkingMessages_SteamNetworkingMessages002_CloseChannelWithUser_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identityRemote = identityRemote,
         .nLocalChannel = nLocalChannel,
     };
@@ -63,11 +63,11 @@ int8_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_CloseCh
     return params._ret;
 }
 
-uint32_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_GetSessionConnectionInfo(struct w_steam_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, SteamNetConnectionInfo_t_153a *pConnectionInfo, SteamNetConnectionRealTimeStatus_t *pQuickStatus)
+uint32_t __thiscall winISteamNetworkingMessages_SteamNetworkingMessages002_GetSessionConnectionInfo(struct w_iface *_this, const SteamNetworkingIdentity_144 *identityRemote, SteamNetConnectionInfo_t_153a *pConnectionInfo, SteamNetConnectionRealTimeStatus_t *pQuickStatus)
 {
     struct ISteamNetworkingMessages_SteamNetworkingMessages002_GetSessionConnectionInfo_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .identityRemote = identityRemote,
         .pConnectionInfo = pConnectionInfo,
         .pQuickStatus = pQuickStatus,
@@ -92,9 +92,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingMessages_SteamNetworkingMessages002_vtables
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingMessages_SteamNetworkingMessages002(void *u_iface)
+struct w_iface *create_winISteamNetworkingMessages_SteamNetworkingMessages002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingMessages002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingMessages002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingMessages_SteamNetworkingMessages002_vtable, 6, "SteamNetworkingMessages002");
     r->u_iface = u_iface;
@@ -103,7 +103,7 @@ struct w_steam_iface *create_winISteamNetworkingMessages_SteamNetworkingMessages
 
 void init_winISteamNetworkingMessages_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamNetworkingMessages_SteamNetworkingMessages002_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

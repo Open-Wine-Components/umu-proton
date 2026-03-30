@@ -8,11 +8,11 @@ DEFINE_THISCALL_WRAPPER(winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPor
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_ReceiveMessages, 12)
 DEFINE_THISCALL_WRAPPER(winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_ScheduleCleanup, 8)
 
-uint32_t __thiscall winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_SendMessageToFakeIP(struct w_steam_iface *_this, const SteamNetworkingIPAddr *remoteAddress, const void *pData, uint32_t cbData, int32_t nSendFlags)
+uint32_t __thiscall winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_SendMessageToFakeIP(struct w_iface *_this, const SteamNetworkingIPAddr *remoteAddress, const void *pData, uint32_t cbData, int32_t nSendFlags)
 {
     struct ISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_SendMessageToFakeIP_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteAddress = remoteAddress,
         .pData = pData,
         .cbData = cbData,
@@ -23,11 +23,11 @@ uint32_t __thiscall winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001
     return params._ret;
 }
 
-void __thiscall winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_ScheduleCleanup(struct w_steam_iface *_this, const SteamNetworkingIPAddr *remoteAddress)
+void __thiscall winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_ScheduleCleanup(struct w_iface *_this, const SteamNetworkingIPAddr *remoteAddress)
 {
     struct ISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_ScheduleCleanup_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .remoteAddress = remoteAddress,
     };
     TRACE("%p\n", _this);
@@ -47,9 +47,9 @@ __ASM_BLOCK_BEGIN(winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_v
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001(void *u_iface)
+struct w_iface *create_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamNetworkingFakeUDPPort001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamNetworkingFakeUDPPort001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_vtable, 4, "SteamNetworkingFakeUDPPort001");
     r->u_iface = u_iface;
@@ -58,7 +58,7 @@ struct w_steam_iface *create_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeU
 
 void init_winISteamNetworkingFakeUDPPort_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamNetworkingFakeUDPPort_SteamNetworkingFakeUDPPort001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

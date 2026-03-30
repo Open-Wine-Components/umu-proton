@@ -74,3 +74,5 @@
 @ stub VulkanSteamOverlayGetScaleFactors
 @ stub VulkanSteamOverlayPresent
 @ stub VulkanSteamOverlayProcessCapturedFrame
+
+@ cdecl -private steamclient_init_registry()

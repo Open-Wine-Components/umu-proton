@@ -16,22 +16,22 @@ DEFINE_THISCALL_WRAPPER(winISteamParties_SteamParties002_ChangeNumOpenSlots, 16)
 DEFINE_THISCALL_WRAPPER(winISteamParties_SteamParties002_DestroyBeacon, 12)
 DEFINE_THISCALL_WRAPPER(winISteamParties_SteamParties002_GetBeaconLocationData, 28)
 
-uint32_t __thiscall winISteamParties_SteamParties002_GetNumActiveBeacons(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamParties_SteamParties002_GetNumActiveBeacons(struct w_iface *_this)
 {
     struct ISteamParties_SteamParties002_GetNumActiveBeacons_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamParties_SteamParties002_GetNumActiveBeacons, &params );
     return params._ret;
 }
 
-uint64_t __thiscall winISteamParties_SteamParties002_GetBeaconByIndex(struct w_steam_iface *_this, uint32_t unIndex)
+uint64_t __thiscall winISteamParties_SteamParties002_GetBeaconByIndex(struct w_iface *_this, uint32_t unIndex)
 {
     struct ISteamParties_SteamParties002_GetBeaconByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unIndex = unIndex,
     };
     TRACE("%p\n", _this);
@@ -39,11 +39,11 @@ uint64_t __thiscall winISteamParties_SteamParties002_GetBeaconByIndex(struct w_s
     return params._ret;
 }
 
-int8_t __thiscall winISteamParties_SteamParties002_GetBeaconDetails(struct w_steam_iface *_this, uint64_t ulBeaconID, CSteamID *pSteamIDBeaconOwner, w_SteamPartyBeaconLocation_t *pLocation, char *pchMetadata, int32_t cchMetadata)
+int8_t __thiscall winISteamParties_SteamParties002_GetBeaconDetails(struct w_iface *_this, uint64_t ulBeaconID, CSteamID *pSteamIDBeaconOwner, w_SteamPartyBeaconLocation_t *pLocation, char *pchMetadata, int32_t cchMetadata)
 {
     struct ISteamParties_SteamParties002_GetBeaconDetails_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeaconID = ulBeaconID,
         .pSteamIDBeaconOwner = pSteamIDBeaconOwner,
         .pLocation = pLocation,
@@ -55,11 +55,11 @@ int8_t __thiscall winISteamParties_SteamParties002_GetBeaconDetails(struct w_ste
     return params._ret;
 }
 
-uint64_t __thiscall winISteamParties_SteamParties002_JoinParty(struct w_steam_iface *_this, uint64_t ulBeaconID)
+uint64_t __thiscall winISteamParties_SteamParties002_JoinParty(struct w_iface *_this, uint64_t ulBeaconID)
 {
     struct ISteamParties_SteamParties002_JoinParty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeaconID = ulBeaconID,
     };
     TRACE("%p\n", _this);
@@ -67,11 +67,11 @@ uint64_t __thiscall winISteamParties_SteamParties002_JoinParty(struct w_steam_if
     return params._ret;
 }
 
-int8_t __thiscall winISteamParties_SteamParties002_GetNumAvailableBeaconLocations(struct w_steam_iface *_this, uint32_t *puNumLocations)
+int8_t __thiscall winISteamParties_SteamParties002_GetNumAvailableBeaconLocations(struct w_iface *_this, uint32_t *puNumLocations)
 {
     struct ISteamParties_SteamParties002_GetNumAvailableBeaconLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .puNumLocations = puNumLocations,
     };
     TRACE("%p\n", _this);
@@ -79,11 +79,11 @@ int8_t __thiscall winISteamParties_SteamParties002_GetNumAvailableBeaconLocation
     return params._ret;
 }
 
-int8_t __thiscall winISteamParties_SteamParties002_GetAvailableBeaconLocations(struct w_steam_iface *_this, w_SteamPartyBeaconLocation_t *pLocationList, uint32_t uMaxNumLocations)
+int8_t __thiscall winISteamParties_SteamParties002_GetAvailableBeaconLocations(struct w_iface *_this, w_SteamPartyBeaconLocation_t *pLocationList, uint32_t uMaxNumLocations)
 {
     struct ISteamParties_SteamParties002_GetAvailableBeaconLocations_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pLocationList = pLocationList,
         .uMaxNumLocations = uMaxNumLocations,
     };
@@ -92,11 +92,11 @@ int8_t __thiscall winISteamParties_SteamParties002_GetAvailableBeaconLocations(s
     return params._ret;
 }
 
-uint64_t __thiscall winISteamParties_SteamParties002_CreateBeacon(struct w_steam_iface *_this, uint32_t unOpenSlots, w_SteamPartyBeaconLocation_t *pBeaconLocation, const char *pchConnectString, const char *pchMetadata)
+uint64_t __thiscall winISteamParties_SteamParties002_CreateBeacon(struct w_iface *_this, uint32_t unOpenSlots, w_SteamPartyBeaconLocation_t *pBeaconLocation, const char *pchConnectString, const char *pchMetadata)
 {
     struct ISteamParties_SteamParties002_CreateBeacon_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unOpenSlots = unOpenSlots,
         .pBeaconLocation = pBeaconLocation,
         .pchConnectString = pchConnectString,
@@ -109,11 +109,11 @@ uint64_t __thiscall winISteamParties_SteamParties002_CreateBeacon(struct w_steam
     return params._ret;
 }
 
-void __thiscall winISteamParties_SteamParties002_OnReservationCompleted(struct w_steam_iface *_this, uint64_t ulBeacon, CSteamID steamIDUser)
+void __thiscall winISteamParties_SteamParties002_OnReservationCompleted(struct w_iface *_this, uint64_t ulBeacon, CSteamID steamIDUser)
 {
     struct ISteamParties_SteamParties002_OnReservationCompleted_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeacon = ulBeacon,
         .steamIDUser = steamIDUser,
     };
@@ -121,11 +121,11 @@ void __thiscall winISteamParties_SteamParties002_OnReservationCompleted(struct w
     STEAMCLIENT_CALL( ISteamParties_SteamParties002_OnReservationCompleted, &params );
 }
 
-void __thiscall winISteamParties_SteamParties002_CancelReservation(struct w_steam_iface *_this, uint64_t ulBeacon, CSteamID steamIDUser)
+void __thiscall winISteamParties_SteamParties002_CancelReservation(struct w_iface *_this, uint64_t ulBeacon, CSteamID steamIDUser)
 {
     struct ISteamParties_SteamParties002_CancelReservation_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeacon = ulBeacon,
         .steamIDUser = steamIDUser,
     };
@@ -133,11 +133,11 @@ void __thiscall winISteamParties_SteamParties002_CancelReservation(struct w_stea
     STEAMCLIENT_CALL( ISteamParties_SteamParties002_CancelReservation, &params );
 }
 
-uint64_t __thiscall winISteamParties_SteamParties002_ChangeNumOpenSlots(struct w_steam_iface *_this, uint64_t ulBeacon, uint32_t unOpenSlots)
+uint64_t __thiscall winISteamParties_SteamParties002_ChangeNumOpenSlots(struct w_iface *_this, uint64_t ulBeacon, uint32_t unOpenSlots)
 {
     struct ISteamParties_SteamParties002_ChangeNumOpenSlots_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeacon = ulBeacon,
         .unOpenSlots = unOpenSlots,
     };
@@ -146,11 +146,11 @@ uint64_t __thiscall winISteamParties_SteamParties002_ChangeNumOpenSlots(struct w
     return params._ret;
 }
 
-int8_t __thiscall winISteamParties_SteamParties002_DestroyBeacon(struct w_steam_iface *_this, uint64_t ulBeacon)
+int8_t __thiscall winISteamParties_SteamParties002_DestroyBeacon(struct w_iface *_this, uint64_t ulBeacon)
 {
     struct ISteamParties_SteamParties002_DestroyBeacon_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .ulBeacon = ulBeacon,
     };
     TRACE("%p\n", _this);
@@ -158,11 +158,11 @@ int8_t __thiscall winISteamParties_SteamParties002_DestroyBeacon(struct w_steam_
     return params._ret;
 }
 
-int8_t __thiscall winISteamParties_SteamParties002_GetBeaconLocationData(struct w_steam_iface *_this, w_SteamPartyBeaconLocation_t BeaconLocation, uint32_t eData, char *pchDataStringOut, int32_t cchDataStringOut)
+int8_t __thiscall winISteamParties_SteamParties002_GetBeaconLocationData(struct w_iface *_this, w_SteamPartyBeaconLocation_t BeaconLocation, uint32_t eData, char *pchDataStringOut, int32_t cchDataStringOut)
 {
     struct ISteamParties_SteamParties002_GetBeaconLocationData_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .BeaconLocation = BeaconLocation,
         .eData = eData,
         .pchDataStringOut = pchDataStringOut,
@@ -194,9 +194,9 @@ __ASM_BLOCK_BEGIN(winISteamParties_SteamParties002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamParties_SteamParties002(void *u_iface)
+struct w_iface *create_winISteamParties_SteamParties002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "SteamParties002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "SteamParties002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamParties_SteamParties002_vtable, 12, "SteamParties002");
     r->u_iface = u_iface;
@@ -205,7 +205,7 @@ struct w_steam_iface *create_winISteamParties_SteamParties002(void *u_iface)
 
 void init_winISteamParties_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamParties_SteamParties002_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

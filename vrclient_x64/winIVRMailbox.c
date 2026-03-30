@@ -13,11 +13,11 @@ DEFINE_THISCALL_WRAPPER(winIVRMailbox_IVRMailbox_001_undoc2, 12)
 DEFINE_THISCALL_WRAPPER(winIVRMailbox_IVRMailbox_001_undoc3, 20)
 DEFINE_THISCALL_WRAPPER(winIVRMailbox_IVRMailbox_001_undoc4, 24)
 
-uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc1(struct w_steam_iface *_this, const char *a, uint64_t *b)
+uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc1(struct w_iface *_this, const char *a, uint64_t *b)
 {
     struct IVRMailbox_IVRMailbox_001_undoc1_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .a = a,
         .b = b,
     };
@@ -26,11 +26,11 @@ uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc1(struct w_steam_iface *_t
     return params._ret;
 }
 
-uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc2(struct w_steam_iface *_this, uint64_t a)
+uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc2(struct w_iface *_this, uint64_t a)
 {
     struct IVRMailbox_IVRMailbox_001_undoc2_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .a = a,
     };
     TRACE("%p\n", _this);
@@ -38,11 +38,11 @@ uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc2(struct w_steam_iface *_t
     return params._ret;
 }
 
-uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc3(struct w_steam_iface *_this, uint64_t a, const char *b, const char *c)
+uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc3(struct w_iface *_this, uint64_t a, const char *b, const char *c)
 {
     struct IVRMailbox_IVRMailbox_001_undoc3_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .a = a,
         .b = b,
         .c = c,
@@ -52,11 +52,11 @@ uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc3(struct w_steam_iface *_t
     return params._ret;
 }
 
-uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc4(struct w_steam_iface *_this, uint64_t a, char *b, uint32_t c, uint32_t *d)
+uint32_t __thiscall winIVRMailbox_IVRMailbox_001_undoc4(struct w_iface *_this, uint64_t a, char *b, uint32_t c, uint32_t *d)
 {
     struct IVRMailbox_IVRMailbox_001_undoc4_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .a = a,
         .b = b,
         .c = c,
@@ -80,24 +80,24 @@ __ASM_BLOCK_BEGIN(winIVRMailbox_IVRMailbox_001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRMailbox_IVRMailbox_001(void *u_iface)
+struct w_iface *create_winIVRMailbox_IVRMailbox_001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRMailbox_IVRMailbox_001_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRMailbox_IVRMailbox_001(struct w_steam_iface *object)
+void destroy_winIVRMailbox_IVRMailbox_001(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRMailbox_IVRMailbox_001_FnTable(void *u_iface)
+struct w_iface *create_winIVRMailbox_IVRMailbox_001_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(4);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 4 * sizeof(*vtable));
     int i;
@@ -114,7 +114,7 @@ struct w_steam_iface *create_winIVRMailbox_IVRMailbox_001_FnTable(void *u_iface)
     return r;
 }
 
-void destroy_winIVRMailbox_IVRMailbox_001_FnTable(struct w_steam_iface *object)
+void destroy_winIVRMailbox_IVRMailbox_001_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -124,7 +124,7 @@ void destroy_winIVRMailbox_IVRMailbox_001_FnTable(struct w_steam_iface *object)
 
 void init_winIVRMailbox_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRMailbox_IVRMailbox_001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

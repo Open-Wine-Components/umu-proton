@@ -2451,36 +2451,12 @@ typedef struct u64_AddUGCDependencyResult_t u64_AddUGCDependencyResult_t;
 typedef struct w64_AddUGCDependencyResult_t w64_AddUGCDependencyResult_t;
 typedef struct u32_AddUGCDependencyResult_t u32_AddUGCDependencyResult_t;
 typedef struct w32_AddUGCDependencyResult_t w32_AddUGCDependencyResult_t;
-typedef struct w64_CSteamAPIContext_141 u64_CSteamAPIContext_141;
-typedef struct w64_CSteamAPIContext_141 w64_CSteamAPIContext_141;
-typedef struct w32_CSteamAPIContext_141 u32_CSteamAPIContext_141;
-typedef struct w32_CSteamAPIContext_141 w32_CSteamAPIContext_141;
-typedef struct w64_CSteamAPIContext_143 u64_CSteamAPIContext_143;
-typedef struct w64_CSteamAPIContext_143 w64_CSteamAPIContext_143;
-typedef struct w32_CSteamAPIContext_143 u32_CSteamAPIContext_143;
-typedef struct w32_CSteamAPIContext_143 w32_CSteamAPIContext_143;
-typedef struct w64_CSteamAPIContext_145 u64_CSteamAPIContext_145;
-typedef struct w64_CSteamAPIContext_145 w64_CSteamAPIContext_145;
-typedef struct w32_CSteamAPIContext_145 u32_CSteamAPIContext_145;
-typedef struct w32_CSteamAPIContext_145 w32_CSteamAPIContext_145;
-typedef struct w64_CSteamAPIContext_137 u64_CSteamAPIContext_137;
-typedef struct w64_CSteamAPIContext_137 w64_CSteamAPIContext_137;
-typedef struct w32_CSteamAPIContext_137 u32_CSteamAPIContext_137;
-typedef struct w32_CSteamAPIContext_137 w32_CSteamAPIContext_137;
 typedef struct u_CSteamCallback u_CSteamCallback;
 typedef struct u_CSteamCallback u64_CSteamCallback;
 typedef struct u_CSteamCallback u32_CSteamCallback;
 typedef struct w_CSteamCallback w_CSteamCallback;
 typedef struct w_CSteamCallback w64_CSteamCallback;
 typedef struct w_CSteamCallback w32_CSteamCallback;
-typedef struct w64_CSteamGameServerAPIContext_152 u64_CSteamGameServerAPIContext_152;
-typedef struct w64_CSteamGameServerAPIContext_152 w64_CSteamGameServerAPIContext_152;
-typedef struct w32_CSteamGameServerAPIContext_152 u32_CSteamGameServerAPIContext_152;
-typedef struct w32_CSteamGameServerAPIContext_152 w32_CSteamGameServerAPIContext_152;
-typedef struct w64_CSteamGameServerAPIContext_143 u64_CSteamGameServerAPIContext_143;
-typedef struct w64_CSteamGameServerAPIContext_143 w64_CSteamGameServerAPIContext_143;
-typedef struct w32_CSteamGameServerAPIContext_143 u32_CSteamGameServerAPIContext_143;
-typedef struct w32_CSteamGameServerAPIContext_143 w32_CSteamGameServerAPIContext_143;
 typedef struct w64_CallbackMsg_t u64_CallbackMsg_t;
 typedef struct w64_CallbackMsg_t w64_CallbackMsg_t;
 typedef struct w32_CallbackMsg_t u32_CallbackMsg_t;
@@ -3060,6 +3036,9 @@ struct u64_SteamUGCDetails_t_160
 #ifdef __cplusplus
     operator w64_SteamUGCDetails_t_160() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCDetails_t_160() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3098,6 +3077,9 @@ struct w32_SteamUGCDetails_t_160
     uint64_t m_ulTotalFilesSize;
 #ifdef __cplusplus
     operator u32_SteamUGCDetails_t_160() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCDetails_t_160() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -3143,7 +3125,7 @@ struct u32_SteamUGCDetails_t_160
 typedef w32_SteamUGCDetails_t_160 w_SteamUGCDetails_t_160;
 typedef u32_SteamUGCDetails_t_160 u_SteamUGCDetails_t_160;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCDetails_t_160 w_SteamUGCDetails_t_160;
 typedef u64_SteamUGCDetails_t_160 u_SteamUGCDetails_t_160;
 #endif
@@ -3219,6 +3201,9 @@ struct u64_SteamUGCDetails_t_128x
 #ifdef __cplusplus
     operator w64_SteamUGCDetails_t_128x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCDetails_t_128x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3256,6 +3241,9 @@ struct w32_SteamUGCDetails_t_128x
     uint8_t __pad_9772[4];
 #ifdef __cplusplus
     operator u32_SteamUGCDetails_t_128x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCDetails_t_128x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -3300,7 +3288,7 @@ struct u32_SteamUGCDetails_t_128x
 typedef w32_SteamUGCDetails_t_128x w_SteamUGCDetails_t_128x;
 typedef u32_SteamUGCDetails_t_128x u_SteamUGCDetails_t_128x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCDetails_t_128x w_SteamUGCDetails_t_128x;
 typedef u64_SteamUGCDetails_t_128x u_SteamUGCDetails_t_128x;
 #endif
@@ -3373,6 +3361,9 @@ struct u64_SteamUGCDetails_t_126
 #ifdef __cplusplus
     operator w64_SteamUGCDetails_t_126() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCDetails_t_126() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3408,6 +3399,9 @@ struct w32_SteamUGCDetails_t_126
     float m_flScore;
 #ifdef __cplusplus
     operator u32_SteamUGCDetails_t_126() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCDetails_t_126() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -3451,7 +3445,7 @@ struct u32_SteamUGCDetails_t_126
 typedef w32_SteamUGCDetails_t_126 w_SteamUGCDetails_t_126;
 typedef u32_SteamUGCDetails_t_126 u_SteamUGCDetails_t_126;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCDetails_t_126 w_SteamUGCDetails_t_126;
 typedef u64_SteamUGCDetails_t_126 u_SteamUGCDetails_t_126;
 #endif
@@ -3479,6 +3473,9 @@ struct u64_AddAppDependencyResult_t
 #ifdef __cplusplus
     operator w64_AddAppDependencyResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_AddAppDependencyResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3492,6 +3489,9 @@ struct w32_AddAppDependencyResult_t
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_AddAppDependencyResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_AddAppDependencyResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -3512,7 +3512,7 @@ struct u32_AddAppDependencyResult_t
 typedef w32_AddAppDependencyResult_t w_AddAppDependencyResult_t;
 typedef u32_AddAppDependencyResult_t u_AddAppDependencyResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_AddAppDependencyResult_t w_AddAppDependencyResult_t;
 typedef u64_AddAppDependencyResult_t u_AddAppDependencyResult_t;
 #endif
@@ -3539,6 +3539,9 @@ struct u64_AddUGCDependencyResult_t
 #ifdef __cplusplus
     operator w64_AddUGCDependencyResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_AddUGCDependencyResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3551,6 +3554,9 @@ struct w32_AddUGCDependencyResult_t
     uint64_t m_nChildPublishedFileId;
 #ifdef __cplusplus
     operator u32_AddUGCDependencyResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_AddUGCDependencyResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -3571,273 +3577,9 @@ struct u32_AddUGCDependencyResult_t
 typedef w32_AddUGCDependencyResult_t w_AddUGCDependencyResult_t;
 typedef u32_AddUGCDependencyResult_t u_AddUGCDependencyResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_AddUGCDependencyResult_t w_AddUGCDependencyResult_t;
 typedef u64_AddUGCDependencyResult_t u_AddUGCDependencyResult_t;
-#endif
-
-#pragma pack( push, 8 )
-struct w64_CSteamAPIContext_141
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W64_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W64_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W64_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W64_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W64_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W64_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W64_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W64_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W64_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W64_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W64_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W64_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W64_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamAPIContext_141
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W32_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W32_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W32_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W32_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W32_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W32_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W32_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W32_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W32_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W32_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W32_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W32_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W32_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamAPIContext_141 w_CSteamAPIContext_141;
-typedef u32_CSteamAPIContext_141 u_CSteamAPIContext_141;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamAPIContext_141 w_CSteamAPIContext_141;
-typedef u64_CSteamAPIContext_141 u_CSteamAPIContext_141;
-#endif
-
-#pragma pack( push, 8 )
-struct w64_CSteamAPIContext_143
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W64_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W64_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W64_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W64_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W64_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W64_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W64_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W64_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W64_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W64_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W64_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W64_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W64_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W64_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamAPIContext_143
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W32_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W32_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W32_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W32_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W32_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W32_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W32_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W32_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W32_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W32_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W32_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W32_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W32_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W32_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamAPIContext_143 w_CSteamAPIContext_143;
-typedef u32_CSteamAPIContext_143 u_CSteamAPIContext_143;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamAPIContext_143 w_CSteamAPIContext_143;
-typedef u64_CSteamAPIContext_143 u_CSteamAPIContext_143;
-#endif
-
-#pragma pack( push, 8 )
-struct w64_CSteamAPIContext_145
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W64_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W64_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W64_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W64_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W64_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W64_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W64_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W64_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W64_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W64_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W64_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W64_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W64_PTR(void /*ISteamTV*/ *m_pSteamTV, m_pSteamTV);
-    W64_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W64_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamAPIContext_145
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W32_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W32_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W32_PTR(void /*ISteamGameSearch*/ *m_pSteamGameSearch, m_pSteamGameSearch);
-    W32_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W32_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W32_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W32_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W32_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W32_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W32_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W32_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W32_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W32_PTR(void /*ISteamTV*/ *m_pSteamTV, m_pSteamTV);
-    W32_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-    W32_PTR(void /*ISteamInput*/ *m_pSteamInput, m_pSteamInput);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamAPIContext_145 w_CSteamAPIContext_145;
-typedef u32_CSteamAPIContext_145 u_CSteamAPIContext_145;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamAPIContext_145 w_CSteamAPIContext_145;
-typedef u64_CSteamAPIContext_145 u_CSteamAPIContext_145;
-#endif
-
-#pragma pack( push, 8 )
-struct w64_CSteamAPIContext_137
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W64_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W64_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W64_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W64_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W64_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W64_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W64_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W64_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W64_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W64_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W64_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W64_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamAPIContext_137
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamUser*/ *m_pSteamUser, m_pSteamUser);
-    W32_PTR(void /*ISteamFriends*/ *m_pSteamFriends, m_pSteamFriends);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamUtils, m_pSteamUtils);
-    W32_PTR(void /*ISteamMatchmaking*/ *m_pSteamMatchmaking, m_pSteamMatchmaking);
-    W32_PTR(void /*ISteamUserStats*/ *m_pSteamUserStats, m_pSteamUserStats);
-    W32_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-    W32_PTR(void /*ISteamMatchmakingServers*/ *m_pSteamMatchmakingServers, m_pSteamMatchmakingServers);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamNetworking, m_pSteamNetworking);
-    W32_PTR(void /*ISteamRemoteStorage*/ *m_pSteamRemoteStorage, m_pSteamRemoteStorage);
-    W32_PTR(void /*ISteamScreenshots*/ *m_pSteamScreenshots, m_pSteamScreenshots);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamController*/ *m_pController, m_pController);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W32_PTR(void /*ISteamAppList*/ *m_pSteamAppList, m_pSteamAppList);
-    W32_PTR(void /*ISteamMusic*/ *m_pSteamMusic, m_pSteamMusic);
-    W32_PTR(void /*ISteamMusicRemote*/ *m_pSteamMusicRemote, m_pSteamMusicRemote);
-    W32_PTR(void /*ISteamHTMLSurface*/ *m_pSteamHTMLSurface, m_pSteamHTMLSurface);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamVideo*/ *m_pSteamVideo, m_pSteamVideo);
-    W32_PTR(void /*ISteamParentalSettings*/ *m_pSteamParentalSettings, m_pSteamParentalSettings);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamAPIContext_137 w_CSteamAPIContext_137;
-typedef u32_CSteamAPIContext_137 u_CSteamAPIContext_137;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamAPIContext_137 w_CSteamAPIContext_137;
-typedef u64_CSteamAPIContext_137 u_CSteamAPIContext_137;
 #endif
 
 struct w_CSteamCallback
@@ -3865,89 +3607,16 @@ struct u_CSteamCallback
 };
 
 #pragma pack( push, 8 )
-struct w64_CSteamGameServerAPIContext_152
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamGameServer*/ *m_pSteamGameServer, m_pSteamGameServer);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamGameServerUtils, m_pSteamGameServerUtils);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamGameServerNetworking, m_pSteamGameServerNetworking);
-    W64_PTR(void /*ISteamGameServerStats*/ *m_pSteamGameServerStats, m_pSteamGameServerStats);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamGameServerAPIContext_152
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamGameServer*/ *m_pSteamGameServer, m_pSteamGameServer);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamGameServerUtils, m_pSteamGameServerUtils);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamGameServerNetworking, m_pSteamGameServerNetworking);
-    W32_PTR(void /*ISteamGameServerStats*/ *m_pSteamGameServerStats, m_pSteamGameServerStats);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamGameServerAPIContext_152 w_CSteamGameServerAPIContext_152;
-typedef u32_CSteamGameServerAPIContext_152 u_CSteamGameServerAPIContext_152;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamGameServerAPIContext_152 w_CSteamGameServerAPIContext_152;
-typedef u64_CSteamGameServerAPIContext_152 u_CSteamGameServerAPIContext_152;
-#endif
-
-#pragma pack( push, 8 )
-struct w64_CSteamGameServerAPIContext_143
-{
-    W64_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W64_PTR(void /*ISteamGameServer*/ *m_pSteamGameServer, m_pSteamGameServer);
-    W64_PTR(void /*ISteamUtils*/ *m_pSteamGameServerUtils, m_pSteamGameServerUtils);
-    W64_PTR(void /*ISteamNetworking*/ *m_pSteamGameServerNetworking, m_pSteamGameServerNetworking);
-    W64_PTR(void /*ISteamGameServerStats*/ *m_pSteamGameServerStats, m_pSteamGameServerStats);
-    W64_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W64_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W64_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W64_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-};
-#pragma pack( pop )
-
-#pragma pack( push, 4 )
-struct w32_CSteamGameServerAPIContext_143
-{
-    W32_PTR(void /*ISteamClient*/ *m_pSteamClient, m_pSteamClient);
-    W32_PTR(void /*ISteamGameServer*/ *m_pSteamGameServer, m_pSteamGameServer);
-    W32_PTR(void /*ISteamUtils*/ *m_pSteamGameServerUtils, m_pSteamGameServerUtils);
-    W32_PTR(void /*ISteamNetworking*/ *m_pSteamGameServerNetworking, m_pSteamGameServerNetworking);
-    W32_PTR(void /*ISteamGameServerStats*/ *m_pSteamGameServerStats, m_pSteamGameServerStats);
-    W32_PTR(void /*ISteamHTTP*/ *m_pSteamHTTP, m_pSteamHTTP);
-    W32_PTR(void /*ISteamInventory*/ *m_pSteamInventory, m_pSteamInventory);
-    W32_PTR(void /*ISteamUGC*/ *m_pSteamUGC, m_pSteamUGC);
-    W32_PTR(void /*ISteamApps*/ *m_pSteamApps, m_pSteamApps);
-};
-#pragma pack( pop )
-
-#ifdef __i386__
-typedef w32_CSteamGameServerAPIContext_143 w_CSteamGameServerAPIContext_143;
-typedef u32_CSteamGameServerAPIContext_143 u_CSteamGameServerAPIContext_143;
-#endif
-#ifdef __x86_64__
-typedef w64_CSteamGameServerAPIContext_143 w_CSteamGameServerAPIContext_143;
-typedef u64_CSteamGameServerAPIContext_143 u_CSteamGameServerAPIContext_143;
-#endif
-
-#pragma pack( push, 8 )
 struct w64_CallbackMsg_t
 {
     int32_t m_hSteamUser;
     int32_t m_iCallback;
-    W64_PTR(uint8_t *m_pubParam, m_pubParam);
+    W64_PTR(uint8_t *m_pubParam, m_pubParam, uint8_t *);
     int32_t m_cubParam;
     uint8_t __pad_20[4];
+#ifdef __cplusplus
+    operator w32_CallbackMsg_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3956,8 +3625,11 @@ struct w32_CallbackMsg_t
 {
     int32_t m_hSteamUser;
     int32_t m_iCallback;
-    W32_PTR(uint8_t *m_pubParam, m_pubParam);
+    W32_PTR(uint8_t *m_pubParam, m_pubParam, uint8_t *);
     int32_t m_cubParam;
+#ifdef __cplusplus
+    operator u64_CallbackMsg_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -3965,7 +3637,7 @@ struct w32_CallbackMsg_t
 typedef w32_CallbackMsg_t w_CallbackMsg_t;
 typedef u32_CallbackMsg_t u_CallbackMsg_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_CallbackMsg_t w_CallbackMsg_t;
 typedef u64_CallbackMsg_t u_CallbackMsg_t;
 #endif
@@ -3990,6 +3662,9 @@ struct u64_CreateBeaconCallback_t
 #ifdef __cplusplus
     operator w64_CreateBeaconCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_CreateBeaconCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4001,6 +3676,9 @@ struct w32_CreateBeaconCallback_t
     uint64_t m_ulBeaconID;
 #ifdef __cplusplus
     operator u32_CreateBeaconCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_CreateBeaconCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4020,7 +3698,7 @@ struct u32_CreateBeaconCallback_t
 typedef w32_CreateBeaconCallback_t w_CreateBeaconCallback_t;
 typedef u32_CreateBeaconCallback_t u_CreateBeaconCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_CreateBeaconCallback_t w_CreateBeaconCallback_t;
 typedef u64_CreateBeaconCallback_t u_CreateBeaconCallback_t;
 #endif
@@ -4049,6 +3727,9 @@ struct u64_CreateItemResult_t
 #ifdef __cplusplus
     operator w64_CreateItemResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_CreateItemResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4062,6 +3743,9 @@ struct w32_CreateItemResult_t
     uint8_t __pad_17[7];
 #ifdef __cplusplus
     operator u32_CreateItemResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_CreateItemResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4083,7 +3767,7 @@ struct u32_CreateItemResult_t
 typedef w32_CreateItemResult_t w_CreateItemResult_t;
 typedef u32_CreateItemResult_t u_CreateItemResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_CreateItemResult_t w_CreateItemResult_t;
 typedef u64_CreateItemResult_t u_CreateItemResult_t;
 #endif
@@ -4108,6 +3792,9 @@ struct u64_DeleteItemResult_t
 #ifdef __cplusplus
     operator w64_DeleteItemResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_DeleteItemResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4119,6 +3806,9 @@ struct w32_DeleteItemResult_t
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_DeleteItemResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_DeleteItemResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4138,7 +3828,7 @@ struct u32_DeleteItemResult_t
 typedef w32_DeleteItemResult_t w_DeleteItemResult_t;
 typedef u32_DeleteItemResult_t u_DeleteItemResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_DeleteItemResult_t w_DeleteItemResult_t;
 typedef u64_DeleteItemResult_t u_DeleteItemResult_t;
 #endif
@@ -4166,6 +3856,9 @@ struct u64_DownloadItemResult_t
 #ifdef __cplusplus
     operator w64_DownloadItemResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_DownloadItemResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4179,6 +3872,9 @@ struct w32_DownloadItemResult_t
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_DownloadItemResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_DownloadItemResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4199,7 +3895,7 @@ struct u32_DownloadItemResult_t
 typedef w32_DownloadItemResult_t w_DownloadItemResult_t;
 typedef u32_DownloadItemResult_t u_DownloadItemResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_DownloadItemResult_t w_DownloadItemResult_t;
 typedef u64_DownloadItemResult_t u_DownloadItemResult_t;
 #endif
@@ -4224,6 +3920,9 @@ struct u64_EndGameResultCallback_t
 #ifdef __cplusplus
     operator w64_EndGameResultCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_EndGameResultCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4235,6 +3934,9 @@ struct w32_EndGameResultCallback_t
     uint64_t ullUniqueGameID;
 #ifdef __cplusplus
     operator u32_EndGameResultCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_EndGameResultCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4254,7 +3956,7 @@ struct u32_EndGameResultCallback_t
 typedef w32_EndGameResultCallback_t w_EndGameResultCallback_t;
 typedef u32_EndGameResultCallback_t u_EndGameResultCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_EndGameResultCallback_t w_EndGameResultCallback_t;
 typedef u64_EndGameResultCallback_t u_EndGameResultCallback_t;
 #endif
@@ -4283,6 +3985,9 @@ struct u64_FileDetailsResult_t
 #ifdef __cplusplus
     operator w64_FileDetailsResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_FileDetailsResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4296,6 +4001,9 @@ struct w32_FileDetailsResult_t
     uint32_t m_unFlags;
 #ifdef __cplusplus
     operator u32_FileDetailsResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_FileDetailsResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4317,7 +4025,7 @@ struct u32_FileDetailsResult_t
 typedef w32_FileDetailsResult_t w_FileDetailsResult_t;
 typedef u32_FileDetailsResult_t u_FileDetailsResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_FileDetailsResult_t w_FileDetailsResult_t;
 typedef u64_FileDetailsResult_t u_FileDetailsResult_t;
 #endif
@@ -4356,6 +4064,9 @@ struct u64_GSReputation_t_123
 #ifdef __cplusplus
     operator w64_GSReputation_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_GSReputation_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4374,6 +4085,9 @@ struct w32_GSReputation_t_123
     uint8_t __pad_36[4];
 #ifdef __cplusplus
     operator u32_GSReputation_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_GSReputation_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4400,7 +4114,7 @@ struct u32_GSReputation_t_123
 typedef w32_GSReputation_t_123 w_GSReputation_t_123;
 typedef u32_GSReputation_t_123 u_GSReputation_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_GSReputation_t_123 w_GSReputation_t_123;
 typedef u64_GSReputation_t_123 u_GSReputation_t_123;
 #endif
@@ -4418,6 +4132,9 @@ struct w64_GSReputation_t_108
     uint64_t m_ulBannedGameID;
     uint32_t m_unBanExpires;
     uint8_t __pad_36[4];
+#ifdef __cplusplus
+    operator w32_GSReputation_t_108() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4436,6 +4153,9 @@ struct w32_GSReputation_t_108
     uint8_t __pad_36[4];
 #ifdef __cplusplus
     operator u32_GSReputation_t_108() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_GSReputation_t_108() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4462,7 +4182,7 @@ struct u32_GSReputation_t_108
 typedef w32_GSReputation_t_108 w_GSReputation_t_108;
 typedef u32_GSReputation_t_108 u_GSReputation_t_108;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_GSReputation_t_108 w_GSReputation_t_108;
 typedef u64_GSReputation_t_108 u_GSReputation_t_108;
 #endif
@@ -4493,6 +4213,9 @@ struct u64_GetAppDependenciesResult_t
 #ifdef __cplusplus
     operator w64_GetAppDependenciesResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_GetAppDependenciesResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4507,6 +4230,9 @@ struct w32_GetAppDependenciesResult_t
     uint32_t m_nTotalNumAppDependencies;
 #ifdef __cplusplus
     operator u32_GetAppDependenciesResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_GetAppDependenciesResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4529,7 +4255,7 @@ struct u32_GetAppDependenciesResult_t
 typedef w32_GetAppDependenciesResult_t w_GetAppDependenciesResult_t;
 typedef u32_GetAppDependenciesResult_t u_GetAppDependenciesResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_GetAppDependenciesResult_t w_GetAppDependenciesResult_t;
 typedef u64_GetAppDependenciesResult_t u_GetAppDependenciesResult_t;
 #endif
@@ -4539,7 +4265,7 @@ struct w64_HTML_ChangedTitle_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchTitle, pchTitle);
+    W64_PTR(const char *pchTitle, pchTitle, const char *);
 #ifdef __cplusplus
     operator u64_HTML_ChangedTitle_t() const;
 #endif /* __cplusplus */
@@ -4550,9 +4276,12 @@ struct w64_HTML_ChangedTitle_t
 struct u64_HTML_ChangedTitle_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchTitle, pchTitle);
+    U64_PTR(const char *pchTitle, pchTitle, const char *);
 #ifdef __cplusplus
     operator w64_HTML_ChangedTitle_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_ChangedTitle_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4561,7 +4290,10 @@ struct u64_HTML_ChangedTitle_t
 struct w32_HTML_ChangedTitle_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchTitle, pchTitle);
+    W32_PTR(const char *pchTitle, pchTitle, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_ChangedTitle_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4569,7 +4301,7 @@ struct w32_HTML_ChangedTitle_t
 typedef w32_HTML_ChangedTitle_t w_HTML_ChangedTitle_t;
 typedef u32_HTML_ChangedTitle_t u_HTML_ChangedTitle_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_ChangedTitle_t w_HTML_ChangedTitle_t;
 typedef u64_HTML_ChangedTitle_t u_HTML_ChangedTitle_t;
 #endif
@@ -4579,7 +4311,7 @@ struct w64_HTML_ComboNeedsPaint_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pBGRA, pBGRA);
+    W64_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
 #ifdef __cplusplus
@@ -4592,11 +4324,14 @@ struct w64_HTML_ComboNeedsPaint_t
 struct u64_HTML_ComboNeedsPaint_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pBGRA, pBGRA);
+    U64_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
 #ifdef __cplusplus
     operator w64_HTML_ComboNeedsPaint_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_ComboNeedsPaint_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4605,9 +4340,12 @@ struct u64_HTML_ComboNeedsPaint_t
 struct w32_HTML_ComboNeedsPaint_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pBGRA, pBGRA);
+    W32_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
+#ifdef __cplusplus
+    operator u64_HTML_ComboNeedsPaint_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4615,7 +4353,7 @@ struct w32_HTML_ComboNeedsPaint_t
 typedef w32_HTML_ComboNeedsPaint_t w_HTML_ComboNeedsPaint_t;
 typedef u32_HTML_ComboNeedsPaint_t u_HTML_ComboNeedsPaint_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_ComboNeedsPaint_t w_HTML_ComboNeedsPaint_t;
 typedef u64_HTML_ComboNeedsPaint_t u_HTML_ComboNeedsPaint_t;
 #endif
@@ -4625,8 +4363,8 @@ struct w64_HTML_FileOpenDialog_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchTitle, pchTitle);
-    W64_PTR(const char *pchInitialFile, pchInitialFile);
+    W64_PTR(const char *pchTitle, pchTitle, const char *);
+    W64_PTR(const char *pchInitialFile, pchInitialFile, const char *);
 #ifdef __cplusplus
     operator u64_HTML_FileOpenDialog_t() const;
 #endif /* __cplusplus */
@@ -4637,10 +4375,13 @@ struct w64_HTML_FileOpenDialog_t
 struct u64_HTML_FileOpenDialog_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchTitle, pchTitle);
-    U64_PTR(const char *pchInitialFile, pchInitialFile);
+    U64_PTR(const char *pchTitle, pchTitle, const char *);
+    U64_PTR(const char *pchInitialFile, pchInitialFile, const char *);
 #ifdef __cplusplus
     operator w64_HTML_FileOpenDialog_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_FileOpenDialog_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4649,10 +4390,13 @@ struct u64_HTML_FileOpenDialog_t
 struct w32_HTML_FileOpenDialog_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchTitle, pchTitle);
-    W32_PTR(const char *pchInitialFile, pchInitialFile);
+    W32_PTR(const char *pchTitle, pchTitle, const char *);
+    W32_PTR(const char *pchInitialFile, pchInitialFile, const char *);
 #ifdef __cplusplus
     operator u32_HTML_FileOpenDialog_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_FileOpenDialog_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4661,8 +4405,8 @@ struct w32_HTML_FileOpenDialog_t
 struct u32_HTML_FileOpenDialog_t
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchTitle, pchTitle);
-    U32_PTR(const char *pchInitialFile, pchInitialFile);
+    U32_PTR(const char *pchTitle, pchTitle, const char *);
+    U32_PTR(const char *pchInitialFile, pchInitialFile, const char *);
 #ifdef __cplusplus
     operator w32_HTML_FileOpenDialog_t() const;
 #endif /* __cplusplus */
@@ -4673,7 +4417,7 @@ struct u32_HTML_FileOpenDialog_t
 typedef w32_HTML_FileOpenDialog_t w_HTML_FileOpenDialog_t;
 typedef u32_HTML_FileOpenDialog_t u_HTML_FileOpenDialog_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_FileOpenDialog_t w_HTML_FileOpenDialog_t;
 typedef u64_HTML_FileOpenDialog_t u_HTML_FileOpenDialog_t;
 #endif
@@ -4683,8 +4427,8 @@ struct w64_HTML_FinishedRequest_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
-    W64_PTR(const char *pchPageTitle, pchPageTitle);
+    W64_PTR(const char *pchURL, pchURL, const char *);
+    W64_PTR(const char *pchPageTitle, pchPageTitle, const char *);
 #ifdef __cplusplus
     operator u64_HTML_FinishedRequest_t() const;
 #endif /* __cplusplus */
@@ -4695,10 +4439,13 @@ struct w64_HTML_FinishedRequest_t
 struct u64_HTML_FinishedRequest_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
-    U64_PTR(const char *pchPageTitle, pchPageTitle);
+    U64_PTR(const char *pchURL, pchURL, const char *);
+    U64_PTR(const char *pchPageTitle, pchPageTitle, const char *);
 #ifdef __cplusplus
     operator w64_HTML_FinishedRequest_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_FinishedRequest_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4707,10 +4454,13 @@ struct u64_HTML_FinishedRequest_t
 struct w32_HTML_FinishedRequest_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
-    W32_PTR(const char *pchPageTitle, pchPageTitle);
+    W32_PTR(const char *pchURL, pchURL, const char *);
+    W32_PTR(const char *pchPageTitle, pchPageTitle, const char *);
 #ifdef __cplusplus
     operator u32_HTML_FinishedRequest_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_FinishedRequest_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4719,8 +4469,8 @@ struct w32_HTML_FinishedRequest_t
 struct u32_HTML_FinishedRequest_t
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
-    U32_PTR(const char *pchPageTitle, pchPageTitle);
+    U32_PTR(const char *pchURL, pchURL, const char *);
+    U32_PTR(const char *pchPageTitle, pchPageTitle, const char *);
 #ifdef __cplusplus
     operator w32_HTML_FinishedRequest_t() const;
 #endif /* __cplusplus */
@@ -4731,7 +4481,7 @@ struct u32_HTML_FinishedRequest_t
 typedef w32_HTML_FinishedRequest_t w_HTML_FinishedRequest_t;
 typedef u32_HTML_FinishedRequest_t u_HTML_FinishedRequest_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_FinishedRequest_t w_HTML_FinishedRequest_t;
 typedef u64_HTML_FinishedRequest_t u_HTML_FinishedRequest_t;
 #endif
@@ -4741,7 +4491,7 @@ struct w64_HTML_JSAlert_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchMessage, pchMessage);
+    W64_PTR(const char *pchMessage, pchMessage, const char *);
 #ifdef __cplusplus
     operator u64_HTML_JSAlert_t() const;
 #endif /* __cplusplus */
@@ -4752,9 +4502,12 @@ struct w64_HTML_JSAlert_t
 struct u64_HTML_JSAlert_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchMessage, pchMessage);
+    U64_PTR(const char *pchMessage, pchMessage, const char *);
 #ifdef __cplusplus
     operator w64_HTML_JSAlert_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_JSAlert_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4763,7 +4516,10 @@ struct u64_HTML_JSAlert_t
 struct w32_HTML_JSAlert_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchMessage, pchMessage);
+    W32_PTR(const char *pchMessage, pchMessage, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_JSAlert_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4771,7 +4527,7 @@ struct w32_HTML_JSAlert_t
 typedef w32_HTML_JSAlert_t w_HTML_JSAlert_t;
 typedef u32_HTML_JSAlert_t u_HTML_JSAlert_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_JSAlert_t w_HTML_JSAlert_t;
 typedef u64_HTML_JSAlert_t u_HTML_JSAlert_t;
 #endif
@@ -4781,7 +4537,7 @@ struct w64_HTML_JSConfirm_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchMessage, pchMessage);
+    W64_PTR(const char *pchMessage, pchMessage, const char *);
 #ifdef __cplusplus
     operator u64_HTML_JSConfirm_t() const;
 #endif /* __cplusplus */
@@ -4792,9 +4548,12 @@ struct w64_HTML_JSConfirm_t
 struct u64_HTML_JSConfirm_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchMessage, pchMessage);
+    U64_PTR(const char *pchMessage, pchMessage, const char *);
 #ifdef __cplusplus
     operator w64_HTML_JSConfirm_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_JSConfirm_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4803,7 +4562,10 @@ struct u64_HTML_JSConfirm_t
 struct w32_HTML_JSConfirm_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchMessage, pchMessage);
+    W32_PTR(const char *pchMessage, pchMessage, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_JSConfirm_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4811,7 +4573,7 @@ struct w32_HTML_JSConfirm_t
 typedef w32_HTML_JSConfirm_t w_HTML_JSConfirm_t;
 typedef u32_HTML_JSConfirm_t u_HTML_JSConfirm_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_JSConfirm_t w_HTML_JSConfirm_t;
 typedef u64_HTML_JSConfirm_t u_HTML_JSConfirm_t;
 #endif
@@ -4823,7 +4585,7 @@ struct w64_HTML_LinkAtPosition_t
     uint32_t x;
     uint32_t y;
     uint8_t __pad_12[4];
-    W64_PTR(const char *pchURL, pchURL);
+    W64_PTR(const char *pchURL, pchURL, const char *);
     int8_t bInput;
     int8_t bLiveLink;
     uint8_t __pad_26[6];
@@ -4839,12 +4601,15 @@ struct u64_HTML_LinkAtPosition_t
     uint32_t unBrowserHandle;
     uint32_t x;
     uint32_t y;
-    U64_PTR(const char *pchURL, pchURL);
+    U64_PTR(const char *pchURL, pchURL, const char *);
     int8_t bInput;
     int8_t bLiveLink;
     uint8_t __pad_22[2];
 #ifdef __cplusplus
     operator w64_HTML_LinkAtPosition_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_LinkAtPosition_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4855,12 +4620,15 @@ struct w32_HTML_LinkAtPosition_t
     uint32_t unBrowserHandle;
     uint32_t x;
     uint32_t y;
-    W32_PTR(const char *pchURL, pchURL);
+    W32_PTR(const char *pchURL, pchURL, const char *);
     int8_t bInput;
     int8_t bLiveLink;
     uint8_t __pad_18[2];
 #ifdef __cplusplus
     operator u32_HTML_LinkAtPosition_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_LinkAtPosition_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -4871,7 +4639,7 @@ struct u32_HTML_LinkAtPosition_t
     uint32_t unBrowserHandle;
     uint32_t x;
     uint32_t y;
-    U32_PTR(const char *pchURL, pchURL);
+    U32_PTR(const char *pchURL, pchURL, const char *);
     int8_t bInput;
     int8_t bLiveLink;
     uint8_t __pad_18[2];
@@ -4885,7 +4653,7 @@ struct u32_HTML_LinkAtPosition_t
 typedef w32_HTML_LinkAtPosition_t w_HTML_LinkAtPosition_t;
 typedef u32_HTML_LinkAtPosition_t u_HTML_LinkAtPosition_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_LinkAtPosition_t w_HTML_LinkAtPosition_t;
 typedef u64_HTML_LinkAtPosition_t u_HTML_LinkAtPosition_t;
 #endif
@@ -4895,7 +4663,7 @@ struct w64_HTML_NeedsPaint_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pBGRA, pBGRA);
+    W64_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
     uint32_t unUpdateX;
@@ -4916,7 +4684,7 @@ struct w64_HTML_NeedsPaint_t
 struct u64_HTML_NeedsPaint_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pBGRA, pBGRA);
+    U64_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
     uint32_t unUpdateX;
@@ -4930,6 +4698,9 @@ struct u64_HTML_NeedsPaint_t
 #ifdef __cplusplus
     operator w64_HTML_NeedsPaint_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_NeedsPaint_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4937,7 +4708,7 @@ struct u64_HTML_NeedsPaint_t
 struct w32_HTML_NeedsPaint_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pBGRA, pBGRA);
+    W32_PTR(const char *pBGRA, pBGRA, const char *);
     uint32_t unWide;
     uint32_t unTall;
     uint32_t unUpdateX;
@@ -4948,6 +4719,9 @@ struct w32_HTML_NeedsPaint_t
     uint32_t unScrollY;
     float flPageScale;
     uint32_t unPageSerial;
+#ifdef __cplusplus
+    operator u64_HTML_NeedsPaint_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4955,7 +4729,7 @@ struct w32_HTML_NeedsPaint_t
 typedef w32_HTML_NeedsPaint_t w_HTML_NeedsPaint_t;
 typedef u32_HTML_NeedsPaint_t u_HTML_NeedsPaint_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_NeedsPaint_t w_HTML_NeedsPaint_t;
 typedef u64_HTML_NeedsPaint_t u_HTML_NeedsPaint_t;
 #endif
@@ -4965,7 +4739,7 @@ struct w64_HTML_NewWindow_t_132x
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
+    W64_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -4982,7 +4756,7 @@ struct w64_HTML_NewWindow_t_132x
 struct u64_HTML_NewWindow_t_132x
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
+    U64_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -4991,6 +4765,9 @@ struct u64_HTML_NewWindow_t_132x
 #ifdef __cplusplus
     operator w64_HTML_NewWindow_t_132x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_NewWindow_t_132x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -4998,7 +4775,7 @@ struct u64_HTML_NewWindow_t_132x
 struct w32_HTML_NewWindow_t_132x
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
+    W32_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -5007,6 +4784,9 @@ struct w32_HTML_NewWindow_t_132x
 #ifdef __cplusplus
     operator u32_HTML_NewWindow_t_132x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_NewWindow_t_132x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5014,7 +4794,7 @@ struct w32_HTML_NewWindow_t_132x
 struct u32_HTML_NewWindow_t_132x
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
+    U32_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -5030,7 +4810,7 @@ struct u32_HTML_NewWindow_t_132x
 typedef w32_HTML_NewWindow_t_132x w_HTML_NewWindow_t_132x;
 typedef u32_HTML_NewWindow_t_132x u_HTML_NewWindow_t_132x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_NewWindow_t_132x w_HTML_NewWindow_t_132x;
 typedef u64_HTML_NewWindow_t_132x u_HTML_NewWindow_t_132x;
 #endif
@@ -5040,7 +4820,7 @@ struct w64_HTML_NewWindow_t_130x
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
+    W64_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -5055,13 +4835,16 @@ struct w64_HTML_NewWindow_t_130x
 struct u64_HTML_NewWindow_t_130x
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
+    U64_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
     uint32_t unTall;
 #ifdef __cplusplus
     operator w64_HTML_NewWindow_t_130x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_NewWindow_t_130x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5070,13 +4853,16 @@ struct u64_HTML_NewWindow_t_130x
 struct w32_HTML_NewWindow_t_130x
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
+    W32_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
     uint32_t unTall;
 #ifdef __cplusplus
     operator u32_HTML_NewWindow_t_130x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_NewWindow_t_130x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5085,7 +4871,7 @@ struct w32_HTML_NewWindow_t_130x
 struct u32_HTML_NewWindow_t_130x
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
+    U32_PTR(const char *pchURL, pchURL, const char *);
     uint32_t unX;
     uint32_t unY;
     uint32_t unWide;
@@ -5100,7 +4886,7 @@ struct u32_HTML_NewWindow_t_130x
 typedef w32_HTML_NewWindow_t_130x w_HTML_NewWindow_t_130x;
 typedef u32_HTML_NewWindow_t_130x u_HTML_NewWindow_t_130x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_NewWindow_t_130x w_HTML_NewWindow_t_130x;
 typedef u64_HTML_NewWindow_t_130x u_HTML_NewWindow_t_130x;
 #endif
@@ -5110,7 +4896,7 @@ struct w64_HTML_OpenLinkInNewTab_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
+    W64_PTR(const char *pchURL, pchURL, const char *);
 #ifdef __cplusplus
     operator u64_HTML_OpenLinkInNewTab_t() const;
 #endif /* __cplusplus */
@@ -5121,9 +4907,12 @@ struct w64_HTML_OpenLinkInNewTab_t
 struct u64_HTML_OpenLinkInNewTab_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
+    U64_PTR(const char *pchURL, pchURL, const char *);
 #ifdef __cplusplus
     operator w64_HTML_OpenLinkInNewTab_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_OpenLinkInNewTab_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5132,9 +4921,12 @@ struct u64_HTML_OpenLinkInNewTab_t
 struct w32_HTML_OpenLinkInNewTab_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
+    W32_PTR(const char *pchURL, pchURL, const char *);
 #ifdef __cplusplus
     operator u32_HTML_OpenLinkInNewTab_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_OpenLinkInNewTab_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5143,7 +4935,7 @@ struct w32_HTML_OpenLinkInNewTab_t
 struct u32_HTML_OpenLinkInNewTab_t
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
+    U32_PTR(const char *pchURL, pchURL, const char *);
 #ifdef __cplusplus
     operator w32_HTML_OpenLinkInNewTab_t() const;
 #endif /* __cplusplus */
@@ -5154,7 +4946,7 @@ struct u32_HTML_OpenLinkInNewTab_t
 typedef w32_HTML_OpenLinkInNewTab_t w_HTML_OpenLinkInNewTab_t;
 typedef u32_HTML_OpenLinkInNewTab_t u_HTML_OpenLinkInNewTab_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_OpenLinkInNewTab_t w_HTML_OpenLinkInNewTab_t;
 typedef u64_HTML_OpenLinkInNewTab_t u_HTML_OpenLinkInNewTab_t;
 #endif
@@ -5164,7 +4956,7 @@ struct w64_HTML_ShowToolTip_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchMsg, pchMsg);
+    W64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator u64_HTML_ShowToolTip_t() const;
 #endif /* __cplusplus */
@@ -5175,9 +4967,12 @@ struct w64_HTML_ShowToolTip_t
 struct u64_HTML_ShowToolTip_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchMsg, pchMsg);
+    U64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator w64_HTML_ShowToolTip_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_ShowToolTip_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5186,7 +4981,10 @@ struct u64_HTML_ShowToolTip_t
 struct w32_HTML_ShowToolTip_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchMsg, pchMsg);
+    W32_PTR(const char *pchMsg, pchMsg, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_ShowToolTip_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5194,7 +4992,7 @@ struct w32_HTML_ShowToolTip_t
 typedef w32_HTML_ShowToolTip_t w_HTML_ShowToolTip_t;
 typedef u32_HTML_ShowToolTip_t u_HTML_ShowToolTip_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_ShowToolTip_t w_HTML_ShowToolTip_t;
 typedef u64_HTML_ShowToolTip_t u_HTML_ShowToolTip_t;
 #endif
@@ -5204,9 +5002,9 @@ struct w64_HTML_StartRequest_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
-    W64_PTR(const char *pchTarget, pchTarget);
-    W64_PTR(const char *pchPostData, pchPostData);
+    W64_PTR(const char *pchURL, pchURL, const char *);
+    W64_PTR(const char *pchTarget, pchTarget, const char *);
+    W64_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_33[7];
 #ifdef __cplusplus
@@ -5219,13 +5017,16 @@ struct w64_HTML_StartRequest_t
 struct u64_HTML_StartRequest_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
-    U64_PTR(const char *pchTarget, pchTarget);
-    U64_PTR(const char *pchPostData, pchPostData);
+    U64_PTR(const char *pchURL, pchURL, const char *);
+    U64_PTR(const char *pchTarget, pchTarget, const char *);
+    U64_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_29[3];
 #ifdef __cplusplus
     operator w64_HTML_StartRequest_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_StartRequest_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5234,13 +5035,16 @@ struct u64_HTML_StartRequest_t
 struct w32_HTML_StartRequest_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
-    W32_PTR(const char *pchTarget, pchTarget);
-    W32_PTR(const char *pchPostData, pchPostData);
+    W32_PTR(const char *pchURL, pchURL, const char *);
+    W32_PTR(const char *pchTarget, pchTarget, const char *);
+    W32_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_17[3];
 #ifdef __cplusplus
     operator u32_HTML_StartRequest_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_StartRequest_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5249,9 +5053,9 @@ struct w32_HTML_StartRequest_t
 struct u32_HTML_StartRequest_t
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
-    U32_PTR(const char *pchTarget, pchTarget);
-    U32_PTR(const char *pchPostData, pchPostData);
+    U32_PTR(const char *pchURL, pchURL, const char *);
+    U32_PTR(const char *pchTarget, pchTarget, const char *);
+    U32_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_17[3];
 #ifdef __cplusplus
@@ -5264,7 +5068,7 @@ struct u32_HTML_StartRequest_t
 typedef w32_HTML_StartRequest_t w_HTML_StartRequest_t;
 typedef u32_HTML_StartRequest_t u_HTML_StartRequest_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_StartRequest_t w_HTML_StartRequest_t;
 typedef u64_HTML_StartRequest_t u_HTML_StartRequest_t;
 #endif
@@ -5274,7 +5078,7 @@ struct w64_HTML_StatusText_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchMsg, pchMsg);
+    W64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator u64_HTML_StatusText_t() const;
 #endif /* __cplusplus */
@@ -5285,9 +5089,12 @@ struct w64_HTML_StatusText_t
 struct u64_HTML_StatusText_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchMsg, pchMsg);
+    U64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator w64_HTML_StatusText_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_StatusText_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5296,7 +5103,10 @@ struct u64_HTML_StatusText_t
 struct w32_HTML_StatusText_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchMsg, pchMsg);
+    W32_PTR(const char *pchMsg, pchMsg, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_StatusText_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5304,7 +5114,7 @@ struct w32_HTML_StatusText_t
 typedef w32_HTML_StatusText_t w_HTML_StatusText_t;
 typedef u32_HTML_StatusText_t u_HTML_StatusText_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_StatusText_t w_HTML_StatusText_t;
 typedef u64_HTML_StatusText_t u_HTML_StatusText_t;
 #endif
@@ -5314,11 +5124,11 @@ struct w64_HTML_URLChanged_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchURL, pchURL);
-    W64_PTR(const char *pchPostData, pchPostData);
+    W64_PTR(const char *pchURL, pchURL, const char *);
+    W64_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_25[7];
-    W64_PTR(const char *pchPageTitle, pchPageTitle);
+    W64_PTR(const char *pchPageTitle, pchPageTitle, const char *);
     int8_t bNewNavigation;
     uint8_t __pad_41[7];
 #ifdef __cplusplus
@@ -5331,15 +5141,18 @@ struct w64_HTML_URLChanged_t
 struct u64_HTML_URLChanged_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchURL, pchURL);
-    U64_PTR(const char *pchPostData, pchPostData);
+    U64_PTR(const char *pchURL, pchURL, const char *);
+    U64_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_21[3];
-    U64_PTR(const char *pchPageTitle, pchPageTitle);
+    U64_PTR(const char *pchPageTitle, pchPageTitle, const char *);
     int8_t bNewNavigation;
     uint8_t __pad_33[3];
 #ifdef __cplusplus
     operator w64_HTML_URLChanged_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_URLChanged_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5348,15 +5161,18 @@ struct u64_HTML_URLChanged_t
 struct w32_HTML_URLChanged_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchURL, pchURL);
-    W32_PTR(const char *pchPostData, pchPostData);
+    W32_PTR(const char *pchURL, pchURL, const char *);
+    W32_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_13[3];
-    W32_PTR(const char *pchPageTitle, pchPageTitle);
+    W32_PTR(const char *pchPageTitle, pchPageTitle, const char *);
     int8_t bNewNavigation;
     uint8_t __pad_21[3];
 #ifdef __cplusplus
     operator u32_HTML_URLChanged_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTML_URLChanged_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5365,11 +5181,11 @@ struct w32_HTML_URLChanged_t
 struct u32_HTML_URLChanged_t
 {
     uint32_t unBrowserHandle;
-    U32_PTR(const char *pchURL, pchURL);
-    U32_PTR(const char *pchPostData, pchPostData);
+    U32_PTR(const char *pchURL, pchURL, const char *);
+    U32_PTR(const char *pchPostData, pchPostData, const char *);
     int8_t bIsRedirect;
     uint8_t __pad_13[3];
-    U32_PTR(const char *pchPageTitle, pchPageTitle);
+    U32_PTR(const char *pchPageTitle, pchPageTitle, const char *);
     int8_t bNewNavigation;
     uint8_t __pad_21[3];
 #ifdef __cplusplus
@@ -5382,7 +5198,7 @@ struct u32_HTML_URLChanged_t
 typedef w32_HTML_URLChanged_t w_HTML_URLChanged_t;
 typedef u32_HTML_URLChanged_t u_HTML_URLChanged_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_URLChanged_t w_HTML_URLChanged_t;
 typedef u64_HTML_URLChanged_t u_HTML_URLChanged_t;
 #endif
@@ -5392,7 +5208,7 @@ struct w64_HTML_UpdateToolTip_t
 {
     uint32_t unBrowserHandle;
     uint8_t __pad_4[4];
-    W64_PTR(const char *pchMsg, pchMsg);
+    W64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator u64_HTML_UpdateToolTip_t() const;
 #endif /* __cplusplus */
@@ -5403,9 +5219,12 @@ struct w64_HTML_UpdateToolTip_t
 struct u64_HTML_UpdateToolTip_t
 {
     uint32_t unBrowserHandle;
-    U64_PTR(const char *pchMsg, pchMsg);
+    U64_PTR(const char *pchMsg, pchMsg, const char *);
 #ifdef __cplusplus
     operator w64_HTML_UpdateToolTip_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTML_UpdateToolTip_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5414,7 +5233,10 @@ struct u64_HTML_UpdateToolTip_t
 struct w32_HTML_UpdateToolTip_t
 {
     uint32_t unBrowserHandle;
-    W32_PTR(const char *pchMsg, pchMsg);
+    W32_PTR(const char *pchMsg, pchMsg, const char *);
+#ifdef __cplusplus
+    operator u64_HTML_UpdateToolTip_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5422,7 +5244,7 @@ struct w32_HTML_UpdateToolTip_t
 typedef w32_HTML_UpdateToolTip_t w_HTML_UpdateToolTip_t;
 typedef u32_HTML_UpdateToolTip_t u_HTML_UpdateToolTip_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTML_UpdateToolTip_t w_HTML_UpdateToolTip_t;
 typedef u64_HTML_UpdateToolTip_t u_HTML_UpdateToolTip_t;
 #endif
@@ -5456,6 +5278,9 @@ struct u64_HTTPRequestCompleted_t_132x
 #ifdef __cplusplus
     operator w64_HTTPRequestCompleted_t_132x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTTPRequestCompleted_t_132x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5472,6 +5297,9 @@ struct w32_HTTPRequestCompleted_t_132x
     uint8_t __pad_28[4];
 #ifdef __cplusplus
     operator u32_HTTPRequestCompleted_t_132x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestCompleted_t_132x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5495,7 +5323,7 @@ struct u32_HTTPRequestCompleted_t_132x
 typedef w32_HTTPRequestCompleted_t_132x w_HTTPRequestCompleted_t_132x;
 typedef u32_HTTPRequestCompleted_t_132x u_HTTPRequestCompleted_t_132x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestCompleted_t_132x w_HTTPRequestCompleted_t_132x;
 typedef u64_HTTPRequestCompleted_t_132x u_HTTPRequestCompleted_t_132x;
 #endif
@@ -5526,6 +5354,9 @@ struct u64_HTTPRequestCompleted_t_123
 #ifdef __cplusplus
     operator w64_HTTPRequestCompleted_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTTPRequestCompleted_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5540,6 +5371,9 @@ struct w32_HTTPRequestCompleted_t_123
     uint32_t m_eStatusCode;
 #ifdef __cplusplus
     operator u32_HTTPRequestCompleted_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestCompleted_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5562,7 +5396,7 @@ struct u32_HTTPRequestCompleted_t_123
 typedef w32_HTTPRequestCompleted_t_123 w_HTTPRequestCompleted_t_123;
 typedef u32_HTTPRequestCompleted_t_123 u_HTTPRequestCompleted_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestCompleted_t_123 w_HTTPRequestCompleted_t_123;
 typedef u64_HTTPRequestCompleted_t_123 u_HTTPRequestCompleted_t_123;
 #endif
@@ -5576,6 +5410,9 @@ struct w64_HTTPRequestCompleted_t_115
     int8_t m_bRequestSuccessful;
     uint8_t __pad_17[3];
     uint32_t m_eStatusCode;
+#ifdef __cplusplus
+    operator w32_HTTPRequestCompleted_t_115() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5590,6 +5427,9 @@ struct w32_HTTPRequestCompleted_t_115
     uint32_t m_eStatusCode;
 #ifdef __cplusplus
     operator u32_HTTPRequestCompleted_t_115() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestCompleted_t_115() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5612,7 +5452,7 @@ struct u32_HTTPRequestCompleted_t_115
 typedef w32_HTTPRequestCompleted_t_115 w_HTTPRequestCompleted_t_115;
 typedef u32_HTTPRequestCompleted_t_115 u_HTTPRequestCompleted_t_115;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestCompleted_t_115 w_HTTPRequestCompleted_t_115;
 typedef u64_HTTPRequestCompleted_t_115 u_HTTPRequestCompleted_t_115;
 #endif
@@ -5641,6 +5481,9 @@ struct u64_HTTPRequestDataReceived_t_123
 #ifdef __cplusplus
     operator w64_HTTPRequestDataReceived_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTTPRequestDataReceived_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5654,6 +5497,9 @@ struct w32_HTTPRequestDataReceived_t_123
     uint32_t m_cBytesReceived;
 #ifdef __cplusplus
     operator u32_HTTPRequestDataReceived_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestDataReceived_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5675,7 +5521,7 @@ struct u32_HTTPRequestDataReceived_t_123
 typedef w32_HTTPRequestDataReceived_t_123 w_HTTPRequestDataReceived_t_123;
 typedef u32_HTTPRequestDataReceived_t_123 u_HTTPRequestDataReceived_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestDataReceived_t_123 w_HTTPRequestDataReceived_t_123;
 typedef u64_HTTPRequestDataReceived_t_123 u_HTTPRequestDataReceived_t_123;
 #endif
@@ -5688,6 +5534,9 @@ struct w64_HTTPRequestDataReceived_t_121x
     uint64_t m_ulContextValue;
     uint32_t m_cOffset;
     uint32_t m_cBytesReceived;
+#ifdef __cplusplus
+    operator w32_HTTPRequestDataReceived_t_121x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5701,6 +5550,9 @@ struct w32_HTTPRequestDataReceived_t_121x
     uint32_t m_cBytesReceived;
 #ifdef __cplusplus
     operator u32_HTTPRequestDataReceived_t_121x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestDataReceived_t_121x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5722,7 +5574,7 @@ struct u32_HTTPRequestDataReceived_t_121x
 typedef w32_HTTPRequestDataReceived_t_121x w_HTTPRequestDataReceived_t_121x;
 typedef u32_HTTPRequestDataReceived_t_121x u_HTTPRequestDataReceived_t_121x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestDataReceived_t_121x w_HTTPRequestDataReceived_t_121x;
 typedef u64_HTTPRequestDataReceived_t_121x u_HTTPRequestDataReceived_t_121x;
 #endif
@@ -5747,6 +5599,9 @@ struct u64_HTTPRequestHeadersReceived_t_123
 #ifdef __cplusplus
     operator w64_HTTPRequestHeadersReceived_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_HTTPRequestHeadersReceived_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5758,6 +5613,9 @@ struct w32_HTTPRequestHeadersReceived_t_123
     uint64_t m_ulContextValue;
 #ifdef __cplusplus
     operator u32_HTTPRequestHeadersReceived_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestHeadersReceived_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5777,7 +5635,7 @@ struct u32_HTTPRequestHeadersReceived_t_123
 typedef w32_HTTPRequestHeadersReceived_t_123 w_HTTPRequestHeadersReceived_t_123;
 typedef u32_HTTPRequestHeadersReceived_t_123 u_HTTPRequestHeadersReceived_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestHeadersReceived_t_123 w_HTTPRequestHeadersReceived_t_123;
 typedef u64_HTTPRequestHeadersReceived_t_123 u_HTTPRequestHeadersReceived_t_123;
 #endif
@@ -5788,6 +5646,9 @@ struct w64_HTTPRequestHeadersReceived_t_121x
     uint32_t m_hRequest;
     uint8_t __pad_4[4];
     uint64_t m_ulContextValue;
+#ifdef __cplusplus
+    operator w32_HTTPRequestHeadersReceived_t_121x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5799,6 +5660,9 @@ struct w32_HTTPRequestHeadersReceived_t_121x
     uint64_t m_ulContextValue;
 #ifdef __cplusplus
     operator u32_HTTPRequestHeadersReceived_t_121x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_HTTPRequestHeadersReceived_t_121x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -5818,7 +5682,7 @@ struct u32_HTTPRequestHeadersReceived_t_121x
 typedef w32_HTTPRequestHeadersReceived_t_121x w_HTTPRequestHeadersReceived_t_121x;
 typedef u32_HTTPRequestHeadersReceived_t_121x u_HTTPRequestHeadersReceived_t_121x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_HTTPRequestHeadersReceived_t_121x w_HTTPRequestHeadersReceived_t_121x;
 typedef u64_HTTPRequestHeadersReceived_t_121x u_HTTPRequestHeadersReceived_t_121x;
 #endif
@@ -5967,6 +5831,9 @@ struct u64_ItemInstalled_t_160
 #ifdef __cplusplus
     operator w64_ItemInstalled_t_160() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_ItemInstalled_t_160() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -5980,6 +5847,9 @@ struct w32_ItemInstalled_t_160
     uint64_t m_unManifestID;
 #ifdef __cplusplus
     operator u32_ItemInstalled_t_160() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_ItemInstalled_t_160() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6001,7 +5871,7 @@ struct u32_ItemInstalled_t_160
 typedef w32_ItemInstalled_t_160 w_ItemInstalled_t_160;
 typedef u32_ItemInstalled_t_160 u_ItemInstalled_t_160;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_ItemInstalled_t_160 w_ItemInstalled_t_160;
 typedef u64_ItemInstalled_t_160 u_ItemInstalled_t_160;
 #endif
@@ -6026,6 +5896,9 @@ struct u64_ItemInstalled_t_130
 #ifdef __cplusplus
     operator w64_ItemInstalled_t_130() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_ItemInstalled_t_130() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6037,6 +5910,9 @@ struct w32_ItemInstalled_t_130
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_ItemInstalled_t_130() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_ItemInstalled_t_130() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6056,7 +5932,7 @@ struct u32_ItemInstalled_t_130
 typedef w32_ItemInstalled_t_130 w_ItemInstalled_t_130;
 typedef u32_ItemInstalled_t_130 u_ItemInstalled_t_130;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_ItemInstalled_t_130 w_ItemInstalled_t_130;
 typedef u64_ItemInstalled_t_130 u_ItemInstalled_t_130;
 #endif
@@ -6085,6 +5961,9 @@ struct u64_JoinPartyCallback_t
 #ifdef __cplusplus
     operator w64_JoinPartyCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_JoinPartyCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6098,6 +5977,9 @@ struct w32_JoinPartyCallback_t
     W32_ARRAY(char, 256, m_rgchConnectString);
 #ifdef __cplusplus
     operator u32_JoinPartyCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_JoinPartyCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6119,7 +6001,7 @@ struct u32_JoinPartyCallback_t
 typedef w32_JoinPartyCallback_t w_JoinPartyCallback_t;
 typedef u32_JoinPartyCallback_t u_JoinPartyCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_JoinPartyCallback_t w_JoinPartyCallback_t;
 typedef u64_JoinPartyCallback_t u_JoinPartyCallback_t;
 #endif
@@ -6150,6 +6032,9 @@ struct u64_LeaderboardEntry_t_123
 #ifdef __cplusplus
     operator w64_LeaderboardEntry_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_LeaderboardEntry_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6164,6 +6049,9 @@ struct w32_LeaderboardEntry_t_123
     uint64_t m_hUGC;
 #ifdef __cplusplus
     operator u32_LeaderboardEntry_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardEntry_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6186,7 +6074,7 @@ struct u32_LeaderboardEntry_t_123
 typedef w32_LeaderboardEntry_t_123 w_LeaderboardEntry_t_123;
 typedef u32_LeaderboardEntry_t_123 u_LeaderboardEntry_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardEntry_t_123 w_LeaderboardEntry_t_123;
 typedef u64_LeaderboardEntry_t_123 u_LeaderboardEntry_t_123;
 #endif
@@ -6200,6 +6088,9 @@ struct w64_LeaderboardEntry_t_111x
     int32_t m_cDetails;
     uint8_t __pad_20[4];
     uint64_t m_hUGC;
+#ifdef __cplusplus
+    operator w32_LeaderboardEntry_t_111x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6214,6 +6105,9 @@ struct w32_LeaderboardEntry_t_111x
     uint64_t m_hUGC;
 #ifdef __cplusplus
     operator u32_LeaderboardEntry_t_111x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardEntry_t_111x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6236,7 +6130,7 @@ struct u32_LeaderboardEntry_t_111x
 typedef w32_LeaderboardEntry_t_111x w_LeaderboardEntry_t_111x;
 typedef u32_LeaderboardEntry_t_111x u_LeaderboardEntry_t_111x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardEntry_t_111x w_LeaderboardEntry_t_111x;
 typedef u64_LeaderboardEntry_t_111x u_LeaderboardEntry_t_111x;
 #endif
@@ -6248,6 +6142,9 @@ struct w64_LeaderboardEntry_t_104
     int32_t m_nGlobalRank;
     int32_t m_nScore;
     int32_t m_cDetails;
+#ifdef __cplusplus
+    operator w32_LeaderboardEntry_t_104() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6258,6 +6155,9 @@ struct w32_LeaderboardEntry_t_104
     int32_t m_nGlobalRank;
     int32_t m_nScore;
     int32_t m_cDetails;
+#ifdef __cplusplus
+    operator u64_LeaderboardEntry_t_104() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6265,7 +6165,7 @@ struct w32_LeaderboardEntry_t_104
 typedef w32_LeaderboardEntry_t_104 w_LeaderboardEntry_t_104;
 typedef u32_LeaderboardEntry_t_104 u_LeaderboardEntry_t_104;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardEntry_t_104 w_LeaderboardEntry_t_104;
 typedef u64_LeaderboardEntry_t_104 u_LeaderboardEntry_t_104;
 #endif
@@ -6301,6 +6201,9 @@ struct u64_LeaderboardScoreUploaded_t_123
 #ifdef __cplusplus
     operator w64_LeaderboardScoreUploaded_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_LeaderboardScoreUploaded_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6317,6 +6220,9 @@ struct w32_LeaderboardScoreUploaded_t_123
     int32_t m_nGlobalRankPrevious;
 #ifdef __cplusplus
     operator u32_LeaderboardScoreUploaded_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardScoreUploaded_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6342,7 +6248,7 @@ struct u32_LeaderboardScoreUploaded_t_123
 typedef w32_LeaderboardScoreUploaded_t_123 w_LeaderboardScoreUploaded_t_123;
 typedef u32_LeaderboardScoreUploaded_t_123 u_LeaderboardScoreUploaded_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardScoreUploaded_t_123 w_LeaderboardScoreUploaded_t_123;
 typedef u64_LeaderboardScoreUploaded_t_123 u_LeaderboardScoreUploaded_t_123;
 #endif
@@ -6358,6 +6264,9 @@ struct w64_LeaderboardScoreUploaded_t_104
     uint8_t __pad_21[3];
     int32_t m_nGlobalRankNew;
     int32_t m_nGlobalRankPrevious;
+#ifdef __cplusplus
+    operator w32_LeaderboardScoreUploaded_t_104() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6374,6 +6283,9 @@ struct w32_LeaderboardScoreUploaded_t_104
     int32_t m_nGlobalRankPrevious;
 #ifdef __cplusplus
     operator u32_LeaderboardScoreUploaded_t_104() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardScoreUploaded_t_104() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6399,7 +6311,7 @@ struct u32_LeaderboardScoreUploaded_t_104
 typedef w32_LeaderboardScoreUploaded_t_104 w_LeaderboardScoreUploaded_t_104;
 typedef u32_LeaderboardScoreUploaded_t_104 u_LeaderboardScoreUploaded_t_104;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardScoreUploaded_t_104 w_LeaderboardScoreUploaded_t_104;
 typedef u64_LeaderboardScoreUploaded_t_104 u_LeaderboardScoreUploaded_t_104;
 #endif
@@ -6424,6 +6336,9 @@ struct u64_LeaderboardUGCSet_t_123
 #ifdef __cplusplus
     operator w64_LeaderboardUGCSet_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_LeaderboardUGCSet_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6435,6 +6350,9 @@ struct w32_LeaderboardUGCSet_t_123
     uint64_t m_hSteamLeaderboard;
 #ifdef __cplusplus
     operator u32_LeaderboardUGCSet_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardUGCSet_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6454,7 +6372,7 @@ struct u32_LeaderboardUGCSet_t_123
 typedef w32_LeaderboardUGCSet_t_123 w_LeaderboardUGCSet_t_123;
 typedef u32_LeaderboardUGCSet_t_123 u_LeaderboardUGCSet_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardUGCSet_t_123 w_LeaderboardUGCSet_t_123;
 typedef u64_LeaderboardUGCSet_t_123 u_LeaderboardUGCSet_t_123;
 #endif
@@ -6465,6 +6383,9 @@ struct w64_LeaderboardUGCSet_t_111x
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_hSteamLeaderboard;
+#ifdef __cplusplus
+    operator w32_LeaderboardUGCSet_t_111x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6476,6 +6397,9 @@ struct w32_LeaderboardUGCSet_t_111x
     uint64_t m_hSteamLeaderboard;
 #ifdef __cplusplus
     operator u32_LeaderboardUGCSet_t_111x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LeaderboardUGCSet_t_111x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6495,7 +6419,7 @@ struct u32_LeaderboardUGCSet_t_111x
 typedef w32_LeaderboardUGCSet_t_111x w_LeaderboardUGCSet_t_111x;
 typedef u32_LeaderboardUGCSet_t_111x u_LeaderboardUGCSet_t_111x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LeaderboardUGCSet_t_111x w_LeaderboardUGCSet_t_111x;
 typedef u64_LeaderboardUGCSet_t_111x u_LeaderboardUGCSet_t_111x;
 #endif
@@ -6520,6 +6444,9 @@ struct u64_LobbyCreated_t_123
 #ifdef __cplusplus
     operator w64_LobbyCreated_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_LobbyCreated_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6531,6 +6458,9 @@ struct w32_LobbyCreated_t_123
     uint64_t m_ulSteamIDLobby;
 #ifdef __cplusplus
     operator u32_LobbyCreated_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LobbyCreated_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6550,7 +6480,7 @@ struct u32_LobbyCreated_t_123
 typedef w32_LobbyCreated_t_123 w_LobbyCreated_t_123;
 typedef u32_LobbyCreated_t_123 u_LobbyCreated_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LobbyCreated_t_123 w_LobbyCreated_t_123;
 typedef u64_LobbyCreated_t_123 u_LobbyCreated_t_123;
 #endif
@@ -6561,6 +6491,9 @@ struct w64_LobbyCreated_t_099u
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_ulSteamIDLobby;
+#ifdef __cplusplus
+    operator w32_LobbyCreated_t_099u() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6572,6 +6505,9 @@ struct w32_LobbyCreated_t_099u
     uint64_t m_ulSteamIDLobby;
 #ifdef __cplusplus
     operator u32_LobbyCreated_t_099u() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_LobbyCreated_t_099u() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6591,7 +6527,7 @@ struct u32_LobbyCreated_t_099u
 typedef w32_LobbyCreated_t_099u w_LobbyCreated_t_099u;
 typedef u32_LobbyCreated_t_099u u_LobbyCreated_t_099u;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_LobbyCreated_t_099u w_LobbyCreated_t_099u;
 typedef u64_LobbyCreated_t_099u u_LobbyCreated_t_099u;
 #endif
@@ -6620,6 +6556,9 @@ struct u64_MicroTxnAuthorizationResponse_t_123
 #ifdef __cplusplus
     operator w64_MicroTxnAuthorizationResponse_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_MicroTxnAuthorizationResponse_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6633,6 +6572,9 @@ struct w32_MicroTxnAuthorizationResponse_t_123
     uint8_t __pad_17[7];
 #ifdef __cplusplus
     operator u32_MicroTxnAuthorizationResponse_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_MicroTxnAuthorizationResponse_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6654,7 +6596,7 @@ struct u32_MicroTxnAuthorizationResponse_t_123
 typedef w32_MicroTxnAuthorizationResponse_t_123 w_MicroTxnAuthorizationResponse_t_123;
 typedef u32_MicroTxnAuthorizationResponse_t_123 u_MicroTxnAuthorizationResponse_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_MicroTxnAuthorizationResponse_t_123 w_MicroTxnAuthorizationResponse_t_123;
 typedef u64_MicroTxnAuthorizationResponse_t_123 u_MicroTxnAuthorizationResponse_t_123;
 #endif
@@ -6667,6 +6609,9 @@ struct w64_MicroTxnAuthorizationResponse_t_109
     uint64_t m_ulOrderID;
     uint8_t m_bAuthorized;
     uint8_t __pad_17[7];
+#ifdef __cplusplus
+    operator w32_MicroTxnAuthorizationResponse_t_109() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6680,6 +6625,9 @@ struct w32_MicroTxnAuthorizationResponse_t_109
     uint8_t __pad_17[7];
 #ifdef __cplusplus
     operator u32_MicroTxnAuthorizationResponse_t_109() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_MicroTxnAuthorizationResponse_t_109() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6701,7 +6649,7 @@ struct u32_MicroTxnAuthorizationResponse_t_109
 typedef w32_MicroTxnAuthorizationResponse_t_109 w_MicroTxnAuthorizationResponse_t_109;
 typedef u32_MicroTxnAuthorizationResponse_t_109 u_MicroTxnAuthorizationResponse_t_109;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_MicroTxnAuthorizationResponse_t_109 w_MicroTxnAuthorizationResponse_t_109;
 typedef u64_MicroTxnAuthorizationResponse_t_109 u_MicroTxnAuthorizationResponse_t_109;
 #endif
@@ -6728,6 +6676,9 @@ struct u64_PS3TrophiesInstalled_t_123
 #ifdef __cplusplus
     operator w64_PS3TrophiesInstalled_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_PS3TrophiesInstalled_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6740,6 +6691,9 @@ struct w32_PS3TrophiesInstalled_t_123
     uint64_t m_ulRequiredDiskSpace;
 #ifdef __cplusplus
     operator u32_PS3TrophiesInstalled_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_PS3TrophiesInstalled_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6760,7 +6714,7 @@ struct u32_PS3TrophiesInstalled_t_123
 typedef w32_PS3TrophiesInstalled_t_123 w_PS3TrophiesInstalled_t_123;
 typedef u32_PS3TrophiesInstalled_t_123 u_PS3TrophiesInstalled_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_PS3TrophiesInstalled_t_123 w_PS3TrophiesInstalled_t_123;
 typedef u64_PS3TrophiesInstalled_t_123 u_PS3TrophiesInstalled_t_123;
 #endif
@@ -6772,6 +6726,9 @@ struct w64_PS3TrophiesInstalled_t_112x
     uint32_t m_eResult;
     uint8_t __pad_12[4];
     uint64_t m_ulRequiredDiskSpace;
+#ifdef __cplusplus
+    operator w32_PS3TrophiesInstalled_t_112x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6784,6 +6741,9 @@ struct w32_PS3TrophiesInstalled_t_112x
     uint64_t m_ulRequiredDiskSpace;
 #ifdef __cplusplus
     operator u32_PS3TrophiesInstalled_t_112x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_PS3TrophiesInstalled_t_112x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6804,7 +6764,7 @@ struct u32_PS3TrophiesInstalled_t_112x
 typedef w32_PS3TrophiesInstalled_t_112x w_PS3TrophiesInstalled_t_112x;
 typedef u32_PS3TrophiesInstalled_t_112x u_PS3TrophiesInstalled_t_112x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_PS3TrophiesInstalled_t_112x w_PS3TrophiesInstalled_t_112x;
 typedef u64_PS3TrophiesInstalled_t_112x u_PS3TrophiesInstalled_t_112x;
 #endif
@@ -6837,6 +6797,9 @@ struct u64_RemoteStorageAppSyncProgress_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageAppSyncProgress_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageAppSyncProgress_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6852,6 +6815,9 @@ struct w32_RemoteStorageAppSyncProgress_t_123
     uint8_t __pad_281[7];
 #ifdef __cplusplus
     operator u32_RemoteStorageAppSyncProgress_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageAppSyncProgress_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6875,7 +6841,7 @@ struct u32_RemoteStorageAppSyncProgress_t_123
 typedef w32_RemoteStorageAppSyncProgress_t_123 w_RemoteStorageAppSyncProgress_t_123;
 typedef u32_RemoteStorageAppSyncProgress_t_123 u_RemoteStorageAppSyncProgress_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageAppSyncProgress_t_123 w_RemoteStorageAppSyncProgress_t_123;
 typedef u64_RemoteStorageAppSyncProgress_t_123 u_RemoteStorageAppSyncProgress_t_123;
 #endif
@@ -6890,6 +6856,9 @@ struct w64_RemoteStorageAppSyncProgress_t_111x
     double m_dAppPercentComplete;
     int8_t m_bUploading;
     uint8_t __pad_281[7];
+#ifdef __cplusplus
+    operator w32_RemoteStorageAppSyncProgress_t_111x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6905,6 +6874,9 @@ struct w32_RemoteStorageAppSyncProgress_t_111x
     uint8_t __pad_281[7];
 #ifdef __cplusplus
     operator u32_RemoteStorageAppSyncProgress_t_111x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageAppSyncProgress_t_111x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6928,7 +6900,7 @@ struct u32_RemoteStorageAppSyncProgress_t_111x
 typedef w32_RemoteStorageAppSyncProgress_t_111x w_RemoteStorageAppSyncProgress_t_111x;
 typedef u32_RemoteStorageAppSyncProgress_t_111x u_RemoteStorageAppSyncProgress_t_111x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageAppSyncProgress_t_111x w_RemoteStorageAppSyncProgress_t_111x;
 typedef u64_RemoteStorageAppSyncProgress_t_111x u_RemoteStorageAppSyncProgress_t_111x;
 #endif
@@ -6953,6 +6925,9 @@ struct u64_RemoteStorageDeletePublishedFileResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageDeletePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageDeletePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -6964,6 +6939,9 @@ struct w32_RemoteStorageDeletePublishedFileResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageDeletePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageDeletePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -6983,7 +6961,7 @@ struct u32_RemoteStorageDeletePublishedFileResult_t_123
 typedef w32_RemoteStorageDeletePublishedFileResult_t_123 w_RemoteStorageDeletePublishedFileResult_t_123;
 typedef u32_RemoteStorageDeletePublishedFileResult_t_123 u_RemoteStorageDeletePublishedFileResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageDeletePublishedFileResult_t_123 w_RemoteStorageDeletePublishedFileResult_t_123;
 typedef u64_RemoteStorageDeletePublishedFileResult_t_123 u_RemoteStorageDeletePublishedFileResult_t_123;
 #endif
@@ -6994,6 +6972,9 @@ struct w64_RemoteStorageDeletePublishedFileResult_t_116x
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_nPublishedFileId;
+#ifdef __cplusplus
+    operator w32_RemoteStorageDeletePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7005,6 +6986,9 @@ struct w32_RemoteStorageDeletePublishedFileResult_t_116x
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageDeletePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageDeletePublishedFileResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7024,7 +7008,7 @@ struct u32_RemoteStorageDeletePublishedFileResult_t_116x
 typedef w32_RemoteStorageDeletePublishedFileResult_t_116x w_RemoteStorageDeletePublishedFileResult_t_116x;
 typedef u32_RemoteStorageDeletePublishedFileResult_t_116x u_RemoteStorageDeletePublishedFileResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageDeletePublishedFileResult_t_116x w_RemoteStorageDeletePublishedFileResult_t_116x;
 typedef u64_RemoteStorageDeletePublishedFileResult_t_116x u_RemoteStorageDeletePublishedFileResult_t_116x;
 #endif
@@ -7058,6 +7042,9 @@ struct u64_RemoteStorageDownloadUGCResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageDownloadUGCResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageDownloadUGCResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7074,6 +7061,9 @@ struct w32_RemoteStorageDownloadUGCResult_t_123
     uint64_t m_ulSteamIDOwner;
 #ifdef __cplusplus
     operator u32_RemoteStorageDownloadUGCResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageDownloadUGCResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7097,7 +7087,7 @@ struct u32_RemoteStorageDownloadUGCResult_t_123
 typedef w32_RemoteStorageDownloadUGCResult_t_123 w_RemoteStorageDownloadUGCResult_t_123;
 typedef u32_RemoteStorageDownloadUGCResult_t_123 u_RemoteStorageDownloadUGCResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageDownloadUGCResult_t_123 w_RemoteStorageDownloadUGCResult_t_123;
 typedef u64_RemoteStorageDownloadUGCResult_t_123 u_RemoteStorageDownloadUGCResult_t_123;
 #endif
@@ -7113,6 +7103,9 @@ struct w64_RemoteStorageDownloadUGCResult_t_116x
     W64_ARRAY(char, 260, m_pchFileName);
     uint8_t __pad_284[4];
     uint64_t m_ulSteamIDOwner;
+#ifdef __cplusplus
+    operator w32_RemoteStorageDownloadUGCResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7129,6 +7122,9 @@ struct w32_RemoteStorageDownloadUGCResult_t_116x
     uint64_t m_ulSteamIDOwner;
 #ifdef __cplusplus
     operator u32_RemoteStorageDownloadUGCResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageDownloadUGCResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7152,7 +7148,7 @@ struct u32_RemoteStorageDownloadUGCResult_t_116x
 typedef w32_RemoteStorageDownloadUGCResult_t_116x w_RemoteStorageDownloadUGCResult_t_116x;
 typedef u32_RemoteStorageDownloadUGCResult_t_116x u_RemoteStorageDownloadUGCResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageDownloadUGCResult_t_116x w_RemoteStorageDownloadUGCResult_t_116x;
 typedef u64_RemoteStorageDownloadUGCResult_t_116x u_RemoteStorageDownloadUGCResult_t_116x;
 #endif
@@ -7165,8 +7161,11 @@ struct w64_RemoteStorageDownloadUGCResult_t_111x
     uint64_t m_hFile;
     uint32_t m_nAppID;
     int32_t m_nSizeInBytes;
-    W64_PTR(char *m_pchFileName, m_pchFileName);
+    W64_PTR(char *m_pchFileName, m_pchFileName, char *);
     uint64_t m_ulSteamIDOwner;
+#ifdef __cplusplus
+    operator w32_RemoteStorageDownloadUGCResult_t_111x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7178,11 +7177,14 @@ struct w32_RemoteStorageDownloadUGCResult_t_111x
     uint64_t m_hFile;
     uint32_t m_nAppID;
     int32_t m_nSizeInBytes;
-    W32_PTR(char *m_pchFileName, m_pchFileName);
+    W32_PTR(char *m_pchFileName, m_pchFileName, char *);
     uint8_t __pad_28[4];
     uint64_t m_ulSteamIDOwner;
 #ifdef __cplusplus
     operator u32_RemoteStorageDownloadUGCResult_t_111x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageDownloadUGCResult_t_111x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7194,7 +7196,7 @@ struct u32_RemoteStorageDownloadUGCResult_t_111x
     uint64_t m_hFile;
     uint32_t m_nAppID;
     int32_t m_nSizeInBytes;
-    U32_PTR(char *m_pchFileName, m_pchFileName);
+    U32_PTR(char *m_pchFileName, m_pchFileName, char *);
     uint64_t m_ulSteamIDOwner;
 #ifdef __cplusplus
     operator w32_RemoteStorageDownloadUGCResult_t_111x() const;
@@ -7206,7 +7208,7 @@ struct u32_RemoteStorageDownloadUGCResult_t_111x
 typedef w32_RemoteStorageDownloadUGCResult_t_111x w_RemoteStorageDownloadUGCResult_t_111x;
 typedef u32_RemoteStorageDownloadUGCResult_t_111x u_RemoteStorageDownloadUGCResult_t_111x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageDownloadUGCResult_t_111x w_RemoteStorageDownloadUGCResult_t_111x;
 typedef u64_RemoteStorageDownloadUGCResult_t_111x u_RemoteStorageDownloadUGCResult_t_111x;
 #endif
@@ -7235,6 +7237,9 @@ struct u64_RemoteStorageEnumerateUserPublishedFilesResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageEnumerateUserPublishedFilesResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserPublishedFilesResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7248,6 +7253,9 @@ struct w32_RemoteStorageEnumerateUserPublishedFilesResult_t_123
     W32_ARRAY(uint64_t, 50, m_rgPublishedFileId);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserPublishedFilesResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserPublishedFilesResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7269,7 +7277,7 @@ struct u32_RemoteStorageEnumerateUserPublishedFilesResult_t_123
 typedef w32_RemoteStorageEnumerateUserPublishedFilesResult_t_123 w_RemoteStorageEnumerateUserPublishedFilesResult_t_123;
 typedef u32_RemoteStorageEnumerateUserPublishedFilesResult_t_123 u_RemoteStorageEnumerateUserPublishedFilesResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserPublishedFilesResult_t_123 w_RemoteStorageEnumerateUserPublishedFilesResult_t_123;
 typedef u64_RemoteStorageEnumerateUserPublishedFilesResult_t_123 u_RemoteStorageEnumerateUserPublishedFilesResult_t_123;
 #endif
@@ -7282,6 +7290,9 @@ struct w64_RemoteStorageEnumerateUserPublishedFilesResult_t_116x
     int32_t m_nTotalResultCount;
     uint8_t __pad_12[4];
     W64_ARRAY(uint64_t, 50, m_rgPublishedFileId);
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7295,6 +7306,9 @@ struct w32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x
     W32_ARRAY(uint64_t, 50, m_rgPublishedFileId);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserPublishedFilesResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7316,7 +7330,7 @@ struct u32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x
 typedef w32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x w_RemoteStorageEnumerateUserPublishedFilesResult_t_116x;
 typedef u32_RemoteStorageEnumerateUserPublishedFilesResult_t_116x u_RemoteStorageEnumerateUserPublishedFilesResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserPublishedFilesResult_t_116x w_RemoteStorageEnumerateUserPublishedFilesResult_t_116x;
 typedef u64_RemoteStorageEnumerateUserPublishedFilesResult_t_116x u_RemoteStorageEnumerateUserPublishedFilesResult_t_116x;
 #endif
@@ -7345,6 +7359,9 @@ struct u64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7358,6 +7375,9 @@ struct w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123
     W32_ARRAY(uint64_t, 50, m_rgPublishedFileId);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7379,7 +7399,7 @@ struct u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123
 typedef w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123 w_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123;
 typedef u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123 u_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123 w_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123;
 typedef u64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123 u_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_123;
 #endif
@@ -7392,6 +7412,9 @@ struct w64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119
     int32_t m_nTotalResultCount;
     uint8_t __pad_12[4];
     W64_ARRAY(uint64_t, 50, m_rgPublishedFileId);
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7405,6 +7428,9 @@ struct w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119
     W32_ARRAY(uint64_t, 50, m_rgPublishedFileId);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7426,7 +7452,7 @@ struct u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119
 typedef w32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119 w_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119;
 typedef u32_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119 u_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119 w_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119;
 typedef u64_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119 u_RemoteStorageEnumerateUserSharedWorkshopFilesResult_t_119;
 #endif
@@ -7457,6 +7483,9 @@ struct u64_RemoteStorageEnumerateUserSubscribedFilesResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageEnumerateUserSubscribedFilesResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7471,6 +7500,9 @@ struct w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123
     W32_ARRAY(uint32_t, 50, m_rgRTimeSubscribed);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserSubscribedFilesResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7493,7 +7525,7 @@ struct u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123
 typedef w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123 w_RemoteStorageEnumerateUserSubscribedFilesResult_t_123;
 typedef u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_123 u_RemoteStorageEnumerateUserSubscribedFilesResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserSubscribedFilesResult_t_123 w_RemoteStorageEnumerateUserSubscribedFilesResult_t_123;
 typedef u64_RemoteStorageEnumerateUserSubscribedFilesResult_t_123 u_RemoteStorageEnumerateUserSubscribedFilesResult_t_123;
 #endif
@@ -7507,6 +7539,9 @@ struct w64_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x
     uint8_t __pad_12[4];
     W64_ARRAY(uint64_t, 50, m_rgPublishedFileId);
     W64_ARRAY(uint32_t, 50, m_rgRTimeSubscribed);
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7521,6 +7556,9 @@ struct w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x
     W32_ARRAY(uint32_t, 50, m_rgRTimeSubscribed);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7543,7 +7581,7 @@ struct u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x
 typedef w32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x w_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x;
 typedef u32_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x u_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x w_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x;
 typedef u64_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x u_RemoteStorageEnumerateUserSubscribedFilesResult_t_116x;
 #endif
@@ -7578,6 +7616,9 @@ struct u64_RemoteStorageEnumerateWorkshopFilesResult_t_125
 #ifdef __cplusplus
     operator w64_RemoteStorageEnumerateWorkshopFilesResult_t_125() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateWorkshopFilesResult_t_125() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7594,6 +7635,9 @@ struct w32_RemoteStorageEnumerateWorkshopFilesResult_t_125
     uint32_t m_unStartIndex;
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateWorkshopFilesResult_t_125() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateWorkshopFilesResult_t_125() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7618,7 +7662,7 @@ struct u32_RemoteStorageEnumerateWorkshopFilesResult_t_125
 typedef w32_RemoteStorageEnumerateWorkshopFilesResult_t_125 w_RemoteStorageEnumerateWorkshopFilesResult_t_125;
 typedef u32_RemoteStorageEnumerateWorkshopFilesResult_t_125 u_RemoteStorageEnumerateWorkshopFilesResult_t_125;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateWorkshopFilesResult_t_125 w_RemoteStorageEnumerateWorkshopFilesResult_t_125;
 typedef u64_RemoteStorageEnumerateWorkshopFilesResult_t_125 u_RemoteStorageEnumerateWorkshopFilesResult_t_125;
 #endif
@@ -7649,6 +7693,9 @@ struct u64_RemoteStorageEnumerateWorkshopFilesResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageEnumerateWorkshopFilesResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateWorkshopFilesResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7663,6 +7710,9 @@ struct w32_RemoteStorageEnumerateWorkshopFilesResult_t_123
     W32_ARRAY(float, 50, m_rgScore);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateWorkshopFilesResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateWorkshopFilesResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7685,7 +7735,7 @@ struct u32_RemoteStorageEnumerateWorkshopFilesResult_t_123
 typedef w32_RemoteStorageEnumerateWorkshopFilesResult_t_123 w_RemoteStorageEnumerateWorkshopFilesResult_t_123;
 typedef u32_RemoteStorageEnumerateWorkshopFilesResult_t_123 u_RemoteStorageEnumerateWorkshopFilesResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateWorkshopFilesResult_t_123 w_RemoteStorageEnumerateWorkshopFilesResult_t_123;
 typedef u64_RemoteStorageEnumerateWorkshopFilesResult_t_123 u_RemoteStorageEnumerateWorkshopFilesResult_t_123;
 #endif
@@ -7699,6 +7749,9 @@ struct w64_RemoteStorageEnumerateWorkshopFilesResult_t_119
     uint8_t __pad_12[4];
     W64_ARRAY(uint64_t, 50, m_rgPublishedFileId);
     W64_ARRAY(float, 50, m_rgScore);
+#ifdef __cplusplus
+    operator w32_RemoteStorageEnumerateWorkshopFilesResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7713,6 +7766,9 @@ struct w32_RemoteStorageEnumerateWorkshopFilesResult_t_119
     W32_ARRAY(float, 50, m_rgScore);
 #ifdef __cplusplus
     operator u32_RemoteStorageEnumerateWorkshopFilesResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageEnumerateWorkshopFilesResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7735,7 +7791,7 @@ struct u32_RemoteStorageEnumerateWorkshopFilesResult_t_119
 typedef w32_RemoteStorageEnumerateWorkshopFilesResult_t_119 w_RemoteStorageEnumerateWorkshopFilesResult_t_119;
 typedef u32_RemoteStorageEnumerateWorkshopFilesResult_t_119 u_RemoteStorageEnumerateWorkshopFilesResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageEnumerateWorkshopFilesResult_t_119 w_RemoteStorageEnumerateWorkshopFilesResult_t_119;
 typedef u64_RemoteStorageEnumerateWorkshopFilesResult_t_119 u_RemoteStorageEnumerateWorkshopFilesResult_t_119;
 #endif
@@ -7763,6 +7819,9 @@ struct u64_RemoteStorageFileShareResult_t_128x
 #ifdef __cplusplus
     operator w64_RemoteStorageFileShareResult_t_128x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageFileShareResult_t_128x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7776,6 +7835,9 @@ struct w32_RemoteStorageFileShareResult_t_128x
     uint8_t __pad_276[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageFileShareResult_t_128x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageFileShareResult_t_128x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7796,7 +7858,7 @@ struct u32_RemoteStorageFileShareResult_t_128x
 typedef w32_RemoteStorageFileShareResult_t_128x w_RemoteStorageFileShareResult_t_128x;
 typedef u32_RemoteStorageFileShareResult_t_128x u_RemoteStorageFileShareResult_t_128x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageFileShareResult_t_128x w_RemoteStorageFileShareResult_t_128x;
 typedef u64_RemoteStorageFileShareResult_t_128x u_RemoteStorageFileShareResult_t_128x;
 #endif
@@ -7821,6 +7883,9 @@ struct u64_RemoteStorageFileShareResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageFileShareResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageFileShareResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7832,6 +7897,9 @@ struct w32_RemoteStorageFileShareResult_t_123
     uint64_t m_hFile;
 #ifdef __cplusplus
     operator u32_RemoteStorageFileShareResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageFileShareResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7851,7 +7919,7 @@ struct u32_RemoteStorageFileShareResult_t_123
 typedef w32_RemoteStorageFileShareResult_t_123 w_RemoteStorageFileShareResult_t_123;
 typedef u32_RemoteStorageFileShareResult_t_123 u_RemoteStorageFileShareResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageFileShareResult_t_123 w_RemoteStorageFileShareResult_t_123;
 typedef u64_RemoteStorageFileShareResult_t_123 u_RemoteStorageFileShareResult_t_123;
 #endif
@@ -7862,6 +7930,9 @@ struct w64_RemoteStorageFileShareResult_t_111x
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_hFile;
+#ifdef __cplusplus
+    operator w32_RemoteStorageFileShareResult_t_111x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7873,6 +7944,9 @@ struct w32_RemoteStorageFileShareResult_t_111x
     uint64_t m_hFile;
 #ifdef __cplusplus
     operator u32_RemoteStorageFileShareResult_t_111x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageFileShareResult_t_111x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -7892,7 +7966,7 @@ struct u32_RemoteStorageFileShareResult_t_111x
 typedef w32_RemoteStorageFileShareResult_t_111x w_RemoteStorageFileShareResult_t_111x;
 typedef u32_RemoteStorageFileShareResult_t_111x u_RemoteStorageFileShareResult_t_111x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageFileShareResult_t_111x w_RemoteStorageFileShareResult_t_111x;
 typedef u64_RemoteStorageFileShareResult_t_111x u_RemoteStorageFileShareResult_t_111x;
 #endif
@@ -7961,6 +8035,9 @@ struct u64_RemoteStorageGetPublishedFileDetailsResult_t_126
 #ifdef __cplusplus
     operator w64_RemoteStorageGetPublishedFileDetailsResult_t_126() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_126() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -7994,6 +8071,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_126
     uint8_t __pad_9753[7];
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_126() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_126() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8035,7 +8115,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_126
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_126 w_RemoteStorageGetPublishedFileDetailsResult_t_126;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_126 u_RemoteStorageGetPublishedFileDetailsResult_t_126;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_126 w_RemoteStorageGetPublishedFileDetailsResult_t_126;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_126 u_RemoteStorageGetPublishedFileDetailsResult_t_126;
 #endif
@@ -8100,6 +8180,9 @@ struct u64_RemoteStorageGetPublishedFileDetailsResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageGetPublishedFileDetailsResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8131,6 +8214,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_123
     uint32_t m_eFileType;
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8170,7 +8256,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_123
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_123 w_RemoteStorageGetPublishedFileDetailsResult_t_123;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_123 u_RemoteStorageGetPublishedFileDetailsResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_123 w_RemoteStorageGetPublishedFileDetailsResult_t_123;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_123 u_RemoteStorageGetPublishedFileDetailsResult_t_123;
 #endif
@@ -8201,6 +8287,9 @@ struct w64_RemoteStorageGetPublishedFileDetailsResult_t_119x
     int32_t m_nPreviewFileSize;
     W64_ARRAY(char, 256, m_rgchURL);
     uint32_t m_eFileType;
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_119x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8232,6 +8321,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_119x
     uint32_t m_eFileType;
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_119x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_119x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8271,7 +8363,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_119x
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_119x w_RemoteStorageGetPublishedFileDetailsResult_t_119x;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_119x u_RemoteStorageGetPublishedFileDetailsResult_t_119x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_119x w_RemoteStorageGetPublishedFileDetailsResult_t_119x;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_119x u_RemoteStorageGetPublishedFileDetailsResult_t_119x;
 #endif
@@ -8302,6 +8394,9 @@ struct w64_RemoteStorageGetPublishedFileDetailsResult_t_119
     int32_t m_nPreviewFileSize;
     W64_ARRAY(char, 256, m_rgchURL);
     uint8_t __pad_9748[4];
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8333,6 +8428,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_119
     uint8_t __pad_9748[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8371,7 +8469,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_119
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_119 w_RemoteStorageGetPublishedFileDetailsResult_t_119;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_119 u_RemoteStorageGetPublishedFileDetailsResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_119 w_RemoteStorageGetPublishedFileDetailsResult_t_119;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_119 u_RemoteStorageGetPublishedFileDetailsResult_t_119;
 #endif
@@ -8401,6 +8499,9 @@ struct w64_RemoteStorageGetPublishedFileDetailsResult_t_118
     int32_t m_nFileSize;
     int32_t m_nPreviewFileSize;
     uint8_t __pad_9492[4];
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_118() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8431,6 +8532,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_118
     uint8_t __pad_9492[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_118() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_118() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8468,7 +8572,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_118
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_118 w_RemoteStorageGetPublishedFileDetailsResult_t_118;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_118 u_RemoteStorageGetPublishedFileDetailsResult_t_118;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_118 w_RemoteStorageGetPublishedFileDetailsResult_t_118;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_118 u_RemoteStorageGetPublishedFileDetailsResult_t_118;
 #endif
@@ -8495,6 +8599,9 @@ struct w64_RemoteStorageGetPublishedFileDetailsResult_t_116x
     int8_t m_bTagsTruncated;
     W64_ARRAY(char, 260, m_pchFileName);
     uint8_t __pad_1739[5];
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedFileDetailsResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8522,6 +8629,9 @@ struct w32_RemoteStorageGetPublishedFileDetailsResult_t_116x
     uint8_t __pad_1739[5];
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedFileDetailsResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedFileDetailsResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8557,7 +8667,7 @@ struct u32_RemoteStorageGetPublishedFileDetailsResult_t_116x
 typedef w32_RemoteStorageGetPublishedFileDetailsResult_t_116x w_RemoteStorageGetPublishedFileDetailsResult_t_116x;
 typedef u32_RemoteStorageGetPublishedFileDetailsResult_t_116x u_RemoteStorageGetPublishedFileDetailsResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedFileDetailsResult_t_116x w_RemoteStorageGetPublishedFileDetailsResult_t_116x;
 typedef u64_RemoteStorageGetPublishedFileDetailsResult_t_116x u_RemoteStorageGetPublishedFileDetailsResult_t_116x;
 #endif
@@ -8590,6 +8700,9 @@ struct u64_RemoteStorageGetPublishedItemVoteDetailsResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageGetPublishedItemVoteDetailsResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8605,6 +8718,9 @@ struct w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123
     float m_fScore;
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedItemVoteDetailsResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8628,7 +8744,7 @@ struct u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123
 typedef w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123 w_RemoteStorageGetPublishedItemVoteDetailsResult_t_123;
 typedef u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_123 u_RemoteStorageGetPublishedItemVoteDetailsResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedItemVoteDetailsResult_t_123 w_RemoteStorageGetPublishedItemVoteDetailsResult_t_123;
 typedef u64_RemoteStorageGetPublishedItemVoteDetailsResult_t_123 u_RemoteStorageGetPublishedItemVoteDetailsResult_t_123;
 #endif
@@ -8643,6 +8759,9 @@ struct w64_RemoteStorageGetPublishedItemVoteDetailsResult_t_119
     int32_t m_nVotesAgainst;
     int32_t m_nReports;
     float m_fScore;
+#ifdef __cplusplus
+    operator w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8658,6 +8777,9 @@ struct w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119
     float m_fScore;
 #ifdef __cplusplus
     operator u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageGetPublishedItemVoteDetailsResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8681,7 +8803,7 @@ struct u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119
 typedef w32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119 w_RemoteStorageGetPublishedItemVoteDetailsResult_t_119;
 typedef u32_RemoteStorageGetPublishedItemVoteDetailsResult_t_119 u_RemoteStorageGetPublishedItemVoteDetailsResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageGetPublishedItemVoteDetailsResult_t_119 w_RemoteStorageGetPublishedItemVoteDetailsResult_t_119;
 typedef u64_RemoteStorageGetPublishedItemVoteDetailsResult_t_119 u_RemoteStorageGetPublishedItemVoteDetailsResult_t_119;
 #endif
@@ -8710,6 +8832,9 @@ struct u64_RemoteStoragePublishFileResult_t_125
 #ifdef __cplusplus
     operator w64_RemoteStoragePublishFileResult_t_125() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStoragePublishFileResult_t_125() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8723,6 +8848,9 @@ struct w32_RemoteStoragePublishFileResult_t_125
     uint8_t __pad_17[7];
 #ifdef __cplusplus
     operator u32_RemoteStoragePublishFileResult_t_125() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStoragePublishFileResult_t_125() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8744,7 +8872,7 @@ struct u32_RemoteStoragePublishFileResult_t_125
 typedef w32_RemoteStoragePublishFileResult_t_125 w_RemoteStoragePublishFileResult_t_125;
 typedef u32_RemoteStoragePublishFileResult_t_125 u_RemoteStoragePublishFileResult_t_125;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStoragePublishFileResult_t_125 w_RemoteStoragePublishFileResult_t_125;
 typedef u64_RemoteStoragePublishFileResult_t_125 u_RemoteStoragePublishFileResult_t_125;
 #endif
@@ -8769,6 +8897,9 @@ struct u64_RemoteStoragePublishFileResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStoragePublishFileResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStoragePublishFileResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8780,6 +8911,9 @@ struct w32_RemoteStoragePublishFileResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStoragePublishFileResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStoragePublishFileResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8799,7 +8933,7 @@ struct u32_RemoteStoragePublishFileResult_t_123
 typedef w32_RemoteStoragePublishFileResult_t_123 w_RemoteStoragePublishFileResult_t_123;
 typedef u32_RemoteStoragePublishFileResult_t_123 u_RemoteStoragePublishFileResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStoragePublishFileResult_t_123 w_RemoteStoragePublishFileResult_t_123;
 typedef u64_RemoteStoragePublishFileResult_t_123 u_RemoteStoragePublishFileResult_t_123;
 #endif
@@ -8810,6 +8944,9 @@ struct w64_RemoteStoragePublishFileResult_t_116x
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_nPublishedFileId;
+#ifdef __cplusplus
+    operator w32_RemoteStoragePublishFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8821,6 +8958,9 @@ struct w32_RemoteStoragePublishFileResult_t_116x
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStoragePublishFileResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStoragePublishFileResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8840,7 +8980,7 @@ struct u32_RemoteStoragePublishFileResult_t_116x
 typedef w32_RemoteStoragePublishFileResult_t_116x w_RemoteStoragePublishFileResult_t_116x;
 typedef u32_RemoteStoragePublishFileResult_t_116x u_RemoteStoragePublishFileResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStoragePublishFileResult_t_116x w_RemoteStoragePublishFileResult_t_116x;
 typedef u64_RemoteStoragePublishFileResult_t_116x u_RemoteStoragePublishFileResult_t_116x;
 #endif
@@ -8867,6 +9007,9 @@ struct u64_RemoteStoragePublishedFileUpdated_t
 #ifdef __cplusplus
     operator w64_RemoteStoragePublishedFileUpdated_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStoragePublishedFileUpdated_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8879,6 +9022,9 @@ struct w32_RemoteStoragePublishedFileUpdated_t
     uint64_t m_ulUnused;
 #ifdef __cplusplus
     operator u32_RemoteStoragePublishedFileUpdated_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStoragePublishedFileUpdated_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8899,7 +9045,7 @@ struct u32_RemoteStoragePublishedFileUpdated_t
 typedef w32_RemoteStoragePublishedFileUpdated_t w_RemoteStoragePublishedFileUpdated_t;
 typedef u32_RemoteStoragePublishedFileUpdated_t u_RemoteStoragePublishedFileUpdated_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStoragePublishedFileUpdated_t w_RemoteStoragePublishedFileUpdated_t;
 typedef u64_RemoteStoragePublishedFileUpdated_t u_RemoteStoragePublishedFileUpdated_t;
 #endif
@@ -8927,6 +9073,9 @@ struct u64_RemoteStorageSetUserPublishedFileActionResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageSetUserPublishedFileActionResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageSetUserPublishedFileActionResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8940,6 +9089,9 @@ struct w32_RemoteStorageSetUserPublishedFileActionResult_t_123
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageSetUserPublishedFileActionResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageSetUserPublishedFileActionResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -8960,7 +9112,7 @@ struct u32_RemoteStorageSetUserPublishedFileActionResult_t_123
 typedef w32_RemoteStorageSetUserPublishedFileActionResult_t_123 w_RemoteStorageSetUserPublishedFileActionResult_t_123;
 typedef u32_RemoteStorageSetUserPublishedFileActionResult_t_123 u_RemoteStorageSetUserPublishedFileActionResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageSetUserPublishedFileActionResult_t_123 w_RemoteStorageSetUserPublishedFileActionResult_t_123;
 typedef u64_RemoteStorageSetUserPublishedFileActionResult_t_123 u_RemoteStorageSetUserPublishedFileActionResult_t_123;
 #endif
@@ -8973,6 +9125,9 @@ struct w64_RemoteStorageSetUserPublishedFileActionResult_t_119
     uint64_t m_nPublishedFileId;
     uint32_t m_eAction;
     uint8_t __pad_20[4];
+#ifdef __cplusplus
+    operator w32_RemoteStorageSetUserPublishedFileActionResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -8986,6 +9141,9 @@ struct w32_RemoteStorageSetUserPublishedFileActionResult_t_119
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageSetUserPublishedFileActionResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageSetUserPublishedFileActionResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9006,7 +9164,7 @@ struct u32_RemoteStorageSetUserPublishedFileActionResult_t_119
 typedef w32_RemoteStorageSetUserPublishedFileActionResult_t_119 w_RemoteStorageSetUserPublishedFileActionResult_t_119;
 typedef u32_RemoteStorageSetUserPublishedFileActionResult_t_119 u_RemoteStorageSetUserPublishedFileActionResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageSetUserPublishedFileActionResult_t_119 w_RemoteStorageSetUserPublishedFileActionResult_t_119;
 typedef u64_RemoteStorageSetUserPublishedFileActionResult_t_119 u_RemoteStorageSetUserPublishedFileActionResult_t_119;
 #endif
@@ -9031,6 +9189,9 @@ struct u64_RemoteStorageSubscribePublishedFileResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageSubscribePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageSubscribePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9042,6 +9203,9 @@ struct w32_RemoteStorageSubscribePublishedFileResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageSubscribePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageSubscribePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9061,7 +9225,7 @@ struct u32_RemoteStorageSubscribePublishedFileResult_t_123
 typedef w32_RemoteStorageSubscribePublishedFileResult_t_123 w_RemoteStorageSubscribePublishedFileResult_t_123;
 typedef u32_RemoteStorageSubscribePublishedFileResult_t_123 u_RemoteStorageSubscribePublishedFileResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageSubscribePublishedFileResult_t_123 w_RemoteStorageSubscribePublishedFileResult_t_123;
 typedef u64_RemoteStorageSubscribePublishedFileResult_t_123 u_RemoteStorageSubscribePublishedFileResult_t_123;
 #endif
@@ -9070,6 +9234,9 @@ typedef u64_RemoteStorageSubscribePublishedFileResult_t_123 u_RemoteStorageSubsc
 struct w64_RemoteStorageSubscribePublishedFileResult_t_116x
 {
     uint32_t m_eResult;
+#ifdef __cplusplus
+    operator w32_RemoteStorageSubscribePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9077,6 +9244,9 @@ struct w64_RemoteStorageSubscribePublishedFileResult_t_116x
 struct w32_RemoteStorageSubscribePublishedFileResult_t_116x
 {
     uint32_t m_eResult;
+#ifdef __cplusplus
+    operator u64_RemoteStorageSubscribePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9084,7 +9254,7 @@ struct w32_RemoteStorageSubscribePublishedFileResult_t_116x
 typedef w32_RemoteStorageSubscribePublishedFileResult_t_116x w_RemoteStorageSubscribePublishedFileResult_t_116x;
 typedef u32_RemoteStorageSubscribePublishedFileResult_t_116x u_RemoteStorageSubscribePublishedFileResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageSubscribePublishedFileResult_t_116x w_RemoteStorageSubscribePublishedFileResult_t_116x;
 typedef u64_RemoteStorageSubscribePublishedFileResult_t_116x u_RemoteStorageSubscribePublishedFileResult_t_116x;
 #endif
@@ -9109,6 +9279,9 @@ struct u64_RemoteStorageUnsubscribePublishedFileResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageUnsubscribePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageUnsubscribePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9120,6 +9293,9 @@ struct w32_RemoteStorageUnsubscribePublishedFileResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageUnsubscribePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUnsubscribePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9139,7 +9315,7 @@ struct u32_RemoteStorageUnsubscribePublishedFileResult_t_123
 typedef w32_RemoteStorageUnsubscribePublishedFileResult_t_123 w_RemoteStorageUnsubscribePublishedFileResult_t_123;
 typedef u32_RemoteStorageUnsubscribePublishedFileResult_t_123 u_RemoteStorageUnsubscribePublishedFileResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUnsubscribePublishedFileResult_t_123 w_RemoteStorageUnsubscribePublishedFileResult_t_123;
 typedef u64_RemoteStorageUnsubscribePublishedFileResult_t_123 u_RemoteStorageUnsubscribePublishedFileResult_t_123;
 #endif
@@ -9148,6 +9324,9 @@ typedef u64_RemoteStorageUnsubscribePublishedFileResult_t_123 u_RemoteStorageUns
 struct w64_RemoteStorageUnsubscribePublishedFileResult_t_116x
 {
     uint32_t m_eResult;
+#ifdef __cplusplus
+    operator w32_RemoteStorageUnsubscribePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9155,6 +9334,9 @@ struct w64_RemoteStorageUnsubscribePublishedFileResult_t_116x
 struct w32_RemoteStorageUnsubscribePublishedFileResult_t_116x
 {
     uint32_t m_eResult;
+#ifdef __cplusplus
+    operator u64_RemoteStorageUnsubscribePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9162,7 +9344,7 @@ struct w32_RemoteStorageUnsubscribePublishedFileResult_t_116x
 typedef w32_RemoteStorageUnsubscribePublishedFileResult_t_116x w_RemoteStorageUnsubscribePublishedFileResult_t_116x;
 typedef u32_RemoteStorageUnsubscribePublishedFileResult_t_116x u_RemoteStorageUnsubscribePublishedFileResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUnsubscribePublishedFileResult_t_116x w_RemoteStorageUnsubscribePublishedFileResult_t_116x;
 typedef u64_RemoteStorageUnsubscribePublishedFileResult_t_116x u_RemoteStorageUnsubscribePublishedFileResult_t_116x;
 #endif
@@ -9171,13 +9353,13 @@ typedef u64_RemoteStorageUnsubscribePublishedFileResult_t_116x u_RemoteStorageUn
 struct w64_RemoteStorageUpdatePublishedFileRequest_t
 {
     uint64_t m_unPublishedFileId;
-    W64_PTR(const char *m_pchFile, m_pchFile);
-    W64_PTR(const char *m_pchPreviewFile, m_pchPreviewFile);
-    W64_PTR(const char *m_pchTitle, m_pchTitle);
-    W64_PTR(const char *m_pchDescription, m_pchDescription);
+    W64_PTR(const char *m_pchFile, m_pchFile, const char *);
+    W64_PTR(const char *m_pchPreviewFile, m_pchPreviewFile, const char *);
+    W64_PTR(const char *m_pchTitle, m_pchTitle, const char *);
+    W64_PTR(const char *m_pchDescription, m_pchDescription, const char *);
     uint32_t m_eVisibility;
     uint8_t __pad_44[4];
-    W64_PTR(w64_SteamParamStringArray_t *m_pTags, m_pTags);
+    W64_PTR(w64_SteamParamStringArray_t *m_pTags, m_pTags, w64_SteamParamStringArray_t *);
     int8_t m_bUpdateFile;
     int8_t m_bUpdatePreviewFile;
     int8_t m_bUpdateTitle;
@@ -9185,6 +9367,9 @@ struct w64_RemoteStorageUpdatePublishedFileRequest_t
     int8_t m_bUpdateVisibility;
     int8_t m_bUpdateTags;
     uint8_t __pad_62[2];
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdatePublishedFileRequest_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9192,12 +9377,12 @@ struct w64_RemoteStorageUpdatePublishedFileRequest_t
 struct w32_RemoteStorageUpdatePublishedFileRequest_t
 {
     uint64_t m_unPublishedFileId;
-    W32_PTR(const char *m_pchFile, m_pchFile);
-    W32_PTR(const char *m_pchPreviewFile, m_pchPreviewFile);
-    W32_PTR(const char *m_pchTitle, m_pchTitle);
-    W32_PTR(const char *m_pchDescription, m_pchDescription);
+    W32_PTR(const char *m_pchFile, m_pchFile, const char *);
+    W32_PTR(const char *m_pchPreviewFile, m_pchPreviewFile, const char *);
+    W32_PTR(const char *m_pchTitle, m_pchTitle, const char *);
+    W32_PTR(const char *m_pchDescription, m_pchDescription, const char *);
     uint32_t m_eVisibility;
-    W32_PTR(w32_SteamParamStringArray_t *m_pTags, m_pTags);
+    W32_PTR(w32_SteamParamStringArray_t *m_pTags, m_pTags, w32_SteamParamStringArray_t *);
     int8_t m_bUpdateFile;
     int8_t m_bUpdatePreviewFile;
     int8_t m_bUpdateTitle;
@@ -9205,6 +9390,9 @@ struct w32_RemoteStorageUpdatePublishedFileRequest_t
     int8_t m_bUpdateVisibility;
     int8_t m_bUpdateTags;
     uint8_t __pad_38[2];
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdatePublishedFileRequest_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9212,7 +9400,7 @@ struct w32_RemoteStorageUpdatePublishedFileRequest_t
 typedef w32_RemoteStorageUpdatePublishedFileRequest_t w_RemoteStorageUpdatePublishedFileRequest_t;
 typedef u32_RemoteStorageUpdatePublishedFileRequest_t u_RemoteStorageUpdatePublishedFileRequest_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdatePublishedFileRequest_t w_RemoteStorageUpdatePublishedFileRequest_t;
 typedef u64_RemoteStorageUpdatePublishedFileRequest_t u_RemoteStorageUpdatePublishedFileRequest_t;
 #endif
@@ -9241,6 +9429,9 @@ struct u64_RemoteStorageUpdatePublishedFileResult_t_125
 #ifdef __cplusplus
     operator w64_RemoteStorageUpdatePublishedFileResult_t_125() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdatePublishedFileResult_t_125() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9254,6 +9445,9 @@ struct w32_RemoteStorageUpdatePublishedFileResult_t_125
     uint8_t __pad_17[7];
 #ifdef __cplusplus
     operator u32_RemoteStorageUpdatePublishedFileResult_t_125() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdatePublishedFileResult_t_125() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9275,7 +9469,7 @@ struct u32_RemoteStorageUpdatePublishedFileResult_t_125
 typedef w32_RemoteStorageUpdatePublishedFileResult_t_125 w_RemoteStorageUpdatePublishedFileResult_t_125;
 typedef u32_RemoteStorageUpdatePublishedFileResult_t_125 u_RemoteStorageUpdatePublishedFileResult_t_125;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdatePublishedFileResult_t_125 w_RemoteStorageUpdatePublishedFileResult_t_125;
 typedef u64_RemoteStorageUpdatePublishedFileResult_t_125 u_RemoteStorageUpdatePublishedFileResult_t_125;
 #endif
@@ -9300,6 +9494,9 @@ struct u64_RemoteStorageUpdatePublishedFileResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageUpdatePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdatePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9311,6 +9508,9 @@ struct w32_RemoteStorageUpdatePublishedFileResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageUpdatePublishedFileResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdatePublishedFileResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9330,7 +9530,7 @@ struct u32_RemoteStorageUpdatePublishedFileResult_t_123
 typedef w32_RemoteStorageUpdatePublishedFileResult_t_123 w_RemoteStorageUpdatePublishedFileResult_t_123;
 typedef u32_RemoteStorageUpdatePublishedFileResult_t_123 u_RemoteStorageUpdatePublishedFileResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdatePublishedFileResult_t_123 w_RemoteStorageUpdatePublishedFileResult_t_123;
 typedef u64_RemoteStorageUpdatePublishedFileResult_t_123 u_RemoteStorageUpdatePublishedFileResult_t_123;
 #endif
@@ -9341,6 +9541,9 @@ struct w64_RemoteStorageUpdatePublishedFileResult_t_116x
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_nPublishedFileId;
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdatePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9352,6 +9555,9 @@ struct w32_RemoteStorageUpdatePublishedFileResult_t_116x
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageUpdatePublishedFileResult_t_116x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdatePublishedFileResult_t_116x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9371,7 +9577,7 @@ struct u32_RemoteStorageUpdatePublishedFileResult_t_116x
 typedef w32_RemoteStorageUpdatePublishedFileResult_t_116x w_RemoteStorageUpdatePublishedFileResult_t_116x;
 typedef u32_RemoteStorageUpdatePublishedFileResult_t_116x u_RemoteStorageUpdatePublishedFileResult_t_116x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdatePublishedFileResult_t_116x w_RemoteStorageUpdatePublishedFileResult_t_116x;
 typedef u64_RemoteStorageUpdatePublishedFileResult_t_116x u_RemoteStorageUpdatePublishedFileResult_t_116x;
 #endif
@@ -9396,6 +9602,9 @@ struct u64_RemoteStorageUpdateUserPublishedItemVoteResult_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageUpdateUserPublishedItemVoteResult_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9407,6 +9616,9 @@ struct w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdateUserPublishedItemVoteResult_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9426,7 +9638,7 @@ struct u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123
 typedef w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123 w_RemoteStorageUpdateUserPublishedItemVoteResult_t_123;
 typedef u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_123 u_RemoteStorageUpdateUserPublishedItemVoteResult_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdateUserPublishedItemVoteResult_t_123 w_RemoteStorageUpdateUserPublishedItemVoteResult_t_123;
 typedef u64_RemoteStorageUpdateUserPublishedItemVoteResult_t_123 u_RemoteStorageUpdateUserPublishedItemVoteResult_t_123;
 #endif
@@ -9437,6 +9649,9 @@ struct w64_RemoteStorageUpdateUserPublishedItemVoteResult_t_119
     uint32_t m_eResult;
     uint8_t __pad_4[4];
     uint64_t m_nPublishedFileId;
+#ifdef __cplusplus
+    operator w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9448,6 +9663,9 @@ struct w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119
     uint64_t m_nPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUpdateUserPublishedItemVoteResult_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9467,7 +9685,7 @@ struct u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119
 typedef w32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119 w_RemoteStorageUpdateUserPublishedItemVoteResult_t_119;
 typedef u32_RemoteStorageUpdateUserPublishedItemVoteResult_t_119 u_RemoteStorageUpdateUserPublishedItemVoteResult_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUpdateUserPublishedItemVoteResult_t_119 w_RemoteStorageUpdateUserPublishedItemVoteResult_t_119;
 typedef u64_RemoteStorageUpdateUserPublishedItemVoteResult_t_119 u_RemoteStorageUpdateUserPublishedItemVoteResult_t_119;
 #endif
@@ -9495,6 +9713,9 @@ struct u64_RemoteStorageUserVoteDetails_t_123
 #ifdef __cplusplus
     operator w64_RemoteStorageUserVoteDetails_t_123() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoteStorageUserVoteDetails_t_123() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9508,6 +9729,9 @@ struct w32_RemoteStorageUserVoteDetails_t_123
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageUserVoteDetails_t_123() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUserVoteDetails_t_123() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9528,7 +9752,7 @@ struct u32_RemoteStorageUserVoteDetails_t_123
 typedef w32_RemoteStorageUserVoteDetails_t_123 w_RemoteStorageUserVoteDetails_t_123;
 typedef u32_RemoteStorageUserVoteDetails_t_123 u_RemoteStorageUserVoteDetails_t_123;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUserVoteDetails_t_123 w_RemoteStorageUserVoteDetails_t_123;
 typedef u64_RemoteStorageUserVoteDetails_t_123 u_RemoteStorageUserVoteDetails_t_123;
 #endif
@@ -9541,6 +9765,9 @@ struct w64_RemoteStorageUserVoteDetails_t_119
     uint64_t m_nPublishedFileId;
     uint32_t m_eVote;
     uint8_t __pad_20[4];
+#ifdef __cplusplus
+    operator w32_RemoteStorageUserVoteDetails_t_119() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9554,6 +9781,9 @@ struct w32_RemoteStorageUserVoteDetails_t_119
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_RemoteStorageUserVoteDetails_t_119() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoteStorageUserVoteDetails_t_119() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9574,7 +9804,7 @@ struct u32_RemoteStorageUserVoteDetails_t_119
 typedef w32_RemoteStorageUserVoteDetails_t_119 w_RemoteStorageUserVoteDetails_t_119;
 typedef u32_RemoteStorageUserVoteDetails_t_119 u_RemoteStorageUserVoteDetails_t_119;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoteStorageUserVoteDetails_t_119 w_RemoteStorageUserVoteDetails_t_119;
 typedef u64_RemoteStorageUserVoteDetails_t_119 u_RemoteStorageUserVoteDetails_t_119;
 #endif
@@ -9602,6 +9832,9 @@ struct u64_RemoveAppDependencyResult_t
 #ifdef __cplusplus
     operator w64_RemoveAppDependencyResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoveAppDependencyResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9615,6 +9848,9 @@ struct w32_RemoveAppDependencyResult_t
     uint8_t __pad_20[4];
 #ifdef __cplusplus
     operator u32_RemoveAppDependencyResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoveAppDependencyResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9635,7 +9871,7 @@ struct u32_RemoveAppDependencyResult_t
 typedef w32_RemoveAppDependencyResult_t w_RemoveAppDependencyResult_t;
 typedef u32_RemoveAppDependencyResult_t u_RemoveAppDependencyResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoveAppDependencyResult_t w_RemoveAppDependencyResult_t;
 typedef u64_RemoveAppDependencyResult_t u_RemoveAppDependencyResult_t;
 #endif
@@ -9662,6 +9898,9 @@ struct u64_RemoveUGCDependencyResult_t
 #ifdef __cplusplus
     operator w64_RemoveUGCDependencyResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RemoveUGCDependencyResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9674,6 +9913,9 @@ struct w32_RemoveUGCDependencyResult_t
     uint64_t m_nChildPublishedFileId;
 #ifdef __cplusplus
     operator u32_RemoveUGCDependencyResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RemoveUGCDependencyResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9694,7 +9936,7 @@ struct u32_RemoveUGCDependencyResult_t
 typedef w32_RemoveUGCDependencyResult_t w_RemoveUGCDependencyResult_t;
 typedef u32_RemoveUGCDependencyResult_t u_RemoveUGCDependencyResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RemoveUGCDependencyResult_t w_RemoveUGCDependencyResult_t;
 typedef u64_RemoveUGCDependencyResult_t u_RemoveUGCDependencyResult_t;
 #endif
@@ -9721,6 +9963,9 @@ struct u64_RequestPlayersForGameFinalResultCallback_t
 #ifdef __cplusplus
     operator w64_RequestPlayersForGameFinalResultCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RequestPlayersForGameFinalResultCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9733,6 +9978,9 @@ struct w32_RequestPlayersForGameFinalResultCallback_t
     uint64_t m_ullUniqueGameID;
 #ifdef __cplusplus
     operator u32_RequestPlayersForGameFinalResultCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RequestPlayersForGameFinalResultCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9753,7 +10001,7 @@ struct u32_RequestPlayersForGameFinalResultCallback_t
 typedef w32_RequestPlayersForGameFinalResultCallback_t w_RequestPlayersForGameFinalResultCallback_t;
 typedef u32_RequestPlayersForGameFinalResultCallback_t u_RequestPlayersForGameFinalResultCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RequestPlayersForGameFinalResultCallback_t w_RequestPlayersForGameFinalResultCallback_t;
 typedef u64_RequestPlayersForGameFinalResultCallback_t u_RequestPlayersForGameFinalResultCallback_t;
 #endif
@@ -9778,6 +10026,9 @@ struct u64_RequestPlayersForGameProgressCallback_t
 #ifdef __cplusplus
     operator w64_RequestPlayersForGameProgressCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RequestPlayersForGameProgressCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9789,6 +10040,9 @@ struct w32_RequestPlayersForGameProgressCallback_t
     uint64_t m_ullSearchID;
 #ifdef __cplusplus
     operator u32_RequestPlayersForGameProgressCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RequestPlayersForGameProgressCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9808,7 +10062,7 @@ struct u32_RequestPlayersForGameProgressCallback_t
 typedef w32_RequestPlayersForGameProgressCallback_t w_RequestPlayersForGameProgressCallback_t;
 typedef u32_RequestPlayersForGameProgressCallback_t u_RequestPlayersForGameProgressCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RequestPlayersForGameProgressCallback_t w_RequestPlayersForGameProgressCallback_t;
 typedef u64_RequestPlayersForGameProgressCallback_t u_RequestPlayersForGameProgressCallback_t;
 #endif
@@ -9850,6 +10104,9 @@ struct u64_RequestPlayersForGameResultCallback_t
 #ifdef __cplusplus
     operator w64_RequestPlayersForGameResultCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_RequestPlayersForGameResultCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9870,6 +10127,9 @@ struct w32_RequestPlayersForGameResultCallback_t
     uint64_t m_ullUniqueGameID;
 #ifdef __cplusplus
     operator u32_RequestPlayersForGameResultCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_RequestPlayersForGameResultCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9897,7 +10157,7 @@ struct u32_RequestPlayersForGameResultCallback_t
 typedef w32_RequestPlayersForGameResultCallback_t w_RequestPlayersForGameResultCallback_t;
 typedef u32_RequestPlayersForGameResultCallback_t u_RequestPlayersForGameResultCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_RequestPlayersForGameResultCallback_t w_RequestPlayersForGameResultCallback_t;
 typedef u64_RequestPlayersForGameResultCallback_t u_RequestPlayersForGameResultCallback_t;
 #endif
@@ -9934,6 +10194,9 @@ struct u64_SteamInputConfigurationLoaded_t
 #ifdef __cplusplus
     operator w64_SteamInputConfigurationLoaded_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamInputConfigurationLoaded_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -9951,6 +10214,9 @@ struct w32_SteamInputConfigurationLoaded_t
     uint8_t __pad_34[6];
 #ifdef __cplusplus
     operator u32_SteamInputConfigurationLoaded_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamInputConfigurationLoaded_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -9976,7 +10242,7 @@ struct u32_SteamInputConfigurationLoaded_t
 typedef w32_SteamInputConfigurationLoaded_t w_SteamInputConfigurationLoaded_t;
 typedef u32_SteamInputConfigurationLoaded_t u_SteamInputConfigurationLoaded_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamInputConfigurationLoaded_t w_SteamInputConfigurationLoaded_t;
 typedef u64_SteamInputConfigurationLoaded_t u_SteamInputConfigurationLoaded_t;
 #endif
@@ -10008,6 +10274,9 @@ struct u64_SteamInputGamepadSlotChange_t
 #ifdef __cplusplus
     operator w64_SteamInputGamepadSlotChange_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamInputGamepadSlotChange_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10023,6 +10292,9 @@ struct w32_SteamInputGamepadSlotChange_t
     uint8_t __pad_28[4];
 #ifdef __cplusplus
     operator u32_SteamInputGamepadSlotChange_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamInputGamepadSlotChange_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10045,7 +10317,7 @@ struct u32_SteamInputGamepadSlotChange_t
 typedef w32_SteamInputGamepadSlotChange_t w_SteamInputGamepadSlotChange_t;
 typedef u32_SteamInputGamepadSlotChange_t u_SteamInputGamepadSlotChange_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamInputGamepadSlotChange_t w_SteamInputGamepadSlotChange_t;
 typedef u64_SteamInputGamepadSlotChange_t u_SteamInputGamepadSlotChange_t;
 #endif
@@ -10072,6 +10344,9 @@ struct u64_SteamInventoryStartPurchaseResult_t
 #ifdef __cplusplus
     operator w64_SteamInventoryStartPurchaseResult_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamInventoryStartPurchaseResult_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10084,6 +10359,9 @@ struct w32_SteamInventoryStartPurchaseResult_t
     uint64_t m_ulTransID;
 #ifdef __cplusplus
     operator u32_SteamInventoryStartPurchaseResult_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamInventoryStartPurchaseResult_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10104,7 +10382,7 @@ struct u32_SteamInventoryStartPurchaseResult_t
 typedef w32_SteamInventoryStartPurchaseResult_t w_SteamInventoryStartPurchaseResult_t;
 typedef u32_SteamInventoryStartPurchaseResult_t u_SteamInventoryStartPurchaseResult_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamInventoryStartPurchaseResult_t w_SteamInventoryStartPurchaseResult_t;
 typedef u64_SteamInventoryStartPurchaseResult_t u_SteamInventoryStartPurchaseResult_t;
 #endif
@@ -10132,6 +10410,9 @@ struct u64_SteamNetConnectionStatusChangedCallback_t_153a
 #ifdef __cplusplus
     operator w64_SteamNetConnectionStatusChangedCallback_t_153a() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetConnectionStatusChangedCallback_t_153a() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10145,6 +10426,9 @@ struct w32_SteamNetConnectionStatusChangedCallback_t_153a
     uint8_t __pad_708[4];
 #ifdef __cplusplus
     operator u32_SteamNetConnectionStatusChangedCallback_t_153a() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetConnectionStatusChangedCallback_t_153a() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10165,7 +10449,7 @@ struct u32_SteamNetConnectionStatusChangedCallback_t_153a
 typedef w32_SteamNetConnectionStatusChangedCallback_t_153a w_SteamNetConnectionStatusChangedCallback_t_153a;
 typedef u32_SteamNetConnectionStatusChangedCallback_t_153a u_SteamNetConnectionStatusChangedCallback_t_153a;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetConnectionStatusChangedCallback_t_153a w_SteamNetConnectionStatusChangedCallback_t_153a;
 typedef u64_SteamNetConnectionStatusChangedCallback_t_153a u_SteamNetConnectionStatusChangedCallback_t_153a;
 #endif
@@ -10193,6 +10477,9 @@ struct u64_SteamNetConnectionStatusChangedCallback_t_144
 #ifdef __cplusplus
     operator w64_SteamNetConnectionStatusChangedCallback_t_144() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetConnectionStatusChangedCallback_t_144() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10206,6 +10493,9 @@ struct w32_SteamNetConnectionStatusChangedCallback_t_144
     uint8_t __pad_708[4];
 #ifdef __cplusplus
     operator u32_SteamNetConnectionStatusChangedCallback_t_144() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetConnectionStatusChangedCallback_t_144() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10226,7 +10516,7 @@ struct u32_SteamNetConnectionStatusChangedCallback_t_144
 typedef w32_SteamNetConnectionStatusChangedCallback_t_144 w_SteamNetConnectionStatusChangedCallback_t_144;
 typedef u32_SteamNetConnectionStatusChangedCallback_t_144 u_SteamNetConnectionStatusChangedCallback_t_144;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetConnectionStatusChangedCallback_t_144 w_SteamNetConnectionStatusChangedCallback_t_144;
 typedef u64_SteamNetConnectionStatusChangedCallback_t_144 u_SteamNetConnectionStatusChangedCallback_t_144;
 #endif
@@ -10254,6 +10544,9 @@ struct u64_SteamNetConnectionStatusChangedCallback_t_151
 #ifdef __cplusplus
     operator w64_SteamNetConnectionStatusChangedCallback_t_151() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetConnectionStatusChangedCallback_t_151() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10267,6 +10560,9 @@ struct w32_SteamNetConnectionStatusChangedCallback_t_151
     uint8_t __pad_580[4];
 #ifdef __cplusplus
     operator u32_SteamNetConnectionStatusChangedCallback_t_151() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetConnectionStatusChangedCallback_t_151() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10287,7 +10583,7 @@ struct u32_SteamNetConnectionStatusChangedCallback_t_151
 typedef w32_SteamNetConnectionStatusChangedCallback_t_151 w_SteamNetConnectionStatusChangedCallback_t_151;
 typedef u32_SteamNetConnectionStatusChangedCallback_t_151 u_SteamNetConnectionStatusChangedCallback_t_151;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetConnectionStatusChangedCallback_t_151 w_SteamNetConnectionStatusChangedCallback_t_151;
 typedef u64_SteamNetConnectionStatusChangedCallback_t_151 u_SteamNetConnectionStatusChangedCallback_t_151;
 #endif
@@ -10295,15 +10591,15 @@ typedef u64_SteamNetConnectionStatusChangedCallback_t_151 u_SteamNetConnectionSt
 #pragma pack( push, 8 )
 struct w64_SteamNetworkingMessage_t_153a
 {
-    W64_PTR(void *m_pData, m_pData);
+    W64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_153a *), m_pfnFreeData);
-    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_153a *), m_pfnRelease);
+    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_153a *), m_pfnFreeData, void (*W_CDECL )(w64_SteamNetworkingMessage_t_153a *));
+    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_153a *), m_pfnRelease, void (*W_CDECL )(w64_SteamNetworkingMessage_t_153a *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10319,15 +10615,15 @@ struct w64_SteamNetworkingMessage_t_153a
 #pragma pack( push, 8 )
 struct u64_SteamNetworkingMessage_t_153a
 {
-    U64_PTR(void *m_pData, m_pData);
+    U64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_153a *), m_pfnFreeData);
-    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_153a *), m_pfnRelease);
+    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_153a *), m_pfnFreeData, void (*U_CDECL )(u64_SteamNetworkingMessage_t_153a *));
+    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_153a *), m_pfnRelease, void (*U_CDECL )(u64_SteamNetworkingMessage_t_153a *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10337,13 +10633,16 @@ struct u64_SteamNetworkingMessage_t_153a
 #ifdef __cplusplus
     operator w64_SteamNetworkingMessage_t_153a() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetworkingMessage_t_153a() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
 #pragma pack( push, 8 )
 struct w32_SteamNetworkingMessage_t_153a
 {
-    W32_PTR(void *m_pData, m_pData);
+    W32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
@@ -10351,8 +10650,8 @@ struct w32_SteamNetworkingMessage_t_153a
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_153a *), m_pfnFreeData);
-    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_153a *), m_pfnRelease);
+    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_153a *), m_pfnFreeData, void (*W_CDECL )(w32_SteamNetworkingMessage_t_153a *));
+    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_153a *), m_pfnRelease, void (*W_CDECL )(w32_SteamNetworkingMessage_t_153a *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10362,21 +10661,24 @@ struct w32_SteamNetworkingMessage_t_153a
 #ifdef __cplusplus
     operator u32_SteamNetworkingMessage_t_153a() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetworkingMessage_t_153a() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
 #pragma pack( push, 4 )
 struct u32_SteamNetworkingMessage_t_153a
 {
-    U32_PTR(void *m_pData, m_pData);
+    U32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_153a *), m_pfnFreeData);
-    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_153a *), m_pfnRelease);
+    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_153a *), m_pfnFreeData, void (*U_CDECL )(u32_SteamNetworkingMessage_t_153a *));
+    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_153a *), m_pfnRelease, void (*U_CDECL )(u32_SteamNetworkingMessage_t_153a *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10392,7 +10694,7 @@ struct u32_SteamNetworkingMessage_t_153a
 typedef w32_SteamNetworkingMessage_t_153a w_SteamNetworkingMessage_t_153a;
 typedef u32_SteamNetworkingMessage_t_153a u_SteamNetworkingMessage_t_153a;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetworkingMessage_t_153a w_SteamNetworkingMessage_t_153a;
 typedef u64_SteamNetworkingMessage_t_153a u_SteamNetworkingMessage_t_153a;
 #endif
@@ -10400,15 +10702,15 @@ typedef u64_SteamNetworkingMessage_t_153a u_SteamNetworkingMessage_t_153a;
 #pragma pack( push, 8 )
 struct w64_SteamNetworkingMessage_t_147
 {
-    W64_PTR(void *m_pData, m_pData);
+    W64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_147 *), m_pfnFreeData);
-    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_147 *), m_pfnRelease);
+    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_147 *), m_pfnFreeData, void (*W_CDECL )(w64_SteamNetworkingMessage_t_147 *));
+    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_147 *), m_pfnRelease, void (*W_CDECL )(w64_SteamNetworkingMessage_t_147 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10421,20 +10723,23 @@ struct w64_SteamNetworkingMessage_t_147
 #pragma pack( push, 8 )
 struct u64_SteamNetworkingMessage_t_147
 {
-    U64_PTR(void *m_pData, m_pData);
+    U64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_147 *), m_pfnFreeData);
-    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_147 *), m_pfnRelease);
+    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_147 *), m_pfnFreeData, void (*U_CDECL )(u64_SteamNetworkingMessage_t_147 *));
+    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_147 *), m_pfnRelease, void (*U_CDECL )(u64_SteamNetworkingMessage_t_147 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
 #ifdef __cplusplus
     operator w64_SteamNetworkingMessage_t_147() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetworkingMessage_t_147() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10442,7 +10747,7 @@ struct u64_SteamNetworkingMessage_t_147
 #pragma pack( push, 8 )
 struct w32_SteamNetworkingMessage_t_147
 {
-    W32_PTR(void *m_pData, m_pData);
+    W32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
@@ -10450,13 +10755,16 @@ struct w32_SteamNetworkingMessage_t_147
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_147 *), m_pfnFreeData);
-    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_147 *), m_pfnRelease);
+    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_147 *), m_pfnFreeData, void (*W_CDECL )(w32_SteamNetworkingMessage_t_147 *));
+    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_147 *), m_pfnRelease, void (*W_CDECL )(w32_SteamNetworkingMessage_t_147 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
 #ifdef __cplusplus
     operator u32_SteamNetworkingMessage_t_147() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetworkingMessage_t_147() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10464,15 +10772,15 @@ struct w32_SteamNetworkingMessage_t_147
 #pragma pack( push, 4 )
 struct u32_SteamNetworkingMessage_t_147
 {
-    U32_PTR(void *m_pData, m_pData);
+    U32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_147 *), m_pfnFreeData);
-    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_147 *), m_pfnRelease);
+    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_147 *), m_pfnFreeData, void (*U_CDECL )(u32_SteamNetworkingMessage_t_147 *));
+    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_147 *), m_pfnRelease, void (*U_CDECL )(u32_SteamNetworkingMessage_t_147 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10486,7 +10794,7 @@ struct u32_SteamNetworkingMessage_t_147
 typedef w32_SteamNetworkingMessage_t_147 w_SteamNetworkingMessage_t_147;
 typedef u32_SteamNetworkingMessage_t_147 u_SteamNetworkingMessage_t_147;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetworkingMessage_t_147 w_SteamNetworkingMessage_t_147;
 typedef u64_SteamNetworkingMessage_t_147 u_SteamNetworkingMessage_t_147;
 #endif
@@ -10494,15 +10802,15 @@ typedef u64_SteamNetworkingMessage_t_147 u_SteamNetworkingMessage_t_147;
 #pragma pack( push, 8 )
 struct w64_SteamNetworkingMessage_t_151
 {
-    W64_PTR(void *m_pData, m_pData);
+    W64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_151 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_151 *), m_pfnFreeData);
-    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_151 *), m_pfnRelease);
+    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_151 *), m_pfnFreeData, void (*W_CDECL )(w64_SteamNetworkingMessage_t_151 *));
+    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_151 *), m_pfnRelease, void (*W_CDECL )(w64_SteamNetworkingMessage_t_151 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10515,20 +10823,23 @@ struct w64_SteamNetworkingMessage_t_151
 #pragma pack( push, 8 )
 struct u64_SteamNetworkingMessage_t_151
 {
-    U64_PTR(void *m_pData, m_pData);
+    U64_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_151 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_151 *), m_pfnFreeData);
-    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_151 *), m_pfnRelease);
+    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_151 *), m_pfnFreeData, void (*U_CDECL )(u64_SteamNetworkingMessage_t_151 *));
+    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_151 *), m_pfnRelease, void (*U_CDECL )(u64_SteamNetworkingMessage_t_151 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
 #ifdef __cplusplus
     operator w64_SteamNetworkingMessage_t_151() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetworkingMessage_t_151() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10536,7 +10847,7 @@ struct u64_SteamNetworkingMessage_t_151
 #pragma pack( push, 8 )
 struct w32_SteamNetworkingMessage_t_151
 {
-    W32_PTR(void *m_pData, m_pData);
+    W32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_151 m_identityPeer;
@@ -10544,13 +10855,16 @@ struct w32_SteamNetworkingMessage_t_151
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_151 *), m_pfnFreeData);
-    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_151 *), m_pfnRelease);
+    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_151 *), m_pfnFreeData, void (*W_CDECL )(w32_SteamNetworkingMessage_t_151 *));
+    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_151 *), m_pfnRelease, void (*W_CDECL )(w32_SteamNetworkingMessage_t_151 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
 #ifdef __cplusplus
     operator u32_SteamNetworkingMessage_t_151() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetworkingMessage_t_151() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10558,15 +10872,15 @@ struct w32_SteamNetworkingMessage_t_151
 #pragma pack( push, 4 )
 struct u32_SteamNetworkingMessage_t_151
 {
-    U32_PTR(void *m_pData, m_pData);
+    U32_PTR(void *m_pData, m_pData, void *);
     int32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_151 m_identityPeer;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_151 *), m_pfnFreeData);
-    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_151 *), m_pfnRelease);
+    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_151 *), m_pfnFreeData, void (*U_CDECL )(u32_SteamNetworkingMessage_t_151 *));
+    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_151 *), m_pfnRelease, void (*U_CDECL )(u32_SteamNetworkingMessage_t_151 *));
     int32_t m_nChannel;
     int32_t m_nFlags;
     int64_t m_nUserData;
@@ -10580,7 +10894,7 @@ struct u32_SteamNetworkingMessage_t_151
 typedef w32_SteamNetworkingMessage_t_151 w_SteamNetworkingMessage_t_151;
 typedef u32_SteamNetworkingMessage_t_151 u_SteamNetworkingMessage_t_151;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetworkingMessage_t_151 w_SteamNetworkingMessage_t_151;
 typedef u64_SteamNetworkingMessage_t_151 u_SteamNetworkingMessage_t_151;
 #endif
@@ -10588,15 +10902,15 @@ typedef u64_SteamNetworkingMessage_t_151 u_SteamNetworkingMessage_t_151;
 #pragma pack( push, 8 )
 struct w64_SteamNetworkingMessage_t_144
 {
-    W64_PTR(void *m_pData, m_pData);
+    W64_PTR(void *m_pData, m_pData, void *);
     uint32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_sender;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_144 *), m_pfnFreeData);
-    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_144 *), m_pfnRelease);
+    W64_PTR(void (*W_CDECL m_pfnFreeData)(w64_SteamNetworkingMessage_t_144 *), m_pfnFreeData, void (*W_CDECL )(w64_SteamNetworkingMessage_t_144 *));
+    W64_PTR(void (*W_CDECL m_pfnRelease)(w64_SteamNetworkingMessage_t_144 *), m_pfnRelease, void (*W_CDECL )(w64_SteamNetworkingMessage_t_144 *));
     int32_t m_nChannel;
     int32_t m___nPadDummy;
 #ifdef __cplusplus
@@ -10608,19 +10922,22 @@ struct w64_SteamNetworkingMessage_t_144
 #pragma pack( push, 8 )
 struct u64_SteamNetworkingMessage_t_144
 {
-    U64_PTR(void *m_pData, m_pData);
+    U64_PTR(void *m_pData, m_pData, void *);
     uint32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_sender;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_144 *), m_pfnFreeData);
-    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_144 *), m_pfnRelease);
+    U64_PTR(void (*U_CDECL m_pfnFreeData)(u64_SteamNetworkingMessage_t_144 *), m_pfnFreeData, void (*U_CDECL )(u64_SteamNetworkingMessage_t_144 *));
+    U64_PTR(void (*U_CDECL m_pfnRelease)(u64_SteamNetworkingMessage_t_144 *), m_pfnRelease, void (*U_CDECL )(u64_SteamNetworkingMessage_t_144 *));
     int32_t m_nChannel;
     int32_t m___nPadDummy;
 #ifdef __cplusplus
     operator w64_SteamNetworkingMessage_t_144() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamNetworkingMessage_t_144() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10628,7 +10945,7 @@ struct u64_SteamNetworkingMessage_t_144
 #pragma pack( push, 8 )
 struct w32_SteamNetworkingMessage_t_144
 {
-    W32_PTR(void *m_pData, m_pData);
+    W32_PTR(void *m_pData, m_pData, void *);
     uint32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_sender;
@@ -10636,12 +10953,15 @@ struct w32_SteamNetworkingMessage_t_144
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_144 *), m_pfnFreeData);
-    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_144 *), m_pfnRelease);
+    W32_PTR(void (*W_CDECL m_pfnFreeData)(w32_SteamNetworkingMessage_t_144 *), m_pfnFreeData, void (*W_CDECL )(w32_SteamNetworkingMessage_t_144 *));
+    W32_PTR(void (*W_CDECL m_pfnRelease)(w32_SteamNetworkingMessage_t_144 *), m_pfnRelease, void (*W_CDECL )(w32_SteamNetworkingMessage_t_144 *));
     int32_t m_nChannel;
     int32_t m___nPadDummy;
 #ifdef __cplusplus
     operator u32_SteamNetworkingMessage_t_144() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamNetworkingMessage_t_144() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10649,15 +10969,15 @@ struct w32_SteamNetworkingMessage_t_144
 #pragma pack( push, 4 )
 struct u32_SteamNetworkingMessage_t_144
 {
-    U32_PTR(void *m_pData, m_pData);
+    U32_PTR(void *m_pData, m_pData, void *);
     uint32_t m_cbSize;
     uint32_t m_conn;
     SteamNetworkingIdentity_144 m_sender;
     int64_t m_nConnUserData;
     int64_t m_usecTimeReceived;
     int64_t m_nMessageNumber;
-    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_144 *), m_pfnFreeData);
-    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_144 *), m_pfnRelease);
+    U32_PTR(void (*U_CDECL m_pfnFreeData)(u32_SteamNetworkingMessage_t_144 *), m_pfnFreeData, void (*U_CDECL )(u32_SteamNetworkingMessage_t_144 *));
+    U32_PTR(void (*U_CDECL m_pfnRelease)(u32_SteamNetworkingMessage_t_144 *), m_pfnRelease, void (*U_CDECL )(u32_SteamNetworkingMessage_t_144 *));
     int32_t m_nChannel;
     int32_t m___nPadDummy;
 #ifdef __cplusplus
@@ -10670,7 +10990,7 @@ struct u32_SteamNetworkingMessage_t_144
 typedef w32_SteamNetworkingMessage_t_144 w_SteamNetworkingMessage_t_144;
 typedef u32_SteamNetworkingMessage_t_144 u_SteamNetworkingMessage_t_144;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamNetworkingMessage_t_144 w_SteamNetworkingMessage_t_144;
 typedef u64_SteamNetworkingMessage_t_144 u_SteamNetworkingMessage_t_144;
 #endif
@@ -10678,17 +10998,29 @@ typedef u64_SteamNetworkingMessage_t_144 u_SteamNetworkingMessage_t_144;
 #pragma pack( push, 8 )
 struct w64_SteamParamStringArray_t
 {
-    W64_PTR(const char **m_ppStrings, m_ppStrings);
+    W64_PTR(const char **m_ppStrings, m_ppStrings, const char **);
     int32_t m_nNumStrings;
     uint8_t __pad_12[4];
+#ifdef __cplusplus
+    operator w32_SteamParamStringArray_t() const;
+#endif /* __cplusplus */
+#if defined(__cplusplus) && (defined(__x86_64__) || defined(__aarch64__))
+    w64_SteamParamStringArray_t() = default;
+    w64_SteamParamStringArray_t( w32_SteamParamStringArray_t const& );
+    w64_SteamParamStringArray_t( w64_SteamParamStringArray_t const& );
+    ~w64_SteamParamStringArray_t();
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
 #pragma pack( push, 4 )
 struct w32_SteamParamStringArray_t
 {
-    W32_PTR(const char **m_ppStrings, m_ppStrings);
+    W32_PTR(const char **m_ppStrings, m_ppStrings, const char **);
     int32_t m_nNumStrings;
+#ifdef __cplusplus
+    operator u64_SteamParamStringArray_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10696,7 +11028,7 @@ struct w32_SteamParamStringArray_t
 typedef w32_SteamParamStringArray_t w_SteamParamStringArray_t;
 typedef u32_SteamParamStringArray_t u_SteamParamStringArray_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamParamStringArray_t w_SteamParamStringArray_t;
 typedef u64_SteamParamStringArray_t u_SteamParamStringArray_t;
 #endif
@@ -10721,6 +11053,9 @@ struct u64_SteamPartyBeaconLocation_t
 #ifdef __cplusplus
     operator w64_SteamPartyBeaconLocation_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamPartyBeaconLocation_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10732,6 +11067,9 @@ struct w32_SteamPartyBeaconLocation_t
     uint64_t m_ulLocationID;
 #ifdef __cplusplus
     operator u32_SteamPartyBeaconLocation_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamPartyBeaconLocation_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10751,7 +11089,7 @@ struct u32_SteamPartyBeaconLocation_t
 typedef w32_SteamPartyBeaconLocation_t w_SteamPartyBeaconLocation_t;
 typedef u32_SteamPartyBeaconLocation_t u_SteamPartyBeaconLocation_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamPartyBeaconLocation_t w_SteamPartyBeaconLocation_t;
 typedef u64_SteamPartyBeaconLocation_t u_SteamPartyBeaconLocation_t;
 #endif
@@ -10777,6 +11115,9 @@ struct u64_SteamUGCRequestUGCDetailsResult_t_160
 #ifdef __cplusplus
     operator w64_SteamUGCRequestUGCDetailsResult_t_160() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCRequestUGCDetailsResult_t_160() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10788,6 +11129,9 @@ struct w32_SteamUGCRequestUGCDetailsResult_t_160
     uint8_t __pad_9785[7];
 #ifdef __cplusplus
     operator u32_SteamUGCRequestUGCDetailsResult_t_160() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCRequestUGCDetailsResult_t_160() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10808,7 +11152,7 @@ struct u32_SteamUGCRequestUGCDetailsResult_t_160
 typedef w32_SteamUGCRequestUGCDetailsResult_t_160 w_SteamUGCRequestUGCDetailsResult_t_160;
 typedef u32_SteamUGCRequestUGCDetailsResult_t_160 u_SteamUGCRequestUGCDetailsResult_t_160;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCRequestUGCDetailsResult_t_160 w_SteamUGCRequestUGCDetailsResult_t_160;
 typedef u64_SteamUGCRequestUGCDetailsResult_t_160 u_SteamUGCRequestUGCDetailsResult_t_160;
 #endif
@@ -10834,6 +11178,9 @@ struct u64_SteamUGCRequestUGCDetailsResult_t_128x
 #ifdef __cplusplus
     operator w64_SteamUGCRequestUGCDetailsResult_t_128x() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCRequestUGCDetailsResult_t_128x() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10845,6 +11192,9 @@ struct w32_SteamUGCRequestUGCDetailsResult_t_128x
     uint8_t __pad_9777[7];
 #ifdef __cplusplus
     operator u32_SteamUGCRequestUGCDetailsResult_t_128x() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCRequestUGCDetailsResult_t_128x() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10865,7 +11215,7 @@ struct u32_SteamUGCRequestUGCDetailsResult_t_128x
 typedef w32_SteamUGCRequestUGCDetailsResult_t_128x w_SteamUGCRequestUGCDetailsResult_t_128x;
 typedef u32_SteamUGCRequestUGCDetailsResult_t_128x u_SteamUGCRequestUGCDetailsResult_t_128x;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCRequestUGCDetailsResult_t_128x w_SteamUGCRequestUGCDetailsResult_t_128x;
 typedef u64_SteamUGCRequestUGCDetailsResult_t_128x u_SteamUGCRequestUGCDetailsResult_t_128x;
 #endif
@@ -10891,6 +11241,9 @@ struct u64_SteamUGCRequestUGCDetailsResult_t_129
 #ifdef __cplusplus
     operator w64_SteamUGCRequestUGCDetailsResult_t_129() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCRequestUGCDetailsResult_t_129() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10902,6 +11255,9 @@ struct w32_SteamUGCRequestUGCDetailsResult_t_129
     uint8_t __pad_9769[7];
 #ifdef __cplusplus
     operator u32_SteamUGCRequestUGCDetailsResult_t_129() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCRequestUGCDetailsResult_t_129() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10922,7 +11278,7 @@ struct u32_SteamUGCRequestUGCDetailsResult_t_129
 typedef w32_SteamUGCRequestUGCDetailsResult_t_129 w_SteamUGCRequestUGCDetailsResult_t_129;
 typedef u32_SteamUGCRequestUGCDetailsResult_t_129 u_SteamUGCRequestUGCDetailsResult_t_129;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCRequestUGCDetailsResult_t_129 w_SteamUGCRequestUGCDetailsResult_t_129;
 typedef u64_SteamUGCRequestUGCDetailsResult_t_129 u_SteamUGCRequestUGCDetailsResult_t_129;
 #endif
@@ -10944,6 +11300,9 @@ struct u64_SteamUGCRequestUGCDetailsResult_t_126
 #ifdef __cplusplus
     operator w64_SteamUGCRequestUGCDetailsResult_t_126() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SteamUGCRequestUGCDetailsResult_t_126() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -10953,6 +11312,9 @@ struct w32_SteamUGCRequestUGCDetailsResult_t_126
     w32_SteamUGCDetails_t_126 m_details;
 #ifdef __cplusplus
     operator u32_SteamUGCRequestUGCDetailsResult_t_126() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SteamUGCRequestUGCDetailsResult_t_126() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -10971,7 +11333,7 @@ struct u32_SteamUGCRequestUGCDetailsResult_t_126
 typedef w32_SteamUGCRequestUGCDetailsResult_t_126 w_SteamUGCRequestUGCDetailsResult_t_126;
 typedef u32_SteamUGCRequestUGCDetailsResult_t_126 u_SteamUGCRequestUGCDetailsResult_t_126;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SteamUGCRequestUGCDetailsResult_t_126 w_SteamUGCRequestUGCDetailsResult_t_126;
 typedef u64_SteamUGCRequestUGCDetailsResult_t_126 u_SteamUGCRequestUGCDetailsResult_t_126;
 #endif
@@ -10998,6 +11360,9 @@ struct u64_SubmitPlayerResultResultCallback_t
 #ifdef __cplusplus
     operator w64_SubmitPlayerResultResultCallback_t() const;
 #endif /* __cplusplus */
+#ifdef __cplusplus
+    operator w32_SubmitPlayerResultResultCallback_t() const;
+#endif /* __cplusplus */
 };
 #pragma pack( pop )
 
@@ -11010,6 +11375,9 @@ struct w32_SubmitPlayerResultResultCallback_t
     CSteamID steamIDPlayer;
 #ifdef __cplusplus
     operator u32_SubmitPlayerResultResultCallback_t() const;
+#endif /* __cplusplus */
+#ifdef __cplusplus
+    operator u64_SubmitPlayerResultResultCallback_t() const;
 #endif /* __cplusplus */
 };
 #pragma pack( pop )
@@ -11030,7 +11398,7 @@ struct u32_SubmitPlayerResultResultCallback_t
 typedef w32_SubmitPlayerResultResultCallback_t w_SubmitPlayerResultResultCallback_t;
 typedef u32_SubmitPlayerResultResultCallback_t u_SubmitPlayerResultResultCallback_t;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 typedef w64_SubmitPlayerResultResultCallback_t w_SubmitPlayerResultResultCallback_t;
 typedef u64_SubmitPlayerResultResultCallback_t u_SubmitPlayerResultResultCallback_t;
 #endif

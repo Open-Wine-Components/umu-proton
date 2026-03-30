@@ -6,16 +6,13 @@
 
 WINE_DEFAULT_DEBUG_CHANNEL(steamclient);
 
-/* ISteamUtils_SteamUtils002 */
-
-NTSTATUS ISteamUtils_SteamUtils002_GetAPICallResult( void *args )
+template< typename Iface, typename Params >
+static NTSTATUS ISteamUtils_GetAPICallResult( Iface *iface, Params *params, bool wow64 )
 {
-    struct ISteamUtils_SteamUtils002_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils002_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils002 *iface = (struct u_ISteamUtils_SteamUtils002 *)params->linux_side;
     int u_callback_len = params->cubCallback;
     void *u_callback;
 
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
+    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len, wow64 )))
     {
         params->_ret = FALSE;
         return 0;
@@ -26,198 +23,25 @@ NTSTATUS ISteamUtils_SteamUtils002_GetAPICallResult( void *args )
     if (params->_ret && u_callback != params->pCallback)
     {
         convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
+                               params->pCallback, params->cubCallback, wow64 );
         free( u_callback );
     }
 
     return 0;
 }
 
-/* ISteamUtils_SteamUtils004 */
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils002, GetAPICallResult );
 
-NTSTATUS ISteamUtils_SteamUtils004_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils004_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils004_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils004 *iface = (struct u_ISteamUtils_SteamUtils004 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils004, GetAPICallResult );
 
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils005, GetAPICallResult );
 
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils006, GetAPICallResult );
 
-    return 0;
-}
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils007, GetAPICallResult );
 
-/* ISteamUtils_SteamUtils005 */
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils008, GetAPICallResult );
 
-NTSTATUS ISteamUtils_SteamUtils005_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils005_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils005_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils005 *iface = (struct u_ISteamUtils_SteamUtils005 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils009, GetAPICallResult );
 
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
-
-/* ISteamUtils_SteamUtils006 */
-
-NTSTATUS ISteamUtils_SteamUtils006_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils006_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils006_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils005 *iface = (struct u_ISteamUtils_SteamUtils005 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
-
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
-
-/* ISteamUtils_SteamUtils007 */
-
-NTSTATUS ISteamUtils_SteamUtils007_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils007_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils007_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils007 *iface = (struct u_ISteamUtils_SteamUtils007 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
-
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
-
-/* ISteamUtils_SteamUtils008 */
-
-NTSTATUS ISteamUtils_SteamUtils008_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils008_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils008_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils008 *iface = (struct u_ISteamUtils_SteamUtils008 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
-
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
-
-/* ISteamUtils_SteamUtils009 */
-
-NTSTATUS ISteamUtils_SteamUtils009_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils009_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils009_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils009 *iface = (struct u_ISteamUtils_SteamUtils009 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
-
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
-
-/* ISteamUtils_SteamUtils010 */
-
-NTSTATUS ISteamUtils_SteamUtils010_GetAPICallResult( void *args )
-{
-    struct ISteamUtils_SteamUtils010_GetAPICallResult_params *params = (struct ISteamUtils_SteamUtils010_GetAPICallResult_params *)args;
-    struct u_ISteamUtils_SteamUtils010 *iface = (struct u_ISteamUtils_SteamUtils010 *)params->linux_side;
-    int u_callback_len = params->cubCallback;
-    void *u_callback;
-
-    if (!(u_callback = alloc_callback_wtou( params->iCallbackExpected, params->pCallback, &u_callback_len )))
-    {
-        params->_ret = FALSE;
-        return 0;
-    }
-
-    params->_ret = iface->GetAPICallResult( params->hSteamAPICall, u_callback, u_callback_len,
-                                            params->iCallbackExpected, params->pbFailed );
-    if (params->_ret && u_callback != params->pCallback)
-    {
-        convert_callback_utow( params->iCallbackExpected, u_callback, u_callback_len,
-                               params->pCallback, params->cubCallback );
-        free( u_callback );
-    }
-
-    return 0;
-}
+LSTEAMCLIENT_UNIX_IMPL( ISteamUtils, SteamUtils010, GetAPICallResult );

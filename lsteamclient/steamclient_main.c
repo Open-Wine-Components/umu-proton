@@ -54,17 +54,17 @@ static BOOL wsa_initialized;
 
 BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, void *reserved)
 {
-    TRACE("(%p, %u, %p)\n", instance, reason, reserved);
+    TRACE("(%p, %lu, %p)\n", instance, reason, reserved);
 
     switch (reason)
     {
         case DLL_PROCESS_ATTACH:
             DisableThreadLibraryCalls(instance);
             steam_overlay_event = CreateEventA(NULL, TRUE, FALSE, "__wine_steamclient_GameOverlayActivated");
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
             init_type_info_rtti( (char *)instance );
             init_rtti( (char *)instance );
-#endif /* __x86_64__ */
+#endif
             __wine_init_unix_call();
             break;
         case DLL_PROCESS_DETACH:
@@ -158,7 +158,7 @@ static void *get_mem_from_steamclient_dll(size_t size, unsigned int version, voi
         if (!(mod = GetModuleHandleW(steamclientW)))
         {
             /* That is steamclient64.dll for x64 but no known use cases on x64.*/
-            WARN("Module not found, err %u.\n", GetLastError());
+            WARN("Module not found, err %lu.\n", GetLastError());
             alloc_base = error_ptr;
             return NULL;
         }
@@ -269,28 +269,28 @@ struct steamclient_interface
 {
     struct list entry;
     const char *name;
-    void *u_iface;
-    struct w_steam_iface *w_iface;
+    struct u_iface u_iface;
+    struct w_iface *w_iface;
 };
 
 static struct list steamclient_interfaces = LIST_INIT(steamclient_interfaces);
 
-struct w_steam_iface *create_win_interface(const char *name, void *u_iface)
+struct w_iface *create_win_interface( const char *name, struct u_iface u_iface )
 {
     struct steamclient_interface *e;
-    struct w_steam_iface *ret = NULL;
+    struct w_iface *ret = NULL;
     iface_constructor constructor;
 
     TRACE("trying to create %s\n", name);
 
-    if (!u_iface)
+    if (!u_iface.handle)
         return NULL;
 
     EnterCriticalSection(&steamclient_cs);
 
     LIST_FOR_EACH_ENTRY(e, &steamclient_interfaces, struct steamclient_interface, entry)
     {
-        if (e->u_iface == u_iface && !strcmp(e->name, name))
+        if (e->u_iface.handle == u_iface.handle && !strcmp(e->name, name))
         {
             ret = e->w_iface;
             TRACE("-> %p\n", ret);
@@ -322,6 +322,24 @@ done:
     LeaveCriticalSection(&steamclient_cs);
     if (!ret) ERR("Don't recognize interface name: %s\n", name);
     SetLastError(0);
+    return ret;
+}
+
+void *get_unix_buffer( struct u_buffer buf )
+{
+    struct steamclient_get_unix_buffer_params params = {.buf = buf};
+    void *ret;
+
+    if ((UINT_PTR)buf.ptr == buf.ptr && (UINT_PTR)(buf.ptr + buf.len) == (buf.ptr + buf.len))
+        return (void *)(UINT_PTR)buf.ptr;
+
+    if (!(params.ptr = ret = HeapAlloc( GetProcessHeap(), 0, buf.len ))) return NULL;
+    if (STEAMCLIENT_CALL( steamclient_get_unix_buffer, &params ) || (ret != params.ptr))
+    {
+        HeapFree( GetProcessHeap(), 0, ret );
+        ret = params.ptr;
+    }
+
     return ret;
 }
 
@@ -401,25 +419,28 @@ void execute_pending_callbacks(void)
             TRACE( "CALL_CDECL_FUNC_DATA func %p, data %p.\n", params.callback->call_cdecl_func_data.pFunc, params.callback->call_cdecl_func_data.data );
             params.callback->call_cdecl_func_data.pFunc( params.callback->call_cdecl_func_data.data );
             break;
-        case CALL_IFACE_VTABLE_0:
-            TRACE( "CALL_IFACE_VTABLE_0 iface %p, arg0 %#I64x, arg1 %#I64x, arg2 %#I64x.\n", params.callback->call_iface_vtable.iface,
-                   params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2 );
-            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, 0, void, (void *, intptr_t, intptr_t, intptr_t), (params.callback->call_iface_vtable.iface,
-                            params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2) );
-            break;
-        case CALL_IFACE_VTABLE_1:
-            TRACE( "CALL_IFACE_VTABLE_1 iface %p, arg0 %#I64x, arg1 %#I64x, arg2 %#I64x.\n", params.callback->call_iface_vtable.iface,
-                   params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2 );
-            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, 4, void, (void *, intptr_t, intptr_t, intptr_t), (params.callback->call_iface_vtable.iface,
-                            params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2) );
-            break;
-        case CALL_IFACE_VTABLE_2:
-            TRACE( "CALL_IFACE_VTABLE_2 iface %p, arg0 %#I64x, arg1 %#I64x, arg2 %#I64x.\n", params.callback->call_iface_vtable.iface,
-                   params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2 );
-            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, 8, void, (void *, intptr_t, intptr_t, intptr_t), (params.callback->call_iface_vtable.iface,
-                            params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1, params.callback->call_iface_vtable.arg2) );
-            break;
+#define CALL_VTABLE_CASES(method) \
+        case CALL_IFACE_VTABLE_ ## method ## _0: \
+            TRACE( "CALL_IFACE_VTABLE_" #method "_0 iface %p.\n", params.callback->call_iface_vtable.iface ); \
+            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, method * 4, void, (void *), (params.callback->call_iface_vtable.iface) ); \
+            break; \
+        case CALL_IFACE_VTABLE_ ## method ## _1: \
+            TRACE( "CALL_IFACE_VTABLE_" #method "_1 iface %p, arg0 %#I64x.\n", params.callback->call_iface_vtable.iface, \
+                   params.callback->call_iface_vtable.arg0 ); \
+            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, method * 4, void, (void *, intptr_t), (params.callback->call_iface_vtable.iface, \
+                            params.callback->call_iface_vtable.arg0) ); \
+            break; \
+        case CALL_IFACE_VTABLE_ ## method ## _2: \
+            TRACE( "CALL_IFACE_VTABLE_" #method "_2 iface %p, arg0 %#I64x, arg1 %#I64x.\n", params.callback->call_iface_vtable.iface, \
+                   params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1 ); \
+            CALL_VTBL_FUNC( params.callback->call_iface_vtable.iface, method * 4, void, (void *, intptr_t, intptr_t), (params.callback->call_iface_vtable.iface, \
+                            params.callback->call_iface_vtable.arg0, params.callback->call_iface_vtable.arg1) ); \
+            break
 
+        CALL_VTABLE_CASES(0);
+        CALL_VTABLE_CASES(1);
+        CALL_VTABLE_CASES(2);
+#undef CALL_VTABLE_CASES
         case CALL_IFACE_VTABLE_0_SERVER_RESPONDED:
             TRACE( "CALL_IFACE_VTABLE_0_SERVER_RESPONDED iface %p, server %p.\n", params.callback->server_responded.iface,
                    params.callback->server_responded.server );
@@ -465,17 +486,14 @@ int8_t CDECL Steam_FreeLastCallback( int32_t pipe )
 
 int8_t CDECL Steam_BGetCallback( int32_t pipe, w_CallbackMsg_t *win_msg, int32_t *ignored )
 {
-    u_CallbackMsg_t u_msg;
     struct steamclient_Steam_BGetCallback_params params =
     {
         .pipe = pipe,
         .w_msg = win_msg,
         .ignored = ignored,
-        .u_msg = &u_msg,
     };
     struct steamclient_callback_message_receive_params receive_params =
     {
-        .u_msg = &u_msg,
         .w_msg = win_msg,
     };
 
@@ -492,6 +510,7 @@ next_event:
         SetLastError(0);
         return FALSE;
     }
+    receive_params.cookie = params.cookie;
 
     if (!(win_msg->m_pubParam = HeapAlloc( GetProcessHeap(), 0, win_msg->m_cubParam ))) return FALSE;
     last_callback_data = win_msg->m_pubParam;
@@ -597,4 +616,10 @@ void CDECL Steam_NotifyMissingInterface( int32_t hSteamPipe, const char *pchVers
     TRACE("%u %s\n", hSteamPipe, pchVersion);
     load_steamclient();
     STEAMCLIENT_CALL( steamclient_Steam_NotifyMissingInterface, &params );
+}
+
+void steamclient_init_registry(void)
+{
+    load_steamclient();
+    STEAMCLIENT_CALL( steamclient_init_registry, NULL );
 }

@@ -28,11 +28,11 @@ DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItem
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V001_RequestEligiblePromoItemDefinitionsIDs, 12)
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetEligiblePromoItemDefinitionIDs, 20)
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultStatus(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultStatus(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -40,11 +40,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultSt
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultItems(struct w_steam_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultItems(struct w_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutItemsArray = pOutItemsArray,
         .punOutItemsArraySize = punOutItemsArraySize,
@@ -54,11 +54,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultItem
     return params._ret;
 }
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultTimestamp(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultTimestamp(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -66,11 +66,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetResultTi
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_CheckResultSteamID(struct w_steam_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_CheckResultSteamID(struct w_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_CheckResultSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .steamIDExpected = steamIDExpected,
     };
@@ -79,22 +79,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_CheckResultSt
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_DestroyResult(struct w_steam_iface *_this, int32_t resultHandle)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_DestroyResult(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_DestroyResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V001_DestroyResult, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetAllItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetAllItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetAllItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -102,11 +102,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetAllItems(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemsByID(struct w_steam_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemsByID(struct w_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemsByID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pInstanceIDs = pInstanceIDs,
         .unCountInstanceIDs = unCountInstanceIDs,
@@ -116,11 +116,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemsByID(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_SerializeResult(struct w_steam_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_SerializeResult(struct w_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_SerializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutBuffer = pOutBuffer,
         .punOutBufferSize = punOutBufferSize,
@@ -130,11 +130,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_SerializeResu
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_DeserializeResult(struct w_steam_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_DeserializeResult(struct w_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_DeserializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOutResultHandle = pOutResultHandle,
         .pBuffer = pBuffer,
         .unBufferSize = unBufferSize,
@@ -145,11 +145,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_DeserializeRe
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GenerateItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GenerateItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GenerateItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .punArrayQuantity = punArrayQuantity,
@@ -160,11 +160,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GenerateItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GrantPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GrantPromoItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GrantPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -172,11 +172,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GrantPromoIte
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItem(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t itemDef)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItem(struct w_iface *_this, int32_t *pResultHandle, int32_t itemDef)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemDef = itemDef,
     };
@@ -185,11 +185,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItem(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .unArrayLength = unArrayLength,
@@ -199,11 +199,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_AddPromoItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ConsumeItem(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ConsumeItem(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_ConsumeItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemConsume = itemConsume,
         .unQuantity = unQuantity,
@@ -213,11 +213,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ConsumeItem(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ExchangeItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ExchangeItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_ExchangeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayGenerate = pArrayGenerate,
         .punArrayGenerateQuantity = punArrayGenerateQuantity,
@@ -231,11 +231,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_ExchangeItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TransferItemQuantity(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TransferItemQuantity(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_TransferItemQuantity_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemIdSource = itemIdSource,
         .unQuantity = unQuantity,
@@ -246,21 +246,21 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TransferItemQ
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_SendItemDropHeartbeat(struct w_steam_iface *_this)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_SendItemDropHeartbeat(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_SendItemDropHeartbeat_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V001_SendItemDropHeartbeat, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TriggerItemDrop(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TriggerItemDrop(struct w_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_TriggerItemDrop_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .dropListDefinition = dropListDefinition,
     };
@@ -269,11 +269,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TriggerItemDr
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TradeItems(struct w_steam_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TradeItems(struct w_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_TradeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .steamIDTradePartner = steamIDTradePartner,
         .pArrayGive = pArrayGive,
@@ -288,22 +288,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_TradeItems(st
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_LoadItemDefinitions(struct w_steam_iface *_this)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_LoadItemDefinitions(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_LoadItemDefinitions_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V001_LoadItemDefinitions, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionIDs(struct w_steam_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionIDs(struct w_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
     };
@@ -312,11 +312,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefini
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionProperty(struct w_steam_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionProperty(struct w_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefinitionProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iDefinition = iDefinition,
         .pchPropertyName = pchPropertyName,
         .pchValueBuffer = pchValueBuffer,
@@ -328,11 +328,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetItemDefini
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_RequestEligiblePromoItemDefinitionsIDs(struct w_steam_iface *_this, CSteamID steamID)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_RequestEligiblePromoItemDefinitionsIDs(struct w_iface *_this, CSteamID steamID)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_RequestEligiblePromoItemDefinitionsIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
     };
     TRACE("%p\n", _this);
@@ -340,11 +340,11 @@ uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_RequestElig
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetEligiblePromoItemDefinitionIDs(struct w_steam_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetEligiblePromoItemDefinitionIDs(struct w_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V001_GetEligiblePromoItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
@@ -387,9 +387,9 @@ __ASM_BLOCK_BEGIN(winISteamInventory_STEAMINVENTORY_INTERFACE_V001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V001(void *u_iface)
+struct w_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMINVENTORY_INTERFACE_V001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMINVENTORY_INTERFACE_V001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamInventory_STEAMINVENTORY_INTERFACE_V001_vtable, 24, "STEAMINVENTORY_INTERFACE_V001");
     r->u_iface = u_iface;
@@ -434,11 +434,11 @@ DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProp
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_4, 28)
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SubmitUpdateProperties, 16)
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultStatus(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultStatus(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -446,11 +446,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultSt
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItems(struct w_steam_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItems(struct w_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutItemsArray = pOutItemsArray,
         .punOutItemsArraySize = punOutItemsArraySize,
@@ -460,11 +460,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItem
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItemProperty(struct w_steam_iface *_this, int32_t resultHandle, uint32_t unItemIndex, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItemProperty(struct w_iface *_this, int32_t resultHandle, uint32_t unItemIndex, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItemProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .unItemIndex = unItemIndex,
         .pchPropertyName = pchPropertyName,
@@ -477,11 +477,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultItem
     return params._ret;
 }
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultTimestamp(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultTimestamp(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -489,11 +489,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetResultTi
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_CheckResultSteamID(struct w_steam_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_CheckResultSteamID(struct w_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_CheckResultSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .steamIDExpected = steamIDExpected,
     };
@@ -502,22 +502,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_CheckResultSt
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_DestroyResult(struct w_steam_iface *_this, int32_t resultHandle)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_DestroyResult(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_DestroyResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_DestroyResult, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetAllItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetAllItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetAllItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -525,11 +525,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetAllItems(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsByID(struct w_steam_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsByID(struct w_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsByID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pInstanceIDs = pInstanceIDs,
         .unCountInstanceIDs = unCountInstanceIDs,
@@ -539,11 +539,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsByID(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SerializeResult(struct w_steam_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SerializeResult(struct w_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SerializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutBuffer = pOutBuffer,
         .punOutBufferSize = punOutBufferSize,
@@ -553,11 +553,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SerializeResu
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_DeserializeResult(struct w_steam_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_DeserializeResult(struct w_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_DeserializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOutResultHandle = pOutResultHandle,
         .pBuffer = pBuffer,
         .unBufferSize = unBufferSize,
@@ -568,11 +568,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_DeserializeRe
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GenerateItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GenerateItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GenerateItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .punArrayQuantity = punArrayQuantity,
@@ -583,11 +583,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GenerateItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GrantPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GrantPromoItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GrantPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -595,11 +595,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GrantPromoIte
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItem(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t itemDef)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItem(struct w_iface *_this, int32_t *pResultHandle, int32_t itemDef)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemDef = itemDef,
     };
@@ -608,11 +608,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItem(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .unArrayLength = unArrayLength,
@@ -622,11 +622,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_AddPromoItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ConsumeItem(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ConsumeItem(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_ConsumeItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemConsume = itemConsume,
         .unQuantity = unQuantity,
@@ -636,11 +636,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ConsumeItem(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ExchangeItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ExchangeItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_ExchangeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayGenerate = pArrayGenerate,
         .punArrayGenerateQuantity = punArrayGenerateQuantity,
@@ -654,11 +654,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_ExchangeItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TransferItemQuantity(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TransferItemQuantity(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_TransferItemQuantity_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemIdSource = itemIdSource,
         .unQuantity = unQuantity,
@@ -669,21 +669,21 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TransferItemQ
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SendItemDropHeartbeat(struct w_steam_iface *_this)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SendItemDropHeartbeat(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SendItemDropHeartbeat_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SendItemDropHeartbeat, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TriggerItemDrop(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TriggerItemDrop(struct w_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_TriggerItemDrop_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .dropListDefinition = dropListDefinition,
     };
@@ -692,11 +692,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TriggerItemDr
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TradeItems(struct w_steam_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TradeItems(struct w_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_TradeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .steamIDTradePartner = steamIDTradePartner,
         .pArrayGive = pArrayGive,
@@ -711,22 +711,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_TradeItems(st
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_LoadItemDefinitions(struct w_steam_iface *_this)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_LoadItemDefinitions(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_LoadItemDefinitions_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_LoadItemDefinitions, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionIDs(struct w_steam_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionIDs(struct w_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
     };
@@ -735,11 +735,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefini
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionProperty(struct w_steam_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionProperty(struct w_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefinitionProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iDefinition = iDefinition,
         .pchPropertyName = pchPropertyName,
         .pchValueBuffer = pchValueBuffer,
@@ -751,11 +751,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemDefini
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestEligiblePromoItemDefinitionsIDs(struct w_steam_iface *_this, CSteamID steamID)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestEligiblePromoItemDefinitionsIDs(struct w_iface *_this, CSteamID steamID)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestEligiblePromoItemDefinitionsIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
     };
     TRACE("%p\n", _this);
@@ -763,11 +763,11 @@ uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestElig
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetEligiblePromoItemDefinitionIDs(struct w_steam_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetEligiblePromoItemDefinitionIDs(struct w_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetEligiblePromoItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
@@ -777,11 +777,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetEligiblePr
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartPurchase(struct w_steam_iface *_this, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartPurchase(struct w_iface *_this, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartPurchase_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pArrayItemDefs = pArrayItemDefs,
         .punArrayQuantity = punArrayQuantity,
         .unArrayLength = unArrayLength,
@@ -791,33 +791,33 @@ uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartPurcha
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestPrices(struct w_steam_iface *_this)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestPrices(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_RequestPrices, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetNumItemsWithPrices(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetNumItemsWithPrices(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetNumItemsWithPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetNumItemsWithPrices, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsWithPrices(struct w_steam_iface *_this, int32_t *pArrayItemDefs, uint64_t *pPrices, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsWithPrices(struct w_iface *_this, int32_t *pArrayItemDefs, uint64_t *pPrices, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsWithPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pArrayItemDefs = pArrayItemDefs,
         .pPrices = pPrices,
         .unArrayLength = unArrayLength,
@@ -827,11 +827,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemsWithP
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemPrice(struct w_steam_iface *_this, int32_t iDefinition, uint64_t *pPrice)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemPrice(struct w_iface *_this, int32_t iDefinition, uint64_t *pPrice)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemPrice_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iDefinition = iDefinition,
         .pPrice = pPrice,
     };
@@ -840,22 +840,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_GetItemPrice(
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartUpdateProperties(struct w_steam_iface *_this)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartUpdateProperties(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartUpdateProperties_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V002_StartUpdateProperties, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RemoveProperty(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RemoveProperty(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_RemoveProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -866,11 +866,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_RemovePropert
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, const char *pchPropertyValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, const char *pchPropertyValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -883,11 +883,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_2(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int8_t bValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_2(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int8_t bValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_2_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -899,11 +899,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_2
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_3(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int64_t nValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_3(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int64_t nValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_3_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -915,11 +915,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_3
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_4(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, float flValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_4(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, float flValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_4_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -931,11 +931,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SetProperty_4
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SubmitUpdateProperties(struct w_steam_iface *_this, uint64_t handle, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V002_SubmitUpdateProperties(struct w_iface *_this, uint64_t handle, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V002_SubmitUpdateProperties_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .pResultHandle = pResultHandle,
     };
@@ -990,9 +990,9 @@ __ASM_BLOCK_BEGIN(winISteamInventory_STEAMINVENTORY_INTERFACE_V002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V002(void *u_iface)
+struct w_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMINVENTORY_INTERFACE_V002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMINVENTORY_INTERFACE_V002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamInventory_STEAMINVENTORY_INTERFACE_V002_vtable, 37, "STEAMINVENTORY_INTERFACE_V002");
     r->u_iface = u_iface;
@@ -1038,11 +1038,11 @@ DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProp
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SubmitUpdateProperties, 16)
 DEFINE_THISCALL_WRAPPER(winISteamInventory_STEAMINVENTORY_INTERFACE_V003_InspectItem, 12)
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultStatus(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultStatus(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -1050,11 +1050,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultSt
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItems(struct w_steam_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItems(struct w_iface *_this, int32_t resultHandle, SteamItemDetails_t *pOutItemsArray, uint32_t *punOutItemsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutItemsArray = pOutItemsArray,
         .punOutItemsArraySize = punOutItemsArraySize,
@@ -1064,11 +1064,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItem
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItemProperty(struct w_steam_iface *_this, int32_t resultHandle, uint32_t unItemIndex, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItemProperty(struct w_iface *_this, int32_t resultHandle, uint32_t unItemIndex, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItemProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .unItemIndex = unItemIndex,
         .pchPropertyName = pchPropertyName,
@@ -1081,11 +1081,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultItem
     return params._ret;
 }
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultTimestamp(struct w_steam_iface *_this, int32_t resultHandle)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultTimestamp(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultTimestamp_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
@@ -1093,11 +1093,11 @@ uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetResultTi
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_CheckResultSteamID(struct w_steam_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_CheckResultSteamID(struct w_iface *_this, int32_t resultHandle, CSteamID steamIDExpected)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_CheckResultSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .steamIDExpected = steamIDExpected,
     };
@@ -1106,22 +1106,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_CheckResultSt
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_DestroyResult(struct w_steam_iface *_this, int32_t resultHandle)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_DestroyResult(struct w_iface *_this, int32_t resultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_DestroyResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_DestroyResult, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetAllItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetAllItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetAllItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -1129,11 +1129,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetAllItems(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsByID(struct w_steam_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsByID(struct w_iface *_this, int32_t *pResultHandle, const uint64_t *pInstanceIDs, uint32_t unCountInstanceIDs)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsByID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pInstanceIDs = pInstanceIDs,
         .unCountInstanceIDs = unCountInstanceIDs,
@@ -1143,11 +1143,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsByID(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SerializeResult(struct w_steam_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SerializeResult(struct w_iface *_this, int32_t resultHandle, void *pOutBuffer, uint32_t *punOutBufferSize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SerializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .resultHandle = resultHandle,
         .pOutBuffer = pOutBuffer,
         .punOutBufferSize = punOutBufferSize,
@@ -1157,11 +1157,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SerializeResu
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_DeserializeResult(struct w_steam_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_DeserializeResult(struct w_iface *_this, int32_t *pOutResultHandle, const void *pBuffer, uint32_t unBufferSize, int8_t bRESERVED_MUST_BE_FALSE)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_DeserializeResult_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pOutResultHandle = pOutResultHandle,
         .pBuffer = pBuffer,
         .unBufferSize = unBufferSize,
@@ -1172,11 +1172,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_DeserializeRe
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GenerateItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GenerateItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GenerateItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .punArrayQuantity = punArrayQuantity,
@@ -1187,11 +1187,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GenerateItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GrantPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GrantPromoItems(struct w_iface *_this, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GrantPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
     };
     TRACE("%p\n", _this);
@@ -1199,11 +1199,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GrantPromoIte
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItem(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t itemDef)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItem(struct w_iface *_this, int32_t *pResultHandle, int32_t itemDef)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemDef = itemDef,
     };
@@ -1212,11 +1212,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItem(
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayItemDefs, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayItemDefs = pArrayItemDefs,
         .unArrayLength = unArrayLength,
@@ -1226,11 +1226,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_AddPromoItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ConsumeItem(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ConsumeItem(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemConsume, uint32_t unQuantity)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_ConsumeItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemConsume = itemConsume,
         .unQuantity = unQuantity,
@@ -1240,11 +1240,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ConsumeItem(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ExchangeItems(struct w_steam_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ExchangeItems(struct w_iface *_this, int32_t *pResultHandle, const int32_t *pArrayGenerate, const uint32_t *punArrayGenerateQuantity, uint32_t unArrayGenerateLength, const uint64_t *pArrayDestroy, const uint32_t *punArrayDestroyQuantity, uint32_t unArrayDestroyLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_ExchangeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pArrayGenerate = pArrayGenerate,
         .punArrayGenerateQuantity = punArrayGenerateQuantity,
@@ -1258,11 +1258,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_ExchangeItems
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TransferItemQuantity(struct w_steam_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TransferItemQuantity(struct w_iface *_this, int32_t *pResultHandle, uint64_t itemIdSource, uint32_t unQuantity, uint64_t itemIdDest)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_TransferItemQuantity_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .itemIdSource = itemIdSource,
         .unQuantity = unQuantity,
@@ -1273,21 +1273,21 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TransferItemQ
     return params._ret;
 }
 
-void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SendItemDropHeartbeat(struct w_steam_iface *_this)
+void __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SendItemDropHeartbeat(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SendItemDropHeartbeat_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SendItemDropHeartbeat, &params );
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TriggerItemDrop(struct w_steam_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TriggerItemDrop(struct w_iface *_this, int32_t *pResultHandle, int32_t dropListDefinition)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_TriggerItemDrop_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .dropListDefinition = dropListDefinition,
     };
@@ -1296,11 +1296,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TriggerItemDr
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TradeItems(struct w_steam_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TradeItems(struct w_iface *_this, int32_t *pResultHandle, CSteamID steamIDTradePartner, const uint64_t *pArrayGive, const uint32_t *pArrayGiveQuantity, uint32_t nArrayGiveLength, const uint64_t *pArrayGet, const uint32_t *pArrayGetQuantity, uint32_t nArrayGetLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_TradeItems_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .steamIDTradePartner = steamIDTradePartner,
         .pArrayGive = pArrayGive,
@@ -1315,22 +1315,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_TradeItems(st
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_LoadItemDefinitions(struct w_steam_iface *_this)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_LoadItemDefinitions(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_LoadItemDefinitions_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_LoadItemDefinitions, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionIDs(struct w_steam_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionIDs(struct w_iface *_this, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
     };
@@ -1339,11 +1339,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefini
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionProperty(struct w_steam_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionProperty(struct w_iface *_this, int32_t iDefinition, const char *pchPropertyName, char *pchValueBuffer, uint32_t *punValueBufferSizeOut)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefinitionProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iDefinition = iDefinition,
         .pchPropertyName = pchPropertyName,
         .pchValueBuffer = pchValueBuffer,
@@ -1355,11 +1355,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemDefini
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestEligiblePromoItemDefinitionsIDs(struct w_steam_iface *_this, CSteamID steamID)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestEligiblePromoItemDefinitionsIDs(struct w_iface *_this, CSteamID steamID)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestEligiblePromoItemDefinitionsIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
     };
     TRACE("%p\n", _this);
@@ -1367,11 +1367,11 @@ uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestElig
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetEligiblePromoItemDefinitionIDs(struct w_steam_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetEligiblePromoItemDefinitionIDs(struct w_iface *_this, CSteamID steamID, int32_t *pItemDefIDs, uint32_t *punItemDefIDsArraySize)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetEligiblePromoItemDefinitionIDs_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamID = steamID,
         .pItemDefIDs = pItemDefIDs,
         .punItemDefIDsArraySize = punItemDefIDsArraySize,
@@ -1381,11 +1381,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetEligiblePr
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartPurchase(struct w_steam_iface *_this, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartPurchase(struct w_iface *_this, const int32_t *pArrayItemDefs, const uint32_t *punArrayQuantity, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartPurchase_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pArrayItemDefs = pArrayItemDefs,
         .punArrayQuantity = punArrayQuantity,
         .unArrayLength = unArrayLength,
@@ -1395,33 +1395,33 @@ uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartPurcha
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestPrices(struct w_steam_iface *_this)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestPrices(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_RequestPrices, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetNumItemsWithPrices(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetNumItemsWithPrices(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetNumItemsWithPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetNumItemsWithPrices, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsWithPrices(struct w_steam_iface *_this, int32_t *pArrayItemDefs, uint64_t *pCurrentPrices, uint64_t *pBasePrices, uint32_t unArrayLength)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsWithPrices(struct w_iface *_this, int32_t *pArrayItemDefs, uint64_t *pCurrentPrices, uint64_t *pBasePrices, uint32_t unArrayLength)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsWithPrices_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pArrayItemDefs = pArrayItemDefs,
         .pCurrentPrices = pCurrentPrices,
         .pBasePrices = pBasePrices,
@@ -1432,11 +1432,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemsWithP
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemPrice(struct w_steam_iface *_this, int32_t iDefinition, uint64_t *pCurrentPrice, uint64_t *pBasePrice)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemPrice(struct w_iface *_this, int32_t iDefinition, uint64_t *pCurrentPrice, uint64_t *pBasePrice)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemPrice_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iDefinition = iDefinition,
         .pCurrentPrice = pCurrentPrice,
         .pBasePrice = pBasePrice,
@@ -1446,22 +1446,22 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_GetItemPrice(
     return params._ret;
 }
 
-uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartUpdateProperties(struct w_steam_iface *_this)
+uint64_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartUpdateProperties(struct w_iface *_this)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartUpdateProperties_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamInventory_STEAMINVENTORY_INTERFACE_V003_StartUpdateProperties, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RemoveProperty(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RemoveProperty(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_RemoveProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -1472,11 +1472,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_RemovePropert
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, const char *pchPropertyValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, const char *pchPropertyValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -1489,11 +1489,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty(s
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_2(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int8_t bValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_2(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int8_t bValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_2_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -1505,11 +1505,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_2
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_3(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int64_t nValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_3(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, int64_t nValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_3_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -1521,11 +1521,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_3
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_4(struct w_steam_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, float flValue)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_4(struct w_iface *_this, uint64_t handle, uint64_t nItemID, const char *pchPropertyName, float flValue)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_4_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .nItemID = nItemID,
         .pchPropertyName = pchPropertyName,
@@ -1537,11 +1537,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SetProperty_4
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SubmitUpdateProperties(struct w_steam_iface *_this, uint64_t handle, int32_t *pResultHandle)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SubmitUpdateProperties(struct w_iface *_this, uint64_t handle, int32_t *pResultHandle)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_SubmitUpdateProperties_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .handle = handle,
         .pResultHandle = pResultHandle,
     };
@@ -1550,11 +1550,11 @@ int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_SubmitUpdateP
     return params._ret;
 }
 
-int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_InspectItem(struct w_steam_iface *_this, int32_t *pResultHandle, const char *pchItemToken)
+int8_t __thiscall winISteamInventory_STEAMINVENTORY_INTERFACE_V003_InspectItem(struct w_iface *_this, int32_t *pResultHandle, const char *pchItemToken)
 {
     struct ISteamInventory_STEAMINVENTORY_INTERFACE_V003_InspectItem_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pResultHandle = pResultHandle,
         .pchItemToken = pchItemToken,
     };
@@ -1611,9 +1611,9 @@ __ASM_BLOCK_BEGIN(winISteamInventory_STEAMINVENTORY_INTERFACE_V003_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V003(void *u_iface)
+struct w_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMINVENTORY_INTERFACE_V003");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMINVENTORY_INTERFACE_V003");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamInventory_STEAMINVENTORY_INTERFACE_V003_vtable, 38, "STEAMINVENTORY_INTERFACE_V003");
     r->u_iface = u_iface;
@@ -1622,9 +1622,9 @@ struct w_steam_iface *create_winISteamInventory_STEAMINVENTORY_INTERFACE_V003(vo
 
 void init_winISteamInventory_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamInventory_STEAMINVENTORY_INTERFACE_V001_rtti( base );
     init_winISteamInventory_STEAMINVENTORY_INTERFACE_V002_rtti( base );
     init_winISteamInventory_STEAMINVENTORY_INTERFACE_V003_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

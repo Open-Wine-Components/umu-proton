@@ -76,7 +76,7 @@ static uint32_t ivrrendermodels_load_texture_d3d11_async( void *device, w_Render
     hr = d3d11_device->lpVtbl->CreateTexture2D( d3d11_device, &desc, NULL, &texture );
     if (FAILED(hr))
     {
-        WARN( "Failed to create D3D11 texture %#x\n", hr );
+        WARN( "Failed to create D3D11 texture %#lx\n", hr );
         return VRRenderModelError_InvalidTexture;
     }
 
@@ -114,11 +114,11 @@ static uint32_t ivrrendermodels_load_into_texture_d3d11_async( void *dst_texture
     return error;
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_090 **ppTexture );
-void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture );
+void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture );
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTextureD3D11_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTextureD3D11_Async( struct w_iface *_this, int32_t textureId,
                                                                                    void *pD3D11Device, void **ppD3D11Texture2D )
 {
     w_RenderModel_TextureMap_t_1237 texture_map = {0};
@@ -148,11 +148,11 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTextureD3D11_Asyn
     return _ret;
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_090 **ppTexture );
-void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture );
+void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture );
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTextureD3D11_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTextureD3D11_Async( struct w_iface *_this, int32_t textureId,
                                                                                    void *pD3D11Device, void **ppD3D11Texture2D )
 {
     w_RenderModel_TextureMap_t_1237 texture_map = {0};
@@ -182,11 +182,11 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTextureD3D11_Asyn
     return _ret;
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_1237 **ppTexture );
-void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_1237 *pTexture );
+void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_1237 *pTexture );
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTextureD3D11_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTextureD3D11_Async( struct w_iface *_this, int32_t textureId,
                                                                                    void *pD3D11Device, void **ppD3D11Texture2D )
 {
     w_RenderModel_TextureMap_t_1237 *texture_map;
@@ -212,14 +212,14 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTextureD3D11_Asyn
     return _ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTextureD3D11( struct w_steam_iface *_this, void *pD3D11Texture2D )
+void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTextureD3D11( struct w_iface *_this, void *pD3D11Texture2D )
 {
     ID3D11Texture2D *d3d11_texture = pD3D11Texture2D;
     TRACE( "%p\n", _this );
     d3d11_texture->lpVtbl->Release( d3d11_texture );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadIntoTextureD3D11_Async( struct w_steam_iface *_this,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadIntoTextureD3D11_Async( struct w_iface *_this,
                                                                                        int32_t textureId, void *pDstTexture )
 {
     w_RenderModel_TextureMap_t_1237 texture_map = {0};
@@ -253,14 +253,14 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadIntoTextureD3D11_
     return _ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTextureD3D11( struct w_steam_iface *_this, void *pD3D11Texture2D )
+void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTextureD3D11( struct w_iface *_this, void *pD3D11Texture2D )
 {
     ID3D11Texture2D *d3d11_texture = pD3D11Texture2D;
     TRACE( "%p\n", _this );
     d3d11_texture->lpVtbl->Release( d3d11_texture );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadIntoTextureD3D11_Async( struct w_steam_iface *_this,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadIntoTextureD3D11_Async( struct w_iface *_this,
                                                                                        int32_t textureId, void *pDstTexture )
 {
     w_RenderModel_TextureMap_t_1237 *texture_map = NULL;
@@ -288,7 +288,7 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadIntoTextureD3D11_
     return _ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTextureD3D11( struct w_steam_iface *_this, void *pD3D11Texture2D )
+void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTextureD3D11( struct w_iface *_this, void *pD3D11Texture2D )
 {
     ID3D11Texture2D *d3d11_texture = pD3D11Texture2D;
     TRACE( "%p\n", _this );
@@ -297,13 +297,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTextureD3D11( struct 
 
 /* LoadRenderModel(_Async) / FreeRenderModel */
 
-int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadRenderModel( struct w_steam_iface *_this, const char *pchRenderModelName,
+int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadRenderModel( struct w_iface *_this, const char *pchRenderModelName,
                                                                         w_RenderModel_t_0912 **ppRenderModel )
 {
     struct render_model *model;
     struct IVRRenderModels_IVRRenderModels_002_LoadRenderModel_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchRenderModelName = pchRenderModelName,
         .ppRenderModel = ppRenderModel,
     };
@@ -313,12 +313,12 @@ int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadRenderModel( struct
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeRenderModel( struct w_steam_iface *_this, w_RenderModel_t_0912 *pRenderModel )
+void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeRenderModel( struct w_iface *_this, w_RenderModel_t_0912 *pRenderModel )
 {
     struct render_model *model = CONTAINING_RECORD( pRenderModel, struct render_model, w_0912 );
     struct IVRRenderModels_IVRRenderModels_002_FreeRenderModel_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pRenderModel = pRenderModel,
     };
     TRACE( "%p\n", _this );
@@ -326,13 +326,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeRenderModel( struct w
     HeapFree( GetProcessHeap(), 0, model );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadRenderModel_Async( struct w_steam_iface *_this, const char *pchRenderModelName,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadRenderModel_Async( struct w_iface *_this, const char *pchRenderModelName,
                                                                                   w_RenderModel_t_0912 **ppRenderModel )
 {
     struct render_model *model;
     struct IVRRenderModels_IVRRenderModels_004_LoadRenderModel_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchRenderModelName = pchRenderModelName,
         .ppRenderModel = ppRenderModel,
     };
@@ -342,12 +342,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadRenderModel_Async
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeRenderModel( struct w_steam_iface *_this, w_RenderModel_t_0912 *pRenderModel )
+void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeRenderModel( struct w_iface *_this, w_RenderModel_t_0912 *pRenderModel )
 {
     struct render_model *model = CONTAINING_RECORD( pRenderModel, struct render_model, w_0912 );
     struct IVRRenderModels_IVRRenderModels_004_FreeRenderModel_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pRenderModel = pRenderModel,
     };
     TRACE( "%p\n", _this );
@@ -355,13 +355,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeRenderModel( struct w
     HeapFree( GetProcessHeap(), 0, model );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadRenderModel_Async( struct w_steam_iface *_this, const char *pchRenderModelName,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadRenderModel_Async( struct w_iface *_this, const char *pchRenderModelName,
                                                                                   w_RenderModel_t_0912 **ppRenderModel )
 {
     struct render_model *model;
     struct IVRRenderModels_IVRRenderModels_005_LoadRenderModel_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchRenderModelName = pchRenderModelName,
         .ppRenderModel = ppRenderModel,
     };
@@ -371,12 +371,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadRenderModel_Async
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeRenderModel( struct w_steam_iface *_this, w_RenderModel_t_0912 *pRenderModel )
+void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeRenderModel( struct w_iface *_this, w_RenderModel_t_0912 *pRenderModel )
 {
     struct render_model *model = CONTAINING_RECORD( pRenderModel, struct render_model, w_0912 );
     struct IVRRenderModels_IVRRenderModels_005_FreeRenderModel_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pRenderModel = pRenderModel,
     };
     TRACE( "%p\n", _this );
@@ -384,13 +384,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeRenderModel( struct w
     HeapFree( GetProcessHeap(), 0, model );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadRenderModel_Async( struct w_steam_iface *_this, const char *pchRenderModelName,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadRenderModel_Async( struct w_iface *_this, const char *pchRenderModelName,
                                                                                   w_RenderModel_t_0912 **ppRenderModel )
 {
     struct render_model *model;
     struct IVRRenderModels_IVRRenderModels_006_LoadRenderModel_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchRenderModelName = pchRenderModelName,
         .ppRenderModel = ppRenderModel,
     };
@@ -400,12 +400,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadRenderModel_Async
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeRenderModel( struct w_steam_iface *_this, w_RenderModel_t_0912 *pRenderModel )
+void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeRenderModel( struct w_iface *_this, w_RenderModel_t_0912 *pRenderModel )
 {
     struct render_model *model = CONTAINING_RECORD( pRenderModel, struct render_model, w_0912 );
     struct IVRRenderModels_IVRRenderModels_006_FreeRenderModel_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pRenderModel = pRenderModel,
     };
     TRACE( "%p\n", _this );
@@ -415,13 +415,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeRenderModel( struct w
 
 /* LoadTexture(_Async) / FreeTexture */
 
-int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadTexture( struct w_steam_iface *_this, int32_t textureId,
+int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadTexture( struct w_iface *_this, int32_t textureId,
                                                                     w_RenderModel_TextureMap_t_090 **ppTexture )
 {
     struct render_model_texture_map *map;
     struct IVRRenderModels_IVRRenderModels_002_LoadTexture_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .textureId = textureId,
         .ppTexture = ppTexture,
     };
@@ -431,12 +431,12 @@ int8_t __thiscall winIVRRenderModels_IVRRenderModels_002_LoadTexture( struct w_s
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
+void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
 {
     struct render_model_texture_map *map = CONTAINING_RECORD( pTexture, struct render_model_texture_map, w_090 );
     struct IVRRenderModels_IVRRenderModels_002_FreeTexture_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pTexture = pTexture,
     };
     TRACE( "%p\n", _this );
@@ -444,13 +444,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_002_FreeTexture( struct w_ste
     HeapFree( GetProcessHeap(), 0, map );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_090 **ppTexture )
 {
     struct render_model_texture_map *map;
     struct IVRRenderModels_IVRRenderModels_004_LoadTexture_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .textureId = textureId,
         .ppTexture = ppTexture,
     };
@@ -460,12 +460,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_004_LoadTexture_Async( st
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
+void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
 {
     struct render_model_texture_map *map = CONTAINING_RECORD( pTexture, struct render_model_texture_map, w_090 );
     struct IVRRenderModels_IVRRenderModels_004_FreeTexture_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pTexture = pTexture,
     };
     TRACE( "%p\n", _this );
@@ -473,13 +473,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_004_FreeTexture( struct w_ste
     HeapFree( GetProcessHeap(), 0, map );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_090 **ppTexture )
 {
     struct render_model_texture_map *map;
     struct IVRRenderModels_IVRRenderModels_005_LoadTexture_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .textureId = textureId,
         .ppTexture = ppTexture,
     };
@@ -489,12 +489,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_005_LoadTexture_Async( st
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
+void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_090 *pTexture )
 {
     struct render_model_texture_map *map = CONTAINING_RECORD( pTexture, struct render_model_texture_map, w_090 );
     struct IVRRenderModels_IVRRenderModels_005_FreeTexture_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pTexture = pTexture,
     };
     TRACE( "%p\n", _this );
@@ -502,13 +502,13 @@ void __thiscall winIVRRenderModels_IVRRenderModels_005_FreeTexture( struct w_ste
     HeapFree( GetProcessHeap(), 0, map );
 }
 
-uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTexture_Async( struct w_steam_iface *_this, int32_t textureId,
+uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTexture_Async( struct w_iface *_this, int32_t textureId,
                                                                               w_RenderModel_TextureMap_t_1237 **ppTexture )
 {
     struct render_model_texture_map *map;
     struct IVRRenderModels_IVRRenderModels_006_LoadTexture_Async_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .textureId = textureId,
         .ppTexture = ppTexture,
     };
@@ -518,12 +518,12 @@ uint32_t __thiscall winIVRRenderModels_IVRRenderModels_006_LoadTexture_Async( st
     return params._ret;
 }
 
-void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTexture( struct w_steam_iface *_this, w_RenderModel_TextureMap_t_1237 *pTexture )
+void __thiscall winIVRRenderModels_IVRRenderModels_006_FreeTexture( struct w_iface *_this, w_RenderModel_TextureMap_t_1237 *pTexture )
 {
     struct render_model_texture_map *map = CONTAINING_RECORD( pTexture, struct render_model_texture_map, w_1237 );
     struct IVRRenderModels_IVRRenderModels_006_FreeTexture_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pTexture = pTexture,
     };
     TRACE( "%p\n", _this );

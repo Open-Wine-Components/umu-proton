@@ -1,8 +1,8 @@
-STEAMRT_VERSION = 0.20240307.80401
+STEAMRT_VERSION = 3.0.20250210.116596
 STEAMRT_URLBASE = registry.gitlab.steamos.cloud
 
-PROTONSDK_URLBASE = ghcr.io/open-wine-components/umu-sdk
-PROTONSDK_VERSION = latest
+PROTONSDK_URLBASE = $(STEAMRT_URLBASE)/proton/sniper/sdk
+PROTONSDK_VERSION = $(STEAMRT_VERSION)-0-dev
 
 # this is just for building toolchain, as we do static builds it should
 # not have any impact on the end result, but changing it will invalidate

@@ -6,13 +6,25 @@
 
 WINE_DEFAULT_DEBUG_CHANNEL(vrclient);
 
-static u_Texture_t unwrap_texture_data( const w_Texture_t *w_texture, u_VRVulkanTextureData_t *u_vkdata )
+static w_VRVulkanTextureData_t *get_vulkan_texture_data( const w_Texture_t *w_texture )
+{
+    return (w_VRVulkanTextureData_t *)w_texture->handle;
+}
+#if defined(__x86_64__) || defined(__aarch64__)
+static w32_VRVulkanTextureData_t *get_vulkan_texture_data( const w32_Texture_t *w_texture )
+{
+    return (w32_VRVulkanTextureData_t *)(void *)w_texture->handle;
+}
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
+
+template< typename WTexture >
+static u_Texture_t unwrap_texture_data( const WTexture *w_texture, u_VRVulkanTextureData_t *u_vkdata )
 {
     u_Texture_t u_texture = *w_texture;
 
     if (u_texture.eType == TextureType_Vulkan)
     {
-        w_VRVulkanTextureData_t *w_vkdata = (w_VRVulkanTextureData_t *)w_texture->handle;
+        auto *w_vkdata = get_vulkan_texture_data( w_texture );
 
         *u_vkdata = *w_vkdata;
         u_vkdata->m_pDevice = p_get_native_VkDevice( w_vkdata->m_pDevice );
@@ -26,65 +38,46 @@ static u_Texture_t unwrap_texture_data( const w_Texture_t *w_texture, u_VRVulkan
     return u_texture;
 }
 
-NTSTATUS IVROverlay_IVROverlay_001_SetOverlayTexture( void *args )
+static u_Texture_t unwrap_texture_data( ptr32<const w32_Texture_t *>ptr, u_VRVulkanTextureData_t *u_vkdata )
 {
-    struct IVROverlay_IVROverlay_001_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_001_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_001 *iface = (struct u_IVROverlay_IVROverlay_001 *)params->linux_side;
+    const w32_Texture_t *w_texture = ptr;
+    return unwrap_texture_data( w_texture, u_vkdata );
+}
 
+template< typename Params >
+static NTSTATUS IVROverlay_SetOverlayTexture( u_IVROverlay_IVROverlay_001 *iface, Params *params, bool wow64 )
+{
     FIXME("unimplemented!\n");
-
     params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, params->pTexture );
     return 0;
 }
 
-NTSTATUS IVROverlay_IVROverlay_002_SetOverlayTexture( void *args )
+template< typename Iface, typename Params >
+static NTSTATUS IVROverlay_SetOverlayTexture( Iface *iface, Params *params, bool wow64, bool unimpl )
 {
-    struct IVROverlay_IVROverlay_002_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_002_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_002 *iface = (struct u_IVROverlay_IVROverlay_002 *)params->linux_side;
-
     FIXME("unimplemented!\n");
-
     params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, params->eTextureType, params->pTexture );
     return 0;
 }
 
-NTSTATUS IVROverlay_IVROverlay_003_SetOverlayTexture( void *args )
+template< typename Params >
+static NTSTATUS IVROverlay_SetOverlayTexture( u_IVROverlay_IVROverlay_006 *iface, Params *params, bool wow64 )
 {
-    struct IVROverlay_IVROverlay_003_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_003_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_003 *iface = (struct u_IVROverlay_IVROverlay_003 *)params->linux_side;
+    w_Texture_t texture =
+    {
+        .handle = params->pTexture,
+        .eType = params->eTextureType,
+    };
+    u_VRVulkanTextureData_t u_vkdata;
+    u_Texture_t host_texture = unwrap_texture_data( &texture, &u_vkdata );
 
-    FIXME("unimplemented!\n");
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, params->eTextureType, params->pTexture );
+    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, host_texture.eType, host_texture.handle );
     return 0;
 }
 
-NTSTATUS IVROverlay_IVROverlay_004_SetOverlayTexture( void *args )
+template< typename Iface, typename Params >
+static NTSTATUS IVROverlay_SetOverlayTexture( Iface *iface, Params *params, bool wow64 )
 {
-    struct IVROverlay_IVROverlay_004_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_004_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_004 *iface = (struct u_IVROverlay_IVROverlay_004 *)params->linux_side;
-
-    FIXME("unimplemented!\n");
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, params->eTextureType, params->pTexture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_005_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_005_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_005_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_005 *iface = (struct u_IVROverlay_IVROverlay_005 *)params->linux_side;
-
-    FIXME("unimplemented!\n");
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, params->eTextureType, params->pTexture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_007_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_007_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_007_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_007 *iface = (struct u_IVROverlay_IVROverlay_007 *)params->linux_side;
     u_VRVulkanTextureData_t u_vkdata;
     u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
 
@@ -92,189 +85,28 @@ NTSTATUS IVROverlay_IVROverlay_007_SetOverlayTexture( void *args )
     return 0;
 }
 
-NTSTATUS IVROverlay_IVROverlay_008_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_008_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_008_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_008 *iface = (struct u_IVROverlay_IVROverlay_008 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_010_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_010_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_010_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_010 *iface = (struct u_IVROverlay_IVROverlay_010 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_011_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_011_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_011_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_011 *iface = (struct u_IVROverlay_IVROverlay_011 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_012_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_012_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_012_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_012 *iface = (struct u_IVROverlay_IVROverlay_012 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_013_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_013_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_013_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_013 *iface = (struct u_IVROverlay_IVROverlay_013 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_014_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_014_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_014_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_014 *iface = (struct u_IVROverlay_IVROverlay_014 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_016_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_016_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_016_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_016 *iface = (struct u_IVROverlay_IVROverlay_016 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_017_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_017_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_017_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_017 *iface = (struct u_IVROverlay_IVROverlay_017 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_018_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_018_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_018_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_018 *iface = (struct u_IVROverlay_IVROverlay_018 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_019_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_019_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_019_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_019 *iface = (struct u_IVROverlay_IVROverlay_019 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_020_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_020_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_020_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_020 *iface = (struct u_IVROverlay_IVROverlay_020 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_021_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_021_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_021_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_021 *iface = (struct u_IVROverlay_IVROverlay_021 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_022_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_022_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_022_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_022 *iface = (struct u_IVROverlay_IVROverlay_022 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_024_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_024_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_024_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_024 *iface = (struct u_IVROverlay_IVROverlay_024 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_025_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_025_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_025_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_025 *iface = (struct u_IVROverlay_IVROverlay_025 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_026_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_026_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_026_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_026 *iface = (struct u_IVROverlay_IVROverlay_026 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
-
-NTSTATUS IVROverlay_IVROverlay_027_SetOverlayTexture( void *args )
-{
-    struct IVROverlay_IVROverlay_027_SetOverlayTexture_params *params = (struct IVROverlay_IVROverlay_027_SetOverlayTexture_params *)args;
-    struct u_IVROverlay_IVROverlay_027 *iface = (struct u_IVROverlay_IVROverlay_027 *)params->linux_side;
-    u_VRVulkanTextureData_t u_vkdata;
-    u_Texture_t host_texture = unwrap_texture_data( params->pTexture, &u_vkdata );
-
-    params->_ret = (uint32_t)iface->SetOverlayTexture( params->ulOverlayHandle, &host_texture );
-    return 0;
-}
+VRCLIENT_UNIX_IMPL( IVROverlay, 001, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 002, SetOverlayTexture, false );
+VRCLIENT_UNIX_IMPL( IVROverlay, 003, SetOverlayTexture, false );
+VRCLIENT_UNIX_IMPL( IVROverlay, 004, SetOverlayTexture, false );
+VRCLIENT_UNIX_IMPL( IVROverlay, 005, SetOverlayTexture, false );
+VRCLIENT_UNIX_IMPL( IVROverlay, 006, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 007, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 008, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 010, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 011, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 012, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 013, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 014, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 016, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 017, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 018, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 019, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 020, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 021, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 022, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 024, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 025, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 026, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 027, SetOverlayTexture );
+VRCLIENT_UNIX_IMPL( IVROverlay, 028, SetOverlayTexture );

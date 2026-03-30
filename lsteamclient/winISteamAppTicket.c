@@ -5,11 +5,11 @@ WINE_DEFAULT_DEBUG_CHANNEL(steamclient);
 
 DEFINE_THISCALL_WRAPPER(winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_GetAppOwnershipTicketData, 32)
 
-uint32_t __thiscall winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_GetAppOwnershipTicketData(struct w_steam_iface *_this, uint32_t nAppID, void *pvBuffer, uint32_t cbBufferLength, uint32_t *piAppId, uint32_t *piSteamId, uint32_t *piSignature, uint32_t *pcbSignature)
+uint32_t __thiscall winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_GetAppOwnershipTicketData(struct w_iface *_this, uint32_t nAppID, void *pvBuffer, uint32_t cbBufferLength, uint32_t *piAppId, uint32_t *piSteamId, uint32_t *piSignature, uint32_t *pcbSignature)
 {
     struct ISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_GetAppOwnershipTicketData_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nAppID = nAppID,
         .pvBuffer = pvBuffer,
         .cbBufferLength = cbBufferLength,
@@ -33,9 +33,9 @@ __ASM_BLOCK_BEGIN(winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_vtables
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001(void *u_iface)
+struct w_iface *create_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMAPPTICKET_INTERFACE_VERSION001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMAPPTICKET_INTERFACE_VERSION001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_vtable, 1, "STEAMAPPTICKET_INTERFACE_VERSION001");
     r->u_iface = u_iface;
@@ -44,7 +44,7 @@ struct w_steam_iface *create_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION
 
 void init_winISteamAppTicket_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

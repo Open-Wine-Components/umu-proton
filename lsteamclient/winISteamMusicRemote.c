@@ -36,11 +36,11 @@ DEFINE_THISCALL_WRAPPER(winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION0
 DEFINE_THISCALL_WRAPPER(winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentPlaylistEntry, 8)
 DEFINE_THISCALL_WRAPPER(winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistDidChange, 4)
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_RegisterSteamMusicRemote(struct w_steam_iface *_this, const char *pchName)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_RegisterSteamMusicRemote(struct w_iface *_this, const char *pchName)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_RegisterSteamMusicRemote_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchName = pchName,
     };
     TRACE("%p\n", _this);
@@ -49,33 +49,33 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Reg
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_DeregisterSteamMusicRemote(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_DeregisterSteamMusicRemote(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_DeregisterSteamMusicRemote_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_DeregisterSteamMusicRemote, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BIsCurrentMusicRemote(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BIsCurrentMusicRemote(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BIsCurrentMusicRemote_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BIsCurrentMusicRemote, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BActivationSuccess(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BActivationSuccess(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BActivationSuccess_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -83,11 +83,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_BAc
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetDisplayName(struct w_steam_iface *_this, const char *pchDisplayName)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetDisplayName(struct w_iface *_this, const char *pchDisplayName)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetDisplayName_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchDisplayName = pchDisplayName,
     };
     TRACE("%p\n", _this);
@@ -96,11 +96,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPNGIcon_64x64(struct w_steam_iface *_this, void *pvBuffer, uint32_t cbBufferLength)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPNGIcon_64x64(struct w_iface *_this, void *pvBuffer, uint32_t cbBufferLength)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPNGIcon_64x64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pvBuffer = pvBuffer,
         .cbBufferLength = cbBufferLength,
     };
@@ -109,11 +109,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayPrevious(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayPrevious(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayPrevious_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -121,11 +121,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayNext(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayNext(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlayNext_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -133,11 +133,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableShuffled(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableShuffled(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableShuffled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -145,11 +145,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableLooped(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableLooped(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableLooped_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -157,11 +157,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableQueue(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableQueue(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnableQueue_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -169,11 +169,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlaylists(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlaylists(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_EnablePlaylists_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -181,11 +181,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Ena
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdatePlaybackStatus(struct w_steam_iface *_this, uint32_t nStatus)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdatePlaybackStatus(struct w_iface *_this, uint32_t nStatus)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdatePlaybackStatus_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nStatus = nStatus,
     };
     TRACE("%p\n", _this);
@@ -193,11 +193,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateShuffled(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateShuffled(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateShuffled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -205,11 +205,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateLooped(struct w_steam_iface *_this, int8_t bValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateLooped(struct w_iface *_this, int8_t bValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateLooped_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bValue = bValue,
     };
     TRACE("%p\n", _this);
@@ -217,11 +217,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateVolume(struct w_steam_iface *_this, float flValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateVolume(struct w_iface *_this, float flValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateVolume_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .flValue = flValue,
     };
     TRACE("%p\n", _this);
@@ -229,22 +229,22 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryWillChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryWillChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryWillChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryWillChange, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryIsAvailable(struct w_steam_iface *_this, int8_t bAvailable)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryIsAvailable(struct w_iface *_this, int8_t bAvailable)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryIsAvailable_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bAvailable = bAvailable,
     };
     TRACE("%p\n", _this);
@@ -252,11 +252,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Cur
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryText(struct w_steam_iface *_this, const char *pchText)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryText(struct w_iface *_this, const char *pchText)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryText_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchText = pchText,
     };
     TRACE("%p\n", _this);
@@ -265,11 +265,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryElapsedSeconds(struct w_steam_iface *_this, int32_t nValue)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryElapsedSeconds(struct w_iface *_this, int32_t nValue)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryElapsedSeconds_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nValue = nValue,
     };
     TRACE("%p\n", _this);
@@ -277,11 +277,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryCoverArt(struct w_steam_iface *_this, void *pvBuffer, uint32_t cbBufferLength)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryCoverArt(struct w_iface *_this, void *pvBuffer, uint32_t cbBufferLength)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_UpdateCurrentEntryCoverArt_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pvBuffer = pvBuffer,
         .cbBufferLength = cbBufferLength,
     };
@@ -290,44 +290,44 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Upd
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryDidChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryDidChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryDidChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_CurrentEntryDidChange, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueWillChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueWillChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueWillChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueWillChange, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetQueueEntries(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetQueueEntries(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetQueueEntries_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetQueueEntries, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetQueueEntry(struct w_steam_iface *_this, int32_t nID, int32_t nPosition, const char *pchEntryText)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetQueueEntry(struct w_iface *_this, int32_t nID, int32_t nPosition, const char *pchEntryText)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetQueueEntry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nID = nID,
         .nPosition = nPosition,
         .pchEntryText = pchEntryText,
@@ -338,11 +338,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentQueueEntry(struct w_steam_iface *_this, int32_t nID)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentQueueEntry(struct w_iface *_this, int32_t nID)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentQueueEntry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nID = nID,
     };
     TRACE("%p\n", _this);
@@ -350,44 +350,44 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueDidChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueDidChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueDidChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_QueueDidChange, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistWillChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistWillChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistWillChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistWillChange, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetPlaylistEntries(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetPlaylistEntries(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetPlaylistEntries_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_ResetPlaylistEntries, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPlaylistEntry(struct w_steam_iface *_this, int32_t nID, int32_t nPosition, const char *pchEntryText)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPlaylistEntry(struct w_iface *_this, int32_t nID, int32_t nPosition, const char *pchEntryText)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetPlaylistEntry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nID = nID,
         .nPosition = nPosition,
         .pchEntryText = pchEntryText,
@@ -398,11 +398,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentPlaylistEntry(struct w_steam_iface *_this, int32_t nID)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentPlaylistEntry(struct w_iface *_this, int32_t nID)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_SetCurrentPlaylistEntry_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nID = nID,
     };
     TRACE("%p\n", _this);
@@ -410,11 +410,11 @@ int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_Set
     return params._ret;
 }
 
-int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistDidChange(struct w_steam_iface *_this)
+int8_t __thiscall winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistDidChange(struct w_iface *_this)
 {
     struct ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistDidChange_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_PlaylistDidChange, &params );
@@ -462,9 +462,9 @@ __ASM_BLOCK_BEGIN(winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_vta
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001(void *u_iface)
+struct w_iface *create_winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMMUSICREMOTE_INTERFACE_VERSION001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMMUSICREMOTE_INTERFACE_VERSION001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_vtable, 32, "STEAMMUSICREMOTE_INTERFACE_VERSION001");
     r->u_iface = u_iface;
@@ -473,7 +473,7 @@ struct w_steam_iface *create_winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VER
 
 void init_winISteamMusicRemote_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

@@ -30,11 +30,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_001_GetTransitionStat
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_001_PerformApplicationPrelaunchCheck, 8)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_001_GetApplicationsTransitionStateNameFromEnum, 8)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_001_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -43,11 +43,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_001_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -55,11 +55,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_001_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_001_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -67,22 +67,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_001_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_001_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -92,11 +92,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -106,11 +106,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -118,11 +118,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -130,11 +130,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_LaunchDashboardOverla
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -143,11 +143,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -155,23 +155,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_001_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_001_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_001_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -183,11 +183,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -197,11 +197,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationPropertyB
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetHomeApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetHomeApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_001_GetHomeApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -210,11 +210,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetHomeApplication(st
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_SetHomeApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_SetHomeApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_SetHomeApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -222,11 +222,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_SetHomeApplication(st
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_001_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -235,11 +235,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -247,11 +247,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_001_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_001_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -260,22 +260,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_001_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_001_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_001_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_001_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_001_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -283,16 +283,16 @@ uint32_t __thiscall winIVRApplications_IVRApplications_001_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_001_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_001_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_001_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_001_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
 extern vtable_ptr winIVRApplications_IVRApplications_001_vtable;
@@ -325,24 +325,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_001(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_001_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_001(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_001(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_001_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_001_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(21);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 21 * sizeof(*vtable));
     int i;
@@ -376,7 +376,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_001_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_001_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_001_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -405,11 +405,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_002_PerformApplicatio
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_002_GetApplicationsTransitionStateNameFromEnum, 8)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_002_IsQuitUserPromptRequested, 4)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_002_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -418,11 +418,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_002_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -430,11 +430,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_002_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_002_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -442,22 +442,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_002_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_002_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -467,11 +467,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -481,11 +481,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -493,11 +493,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -505,11 +505,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_LaunchDashboardOverla
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -518,11 +518,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -530,23 +530,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_002_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_002_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_002_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -558,11 +558,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -572,11 +572,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationPropertyB
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_002_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -585,11 +585,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -597,11 +597,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_002_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_002_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -610,22 +610,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_002_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_002_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_002_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_002_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_002_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -633,23 +633,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_002_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_002_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_002_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_002_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_002_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_002_IsQuitUserPromptRequested(struct w_steam_iface *_this)
+int8_t __thiscall winIVRApplications_IVRApplications_002_IsQuitUserPromptRequested(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_002_IsQuitUserPromptRequested_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_002_IsQuitUserPromptRequested, &params );
@@ -685,24 +685,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_002_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_002(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_002_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_002(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_002(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_002_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_002_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(20);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 20 * sizeof(*vtable));
     int i;
@@ -735,7 +735,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_002_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_002_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_002_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -765,11 +765,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_003_PerformApplicatio
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_003_GetApplicationsTransitionStateNameFromEnum, 8)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_003_IsQuitUserPromptRequested, 4)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_003_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -778,11 +778,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_003_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -790,11 +790,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_003_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_003_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -802,22 +802,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_003_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_003_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -827,11 +827,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -841,11 +841,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -853,11 +853,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -865,11 +865,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_LaunchDashboardOverla
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -878,11 +878,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -890,23 +890,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_003_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_003_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_003_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -918,11 +918,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -932,11 +932,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyB
     return params._ret;
 }
 
-uint64_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyUint64(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+uint64_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropertyUint64(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationPropertyUint64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -946,11 +946,11 @@ uint64_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationPropert
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_003_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -959,11 +959,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -971,11 +971,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_003_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_003_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -984,22 +984,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_003_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_003_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_003_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_003_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_003_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1007,23 +1007,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_003_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_003_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_003_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_003_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_003_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_003_IsQuitUserPromptRequested(struct w_steam_iface *_this)
+int8_t __thiscall winIVRApplications_IVRApplications_003_IsQuitUserPromptRequested(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_003_IsQuitUserPromptRequested_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_003_IsQuitUserPromptRequested, &params );
@@ -1060,24 +1060,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_003_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_003(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_003_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_003(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_003(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_003_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_003_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(21);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 21 * sizeof(*vtable));
     int i;
@@ -1111,7 +1111,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_003_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_003_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_003_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -1143,11 +1143,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_004_GetApplicationsTr
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_004_IsQuitUserPromptRequested, 4)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_004_LaunchInternalProcess, 16)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_004_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -1156,11 +1156,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_004_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -1168,11 +1168,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_004_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_004_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1180,22 +1180,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_004_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_004_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -1205,11 +1205,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -1219,11 +1219,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1231,11 +1231,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1243,11 +1243,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchDashboardOverla
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_004_CancelApplicationLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_004_CancelApplicationLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_CancelApplicationLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1255,11 +1255,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_004_CancelApplicationLaunch
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -1268,11 +1268,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1280,23 +1280,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_004_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_004_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_004_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -1308,11 +1308,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -1322,11 +1322,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyB
     return params._ret;
 }
 
-uint64_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyUint64(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+uint64_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropertyUint64(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationPropertyUint64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -1336,11 +1336,11 @@ uint64_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationPropert
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_004_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -1349,11 +1349,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1361,11 +1361,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_004_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_004_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -1374,22 +1374,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_004_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_004_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_004_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1397,34 +1397,34 @@ uint32_t __thiscall winIVRApplications_IVRApplications_004_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_004_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_004_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_004_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_004_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_004_IsQuitUserPromptRequested(struct w_steam_iface *_this)
+int8_t __thiscall winIVRApplications_IVRApplications_004_IsQuitUserPromptRequested(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_004_IsQuitUserPromptRequested_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_004_IsQuitUserPromptRequested, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchInternalProcess(struct w_steam_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
+uint32_t __thiscall winIVRApplications_IVRApplications_004_LaunchInternalProcess(struct w_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
 {
     struct IVRApplications_IVRApplications_004_LaunchInternalProcess_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchBinaryPath = pchBinaryPath,
         .pchArguments = pchArguments,
         .pchWorkingDirectory = pchWorkingDirectory,
@@ -1466,24 +1466,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_004_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_004(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_004( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_004_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_004(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_004(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_004_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_004_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(23);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 23 * sizeof(*vtable));
     int i;
@@ -1519,7 +1519,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_004_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_004_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_004_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -1552,11 +1552,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_005_GetApplicationsTr
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_005_IsQuitUserPromptRequested, 4)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_005_LaunchInternalProcess, 16)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_005_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -1565,11 +1565,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_005_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -1577,11 +1577,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_005_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_005_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1589,22 +1589,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_005_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_005_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -1614,11 +1614,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -1628,11 +1628,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1640,11 +1640,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchTemplateApplication(struct w_steam_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchTemplateApplication(struct w_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
 {
     struct IVRApplications_IVRApplications_005_LaunchTemplateApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTemplateAppKey = pchTemplateAppKey,
         .pchNewAppKey = pchNewAppKey,
         .pKeys = pKeys,
@@ -1655,11 +1655,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchTemplateApplica
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1667,11 +1667,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchDashboardOverla
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_005_CancelApplicationLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_005_CancelApplicationLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_CancelApplicationLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1679,11 +1679,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_005_CancelApplicationLaunch
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -1692,11 +1692,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1704,23 +1704,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_005_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_005_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_005_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -1732,11 +1732,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -1746,11 +1746,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyB
     return params._ret;
 }
 
-uint64_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyUint64(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+uint64_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropertyUint64(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationPropertyUint64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -1760,11 +1760,11 @@ uint64_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationPropert
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_005_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -1773,11 +1773,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1785,11 +1785,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_005_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_005_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -1798,22 +1798,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_005_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_005_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_005_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -1821,34 +1821,34 @@ uint32_t __thiscall winIVRApplications_IVRApplications_005_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_005_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_005_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_005_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_005_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_005_IsQuitUserPromptRequested(struct w_steam_iface *_this)
+int8_t __thiscall winIVRApplications_IVRApplications_005_IsQuitUserPromptRequested(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_005_IsQuitUserPromptRequested_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_005_IsQuitUserPromptRequested, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchInternalProcess(struct w_steam_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
+uint32_t __thiscall winIVRApplications_IVRApplications_005_LaunchInternalProcess(struct w_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
 {
     struct IVRApplications_IVRApplications_005_LaunchInternalProcess_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchBinaryPath = pchBinaryPath,
         .pchArguments = pchArguments,
         .pchWorkingDirectory = pchWorkingDirectory,
@@ -1891,24 +1891,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_005_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_005(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_005( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_005_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_005(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_005(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_005_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_005_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(24);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 24 * sizeof(*vtable));
     int i;
@@ -1945,7 +1945,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_005_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_005_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_005_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -1985,11 +1985,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_006_IsQuitUserPromptR
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_006_LaunchInternalProcess, 16)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_006_GetCurrentSceneProcessId, 4)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_006_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -1998,11 +1998,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_006_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -2010,11 +2010,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_006_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2022,22 +2022,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2047,11 +2047,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2061,11 +2061,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2073,11 +2073,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchTemplateApplication(struct w_steam_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchTemplateApplication(struct w_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
 {
     struct IVRApplications_IVRApplications_006_LaunchTemplateApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTemplateAppKey = pchTemplateAppKey,
         .pchNewAppKey = pchNewAppKey,
         .pKeys = pKeys,
@@ -2088,11 +2088,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchTemplateApplica
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplicationFromMimeType(struct w_steam_iface *_this, const char *pchMimeType, const char *pchArgs)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplicationFromMimeType(struct w_iface *_this, const char *pchMimeType, const char *pchArgs)
 {
     struct IVRApplications_IVRApplications_006_LaunchApplicationFromMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchArgs = pchArgs,
     };
@@ -2101,11 +2101,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchApplicationFrom
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2113,11 +2113,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchDashboardOverla
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_CancelApplicationLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_006_CancelApplicationLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_CancelApplicationLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2125,11 +2125,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_CancelApplicationLaunch
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -2138,11 +2138,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2150,23 +2150,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_006_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_006_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -2178,11 +2178,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -2192,11 +2192,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyB
     return params._ret;
 }
 
-uint64_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyUint64(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+uint64_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropertyUint64(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationPropertyUint64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -2206,11 +2206,11 @@ uint64_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationPropert
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_006_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -2219,11 +2219,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2231,11 +2231,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_SetDefaultApplicationForMimeType(struct w_steam_iface *_this, const char *pchAppKey, const char *pchMimeType)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_SetDefaultApplicationForMimeType(struct w_iface *_this, const char *pchAppKey, const char *pchMimeType)
 {
     struct IVRApplications_IVRApplications_006_SetDefaultApplicationForMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .pchMimeType = pchMimeType,
     };
@@ -2244,11 +2244,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_SetDefaultApplication
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_GetDefaultApplicationForMimeType(struct w_steam_iface *_this, const char *pchMimeType, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+int8_t __thiscall winIVRApplications_IVRApplications_006_GetDefaultApplicationForMimeType(struct w_iface *_this, const char *pchMimeType, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_006_GetDefaultApplicationForMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2258,11 +2258,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_GetDefaultApplicationFo
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationSupportedMimeTypes(struct w_steam_iface *_this, const char *pchAppKey, char *pchMimeTypesBuffer, uint32_t unMimeTypesBuffer)
+int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationSupportedMimeTypes(struct w_iface *_this, const char *pchAppKey, char *pchMimeTypesBuffer, uint32_t unMimeTypesBuffer)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationSupportedMimeTypes_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .pchMimeTypesBuffer = pchMimeTypesBuffer,
         .unMimeTypesBuffer = unMimeTypesBuffer,
@@ -2272,11 +2272,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationSupported
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationsThatSupportMimeType(struct w_steam_iface *_this, const char *pchMimeType, char *pchAppKeysThatSupportBuffer, uint32_t unAppKeysThatSupportBuffer)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationsThatSupportMimeType(struct w_iface *_this, const char *pchMimeType, char *pchAppKeysThatSupportBuffer, uint32_t unAppKeysThatSupportBuffer)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationsThatSupportMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchAppKeysThatSupportBuffer = pchAppKeysThatSupportBuffer,
         .unAppKeysThatSupportBuffer = unAppKeysThatSupportBuffer,
@@ -2286,11 +2286,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationsThatSu
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationLaunchArguments(struct w_steam_iface *_this, uint32_t unHandle, char *pchArgs, uint32_t unArgs)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationLaunchArguments(struct w_iface *_this, uint32_t unHandle, char *pchArgs, uint32_t unArgs)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationLaunchArguments_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unHandle = unHandle,
         .pchArgs = pchArgs,
         .unArgs = unArgs,
@@ -2300,11 +2300,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetApplicationLaunchA
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_006_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -2313,22 +2313,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetTransitionState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetTransitionState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_006_GetTransitionState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_GetTransitionState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_006_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2336,34 +2336,34 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_006_GetApplicationsTransitionStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_006_GetApplicationsTransitionStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_006_GetApplicationsTransitionStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_GetApplicationsTransitionStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_006_IsQuitUserPromptRequested(struct w_steam_iface *_this)
+int8_t __thiscall winIVRApplications_IVRApplications_006_IsQuitUserPromptRequested(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_006_IsQuitUserPromptRequested_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_IsQuitUserPromptRequested, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchInternalProcess(struct w_steam_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchInternalProcess(struct w_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
 {
     struct IVRApplications_IVRApplications_006_LaunchInternalProcess_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchBinaryPath = pchBinaryPath,
         .pchArguments = pchArguments,
         .pchWorkingDirectory = pchWorkingDirectory,
@@ -2373,11 +2373,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_006_LaunchInternalProcess
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_006_GetCurrentSceneProcessId(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_006_GetCurrentSceneProcessId(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_006_GetCurrentSceneProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_006_GetCurrentSceneProcessId, &params );
@@ -2424,24 +2424,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_006_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_006(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_006( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_006_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_006(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_006(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_006_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_006_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(31);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 31 * sizeof(*vtable));
     int i;
@@ -2485,7 +2485,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_006_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_006_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_006_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -2524,11 +2524,11 @@ DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_007_GetSceneApplicati
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_007_LaunchInternalProcess, 16)
 DEFINE_THISCALL_WRAPPER(winIVRApplications_IVRApplications_007_GetCurrentSceneProcessId, 4)
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_AddApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_AddApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath, int8_t bTemporary)
 {
     struct IVRApplications_IVRApplications_007_AddApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
         .bTemporary = bTemporary,
     };
@@ -2537,11 +2537,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_AddApplicationManifes
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_RemoveApplicationManifest(struct w_steam_iface *_this, const char *pchApplicationManifestFullPath)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_RemoveApplicationManifest(struct w_iface *_this, const char *pchApplicationManifestFullPath)
 {
     struct IVRApplications_IVRApplications_007_RemoveApplicationManifest_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchApplicationManifestFullPath = pchApplicationManifestFullPath,
     };
     TRACE("%p\n", _this);
@@ -2549,11 +2549,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_RemoveApplicationMani
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_IsApplicationInstalled(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_007_IsApplicationInstalled(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_IsApplicationInstalled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2561,22 +2561,22 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_IsApplicationInstalled(
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationCount(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_007_GetApplicationCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByIndex(struct w_steam_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByIndex(struct w_iface *_this, uint32_t unApplicationIndex, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationKeyByIndex_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unApplicationIndex = unApplicationIndex,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2586,11 +2586,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByIn
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByProcessId(struct w_steam_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByProcessId(struct w_iface *_this, uint32_t unProcessId, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationKeyByProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2600,11 +2600,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationKeyByPr
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplication(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplication(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_LaunchApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2612,11 +2612,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplication(str
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchTemplateApplication(struct w_steam_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchTemplateApplication(struct w_iface *_this, const char *pchTemplateAppKey, const char *pchNewAppKey, const w_AppOverrideKeys_t *pKeys, uint32_t unKeys)
 {
     struct IVRApplications_IVRApplications_007_LaunchTemplateApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchTemplateAppKey = pchTemplateAppKey,
         .pchNewAppKey = pchNewAppKey,
         .pKeys = pKeys,
@@ -2627,11 +2627,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchTemplateApplica
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplicationFromMimeType(struct w_steam_iface *_this, const char *pchMimeType, const char *pchArgs)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplicationFromMimeType(struct w_iface *_this, const char *pchMimeType, const char *pchArgs)
 {
     struct IVRApplications_IVRApplications_007_LaunchApplicationFromMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchArgs = pchArgs,
     };
@@ -2640,11 +2640,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchApplicationFrom
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchDashboardOverlay(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchDashboardOverlay(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_LaunchDashboardOverlay_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2652,11 +2652,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchDashboardOverla
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_CancelApplicationLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_007_CancelApplicationLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_CancelApplicationLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2664,11 +2664,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_CancelApplicationLaunch
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_IdentifyApplication(struct w_steam_iface *_this, uint32_t unProcessId, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_IdentifyApplication(struct w_iface *_this, uint32_t unProcessId, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_IdentifyApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unProcessId = unProcessId,
         .pchAppKey = pchAppKey,
     };
@@ -2677,11 +2677,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_IdentifyApplication(s
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationProcessId(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationProcessId(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2689,23 +2689,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationProcess
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_007_GetApplicationsErrorNameFromEnum(struct w_steam_iface *_this, uint32_t error)
+const char * __thiscall winIVRApplications_IVRApplications_007_GetApplicationsErrorNameFromEnum(struct w_iface *_this, uint32_t error)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationsErrorNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .error = error,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_007_GetApplicationsErrorNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyString(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyString(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, char *pchPropertyValueBuffer, uint32_t unPropertyValueBufferLen, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationPropertyString_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .pchPropertyValueBuffer = pchPropertyValueBuffer,
@@ -2717,11 +2717,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropert
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyBool(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyBool(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationPropertyBool_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -2731,11 +2731,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyB
     return params._ret;
 }
 
-uint64_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyUint64(struct w_steam_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
+uint64_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropertyUint64(struct w_iface *_this, const char *pchAppKey, uint32_t eProperty, uint32_t *peError)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationPropertyUint64_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .eProperty = eProperty,
         .peError = peError,
@@ -2745,11 +2745,11 @@ uint64_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationPropert
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_SetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_SetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey, int8_t bAutoLaunch)
 {
     struct IVRApplications_IVRApplications_007_SetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .bAutoLaunch = bAutoLaunch,
     };
@@ -2758,11 +2758,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_SetApplicationAutoLau
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationAutoLaunch(struct w_steam_iface *_this, const char *pchAppKey)
+int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationAutoLaunch(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationAutoLaunch_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2770,11 +2770,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationAutoLaunc
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_SetDefaultApplicationForMimeType(struct w_steam_iface *_this, const char *pchAppKey, const char *pchMimeType)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_SetDefaultApplicationForMimeType(struct w_iface *_this, const char *pchAppKey, const char *pchMimeType)
 {
     struct IVRApplications_IVRApplications_007_SetDefaultApplicationForMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .pchMimeType = pchMimeType,
     };
@@ -2783,11 +2783,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_SetDefaultApplication
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_GetDefaultApplicationForMimeType(struct w_steam_iface *_this, const char *pchMimeType, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+int8_t __thiscall winIVRApplications_IVRApplications_007_GetDefaultApplicationForMimeType(struct w_iface *_this, const char *pchMimeType, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_007_GetDefaultApplicationForMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
@@ -2797,11 +2797,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_GetDefaultApplicationFo
     return params._ret;
 }
 
-int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationSupportedMimeTypes(struct w_steam_iface *_this, const char *pchAppKey, char *pchMimeTypesBuffer, uint32_t unMimeTypesBuffer)
+int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationSupportedMimeTypes(struct w_iface *_this, const char *pchAppKey, char *pchMimeTypesBuffer, uint32_t unMimeTypesBuffer)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationSupportedMimeTypes_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
         .pchMimeTypesBuffer = pchMimeTypesBuffer,
         .unMimeTypesBuffer = unMimeTypesBuffer,
@@ -2811,11 +2811,11 @@ int8_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationSupported
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationsThatSupportMimeType(struct w_steam_iface *_this, const char *pchMimeType, char *pchAppKeysThatSupportBuffer, uint32_t unAppKeysThatSupportBuffer)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationsThatSupportMimeType(struct w_iface *_this, const char *pchMimeType, char *pchAppKeysThatSupportBuffer, uint32_t unAppKeysThatSupportBuffer)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationsThatSupportMimeType_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchMimeType = pchMimeType,
         .pchAppKeysThatSupportBuffer = pchAppKeysThatSupportBuffer,
         .unAppKeysThatSupportBuffer = unAppKeysThatSupportBuffer,
@@ -2825,11 +2825,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationsThatSu
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationLaunchArguments(struct w_steam_iface *_this, uint32_t unHandle, char *pchArgs, uint32_t unArgs)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationLaunchArguments(struct w_iface *_this, uint32_t unHandle, char *pchArgs, uint32_t unArgs)
 {
     struct IVRApplications_IVRApplications_007_GetApplicationLaunchArguments_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unHandle = unHandle,
         .pchArgs = pchArgs,
         .unArgs = unArgs,
@@ -2839,11 +2839,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetApplicationLaunchA
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetStartingApplication(struct w_steam_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetStartingApplication(struct w_iface *_this, char *pchAppKeyBuffer, uint32_t unAppKeyBufferLen)
 {
     struct IVRApplications_IVRApplications_007_GetStartingApplication_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKeyBuffer = pchAppKeyBuffer,
         .unAppKeyBufferLen = unAppKeyBufferLen,
     };
@@ -2852,22 +2852,22 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_GetStartingApplicatio
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetSceneApplicationState(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetSceneApplicationState(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_007_GetSceneApplicationState_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_007_GetSceneApplicationState, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_PerformApplicationPrelaunchCheck(struct w_steam_iface *_this, const char *pchAppKey)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_PerformApplicationPrelaunchCheck(struct w_iface *_this, const char *pchAppKey)
 {
     struct IVRApplications_IVRApplications_007_PerformApplicationPrelaunchCheck_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchAppKey = pchAppKey,
     };
     TRACE("%p\n", _this);
@@ -2875,23 +2875,23 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_PerformApplicationPre
     return params._ret;
 }
 
-const char * __thiscall winIVRApplications_IVRApplications_007_GetSceneApplicationStateNameFromEnum(struct w_steam_iface *_this, uint32_t state)
+const char * __thiscall winIVRApplications_IVRApplications_007_GetSceneApplicationStateNameFromEnum(struct w_iface *_this, uint32_t state)
 {
     struct IVRApplications_IVRApplications_007_GetSceneApplicationStateNameFromEnum_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .state = state,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_007_GetSceneApplicationStateNameFromEnum, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchInternalProcess(struct w_steam_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchInternalProcess(struct w_iface *_this, const char *pchBinaryPath, const char *pchArguments, const char *pchWorkingDirectory)
 {
     struct IVRApplications_IVRApplications_007_LaunchInternalProcess_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchBinaryPath = pchBinaryPath,
         .pchArguments = pchArguments,
         .pchWorkingDirectory = pchWorkingDirectory,
@@ -2901,11 +2901,11 @@ uint32_t __thiscall winIVRApplications_IVRApplications_007_LaunchInternalProcess
     return params._ret;
 }
 
-uint32_t __thiscall winIVRApplications_IVRApplications_007_GetCurrentSceneProcessId(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRApplications_IVRApplications_007_GetCurrentSceneProcessId(struct w_iface *_this)
 {
     struct IVRApplications_IVRApplications_007_GetCurrentSceneProcessId_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRApplications_IVRApplications_007_GetCurrentSceneProcessId, &params );
@@ -2951,24 +2951,24 @@ __ASM_BLOCK_BEGIN(winIVRApplications_IVRApplications_007_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_007(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_007( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRApplications_IVRApplications_007_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_007(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_007(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRApplications_IVRApplications_007_FnTable(void *u_iface)
+struct w_iface *create_winIVRApplications_IVRApplications_007_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(30);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 30 * sizeof(*vtable));
     int i;
@@ -3011,7 +3011,7 @@ struct w_steam_iface *create_winIVRApplications_IVRApplications_007_FnTable(void
     return r;
 }
 
-void destroy_winIVRApplications_IVRApplications_007_FnTable(struct w_steam_iface *object)
+void destroy_winIVRApplications_IVRApplications_007_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -3021,7 +3021,7 @@ void destroy_winIVRApplications_IVRApplications_007_FnTable(struct w_steam_iface
 
 void init_winIVRApplications_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRApplications_IVRApplications_001_rtti( base );
     init_winIVRApplications_IVRApplications_002_rtti( base );
     init_winIVRApplications_IVRApplications_003_rtti( base );
@@ -3029,5 +3029,5 @@ void init_winIVRApplications_rtti( char *base )
     init_winIVRApplications_IVRApplications_005_rtti( base );
     init_winIVRApplications_IVRApplications_006_rtti( base );
     init_winIVRApplications_IVRApplications_007_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

@@ -1,14 +1,13 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <assert.h>
 
 #include <windef.h>
 #include <winbase.h>
 
 #ifdef __cplusplus
 #include <array>
-extern "C"
-{
 #endif /* __cplusplus */
 
 #ifdef __cplusplus
@@ -28,23 +27,48 @@ extern "C"
 #define U_CDECL   __attribute__((sysv_abi))
 #define U_STDCALL __attribute__((sysv_abi))
 
+#if defined(__cplusplus)
+template< typename T >
+#endif /* __cplusplus */
+struct ptr32
+{
+    uint32_t value;
+
+#if defined(__cplusplus)
+    template< typename U > struct pointee { using type = U; };
+    template< typename U > struct pointee< U** > { using type = struct ptr32< U* >*; };
+    using Type = typename pointee< T >::type;
+
+    struct ptr32& operator=( const Type ptr )
+    {
+        assert( (UINT64)ptr == (UINT_PTR)ptr );
+        this->value = (UINT_PTR)ptr;
+        return *this;
+    }
+    operator Type() const
+    {
+        return (Type)(UINT_PTR)this->value;
+    }
+#endif /* __cplusplus */
+};
+
 #ifdef __i386__
-#define U64_PTR( decl, name ) uint64_t name
-#define U32_PTR( decl, name ) decl
-#define W64_PTR( decl, name ) uint64_t name
-#define W32_PTR( decl, name ) decl
-#define U_PTR U32_PTR
-#define W_PTR W32_PTR
+#define U64_PTR( decl, name, type ) uint64_t name
+#define U32_PTR( decl, name, type ) decl
+#define W64_PTR( decl, name, type ) uint64_t name
+#define W32_PTR( decl, name, type ) decl
 #endif
 
-#ifdef __x86_64__
-#define U64_PTR( decl, name ) decl
-#define U32_PTR( decl, name ) uint32_t name
-#define W64_PTR( decl, name ) decl
-#define W32_PTR( decl, name ) uint32_t name
-#define U_PTR U64_PTR
-#define W_PTR W64_PTR
-#endif
+#if defined(__x86_64__) || defined(__aarch64__)
+#define U64_PTR( decl, name, type ) decl
+#define U32_PTR( decl, name, type ) uint32_t name
+#define W64_PTR( decl, name, type ) decl
+#if defined(__cplusplus)
+#define W32_PTR( decl, name, type ) struct ptr32< type > name
+#else /* __cplusplus */
+#define W32_PTR( decl, name, type ) struct ptr32 name
+#endif /* __cplusplus */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 
 typedef struct HmdColor_t HmdColor_t;
 typedef struct HmdMatrix33_t HmdMatrix33_t;
@@ -101,6 +125,10 @@ typedef struct VkQueue_T VkQueue_T;
 #define VRRenderModelError_InvalidArg 300
 #define VRRenderModelError_InvalidTexture 400
 
+#define VRApplication_Background 3
+
+#define VRInitError_Init_NoServerForBackgroundApp 121
+
 #define VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff 2
 
 enum EVRSubmitFlags
@@ -128,6 +156,21 @@ enum ETextureType
     TextureType_DXGISharedHandle = 5,
 };
 
+struct u_iface
+{
+    UINT64 handle;
 #ifdef __cplusplus
-} /* extern "C" */
+    template< typename T > struct u_iface &operator=(const T* value) { this->handle = (UINT_PTR)value; return *this; }
+    template< typename T > operator T*() const { return (T*)(UINT_PTR)this->handle; }
 #endif /* __cplusplus */
+};
+
+struct u_buffer
+{
+    UINT64 ptr;
+    UINT64 len;
+#ifdef __cplusplus
+    struct u_buffer &operator=(const char* value) { this->ptr = (UINT_PTR)value; this->len = value ? strlen( value ) + 1 : 0; return *this; }
+    operator char*() const { return (char*)(UINT_PTR)this->ptr; }
+#endif /* __cplusplus */
+};

@@ -1,0 +1,15 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'org.vosk.demo.DecoderDemo'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.alphacephei', name: 'vosk', version: '0.3.45'
+}

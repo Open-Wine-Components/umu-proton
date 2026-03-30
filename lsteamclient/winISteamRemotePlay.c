@@ -11,22 +11,22 @@ DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BGetSessionClientResolution, 16)
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BSendRemotePlayTogetherInvite, 12)
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionCount(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionID(struct w_steam_iface *_this, int32_t iSessionIndex)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionID(struct w_iface *_this, int32_t iSessionIndex)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iSessionIndex = iSessionIndex,
     };
     TRACE("%p\n", _this);
@@ -34,11 +34,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_Get
     return params._ret;
 }
 
-CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionSteamID(struct w_steam_iface *_this, CSteamID *_ret, uint32_t unSessionID)
+CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionSteamID(struct w_iface *_this, CSteamID *_ret, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         ._ret = _ret,
         .unSessionID = unSessionID,
     };
@@ -47,23 +47,23 @@ CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_G
     return params._ret;
 }
 
-const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientName(struct w_steam_iface *_this, uint32_t unSessionID)
+const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientName(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientName_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientName, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientFormFactor(struct w_steam_iface *_this, uint32_t unSessionID)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientFormFactor(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_GetSessionClientFormFactor_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
@@ -71,11 +71,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_Get
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BGetSessionClientResolution(struct w_steam_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BGetSessionClientResolution(struct w_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BGetSessionClientResolution_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .pnResolutionX = pnResolutionX,
         .pnResolutionY = pnResolutionY,
@@ -85,11 +85,11 @@ int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BGetS
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BSendRemotePlayTogetherInvite(struct w_steam_iface *_this, CSteamID steamIDFriend)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BSendRemotePlayTogetherInvite(struct w_iface *_this, CSteamID steamIDFriend)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_BSendRemotePlayTogetherInvite_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamIDFriend = steamIDFriend,
     };
     TRACE("%p\n", _this);
@@ -113,9 +113,9 @@ __ASM_BLOCK_BEGIN(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_vtabl
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001(void *u_iface)
+struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION001");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION001");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_vtable, 7, "STEAMREMOTEPLAY_INTERFACE_VERSION001");
     r->u_iface = u_iface;
@@ -131,22 +131,22 @@ DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BStartRemotePlayTogether, 8)
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BSendRemotePlayTogetherInvite, 12)
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionCount(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionID(struct w_steam_iface *_this, int32_t iSessionIndex)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionID(struct w_iface *_this, int32_t iSessionIndex)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iSessionIndex = iSessionIndex,
     };
     TRACE("%p\n", _this);
@@ -154,11 +154,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_Get
     return params._ret;
 }
 
-CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionSteamID(struct w_steam_iface *_this, CSteamID *_ret, uint32_t unSessionID)
+CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionSteamID(struct w_iface *_this, CSteamID *_ret, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         ._ret = _ret,
         .unSessionID = unSessionID,
     };
@@ -167,23 +167,23 @@ CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_G
     return params._ret;
 }
 
-const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientName(struct w_steam_iface *_this, uint32_t unSessionID)
+const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientName(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientName_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientName, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientFormFactor(struct w_steam_iface *_this, uint32_t unSessionID)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientFormFactor(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_GetSessionClientFormFactor_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
@@ -191,11 +191,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_Get
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BGetSessionClientResolution(struct w_steam_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BGetSessionClientResolution(struct w_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BGetSessionClientResolution_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .pnResolutionX = pnResolutionX,
         .pnResolutionY = pnResolutionY,
@@ -205,11 +205,11 @@ int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BGetS
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BStartRemotePlayTogether(struct w_steam_iface *_this, int8_t bShowOverlay)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BStartRemotePlayTogether(struct w_iface *_this, int8_t bShowOverlay)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BStartRemotePlayTogether_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .bShowOverlay = bShowOverlay,
     };
     TRACE("%p\n", _this);
@@ -217,11 +217,11 @@ int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BStar
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BSendRemotePlayTogetherInvite(struct w_steam_iface *_this, CSteamID steamIDFriend)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BSendRemotePlayTogetherInvite(struct w_iface *_this, CSteamID steamIDFriend)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_BSendRemotePlayTogetherInvite_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamIDFriend = steamIDFriend,
     };
     TRACE("%p\n", _this);
@@ -246,9 +246,9 @@ __ASM_BLOCK_BEGIN(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_vtabl
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002(void *u_iface)
+struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION002");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION002");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_vtable, 8, "STEAMREMOTEPLAY_INTERFACE_VERSION002");
     r->u_iface = u_iface;
@@ -271,22 +271,22 @@ DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_CreateMouseCursor, 28)
 DEFINE_THISCALL_WRAPPER(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseCursor, 12)
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionCount(struct w_steam_iface *_this)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionCount(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionID(struct w_steam_iface *_this, int32_t iSessionIndex)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionID(struct w_iface *_this, int32_t iSessionIndex)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .iSessionIndex = iSessionIndex,
     };
     TRACE("%p\n", _this);
@@ -294,11 +294,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_Get
     return params._ret;
 }
 
-CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionSteamID(struct w_steam_iface *_this, CSteamID *_ret, uint32_t unSessionID)
+CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionSteamID(struct w_iface *_this, CSteamID *_ret, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionSteamID_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         ._ret = _ret,
         .unSessionID = unSessionID,
     };
@@ -307,23 +307,23 @@ CSteamID * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_G
     return params._ret;
 }
 
-const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientName(struct w_steam_iface *_this, uint32_t unSessionID)
+const char * __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientName(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientName_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientName, &params );
-    return params._ret;
+    return get_unix_buffer( params._ret );
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientFormFactor(struct w_steam_iface *_this, uint32_t unSessionID)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientFormFactor(struct w_iface *_this, uint32_t unSessionID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetSessionClientFormFactor_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
     };
     TRACE("%p\n", _this);
@@ -331,11 +331,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_Get
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BGetSessionClientResolution(struct w_steam_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BGetSessionClientResolution(struct w_iface *_this, uint32_t unSessionID, int32_t *pnResolutionX, int32_t *pnResolutionY)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BGetSessionClientResolution_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .pnResolutionX = pnResolutionX,
         .pnResolutionY = pnResolutionY,
@@ -345,22 +345,22 @@ int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BGetS
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_ShowRemotePlayTogetherUI(struct w_steam_iface *_this)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_ShowRemotePlayTogetherUI(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_ShowRemotePlayTogetherUI_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_ShowRemotePlayTogetherUI, &params );
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BSendRemotePlayTogetherInvite(struct w_steam_iface *_this, CSteamID steamIDFriend)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BSendRemotePlayTogetherInvite(struct w_iface *_this, CSteamID steamIDFriend)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BSendRemotePlayTogetherInvite_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .steamIDFriend = steamIDFriend,
     };
     TRACE("%p\n", _this);
@@ -368,32 +368,32 @@ int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BSend
     return params._ret;
 }
 
-int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BEnableRemotePlayTogetherDirectInput(struct w_steam_iface *_this)
+int8_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BEnableRemotePlayTogetherDirectInput(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BEnableRemotePlayTogetherDirectInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_BEnableRemotePlayTogetherDirectInput, &params );
     return params._ret;
 }
 
-void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_DisableRemotePlayTogetherDirectInput(struct w_steam_iface *_this)
+void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_DisableRemotePlayTogetherDirectInput(struct w_iface *_this)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_DisableRemotePlayTogetherDirectInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_DisableRemotePlayTogetherDirectInput, &params );
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetInput(struct w_steam_iface *_this, RemotePlayInput_t *pInput, uint32_t unMaxEvents)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetInput(struct w_iface *_this, RemotePlayInput_t *pInput, uint32_t unMaxEvents)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_GetInput_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pInput = pInput,
         .unMaxEvents = unMaxEvents,
     };
@@ -402,11 +402,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_Get
     return params._ret;
 }
 
-void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseVisibility(struct w_steam_iface *_this, uint32_t unSessionID, int8_t bVisible)
+void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseVisibility(struct w_iface *_this, uint32_t unSessionID, int8_t bVisible)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseVisibility_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .bVisible = bVisible,
     };
@@ -414,11 +414,11 @@ void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMous
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseVisibility, &params );
 }
 
-void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMousePosition(struct w_steam_iface *_this, uint32_t unSessionID, float flNormalizedX, float flNormalizedY)
+void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMousePosition(struct w_iface *_this, uint32_t unSessionID, float flNormalizedX, float flNormalizedY)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMousePosition_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .flNormalizedX = flNormalizedX,
         .flNormalizedY = flNormalizedY,
@@ -427,11 +427,11 @@ void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMous
     STEAMCLIENT_CALL( ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMousePosition, &params );
 }
 
-uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_CreateMouseCursor(struct w_steam_iface *_this, int32_t nWidth, int32_t nHeight, int32_t nHotX, int32_t nHotY, const void *pBGRA, int32_t nPitch)
+uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_CreateMouseCursor(struct w_iface *_this, int32_t nWidth, int32_t nHeight, int32_t nHotX, int32_t nHotY, const void *pBGRA, int32_t nPitch)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_CreateMouseCursor_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nWidth = nWidth,
         .nHeight = nHeight,
         .nHotX = nHotX,
@@ -444,11 +444,11 @@ uint32_t __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_Cre
     return params._ret;
 }
 
-void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseCursor(struct w_steam_iface *_this, uint32_t unSessionID, uint32_t unCursorID)
+void __thiscall winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseCursor(struct w_iface *_this, uint32_t unSessionID, uint32_t unCursorID)
 {
     struct ISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_SetMouseCursor_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .unSessionID = unSessionID,
         .unCursorID = unCursorID,
     };
@@ -480,9 +480,9 @@ __ASM_BLOCK_BEGIN(winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_vtabl
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003(void *u_iface)
+struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = alloc_mem_for_iface(sizeof(struct w_steam_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION003");
+    struct w_iface *r = alloc_mem_for_iface(sizeof(struct w_iface), "STEAMREMOTEPLAY_INTERFACE_VERSION003");
     TRACE("-> %p\n", r);
     r->vtable = alloc_vtable(&winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_vtable, 15, "STEAMREMOTEPLAY_INTERFACE_VERSION003");
     r->u_iface = u_iface;
@@ -491,9 +491,9 @@ struct w_steam_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSI
 
 void init_winISteamRemotePlay_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001_rtti( base );
     init_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002_rtti( base );
     init_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }

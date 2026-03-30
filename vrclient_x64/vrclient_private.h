@@ -1,3 +1,6 @@
+#ifndef __VRCLIENT_PRIVATE_H
+#define __VRCLIENT_PRIVATE_H
+
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -17,6 +20,7 @@ void *create_LinuxMatchmakingServerListResponse(void *win);
 typedef struct ID3D11Device ID3D11Device;
 typedef struct IDXGIVkInteropDevice IDXGIVkInteropDevice;
 typedef struct ID3D12DXVKInteropDevice ID3D12DXVKInteropDevice;
+typedef struct ID3D12DXVKInteropDevice2 ID3D12DXVKInteropDevice2;
 typedef struct ID3D12CommandQueue ID3D12CommandQueue;
 
 struct client_core_data
@@ -51,9 +55,12 @@ struct compositor_data
      * IDXGIVkInteropDevice or ID3D12DXVKInteropDevice interfaces. */
     IDXGIVkInteropDevice *dxvk_device;
     ID3D12DXVKInteropDevice *d3d12_device;
+    ID3D12DXVKInteropDevice2 *d3d12_device2; /* if not NULL, d3d12_device points to the same interface;
+                                              * d3d12_device is referenced counted and d3d12_device2 is not. */
     ID3D12CommandQueue *d3d12_queue;
     BOOL d3d11_explicit_handoff, handoff_called;
-    void *client_core_linux_side;
+    int32_t explicit_timing_mode;
+    struct u_iface u_client_core_iface;
 
 #define X(proc) PFN_##proc p_##proc;
     VK_PROCS
@@ -65,7 +72,7 @@ struct compositor_data
     VkFence vk_fences[4];
     int command_buffer_index;
 
-#ifndef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     /* Digital action state change fixup hack. */
     struct
     {
@@ -76,36 +83,40 @@ struct compositor_data
     } digital_actions_state[128];
     unsigned int digital_action_count;
     LARGE_INTEGER qpf_freq;
-#endif
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 };
 
 extern struct compositor_data compositor_data;
 
-struct w_steam_iface
+struct w_iface
 {
     vtable_ptr *vtable;
-    void *u_iface;
+    struct u_iface u_iface;
     union
     {
         struct client_core_data user_data; /* for IVRClientCore */
     };
 };
 
-typedef struct w_steam_iface *(*iface_constructor)( void * );
+typedef struct w_iface *(*iface_constructor)( struct u_iface );
 extern iface_constructor find_iface_constructor( const char *iface_version );
-typedef void (*iface_destructor)( struct w_steam_iface * );
+typedef void (*iface_destructor)( struct w_iface * );
 extern iface_destructor find_iface_destructor( const char *iface_version );
 
 extern void init_rtti( char *base );
 
-struct w_steam_iface *create_win_interface(const char *name, void *linux_side);
+struct w_iface *create_win_interface( const char *name, struct u_iface u_iface );
 void free_compositor_data_d3d12_device(void);
+
+extern void *get_unix_buffer( struct u_buffer buf );
 
 struct generic_interface
 {
-    struct w_steam_iface *object;
-    void (*dtor)(struct w_steam_iface *);
+    struct w_iface *object;
+    void (*dtor)(struct w_iface *);
 };
+
+extern char *g_instance_extensions;
 
 #ifdef __dxvk_interop_h__
 extern w_Texture_t vrclient_translate_texture_dxvk( const w_Texture_t *texture, w_VRVulkanTextureData_t *vkdata,
@@ -123,3 +134,5 @@ extern w_Texture_t vrclient_translate_texture_d3d12( const w_Texture_t *texture,
 #include "vrclient_generated.h"
 
 #endif  /* __cplusplus */
+
+#endif /* __VRCLIENT_PRIVATE_H */

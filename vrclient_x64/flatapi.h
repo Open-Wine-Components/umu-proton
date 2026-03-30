@@ -1,8 +1,9 @@
 /* asm thunks for the flat (FnTable) API */
 
+#include "vrclient_private.h"
+
 #ifdef __i386__
 
-#include "cxx.h"
 #include "pshpack1.h"
 struct thunk
 {

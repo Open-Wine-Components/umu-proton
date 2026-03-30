@@ -2,7 +2,7 @@
 {
   "compat_tools"
   {
-    "##BUILD_NAME##" // Internal name of this tool
+    "##INTERNAL_TOOL_NAME##" // Internal name of this tool
     {
       // Can register this tool with Steam in two ways:
       //

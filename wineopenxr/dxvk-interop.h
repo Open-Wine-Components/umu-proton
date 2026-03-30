@@ -38,7 +38,11 @@ interface IDXGIVkInteropDevice2;
 /* Headers for imported files */
 
 #include <d3d11.h>
+#ifdef __WINESRC__
+#include "wine/vulkan.h"
+#else
 #include <vulkan/vulkan.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

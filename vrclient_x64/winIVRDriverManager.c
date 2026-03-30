@@ -13,22 +13,22 @@ DEFINE_THISCALL_WRAPPER(winIVRDriverManager_IVRDriverManager_001_GetDriverName, 
 DEFINE_THISCALL_WRAPPER(winIVRDriverManager_IVRDriverManager_001_GetDriverHandle, 8)
 DEFINE_THISCALL_WRAPPER(winIVRDriverManager_IVRDriverManager_001_IsEnabled, 8)
 
-uint32_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverCount(struct w_steam_iface *_this)
+uint32_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverCount(struct w_iface *_this)
 {
     struct IVRDriverManager_IVRDriverManager_001_GetDriverCount_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
     };
     TRACE("%p\n", _this);
     VRCLIENT_CALL( IVRDriverManager_IVRDriverManager_001_GetDriverCount, &params );
     return params._ret;
 }
 
-uint32_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverName(struct w_steam_iface *_this, uint32_t nDriver, char *pchValue, uint32_t unBufferSize)
+uint32_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverName(struct w_iface *_this, uint32_t nDriver, char *pchValue, uint32_t unBufferSize)
 {
     struct IVRDriverManager_IVRDriverManager_001_GetDriverName_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nDriver = nDriver,
         .pchValue = pchValue,
         .unBufferSize = unBufferSize,
@@ -38,11 +38,11 @@ uint32_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverName(struc
     return params._ret;
 }
 
-uint64_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverHandle(struct w_steam_iface *_this, const char *pchDriverName)
+uint64_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverHandle(struct w_iface *_this, const char *pchDriverName)
 {
     struct IVRDriverManager_IVRDriverManager_001_GetDriverHandle_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .pchDriverName = pchDriverName,
     };
     TRACE("%p\n", _this);
@@ -50,11 +50,11 @@ uint64_t __thiscall winIVRDriverManager_IVRDriverManager_001_GetDriverHandle(str
     return params._ret;
 }
 
-int8_t __thiscall winIVRDriverManager_IVRDriverManager_001_IsEnabled(struct w_steam_iface *_this, uint32_t nDriver)
+int8_t __thiscall winIVRDriverManager_IVRDriverManager_001_IsEnabled(struct w_iface *_this, uint32_t nDriver)
 {
     struct IVRDriverManager_IVRDriverManager_001_IsEnabled_params params =
     {
-        .linux_side = _this->u_iface,
+        .u_iface = _this->u_iface,
         .nDriver = nDriver,
     };
     TRACE("%p\n", _this);
@@ -75,24 +75,24 @@ __ASM_BLOCK_BEGIN(winIVRDriverManager_IVRDriverManager_001_vtables)
     );
 __ASM_BLOCK_END
 
-struct w_steam_iface *create_winIVRDriverManager_IVRDriverManager_001(void *u_iface)
+struct w_iface *create_winIVRDriverManager_IVRDriverManager_001( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     TRACE("-> %p\n", r);
     r->vtable = &winIVRDriverManager_IVRDriverManager_001_vtable;
     r->u_iface = u_iface;
     return r;
 }
 
-void destroy_winIVRDriverManager_IVRDriverManager_001(struct w_steam_iface *object)
+void destroy_winIVRDriverManager_IVRDriverManager_001(struct w_iface *object)
 {
     TRACE("%p\n", object);
     HeapFree(GetProcessHeap(), 0, object);
 }
 
-struct w_steam_iface *create_winIVRDriverManager_IVRDriverManager_001_FnTable(void *u_iface)
+struct w_iface *create_winIVRDriverManager_IVRDriverManager_001_FnTable( struct u_iface u_iface )
 {
-    struct w_steam_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
+    struct w_iface *r = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*r));
     struct thunk *thunks = alloc_thunks(4);
     struct thunk **vtable = HeapAlloc(GetProcessHeap(), 0, 4 * sizeof(*vtable));
     int i;
@@ -109,7 +109,7 @@ struct w_steam_iface *create_winIVRDriverManager_IVRDriverManager_001_FnTable(vo
     return r;
 }
 
-void destroy_winIVRDriverManager_IVRDriverManager_001_FnTable(struct w_steam_iface *object)
+void destroy_winIVRDriverManager_IVRDriverManager_001_FnTable(struct w_iface *object)
 {
     TRACE("%p\n", object);
     VirtualFree(object->vtable[0], 0, MEM_RELEASE);
@@ -119,7 +119,7 @@ void destroy_winIVRDriverManager_IVRDriverManager_001_FnTable(struct w_steam_ifa
 
 void init_winIVRDriverManager_rtti( char *base )
 {
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
     init_winIVRDriverManager_IVRDriverManager_001_rtti( base );
-#endif /* __x86_64__ */
+#endif /* defined(__x86_64__) || defined(__aarch64__) */
 }
