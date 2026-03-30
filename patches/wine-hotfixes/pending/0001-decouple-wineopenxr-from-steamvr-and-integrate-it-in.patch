@@ -51,7 +51,7 @@ index 40078cf2a5b..ecfdb315d38 100644
 @@ -2398,6 +2398,7 @@ dnl *** Check for modules to disable by default
  
  enable_win16=${enable_win16:-i386}
- enable_vcruntime140_1=${enable_vcruntime140_1:-x86_64,arm64ec,aarch64}
+ enable_vcruntime140_1=${enable_vcruntime140_1:-x86_64,arm64ec}
 +enable_wineopenxr=${enable_wineopenxr:-x86_64,arm64ec,aarch64}
  
  if test -n "$PE_ARCHS"

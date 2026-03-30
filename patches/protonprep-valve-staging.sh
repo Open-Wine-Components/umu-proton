@@ -76,11 +76,6 @@ apply_all_in_dir() {
     apply_patch "../patches/game-patches/silence-starcitizen-unsupported-os.patch"
     apply_patch "../patches/game-patches/eac_60101_timeout.patch"
 
-
-    # https://github.com/JacKeTUs/wine/commits/lmu-d2d1-tinkering
-    echo "WINE: -GAME FIXES- add le mans ultimate patches"
-    apply_patch "../patches/game-patches/lemansultimate-gameinput.patch"
-
 ### END GAME PATCH SECTION ###
 
 ### (2-5) WINE HOTFIX/BACKPORT SECTION ###
