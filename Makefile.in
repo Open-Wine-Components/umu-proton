@@ -233,7 +233,7 @@ GST_BASE_MESON_ARGS := \
 	-Dx11=enabled \
 	-Dgl=enabled \
 	-Dgl-graphene=enabled \
-	-Dgl_winsys=surfaceless,x11,wayland,egl \
+	-Dgl_winsys=surfaceless,x11,egl \
 	-Dgl_platform=glx,egl \
 	--wrap-mode nodownload \
 
