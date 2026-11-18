@@ -58,3 +58,9 @@
 [submodule "protonfixes"]
         path = protonfixes
         url = https://github.com/Open-Wine-Components/umu-protonfixes
+[submodule "FEX"]
+	path = FEX
+	url = https://github.com/FEX-Emu/FEX/
+[submodule "libsoup"]
+	path = libsoup
+	url = https://github.com/GNOME/libsoup.git

@@ -1,0 +1,32 @@
+From 719ebecc33587e2b4bd960f50dd0333f9c007c76 Mon Sep 17 00:00:00 2001
+From: Paul Gofman <pgofman@codeweavers.com>
+Date: Tue, 20 Oct 2026 13:46:39 -0600
+Subject: [PATCH] fixup! winevulkan: Introduce Wine-specific VR extensions.
+
+Avoid a crash when __WINE_OPENXR_VK_DEVICE_EXTENSIONS is not set.
+---
+ dlls/win32u/vulkan.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/win32u/vulkan.c b/dlls/win32u/vulkan.c
+index 542d9aa4a9e..21e0a984020 100644
+--- a/dlls/win32u/vulkan.c
++++ b/dlls/win32u/vulkan.c
+@@ -779,6 +779,8 @@ static void parse_device_extensions( struct vulkan_device_extensions *extensions
+ {
+     const char *next;
+ 
++    if (!str) return;
++
+     for (next = str; *next; next++)
+     {
+         if (*next != ' ') continue;
+@@ -947,7 +949,7 @@ static VkResult win32u_vkCreateDevice( VkPhysicalDevice client_physical_device,
+         instance->p_vkGetPhysicalDeviceProperties( physical_device->host.physical_device, &properties );
+         sprintf( name, "VK_WINE_OPENVR_DEVICE_EXTS_PCIID_%04x_%04x", properties.vendorID, (uint16_t)properties.deviceID );
+         if (!(vr_exts = getenv( name ))) vr_exts = getenv( "VK_WINE_OPENVR_DEVICE_EXTS" );
+-        if (vr_exts) parse_device_extensions( &device->extensions, vr_exts );
++        parse_device_extensions( &device->extensions, vr_exts );
+         device->extensions.has_VK_WINE_openvr_device_extensions = 0;
+     }
+     if (device->extensions.has_VK_WINE_openxr_device_extensions)

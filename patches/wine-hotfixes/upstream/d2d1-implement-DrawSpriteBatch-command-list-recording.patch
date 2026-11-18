@@ -1,0 +1,172 @@
+From d5039cf2a7da5f3fc68abc20a3c870479c2a8dfb Mon Sep 17 00:00:00 2001
+From: Santino Mazza <smazza@codeweavers.com>
+Date: Sat, 8 Aug 2026 22:34:00 +0200
+Subject: [PATCH] d2d1: Implement DrawSpriteBatch() command list recording.
+
+Signed-off-by: Nikolay Sivov <nsivov@codeweavers.com>
+(cherry picked from commit b29001f8a89dac061698900ca9f544ebe2bf70bc)
+
+CW-Bug-Id: #27527
+---
+ dlls/d2d1/command_list.c | 52 ++++++++++++++++++++++++++++++++++++++++
+ dlls/d2d1/d2d1_private.h |  1 +
+ dlls/d2d1/device.c       | 29 ++++++++++++++++++++--
+ dlls/d2d1/sprite_batch.c |  8 +++++++
+ 4 files changed, 88 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/d2d1/command_list.c b/dlls/d2d1/command_list.c
+index 4d81f0f1ccf..0ca1bb9c0bf 100644
+--- a/dlls/d2d1/command_list.c
++++ b/dlls/d2d1/command_list.c
+@@ -41,6 +41,7 @@ enum d2d_command_type
+     D2D_COMMAND_DRAW_RECTANGLE,
+     D2D_COMMAND_DRAW_BITMAP,
+     D2D_COMMAND_DRAW_IMAGE,
++    D2D_COMMAND_DRAW_SPRITE_BATCH,
+     D2D_COMMAND_FILL_MESH,
+     D2D_COMMAND_FILL_OPACITY_MASK,
+     D2D_COMMAND_FILL_GEOMETRY,
+@@ -208,6 +209,17 @@ struct d2d_command_draw_image
+     D2D1_RECT_F *image_rect;
+ };
+ 
++struct d2d_command_draw_sprite_batch
++{
++    struct d2d_command c;
++    ID2D1SpriteBatch *sprite_batch;
++    ID2D1Bitmap *bitmap;
++    UINT32 start_index;
++    UINT32 sprite_count;
++    D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode;
++    D2D1_SPRITE_OPTIONS sprite_options;
++};
++
+ static inline struct d2d_command_list *impl_from_ID2D1CommandList(ID2D1CommandList *iface)
+ {
+     return CONTAINING_RECORD(iface, struct d2d_command_list, ID2D1CommandList_iface);
+@@ -414,6 +426,24 @@ static HRESULT STDMETHODCALLTYPE d2d_command_list_Stream(ID2D1CommandList *iface
+                         c->interpolation_mode, c->composite_mode);
+                 break;
+             }
++            case D2D_COMMAND_DRAW_SPRITE_BATCH:
++            {
++                const struct d2d_command_draw_sprite_batch *c = data;
++                ID2D1CommandSink3 *sink3;
++
++                if (SUCCEEDED(ID2D1CommandSink_QueryInterface(sink, &IID_ID2D1CommandSink3, (void **)&sink3)))
++                {
++                    hr = ID2D1CommandSink3_DrawSpriteBatch(sink3, c->sprite_batch, c->start_index,
++                            c->sprite_count, c->bitmap, c->interpolation_mode, c->sprite_options);
++                    ID2D1CommandSink3_Release(sink3);
++                }
++                else
++                {
++                    FIXME("DrawSpriteBatch() fallback is not implemented.\n");
++                    hr = E_NOTIMPL;
++                }
++                break;
++            }
+             case D2D_COMMAND_FILL_MESH:
+             {
+                 const struct d2d_command_fill_mesh *c = data;
+@@ -1051,6 +1081,28 @@ void d2d_command_list_draw_image(struct d2d_command_list *command_list, ID2D1Ima
+     d2d_command_list_write_field(&data, &command->image_rect, image_rect, sizeof(*image_rect));
+ }
+ 
++void d2d_command_list_draw_sprite_batch(struct d2d_command_list *command_list, ID2D1SpriteBatch *sprite_batch,
++    UINT32 start_index, UINT32 sprite_count, ID2D1Bitmap *bitmap, D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode,
++    D2D1_SPRITE_OPTIONS sprite_options)
++{
++    struct d2d_command_draw_sprite_batch *command;
++    size_t size;
++
++    size = sizeof(*command);
++
++    d2d_command_list_reference_object(command_list, sprite_batch);
++    d2d_command_list_reference_object(command_list, bitmap);
++
++    command = d2d_command_list_require_space(command_list, size);
++    command->c.op = D2D_COMMAND_DRAW_SPRITE_BATCH;
++    command->sprite_batch = sprite_batch;
++    command->bitmap = bitmap;
++    command->start_index = start_index;
++    command->sprite_count = sprite_count;
++    command->interpolation_mode = interpolation_mode;
++    command->sprite_options = sprite_options;
++}
++
+ void d2d_command_list_fill_mesh(struct d2d_command_list *command_list, const struct d2d_device_context *context,
+         ID2D1Mesh *mesh, ID2D1Brush *orig_brush)
+ {
+diff --git a/dlls/d2d1/d2d1_private.h b/dlls/d2d1/d2d1_private.h
+index b4d72e788a2..aa23ff21667 100644
+--- a/dlls/d2d1/d2d1_private.h
++++ b/dlls/d2d1/d2d1_private.h
+@@ -480,6 +480,7 @@ struct d2d_sprite_batch
+ };
+ 
+ HRESULT d2d_sprite_batch_create(ID2D1Factory *factory, struct d2d_sprite_batch **batch);
++struct d2d_sprite_batch *unsafe_impl_from_ID2D1SpriteBatch(ID2D1SpriteBatch *iface);
+ 
+ struct d2d_state_block
+ {
+diff --git a/dlls/d2d1/device.c b/dlls/d2d1/device.c
+index e661754450f..c7a93362aa4 100644
+--- a/dlls/d2d1/device.c
++++ b/dlls/d2d1/device.c
+@@ -2951,9 +2951,34 @@ static void STDMETHODCALLTYPE d2d_device_context_DrawSpriteBatch(ID2D1DeviceCont
+         ID2D1SpriteBatch *sprite_batch, UINT32 start_index, UINT32 sprite_count, ID2D1Bitmap *bitmap,
+         D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode, D2D1_SPRITE_OPTIONS sprite_options)
+ {
+-    FIXME("iface %p, sprite_batch %p, start_index %u, sprite_count %u, bitmap %p, interpolation_mode %u,"
+-            "sprite_options %u stub!\n", iface, sprite_batch, start_index, sprite_count, bitmap,
++    struct d2d_device_context *context = impl_from_ID2D1DeviceContext(iface);
++    struct d2d_sprite_batch *batch = unsafe_impl_from_ID2D1SpriteBatch(sprite_batch);
++
++    TRACE("iface %p, sprite_batch %p, start_index %u, sprite_count %u, bitmap %p, interpolation_mode %u,"
++            "sprite_options %u.\n", iface, sprite_batch, start_index, sprite_count, bitmap,
+             interpolation_mode, sprite_options);
++
++    if (context->drawing_state.antialiasMode != D2D1_ANTIALIAS_MODE_ALIASED)
++    {
++        d2d_device_context_set_error(context, D2DERR_WRONG_STATE);
++        return;
++    }
++
++    if (start_index >= batch->sprite_count || sprite_count > batch->sprite_count - start_index)
++    {
++        d2d_device_context_set_error(context, E_INVALIDARG);
++        return;
++    }
++
++    if (context->target.type == D2D_TARGET_COMMAND_LIST)
++    {
++        d2d_command_list_draw_sprite_batch(context->target.command_list, sprite_batch,
++                start_index, sprite_count, bitmap, interpolation_mode, sprite_options);
++    }
++    else
++    {
++        FIXME("Unimplemented for bitmap render target.\n");
++    }
+ }
+ 
+ static HRESULT STDMETHODCALLTYPE d2d_device_context_CreateSvgGlyphStyle(ID2D1DeviceContext6 *iface,
+diff --git a/dlls/d2d1/sprite_batch.c b/dlls/d2d1/sprite_batch.c
+index 632eb814a3a..39159cd82ad 100644
+--- a/dlls/d2d1/sprite_batch.c
++++ b/dlls/d2d1/sprite_batch.c
+@@ -272,3 +272,11 @@ HRESULT d2d_sprite_batch_create(ID2D1Factory *factory, struct d2d_sprite_batch *
+ 
+     return S_OK;
+ }
++
++struct d2d_sprite_batch *unsafe_impl_from_ID2D1SpriteBatch(ID2D1SpriteBatch *iface)
++{
++    if (!iface)
++        return NULL;
++    assert(iface->lpVtbl == &d2d_sprite_batch_vtbl);
++    return CONTAINING_RECORD(iface, struct d2d_sprite_batch, ID2D1SpriteBatch_iface);
++}
+-- 
+2.56.0
+

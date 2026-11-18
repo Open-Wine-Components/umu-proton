@@ -27,10 +27,10 @@ Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/55
  1 file changed, 49 insertions(+), 49 deletions(-)
 
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstglcontext_egl.c b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstglcontext_egl.c
-index c01bd46cfa7..a919014cca8 100644
+index d51c263c77..06b6e045e7 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstglcontext_egl.c
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstglcontext_egl.c
-@@ -925,7 +925,55 @@ gst_gl_context_egl_create_context (GstGLContext * context,
+@@ -912,7 +912,55 @@ gst_gl_context_egl_create_context (GstGLContext * context,
  
    gst_gl_context_egl_dump_all_configs (egl);
  
@@ -87,7 +87,7 @@ index c01bd46cfa7..a919014cca8 100644
      GstGLAPI chosen_gl_api = 0;
      gint i;
  
-@@ -1015,54 +1063,6 @@ gst_gl_context_egl_create_context (GstGLContext * context,
+@@ -1002,54 +1050,6 @@ gst_gl_context_egl_create_context (GstGLContext * context,
      }
  
      egl->gl_api = chosen_gl_api;
@@ -142,6 +142,3 @@ index c01bd46cfa7..a919014cca8 100644
    }
  
    if (egl->egl_context != EGL_NO_CONTEXT) {
--- 
-GitLab
-

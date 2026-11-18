@@ -87,7 +87,7 @@ NTSTATUS steamclient_call( unsigned int code, void *args, const char *name )
     if (status == STATUS_ACCESS_VIOLATION)
     {
         ERR( "Access violation in %s.\n", name );
-        RaiseException( status, 0, 0, NULL );
+        *(volatile int *)0xbeef |= 0;
     }
     if (status) WARN( "%s failed, status %#x\n", name, (UINT)status );
     return status;
@@ -444,7 +444,7 @@ void execute_pending_callbacks(void)
         case CALL_IFACE_VTABLE_0_SERVER_RESPONDED:
             TRACE( "CALL_IFACE_VTABLE_0_SERVER_RESPONDED iface %p, server %p.\n", params.callback->server_responded.iface,
                    params.callback->server_responded.server );
-            CALL_VTBL_FUNC( params.callback->server_responded.iface, 0, void, (void *, gameserveritem_t_105 *), (params.callback->server_responded.iface,
+            CALL_VTBL_FUNC( params.callback->server_responded.iface, 0, void, (void *, gameserveritem_t_165 *), (params.callback->server_responded.iface,
                             params.callback->server_responded.server) );
             break;
         case CALL_IFACE_VTABLE_0_ADD_PLAYER_TO_LIST:
@@ -460,6 +460,15 @@ void execute_pending_callbacks(void)
                    debugstr_a( params.callback->rules_responded.rule_and_value ), debugstr_a( value ) );
             CALL_VTBL_FUNC( params.callback->rules_responded.iface, 0, void, (void *, const char *, const char *), (params.callback->rules_responded.iface,
                             params.callback->rules_responded.rule_and_value, value) );
+            break;
+        }
+        case CALL_IFACE_VTABLE_0_FRIENDS_RESPONDED:
+        {
+            TRACE( "CALL_IFACE_VTABLE_0_FRIENDS_RESPONDED iface %p, steam_id %#I64x, name %s, connected %d.\n", params.callback->friends_responded.iface,
+                   *(int64_t *)&params.callback->friends_responded.steamid,
+                   debugstr_a( params.callback->friends_responded.name ), (int)params.callback->friends_responded.connected );
+            CALL_VTBL_FUNC( params.callback->friends_responded.iface, 0, void, (void *, CSteamID, const char *, int8_t), (params.callback->friends_responded.iface,
+                            params.callback->friends_responded.steamid, params.callback->friends_responded.name, params.callback->friends_responded.connected) );
             break;
         }
         }

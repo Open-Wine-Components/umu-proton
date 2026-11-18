@@ -74,23 +74,11 @@ static inline wine_XrInstance *wine_instance_from_handle(XrInstance handle) {
 union CompositionLayer;
 typedef union CompositionLayer CompositionLayer;
 
-typedef union {
-  XrCompositionLayerDepthInfoKHR depth_info;
-  XrCompositionLayerSpaceWarpInfoFB space_warp_info;
-} view_info;
-
 typedef struct {
   XrSession host_session;
+  XrSession client_session;
   wine_XrInstance *instance;
   uint32_t session_type;
-  struct list entry;
-  uint32_t composition_layer_count;
-  CompositionLayer *composition_layers;
-  XrCompositionLayerBaseHeader **composition_layer_ptrs;
-
-  uint32_t projection_view_count, view_info_count;
-  XrCompositionLayerProjectionView *projection_views;
-  view_info *view_infos;
 } wine_XrSession;
 
 static inline wine_XrSession *wine_session_from_handle(XrSession handle) {
@@ -106,12 +94,20 @@ typedef struct {
   BOOL *acquired;
   uint32_t *acquired_indices;
 
-  XrSwapchainCreateInfo create_info;
+  BOOL app_consumed;
+  XrSwapchainUsageFlags usage_flags;
+  int64_t format;
+  uint32_t width, height, array_size, mip_count, sample_count;
+
   VkCommandBuffer *cmd_release;
   VkCommandBuffer *cmd_acquire;
 } wine_XrSwapchain;
 
 static inline wine_XrSwapchain *wine_swapchain_from_handle(XrSwapchain handle) {
+  return (wine_XrSwapchain *)(uintptr_t)handle;
+}
+
+static inline wine_XrSwapchain *wine_swapchain_from_app_consumed_swapchain_handle(XrAppConsumedSwapchainEXT handle) {
   return (wine_XrSwapchain *)(uintptr_t)handle;
 }
 
@@ -123,5 +119,14 @@ struct openxr_func {
 };
 
 #define UNIX_CALL(code, params) WINE_UNIX_CALL(unix_##code, params)
+#define UNIX_CALL_CHECKED(code, params)                           \
+    do {                                                          \
+        NTSTATUS status = UNIX_CALL(code, params);                \
+        if (status)                                               \
+        {                                                         \
+            ERR("Exception %#lx in Unix call.\n", status);        \
+            ExitProcess(3);                                       \
+        }                                                         \
+    } while (0)
 
 #endif /* __WINE_OPENXR_LOADER_H */

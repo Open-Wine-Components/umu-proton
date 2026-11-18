@@ -4,6 +4,7 @@
 #   $(3): build target arch
 #   $(4): build target os
 define create-rules-common
+ifneq ($$(findstring $(3)-$(4),$$(ARCHS)),)
 $(2)_$(3)_OBJ := $$(OBJ)/obj-$(1)-$(3)
 $(2)_$(3)_DST := $$(OBJ)/dst-$(1)-$(3)
 $(2)_$(3)_DEPS := $$(call toupper,$$($(2)_DEPENDS)) $$(call toupper,$$($(2)_$(3)_DEPENDS))
@@ -45,16 +46,6 @@ all-$(3)-build $(1)-build: $(1)-$(3)-build
 all-build: $(1)-build
 .PHONY: all-build
 
-
-ifeq ($$(findstring $(3)-$(4),$$(ARCHS)),)
-$$(OBJ)/.$(1)-$(3)-configure:
-	touch $$@
-$$(OBJ)/.$(1)-$(3)-build:
-	touch $$@
-$$(OBJ)/.$(1)-$(3)-dist:
-	touch $$@
-else
-
 $$(OBJ)/.$(1)-$(3)-dist: $$(OBJ)/.$(1)-$(3)-build
 $$(OBJ)/.$(1)-$(3)-dist: $$(OBJ)/.$(1)-$(3)-post-build
 
@@ -72,20 +63,18 @@ $$(OBJ)/.$(1)-$(3)-dist:
 ifneq ($(UNSTRIPPED_BUILD),)
 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
 	    -printf '--only-keep-debug\0%p\0$$(DST_LIBDIR)/%p.debug\0' | \
-	    xargs $(--verbose?) -0 -r -P$$(J) -n3 objcopy $(OBJCOPY_FLAGS)
+	    xargs $(--verbose?) -0 -r -P$$(J) -n3 $(OBJCOPY) $(OBJCOPY_FLAGS)
 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
 	    -printf '--add-gnu-debuglink=$$(DST_LIBDIR)/%p.debug\0--strip-debug\0%p\0$$(DST_LIBDIR)/%p\0' | \
-	    xargs $(--verbose?) -0 -r -P$$(J) -n4 objcopy $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
+	    xargs $(--verbose?) -0 -r -P$$(J) -n4 $(OBJCOPY) $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
 	touch $$@
 else
 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
 	    -printf '$$(DST_LIBDIR)/%p.debug\0' | xargs $(--verbose?) -0 -r -P$$(J) rm -f
 	cd $$($(2)_$(3)_LIBDIR) && find -type f -not '(' -iname '*.pc' -or -iname '*.cmake' -or -iname '*.a' -or -iname '*.la' -or -iname '*.def' -or -iname '*.h' ')' \
 	    -printf '--strip-debug\0%p\0$$(DST_LIBDIR)/%p\0' | \
-	    xargs $(--verbose?) -0 -r -P$$(J) -n3 objcopy $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
+	    xargs $(--verbose?) -0 -r -P$$(J) -n3 $(OBJCOPY) $(OBJCOPY_FLAGS) --set-section-flags .text=contents,alloc,load,readonly,code
 	touch $$@
-endif
-
 endif
 
 $(1)-$(3)-dist: $$(OBJ)/.$(1)-$(3)-dist
@@ -118,8 +107,15 @@ $(2)_$(3)-unix_LIBFLAGS = $$(foreach d,$$($(2)_$(3)_DEPS),-Wl,-rpath-link=$$($$(
 # RC and WIDL are intentionally always using windows target, as their
 # unix version doesn't exist.
 
+# HACK: forcing cargo to use gcc-10 as a linker because it's very unhappy about
+# Sniper's gcc-14 and lack of libgcc_s. The only version we have guarantee for
+# with SteamRT Sniper is the one from gcc 10.
+#
+# We also always need to specify the linker for the host architecture - a bunch
+# of crates build host-native bits via build.rs.
+
 $(2)_$(3)_ENV = \
-    CARGO_TARGET_$$(call toupper,$$($(3)-$(4)_CARGO_TARGET))_LINKER="$$($(3)-$(4)_TARGET)-gcc" \
+    $$(CARGO_LINKERS) \
     CCACHE_BASEDIR="$$(CCACHE_BASEDIR)" \
     STRIP="$$(STRIP)" \
     AR="$$($(3)-$(4)_TARGET)-ar" \
@@ -143,6 +139,7 @@ $(2)_$(3)_ENV = \
 
 ifeq ($(1),wine)
 
+# aarch64 always builds wine with clang directly so build tools do not need to be specified
 $(2)_$(3)_ENV += \
     CROSSCFLAGS="$$($(2)_$(3)_INCFLAGS) $$($(2)_CFLAGS) $$($(3)_CFLAGS) $$(CFLAGS)" \
     CROSSLDFLAGS="$$($(2)_$(3)-windows_LIBFLAGS) $$($(2)_$(3)_LIBFLAGS) $$($(2)_LDFLAGS) $$($(3)_LDFLAGS) $$(LDFLAGS)" \
@@ -166,31 +163,46 @@ $(2)_$(3)_ENV += \
     x86_64_CXXFLAGS="$$($(2)_x86_64_INCFLAGS) -std=c++17 $$($(2)_CFLAGS) $$(x86_64_CFLAGS) $$(CFLAGS)" \
     x86_64_LDFLAGS="$$($(2)_x86_64-windows_LIBFLAGS) $$($(2)_x86_64_LIBFLAGS) $$($(2)_LDFLAGS) $$(x86_64_LDFLAGS) $$(LDFLAGS)" \
     x86_64_PKG_CONFIG_LIBDIR="/usr/lib/$$(x86_64-windows_LIBDIR)/pkgconfig:/usr/share/pkgconfig" \
+    aarch64_CFLAGS="$$($(2)_aarch64_INCFLAGS) $$($(2)_CFLAGS) $$(aarch64_CFLAGS) $$(CFLAGS)" \
+    aarch64_CPPFLAGS="$$($(2)_aarch64_INCFLAGS) $$($(2)_CFLAGS) $$(aarch64_CFLAGS) $$(CFLAGS)" \
+    aarch64_CXXFLAGS="$$($(2)_aarch64_INCFLAGS) -std=c++17 $$($(2)_CFLAGS) $$(aarch64_CFLAGS) $$(CFLAGS)" \
+    aarch64_LDFLAGS="$$($(2)_aarch64_LIBFLAGS) $$($(2)_LDFLAGS) $$(aarch64_LDFLAGS) $$(LDFLAGS)" \
 
 endif
 
+endif
 endef
 
 ifneq ($(UNSTRIPPED_BUILD),)
-install-strip = objcopy $(OBJCOPY_FLAGS) --only-keep-debug $(1) $(2)/$(notdir $(1)).debug && \
-                objcopy $(OBJCOPY_FLAGS) --add-gnu-debuglink=$(2)/$(notdir $(1)).debug --strip-debug $(1) $(2)/$(notdir $(1))
+install-strip = $(OBJCOPY) $(OBJCOPY_FLAGS) --only-keep-debug $(1) $(2)/$(notdir $(1)).debug && \
+                $(OBJCOPY) $(OBJCOPY_FLAGS) --add-gnu-debuglink=$(2)/$(notdir $(1)).debug --strip-debug $(1) $(2)/$(notdir $(1))
 else
-install-strip = objcopy $(OBJCOPY_FLAGS) --strip-debug $(1) $(2)/$(notdir $(1)) && rm -f $(2)/$(notdir $(1)).debug
+install-strip = $(OBJCOPY) $(OBJCOPY_FLAGS) --strip-debug $(1) $(2)/$(notdir $(1)) && rm -f $(2)/$(notdir $(1)).debug
 endif
 
 i386-unix_TARGET := i686-linux-gnu
 x86_64-unix_TARGET := x86_64-linux-gnu
+aarch64-unix_TARGET := aarch64-linux-gnu
 i386-windows_TARGET := i686-w64-mingw32
 x86_64-windows_TARGET := x86_64-w64-mingw32
+aarch64-windows_TARGET := aarch64-w64-mingw32
+arm64ec-windows_TARGET := arm64ec-w64-mingw32
 
 i386-unix_LIBDIR := i386-linux-gnu
 x86_64-unix_LIBDIR := x86_64-linux-gnu
+aarch64-unix_LIBDIR := aarch64-linux-gnu
 i386-windows_LIBDIR := i386-w64-mingw32
 x86_64-windows_LIBDIR := x86_64-w64-mingw32
+aarch64-windows_LIBDIR := aarch64-w64-mingw32
+arm64ec-windows_LIBDIR := arm64ec-w64-mingw32
 
 $(OBJ)/.%-i386-post-build:
 	touch $@
 $(OBJ)/.%-x86_64-post-build:
+	touch $@
+$(OBJ)/.%-aarch64-post-build:
+	touch $@
+$(OBJ)/.%-arm64ec-post-build:
 	touch $@
 
 rules-common = $(call create-rules-common,$(1),$(call toupper,$(1)),$(2),$(3))

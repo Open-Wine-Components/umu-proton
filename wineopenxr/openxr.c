@@ -4,12 +4,15 @@
 
 #define _GNU_SOURCE
 #include <dlfcn.h>
+#include <time.h>
 
 #include "ntstatus.h"
 #define WIN32_NO_STATUS
 #include "windef.h"
 #include "winnt.h"
+#include "winternl.h"
 #include "wine/server_protocol.h"
+#include "wine/vulkan_driver.h"
 
 #include "openxr_private.h"
 
@@ -25,13 +28,76 @@ static struct {
     {"XR_KHR_win32_convert_performance_counter_time", "XR_KHR_convert_timespec_time", TRUE, TRUE},
 };
 
+static XrResult (*p_xrConvertTimespecTimeToTimeKHR)(XrInstance, const struct timespec *, XrTime *);
+static XrResult (*p_xrConvertTimeToTimespecTimeKHR)(XrInstance, XrTime, struct timespec *);
+
 struct openxr_instance_funcs g_xr_host_instance_dispatch_table;
 
-VkDevice (*get_native_VkDevice)(VkDevice);
-VkInstance (*get_native_VkInstance)(VkInstance);
-VkPhysicalDevice (*get_native_VkPhysicalDevice)(VkPhysicalDevice);
-VkPhysicalDevice (*get_wrapped_VkPhysicalDevice)(VkInstance, VkPhysicalDevice);
-VkQueue (*get_native_VkQueue)(VkQueue);
+static pthread_mutex_t session_list_mutex = PTHREAD_MUTEX_INITIALIZER;
+struct host_client_mapping
+{
+  struct list entry;
+  uint64_t host;
+  uint64_t client;
+};
+static struct list session_list = LIST_INIT(session_list);
+
+static uint64_t xr_wrap_handle(uint64_t host)
+{
+  struct host_client_mapping *m;
+  uint64_t ret = 0;
+
+  pthread_mutex_lock(&session_list_mutex);
+  LIST_FOR_EACH_ENTRY(m, &session_list, struct host_client_mapping, entry)
+  {
+    if (m->host == host)
+    {
+      ret = m->client;
+      break;
+    }
+  }
+  pthread_mutex_unlock(&session_list_mutex);
+  if (!ret)
+    ERR("host handle 0x%s not found.\n", wine_dbgstr_longlong(host));
+  return ret;
+}
+
+XrSession xr_wrap_host_session(XrSession host)
+{
+  return (XrSession)(uintptr_t)xr_wrap_handle((uintptr_t)host);
+}
+
+static void xr_add_client_host_mapping(uint64_t client, uint64_t host)
+{
+  struct host_client_mapping *m = calloc(1, sizeof(*m));
+
+  m->client = client;
+  m->host = host;
+  pthread_mutex_lock(&session_list_mutex);
+  list_add_head(&session_list, &m->entry);
+  pthread_mutex_unlock(&session_list_mutex);
+}
+
+static void xr_remove_client_host_mapping(uint64_t host)
+{
+  struct host_client_mapping *m;
+  BOOL found = FALSE;
+
+  pthread_mutex_lock(&session_list_mutex);
+  LIST_FOR_EACH_ENTRY(m, &session_list, struct host_client_mapping, entry)
+  {
+    if (m->host == host)
+    {
+      list_remove(&m->entry);
+      free(m);
+      found = TRUE;
+      break;
+    }
+  }
+  pthread_mutex_unlock(&session_list_mutex);
+  if (!found)
+    ERR("host handle 0x%s not found.\n", wine_dbgstr_longlong(host));
+}
 
 XrResult WINAPI wine_xrCreateInstance(const XrInstanceCreateInfo *createInfo, XrInstance *instance) {
   XrResult res;
@@ -88,6 +154,12 @@ XrResult WINAPI wine_xrCreateInstance(const XrInstanceCreateInfo *createInfo, Xr
   ALL_XR_INSTANCE_FUNCS()
 #undef USE_XR_FUNC
 
+  /* These will be NULL if XR_KHR_convert_timespec_time is not available. */
+  xrGetInstanceProcAddr(*instance, "xrConvertTimespecTimeToTimeKHR",
+                        (PFN_xrVoidFunction *)&p_xrConvertTimespecTimeToTimeKHR);
+  xrGetInstanceProcAddr(*instance, "xrConvertTimeToTimespecTimeKHR",
+                        (PFN_xrVoidFunction *)&p_xrConvertTimeToTimespecTimeKHR);
+
 cleanup:
   free((void *)our_createInfo.enabledExtensionNames);
   return res;
@@ -95,6 +167,7 @@ cleanup:
 
 XrResult WINAPI wine_xrCreateSession(XrInstance instance, const XrSessionCreateInfo *createInfo, XrSession *session) {
   wine_XrInstance *wine_instance = wine_instance_from_handle(instance);
+  wine_XrSession *wine_session = *(wine_XrSession **)session;
   XrResult res;
   XrSessionCreateInfo our_create_info;
   XrGraphicsBindingVulkanKHR our_vk_binding;
@@ -105,9 +178,9 @@ XrResult WINAPI wine_xrCreateSession(XrInstance instance, const XrSessionCreateI
         const XrGraphicsBindingVulkanKHR *their_vk_binding = (const XrGraphicsBindingVulkanKHR *)createInfo->next;
 
         our_vk_binding = *their_vk_binding;
-        our_vk_binding.instance = get_native_VkInstance(their_vk_binding->instance);
-        our_vk_binding.physicalDevice = get_native_VkPhysicalDevice(their_vk_binding->physicalDevice);
-        our_vk_binding.device = get_native_VkDevice(their_vk_binding->device);
+        our_vk_binding.instance = vulkan_instance_from_handle(their_vk_binding->instance)->host.instance;
+        our_vk_binding.physicalDevice = vulkan_physical_device_from_handle(their_vk_binding->physicalDevice)->host.physical_device;
+        our_vk_binding.device = vulkan_device_from_handle(their_vk_binding->device)->host.device;
 
         our_create_info = *createInfo;
         our_create_info.next = &our_vk_binding;
@@ -115,24 +188,43 @@ XrResult WINAPI wine_xrCreateSession(XrInstance instance, const XrSessionCreateI
         break;
       }
       default:
-        WARN("Unhandled graphics binding type: %d\n", ((XrBaseInStructure *)createInfo->next)->type);
+        ERR("Unhandled graphics binding type: %d\n", ((XrBaseInStructure *)createInfo->next)->type);
         break;
     }
   }
 
-  res = g_xr_host_instance_dispatch_table.p_xrCreateSession(wine_instance->host_instance, createInfo, session);
+  wine_session->client_session = (XrSession)(uintptr_t)wine_session;
+  res = g_xr_host_instance_dispatch_table.p_xrCreateSession(wine_instance->host_instance, createInfo, &wine_session->host_session);
   if (res != XR_SUCCESS) {
     WARN("xrCreateSession failed: %d\n", res);
     return res;
   }
-
+  xr_add_client_host_mapping((uintptr_t)wine_session->client_session, (uintptr_t)wine_session->host_session);
   return XR_SUCCESS;
+}
+
+XrResult wine_xrDestroySession(XrSession session)
+{
+  XrSession host_session = wine_session_from_handle(session)->host_session;
+  XrResult ret;
+
+  ret = g_xr_host_instance_dispatch_table.p_xrDestroySession(host_session);
+  if (ret != XR_SUCCESS) return ret;
+  xr_remove_client_host_mapping((uintptr_t)host_session);
+  return ret;
 }
 
 XrResult WINAPI wine_xrCreateSwapchain(XrSession session,
                                        const XrSwapchainCreateInfo *createInfo,
                                        XrSwapchain *swapchain) {
   return g_xr_host_instance_dispatch_table.p_xrCreateSwapchain(wine_session_from_handle(session)->host_session,
+                                                               createInfo, swapchain);
+}
+
+XrResult WINAPI wine_xrCreateAppConsumedSwapchainEXT(XrSession session,
+                                       const XrAppConsumedSwapchainCreateInfoEXT *createInfo,
+                                       XrAppConsumedSwapchainEXT *swapchain) {
+  return g_xr_host_instance_dispatch_table.p_xrCreateAppConsumedSwapchainEXT(wine_session_from_handle(session)->host_session,
                                                                createInfo, swapchain);
 }
 
@@ -197,16 +289,31 @@ XrResult WINAPI wine_xrEnumerateInstanceExtensionProperties(const char *layerNam
   return XR_SUCCESS;
 }
 
+static VkPhysicalDevice get_client_physical_device( VkInstance handle, VkPhysicalDevice host_physical_device )
+{
+    struct vulkan_instance *instance = vulkan_instance_from_handle( handle );
+    unsigned int i;
+
+    for (i = 0; i < instance->physical_device_count; ++i)
+    {
+        if (instance->physical_devices[i].host.physical_device == host_physical_device)
+            return instance->physical_devices[i].client.physical_device;
+    }
+
+    ERR( "Unknown native physical device: %p, instance %p, handle %p\n", host_physical_device, instance, handle );
+    return NULL;
+}
+
 XrResult WINAPI wine_xrGetVulkanGraphicsDeviceKHR(XrInstance instance,
                                                   XrSystemId systemId,
                                                   VkInstance vkInstance,
                                                   VkPhysicalDevice *vkPhysicalDevice) {
   XrResult res;
-  TRACE("%p, 0x%s, %p, %p\n", instance, wine_dbgstr_longlong(systemId), vkInstance, vkPhysicalDevice);
+  TRACE("%p, 0x%s, %p, %p\n", (void *)(uintptr_t)instance, wine_dbgstr_longlong(systemId), vkInstance, vkPhysicalDevice);
   res = g_xr_host_instance_dispatch_table.p_xrGetVulkanGraphicsDeviceKHR(
-      wine_instance_from_handle(instance)->host_instance, systemId, get_native_VkInstance(vkInstance),
+      wine_instance_from_handle(instance)->host_instance, systemId, vulkan_instance_from_handle(vkInstance)->host.instance,
       vkPhysicalDevice);
-  *vkPhysicalDevice = get_wrapped_VkPhysicalDevice(vkInstance, *vkPhysicalDevice);
+  *vkPhysicalDevice = get_client_physical_device(vkInstance, *vkPhysicalDevice);
   return res;
 }
 
@@ -216,19 +323,19 @@ XrResult WINAPI wine_xrGetVulkanGraphicsDevice2KHR(XrInstance instance,
   XrVulkanGraphicsDeviceGetInfoKHR our_getinfo;
   XrResult res;
 
-  TRACE("instance %p, getInfo %p, vulkanPhysicalDevice %p.\n", instance, getInfo, vulkanPhysicalDevice);
+  TRACE("instance %p, getInfo %p, vulkanPhysicalDevice %p.\n", (void *)(uintptr_t)instance, getInfo, vulkanPhysicalDevice);
 
   if (getInfo->next) {
     WARN("Unsupported chained structure %p.\n", getInfo->next);
   }
 
   our_getinfo = *getInfo;
-  our_getinfo.vulkanInstance = get_native_VkInstance(our_getinfo.vulkanInstance);
+  our_getinfo.vulkanInstance = vulkan_instance_from_handle(our_getinfo.vulkanInstance)->host.instance;
 
   res = g_xr_host_instance_dispatch_table.p_xrGetVulkanGraphicsDevice2KHR(
       wine_instance_from_handle(instance)->host_instance, &our_getinfo, vulkanPhysicalDevice);
   if (res == XR_SUCCESS) {
-    *vulkanPhysicalDevice = get_wrapped_VkPhysicalDevice(getInfo->vulkanInstance, *vulkanPhysicalDevice);
+    *vulkanPhysicalDevice = get_client_physical_device(getInfo->vulkanInstance, *vulkanPhysicalDevice);
   }
   return res;
 }
@@ -241,9 +348,10 @@ XrResult WINAPI wine_xrGetVulkanInstanceExtensionsKHR(XrInstance instance,
   static const char win32_surface[] = "VK_KHR_surface VK_KHR_win32_surface";
 
   XrResult res;
-  uint32_t lin_len;
+  char internal_exts[4096];
+  uint32_t size;
 
-  TRACE("%p, 0x%s, %u, %p, %p\n", instance, wine_dbgstr_longlong(systemId), bufferCapacityInput, bufferCountOutput,
+  TRACE("%p, 0x%s, %u, %p, %p\n", (void *)(uintptr_t)instance, wine_dbgstr_longlong(systemId), bufferCapacityInput, bufferCountOutput,
         buffer);
 
   /* Linux SteamVR does not return xlib_surface, but Windows SteamVR _does_
@@ -251,27 +359,26 @@ XrResult WINAPI wine_xrGetVulkanInstanceExtensionsKHR(XrInstance instance,
    * add it here. */
 
   res = g_xr_host_instance_dispatch_table.p_xrGetVulkanInstanceExtensionsKHR(
-      wine_instance_from_handle(instance)->host_instance, systemId, bufferCapacityInput, bufferCountOutput, buffer);
-  if (res == XR_SUCCESS) {
-    if (bufferCapacityInput > 0) {
-      /* *bufferCountOutput is not required to (and sometimes does not) contain the offset to the NUL byte */
-      lin_len = strlen(buffer) + 1;
+      wine_instance_from_handle(instance)->host_instance, systemId, sizeof(internal_exts),
+      &size, internal_exts);
 
-      if (bufferCapacityInput < lin_len + sizeof(win32_surface)) {
-        return XR_ERROR_SIZE_INSUFFICIENT;
-      }
-
-      buffer[lin_len - 1] = ' ';
-      memcpy(&buffer[lin_len], win32_surface, sizeof(win32_surface));
-
-      TRACE("returning: %s\n", buffer);
-      *bufferCountOutput = lin_len + sizeof(win32_surface);
-    } else {
-      *bufferCountOutput += sizeof(win32_surface) /* NUL byte included for required ' ' */;
-    }
+  if (res)
+  {
+    ERR("params.result %d, size %u.\n", res, size);
+    return res;
   }
 
-  return res;
+  size = strlen(internal_exts) + 1;
+  internal_exts[size - 1] = ' ';
+  memcpy(&internal_exts[size], win32_surface, sizeof(win32_surface));
+  size = strlen(internal_exts) + 1;
+
+  *bufferCountOutput = size;
+  if (bufferCapacityInput < size)
+    return bufferCapacityInput ? XR_ERROR_SIZE_INSUFFICIENT : XR_SUCCESS;
+  memcpy(buffer, internal_exts, size);
+  TRACE("returning: %s\n", buffer);
+  return XR_SUCCESS;
 }
 
 static VkResult WINAPI vk_create_instance_callback(const VkInstanceCreateInfo *create_info,
@@ -286,7 +393,7 @@ static VkResult WINAPI vk_create_instance_callback(const VkInstanceCreateInfo *c
   unsigned int i;
   VkResult ret;
 
-  our_create_info = *(const XrVulkanInstanceCreateInfoKHR *)c->create_info;
+  our_create_info = *(const XrVulkanInstanceCreateInfoKHR *)(ULONG_PTR)c->create_info;
   our_create_info.pfnGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)pfnGetInstanceProcAddr;
   our_create_info.vulkanCreateInfo = create_info;
   our_create_info.vulkanAllocator = allocator;
@@ -315,18 +422,54 @@ static VkResult WINAPI vk_create_instance_callback(const VkInstanceCreateInfo *c
   return ret;
 }
 
+typedef struct XrVulkanInstanceCreateInfoKHR32
+{
+    XrStructureType type;
+    PTR32 next;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    XrVulkanInstanceCreateFlagsKHR DECLSPEC_ALIGN(8) createFlags;
+    PTR32 pfnGetInstanceProcAddr;
+    PTR32 vulkanCreateInfo;
+    PTR32 vulkanAllocator;
+} XrVulkanInstanceCreateInfoKHR32;
+
+static void convert_XrVulkanInstanceCreateInfoKHR_win32_to_host(const XrVulkanInstanceCreateInfoKHR32 *in, XrVulkanInstanceCreateInfoKHR *out)
+{
+    if (!in) return;
+
+    out->type = in->type;
+    out->next = NULL;
+    out->systemId = in->systemId;
+    out->createFlags = in->createFlags;
+    if (in->next)
+        FIXME("Unexpected next\n");
+}
+
+static VkResult WINAPI vk_create_instance_callback32(const VkInstanceCreateInfo *create_info,
+                                                   const VkAllocationCallbacks *allocator,
+                                                   VkInstance *vk_instance,
+                                                   void *(*pfnGetInstanceProcAddr)(VkInstance, const char *),
+                                                   void *context)
+{
+  struct vk_create_callback_context *c = context;
+  XrVulkanInstanceCreateInfoKHR xr_create_info_host;
+
+  convert_XrVulkanInstanceCreateInfoKHR_win32_to_host((const XrVulkanInstanceCreateInfoKHR32 *)(ULONG_PTR)c->create_info, &xr_create_info_host);
+  c->create_info = (ULONG_PTR)&xr_create_info_host;
+  return vk_create_instance_callback(create_info, allocator, vk_instance, pfnGetInstanceProcAddr, context);
+}
+
 static VkResult WINAPI vk_create_device_callback(VkPhysicalDevice phys_dev,
                                                  const VkDeviceCreateInfo *create_info,
                                                  const VkAllocationCallbacks *allocator,
                                                  VkDevice *vk_device,
                                                  void *(*pfnGetInstanceProcAddr)(VkInstance, const char *),
                                                  void *context) {
-  /* Only Unix calls here, called from the Unix side. */
   struct vk_create_callback_context *c = context;
   XrVulkanDeviceCreateInfoKHR our_create_info;
   VkResult ret;
 
-  our_create_info = *(const XrVulkanDeviceCreateInfoKHR *)c->create_info;
+  our_create_info = *(const XrVulkanDeviceCreateInfoKHR *)(ULONG_PTR)c->create_info;
   our_create_info.pfnGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)pfnGetInstanceProcAddr;
   our_create_info.vulkanPhysicalDevice = phys_dev;
   our_create_info.vulkanCreateInfo = create_info;
@@ -336,54 +479,156 @@ static VkResult WINAPI vk_create_device_callback(VkPhysicalDevice phys_dev,
   return ret;
 }
 
+typedef struct XrVulkanDeviceCreateInfoKHR32
+{
+    XrStructureType type;
+    PTR32 next;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    XrVulkanDeviceCreateFlagsKHR DECLSPEC_ALIGN(8) createFlags;
+    PTR32 pfnGetInstanceProcAddr;
+    PTR32 vulkanPhysicalDevice;
+    PTR32 vulkanCreateInfo;
+    PTR32 vulkanAllocator;
+} XrVulkanDeviceCreateInfoKHR32;
+
+static void convert_XrVulkanDeviceCreateInfoKHR_win32_to_host(const XrVulkanDeviceCreateInfoKHR32 *in, XrVulkanDeviceCreateInfoKHR *out)
+{
+    if (!in) return;
+
+    out->type = in->type;
+    out->next = NULL;
+    out->systemId = in->systemId;
+    out->createFlags = in->createFlags;
+    if (in->next)
+        FIXME("Unexpected next\n");
+}
+
+static VkResult WINAPI vk_create_device_callback32(VkPhysicalDevice phys_dev,
+                                                 const VkDeviceCreateInfo *create_info,
+                                                 const VkAllocationCallbacks *allocator,
+                                                 VkDevice *vk_device,
+                                                 void *(*pfnGetInstanceProcAddr)(VkInstance, const char *),
+                                                 void *context)
+{
+  struct vk_create_callback_context *c = context;
+  XrVulkanDeviceCreateInfoKHR xr_create_info_host;
+
+  convert_XrVulkanDeviceCreateInfoKHR_win32_to_host((const XrVulkanDeviceCreateInfoKHR32 *)(ULONG_PTR)c->create_info, &xr_create_info_host);
+  c->create_info = (ULONG_PTR)&xr_create_info_host;
+  return vk_create_device_callback(phys_dev, create_info, allocator, vk_device, pfnGetInstanceProcAddr, context);
+}
+
 NTSTATUS init_openxr(void *args) {
   struct init_openxr_params *params = args;
-  NTSTATUS status;
-  unixlib_handle_t unix_funcs;
-  Dl_info info;
-  void *unix_handle;
 
-  status = NtQueryVirtualMemory(GetCurrentProcess(), params->winevulkan,
-                                (MEMORY_INFORMATION_CLASS)1000 /*MemoryWineUnixFuncs*/, &unix_funcs, sizeof(unix_funcs),
-                                NULL);
-  if (status) {
-    ERR("NtQueryVirtualMemory status %#x.\n", (int)status);
-    return status;
-  }
-
-  if (!dladdr((void *)(ULONG_PTR)unix_funcs, &info)) {
-    ERR("dladdr failed.\n");
-    return STATUS_INVALID_PARAMETER;
-  }
-
-  TRACE("path %s.\n", info.dli_fname);
-  if (!(unix_handle = dlopen(info.dli_fname, RTLD_NOW))) {
-    ERR("dlopen failed.\n");
-    return STATUS_INVALID_PARAMETER;
-  }
-
-#define L(name)                                      \
-  if (!(name = dlsym(unix_handle, "__wine_" #name))) \
-    ERR("%s not found.\n", #name);
-
-  L(get_native_VkDevice);
-  L(get_native_VkInstance);
-  L(get_native_VkPhysicalDevice);
-  L(get_wrapped_VkPhysicalDevice);
-  L(get_native_VkQueue);
-#undef L
-
-  dlclose(unix_handle);
-
-  params->create_instance_callback = (UINT64)&vk_create_instance_callback;
-  params->create_device_callback = (UINT64)&vk_create_device_callback;
-
+#ifdef _WIN64
+  params->create_instance_callback = (UINT64)(ULONG_PTR)&vk_create_instance_callback;
+  params->create_device_callback = (UINT64)(ULONG_PTR)&vk_create_device_callback;
+#else
+  params->create_instance_callback = (UINT64)(ULONG_PTR)&vk_create_instance_callback32;
+  params->create_device_callback = (UINT64)(ULONG_PTR)&vk_create_device_callback32;
+#endif
   return STATUS_SUCCESS;
 }
 
-NTSTATUS is_available_instance_function_openxr(void *args)
+NTSTATUS wow64_init_openxr(void *args)
 {
-  struct is_available_instance_function_openxr_params *params = args;
+  struct
+  {
+    UINT32 winevulkan;
+    UINT64 create_instance_callback;
+    UINT64 create_device_callback;
+  }
+  *params = args;
+
+  params->create_instance_callback = (UINT64)(ULONG_PTR)&vk_create_instance_callback32;
+  params->create_device_callback = (UINT64)(ULONG_PTR)&vk_create_device_callback32;
+  return STATUS_SUCCESS;
+}
+
+/* Constants for time conversion - matches Wine's ntdll/unix/sync.c */
+#define NANOSECONDS_IN_A_SECOND 1000000000
+#define TICKSPERSEC             10000000
+
+static LONGLONG qpc_to_monotonic_offset(void)
+{
+  LARGE_INTEGER qpc;
+  struct timespec ts;
+  LONGLONG monotonic_qpc;
+
+  NtQueryPerformanceCounter(&qpc, NULL);
+  clock_gettime(CLOCK_MONOTONIC, &ts);
+  monotonic_qpc = (ULONGLONG)ts.tv_sec * TICKSPERSEC + ts.tv_nsec / (NANOSECONDS_IN_A_SECOND / TICKSPERSEC);
+
+  return qpc.QuadPart - monotonic_qpc;
+}
+
+XrResult wine_xrConvertWin32PerformanceCounterToTimeKHR(XrInstance instance,
+                                                        const LARGE_INTEGER *performanceCounter,
+                                                        XrTime *time) {
+  wine_XrInstance *wine_instance = wine_instance_from_handle(instance);
+  struct timespec ts;
+  LONGLONG monotonic_qpc;
+  XrResult res;
+
+  TRACE("instance %p, performanceCounter %p (%lld), time %p\n",
+        (void *)(uintptr_t)instance, performanceCounter,
+        performanceCounter ? (long long)performanceCounter->QuadPart : 0, time);
+
+  if (!performanceCounter || !time)
+    return XR_ERROR_VALIDATION_FAILURE;
+
+  if (!p_xrConvertTimespecTimeToTimeKHR) {
+    WARN("XR_KHR_convert_timespec_time not available, cannot convert time.\n");
+    return XR_ERROR_FUNCTION_UNSUPPORTED;
+  }
+
+  monotonic_qpc = performanceCounter->QuadPart - qpc_to_monotonic_offset();
+
+  ts.tv_sec = monotonic_qpc / TICKSPERSEC;
+  ts.tv_nsec = (monotonic_qpc % TICKSPERSEC) * (NANOSECONDS_IN_A_SECOND / TICKSPERSEC);
+
+  res = p_xrConvertTimespecTimeToTimeKHR(wine_instance->host_instance, &ts, time);
+  if (res != XR_SUCCESS)
+    WARN("xrConvertTimespecTimeToTimeKHR failed: %d\n", res);
+
+  return res;
+}
+
+XrResult wine_xrConvertTimeToWin32PerformanceCounterKHR(XrInstance instance,
+                                                        XrTime time,
+                                                        LARGE_INTEGER *performanceCounter) {
+  wine_XrInstance *wine_instance = wine_instance_from_handle(instance);
+  struct timespec ts;
+  LONGLONG monotonic_qpc;
+  XrResult res;
+
+  TRACE("instance %p, time %lld, performanceCounter %p\n",
+        (void *)(uintptr_t)instance, (long long)time, performanceCounter);
+
+  if (!performanceCounter)
+    return XR_ERROR_VALIDATION_FAILURE;
+
+  if (!p_xrConvertTimeToTimespecTimeKHR) {
+    WARN("XR_KHR_convert_timespec_time not available, cannot convert time.\n");
+    return XR_ERROR_FUNCTION_UNSUPPORTED;
+  }
+
+  res = p_xrConvertTimeToTimespecTimeKHR(wine_instance->host_instance, time, &ts);
+  if (res != XR_SUCCESS) {
+    WARN("xrConvertTimeToTimespecTimeKHR failed: %d\n", res);
+    return res;
+  }
+
+  monotonic_qpc = (ULONGLONG)ts.tv_sec * TICKSPERSEC +
+                  ts.tv_nsec / (NANOSECONDS_IN_A_SECOND / TICKSPERSEC);
+  performanceCounter->QuadPart = monotonic_qpc + qpc_to_monotonic_offset();
+
+  return XR_SUCCESS;
+}
+
+XrResult is_available_instance_function(wine_XrInstance *wine_instance, const char *name)
+{
   static const char *always_supported[] =
   {
     "xrGetD3D11GraphicsRequirementsKHR",
@@ -391,19 +636,38 @@ NTSTATUS is_available_instance_function_openxr(void *args)
     "xrConvertTimeToWin32PerformanceCounterKHR",
     "xrConvertWin32PerformanceCounterToTimeKHR",
   };
-  wine_XrInstance *wine_instance = wine_instance_from_handle(params->instance);
   PFN_xrVoidFunction fn;
   unsigned int i;
 
   for (i = 0; i < ARRAY_SIZE(always_supported); ++i)
   {
-    if (!strcmp(params->name, always_supported[i]))
-    {
-      params->ret = XR_SUCCESS;
-      return STATUS_SUCCESS;
-    }
+    if (!strcmp(name, always_supported[i]))
+      return XR_SUCCESS;
   }
 
-  params->ret = xrGetInstanceProcAddr(wine_instance ? wine_instance->host_instance : NULL, params->name, &fn);
+  return xrGetInstanceProcAddr(wine_instance ? wine_instance->host_instance : (XrInstance)0, name, &fn);
+}
+
+#ifdef _WIN64
+NTSTATUS is_available_instance_function_openxr(void *args)
+{
+  struct is_available_instance_function_openxr_params *params = args;
+  wine_XrInstance *wine_instance = wine_instance_from_handle(params->instance);
+
+  params->ret = is_available_instance_function(wine_instance, params->name);
   return STATUS_SUCCESS;
+}
+#endif
+
+NTSTATUS is_available_instance_function_openxr32(void *arg)
+{
+    struct
+    {
+        XrInstance instance;
+        UINT32 name;
+        XrResult ret;
+    } *params = arg;
+    wine_XrInstance *wine_instance = wine_instance_from_handle(params->instance);
+    params->ret = is_available_instance_function(wine_instance, UlongToPtr(params->name));
+    return STATUS_SUCCESS;
 }

@@ -1,0 +1,60 @@
+From 1c78596625336a73dbfc035dbbcf0dbdd95b06eb Mon Sep 17 00:00:00 2001
+From: Paul Gofman <pgofman@codeweavers.com>
+Date: Mon, 21 Sep 2026 18:56:46 -0600
+Subject: [PATCH] fixup! winevulkan: Introduce Wine-specific VR extensions.
+
+xrCreateVulkanDeviceKHR() takes vkGetInstanceProcAddr and not
+vkGetDeviceProcAddr.
+
+CW-Bug-Id: #27677
+---
+ dlls/win32u/vulkan.c       | 2 +-
+ dlls/winevulkan/winevk.xml | 9 ++-------
+ 2 files changed, 3 insertions(+), 8 deletions(-)
+
+diff --git a/dlls/win32u/vulkan.c b/dlls/win32u/vulkan.c
+index 911db797e49..542d9aa4a9e 100644
+--- a/dlls/win32u/vulkan.c
++++ b/dlls/win32u/vulkan.c
+@@ -960,7 +960,7 @@ static VkResult win32u_vkCreateDevice( VkPhysicalDevice client_physical_device,
+     if ((callback_info = pop_next_struct( (VkBaseOutStructure **)&create_info->pNext, VK_STRUCTURE_TYPE_CREATE_INFO_WINE_DEVICE_CALLBACK )))
+     {
+         PFN_vkCreateDeviceCallbackWINE callback = (void *)(UINT_PTR)callback_info->native_create_callback;
+-        if ((res = callback( physical_device->host.physical_device, create_info, allocator, &host_device, p_vkGetDeviceProcAddr, (void *)(UINT_PTR)callback_info->context ))) goto failed;
++        if ((res = callback( physical_device->host.physical_device, create_info, allocator, &host_device, p_vkGetInstanceProcAddr, (void *)(UINT_PTR)callback_info->context ))) goto failed;
+     }
+     else if ((res = instance->p_vkCreateDevice( physical_device->host.physical_device, create_info, NULL /* allocator */, &host_device ))) goto failed;
+ 
+diff --git a/dlls/winevulkan/winevk.xml b/dlls/winevulkan/winevk.xml
+index 858fa57e932..38d3caaac4e 100644
+--- a/dlls/winevulkan/winevk.xml
++++ b/dlls/winevulkan/winevk.xml
+@@ -29,18 +29,13 @@
+             <member><type>UINT64</type> <name>context</name></member>
+         </type>
+ 
+-        <type category="funcpointer" requires="VkDevice">
+-            <proto><type>PFN_vkVoidFunction</type> <name>PFN_vkGetDeviceProcAddrWINE</name></proto>
+-            <param><type>VkDevice</type> <name>device</name></param>
+-            <param>const <type>char</type>* <name>name</name></param>
+-        </type>
+         <type category="funcpointer">
+             <proto><type>VkResult</type> <name>PFN_vkCreateDeviceCallbackWINE</name></proto>
+             <param><type>VkPhysicalDevice</type> <name>physical_device</name></param>
+             <param>const <type>void</type>* <name>create_info</name></param>
+             <param>const <type>void</type>* <name>allocator</name></param>
+             <param><type>VkDevice</type>* <name>device</name></param>
+-            <param><type>PFN_vkGetDeviceProcAddrWINE</type> <name>get_device_proc_addr</name></param>
++            <param><type>PFN_vkGetInstanceProcAddrWINE</type> <name>get_instance_proc_addr</name></param>
+             <param><type>void</type>* <name>context</name></param>
+         </type>
+         <type category="struct" name="VkCreateInfoWineDeviceCallback" structextends="VkDeviceCreateInfo">
+@@ -72,7 +67,7 @@
+                 <enum value="1"                                                 name="VK_WINE_OPENXR_DEVICE_EXTENSIONS_SPEC_VERSION"/>
+                 <enum value="&quot;VK_WINE_openxr_device_extensions&quot;"      name="VK_WINE_OPENXR_DEVICE_EXTENSIONS_EXTENSION_NAME"/>
+                 <enum offset="0" extends="VkStructureType"                      name="VK_STRUCTURE_TYPE_CREATE_INFO_WINE_DEVICE_CALLBACK"/>
+-                <type name="PFN_vkGetDeviceProcAddrWINE"/>
++                <type name="PFN_vkGetInstanceProcAddrWINE"/>
+                 <type name="PFN_vkCreateDeviceCallbackWINE"/>
+                 <type name="VkCreateInfoWineDeviceCallback"/>
+             </require>

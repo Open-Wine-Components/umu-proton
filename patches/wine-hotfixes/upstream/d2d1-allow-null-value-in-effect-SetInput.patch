@@ -1,0 +1,49 @@
+From 290276fb04e812b5c4c2338ba0b8b4bd7e4bef4c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bernhard=20=C3=9Cbelacker?= <bernhardu@mailbox.org>
+Date: Thu, 26 Mar 2026 15:40:29 +0100
+Subject: [PATCH] d2d1: Allow value NULL in d2d_effect_SetInput.
+
+Wine-Bug: http://bugs.winehq.org/show_bug.cgi?id=59561
+(cherry picked from commit c2f0d81c7b91c8327fb8bf7ad53ed637abedd3e5)
+
+CW-Bug-Id: #27857
+---
+ dlls/d2d1/effect.c     | 3 ++-
+ dlls/d2d1/tests/d2d1.c | 7 +++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/d2d1/effect.c b/dlls/d2d1/effect.c
+index b66fe731523..286fae95e9c 100644
+--- a/dlls/d2d1/effect.c
++++ b/dlls/d2d1/effect.c
+@@ -2807,7 +2807,8 @@ static void STDMETHODCALLTYPE d2d_effect_SetInput(ID2D1Effect *iface, UINT32 ind
+     if (index >= effect->input_count)
+         return;
+ 
+-    ID2D1Image_AddRef(input);
++    if (input)
++        ID2D1Image_AddRef(input);
+     if (effect->inputs[index])
+         ID2D1Image_Release(effect->inputs[index]);
+     effect->inputs[index] = input;
+diff --git a/dlls/d2d1/tests/d2d1.c b/dlls/d2d1/tests/d2d1.c
+index b912444a534..f701c4a19b5 100644
+--- a/dlls/d2d1/tests/d2d1.c
++++ b/dlls/d2d1/tests/d2d1.c
+@@ -11865,6 +11865,13 @@ static void test_builtin_effect(BOOL d3d11)
+             ok(image_a == NULL, "Got unexpected image_a %p.\n", image_a);
+             winetest_pop_context();
+         }
++
++        /* Test setting NULL bitmap */
++        image_a = (ID2D1Image *)0xdeadbeef;
++        ID2D1Effect_SetInput(effect, 0, (ID2D1Image *)NULL, FALSE);
++        ID2D1Effect_GetInput(effect, 0, &image_a);
++        ok(image_a == NULL, "Got unexpected image_a %p.\n", image_a);
++
+         ID2D1Bitmap_Release(bitmap);
+ 
+         ID2D1Effect_Release(effect);
+-- 
+2.56.0
+

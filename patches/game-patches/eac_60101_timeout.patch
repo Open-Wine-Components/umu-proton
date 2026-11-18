@@ -10,10 +10,10 @@ Avoids EAC error 60101 due to a timeout waiting for the eac_wine_pid file.
  2 files changed, 31 insertions(+)
 
 diff --git a/dlls/ntdll/unix/server.c b/dlls/ntdll/unix/server.c
-index 3969c2bb898..da5308ea2a9 100644
+index 112157b0dd7..0958a650d8b 100644
 --- a/dlls/ntdll/unix/server.c
 +++ b/dlls/ntdll/unix/server.c
-@@ -1561,6 +1561,31 @@ void process_exit_wrapper( int status )
+@@ -1596,6 +1596,31 @@ void process_exit_wrapper( int status )
  }
  
  
@@ -45,7 +45,7 @@ index 3969c2bb898..da5308ea2a9 100644
  /***********************************************************************
   *           server_init_process
   *
-@@ -1685,6 +1710,8 @@ size_t server_init_process(void)
+@@ -1740,6 +1765,8 @@ size_t server_init_process(void)
  
      set_thread_id( NtCurrentTeb(), pid, tid );
  
@@ -55,10 +55,10 @@ index 3969c2bb898..da5308ea2a9 100644
          if (supported_machines[i] == current_machine) return info_size;
  
 diff --git a/dlls/ntdll/unix/thread.c b/dlls/ntdll/unix/thread.c
-index b7f424e1108..e075c51915c 100644
+index 9ee9239947f..b526ab30854 100644
 --- a/dlls/ntdll/unix/thread.c
 +++ b/dlls/ntdll/unix/thread.c
-@@ -1453,11 +1453,15 @@ void abort_thread( int status )
+@@ -1480,11 +1480,15 @@ void abort_thread( int status )
  }
  
  

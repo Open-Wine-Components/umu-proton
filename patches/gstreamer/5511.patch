@@ -9,47 +9,8 @@ Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/55
  subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
-index 2a041b7b0a6..304c0e09a0f 100644
---- a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
-+++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
-@@ -308,7 +308,7 @@ gst_gl_display_type_from_environment (void)
-       return GST_GL_DISPLAY_TYPE_EAGL;
-     } else if (g_strstr_len (env, 7, "android")) {
-       return GST_GL_DISPLAY_TYPE_EGL;
--    } else if (g_strstr_len (env, 4, "winrt")) {
-+    } else if (g_strstr_len (env, 5, "winrt")) {
-       return GST_GL_DISPLAY_TYPE_EGL;
-     } else {
-       return GST_GL_DISPLAY_TYPE_NONE;
--- 
-GitLab
-
-
-From e1ca5754089df4673703be346d741c05018d2c24 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Lo=C3=AFc=20Le=20Page?= <llepage@igalia.com>
-Date: Thu, 19 Oct 2023 14:10:16 +0200
-Subject: [PATCH 2/2] gl: add support for surfaceless display in GstGL
-
-Use of the EGL_MESA_platform_surfaceless EGL extension to create an EGL
-display that is not depending on any kind of windowing system.
-
-Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/5511>
----
- girs/GstGL-1.0.gir                            |  4 +-
- .../gst-libs/gst/gl/egl/gstgldisplay_egl.c    | 54 ++++++++++++++++---
- .../gst-libs/gst/gl/egl/gstgldisplay_egl.h    |  3 ++
- .../gst-libs/gst/gl/gstgldisplay.c            |  9 +++-
- .../gst-libs/gst/gl/gstgldisplay.h            |  9 ++++
- .../gst-libs/gst/gl/gstglwindow.c             |  3 ++
- .../gst-libs/gst/gl/meson.build               | 33 ++++++++++--
- .../gst-plugins-base/meson_options.txt        |  2 +-
- subprojects/gstreamer/docs/gst/running.md     |  2 +-
- subprojects/gstreamer/docs/index.md           |  2 +-
- 10 files changed, 107 insertions(+), 14 deletions(-)
-
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.c b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.c
-index e617b8adb88..902416c19f6 100644
+index e617b8adb8..902416c19f 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.c
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.c
 @@ -25,8 +25,8 @@
@@ -142,7 +103,7 @@ index e617b8adb88..902416c19f6 100644
   * gst_gl_display_egl_new_with_display:
   * @display: an existing and connected EGLDisplay
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.h b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.h
-index 23dc01a9ddb..f7e27de5f9d 100644
+index 23dc01a9dd..f7e27de5f9 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.h
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/egl/gstgldisplay_egl.h
 @@ -66,6 +66,9 @@ struct _GstGLDisplayEGLClass
@@ -156,7 +117,7 @@ index 23dc01a9ddb..f7e27de5f9d 100644
  GstGLDisplayEGL *gst_gl_display_egl_new_with_egl_display (gpointer display);
  
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
-index 304c0e09a0f..d51863c4bed 100644
+index bf220edcef..70d4003328 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.c
 @@ -34,7 +34,7 @@
@@ -168,9 +129,12 @@ index 304c0e09a0f..d51863c4bed 100644
   * - GST_GL_PLATFORM influences the OpenGL platform to use.  Common values are
   *   'egl', 'glx', 'wgl' or 'cgl'.
   * - GST_GL_API influences the OpenGL API requested by the OpenGL platform.
-@@ -310,6 +310,8 @@ gst_gl_display_type_from_environment (void)
+@@ -308,8 +308,10 @@ gst_gl_display_type_from_environment (void)
+       return GST_GL_DISPLAY_TYPE_EAGL;
+     } else if (g_strstr_len (env, 7, "android")) {
        return GST_GL_DISPLAY_TYPE_EGL;
-     } else if (g_strstr_len (env, 5, "winrt")) {
+-    } else if (g_strstr_len (env, 4, "winrt")) {
++    } else if (g_strstr_len (env, 5, "winrt")) {
        return GST_GL_DISPLAY_TYPE_EGL;
 +    } else if (g_strstr_len (env, 11, "surfaceless")) {
 +      return GST_GL_DISPLAY_TYPE_EGL_SURFACELESS;
@@ -193,7 +157,7 @@ index 304c0e09a0f..d51863c4bed 100644
    custom_new_types |= GST_GL_DISPLAY_TYPE_WINRT;
    custom_new_types |= GST_GL_DISPLAY_TYPE_ANDROID;
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.h b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.h
-index 0fbefde07f6..2448218d63b 100644
+index e86b81952a..24edcdcef4 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.h
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstgldisplay.h
 @@ -80,6 +80,14 @@ GType gst_gl_display_get_type (void);
@@ -220,7 +184,7 @@ index 0fbefde07f6..2448218d63b 100644
    GST_GL_DISPLAY_TYPE_ANY = G_MAXUINT32
  } GstGLDisplayType;
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstglwindow.c b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstglwindow.c
-index 91c1ae05131..a6f95b17af6 100644
+index 6d4e3fb383..5a85dfdaa6 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/gstglwindow.c
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/gstglwindow.c
 @@ -334,6 +334,9 @@ gst_gl_window_new (GstGLDisplay * display)
@@ -234,10 +198,10 @@ index 91c1ae05131..a6f95b17af6 100644
    if (!window) {
      /* subclass returned a NULL window */
 diff --git a/subprojects/gst-plugins-base/gst-libs/gst/gl/meson.build b/subprojects/gst-plugins-base/gst-libs/gst/gl/meson.build
-index ebdab9089ab..b97ec0c049b 100644
+index 55e9121597..e3cd3db01e 100644
 --- a/subprojects/gst-plugins-base/gst-libs/gst/gl/meson.build
 +++ b/subprojects/gst-plugins-base/gst-libs/gst/gl/meson.build
-@@ -253,6 +253,7 @@ if gl_winsys.contains('auto')
+@@ -249,6 +249,7 @@ if gl_winsys.contains('auto')
    need_win_winrt = 'auto'
    need_win_cocoa = 'auto'
    need_win_egl = 'auto'
@@ -245,7 +209,7 @@ index ebdab9089ab..b97ec0c049b 100644
    need_win_eagl = 'auto'
    need_win_dispmanx = 'auto'
    need_win_viv_fb = 'auto'
-@@ -265,6 +266,7 @@ else
+@@ -261,6 +262,7 @@ else
    need_win_winrt = 'no'
    need_win_cocoa = 'no'
    need_win_egl = 'no'
@@ -253,7 +217,7 @@ index ebdab9089ab..b97ec0c049b 100644
    need_win_eagl = 'no'
    need_win_dispmanx = 'no'
    need_win_viv_fb = 'no'
-@@ -283,6 +285,8 @@ else
+@@ -279,6 +281,8 @@ else
        need_win_cocoa = 'yes'
      elif winsys == 'egl'
        need_win_egl = 'yes'
@@ -262,7 +226,7 @@ index ebdab9089ab..b97ec0c049b 100644
      elif winsys == 'eagl'
        need_win_eagl = 'yes'
      elif winsys == 'dispmanx'
-@@ -578,16 +582,39 @@ if need_platform_egl != 'no'
+@@ -574,16 +578,39 @@ if need_platform_egl != 'no'
  endif
  
  # winsys_egl checks
@@ -306,7 +270,7 @@ index ebdab9089ab..b97ec0c049b 100644
  wayland_client_dep = unneeded_dep
  wayland_cursor_dep = unneeded_dep
 diff --git a/subprojects/gst-plugins-base/meson_options.txt b/subprojects/gst-plugins-base/meson_options.txt
-index 2fb13cfafb2..45d0fed0aaa 100644
+index 50ec6aae1f..330f6aa171 100644
 --- a/subprojects/gst-plugins-base/meson_options.txt
 +++ b/subprojects/gst-plugins-base/meson_options.txt
 @@ -12,7 +12,7 @@ option('gl_platform', type : 'array',
@@ -319,10 +283,10 @@ index 2fb13cfafb2..45d0fed0aaa 100644
  option('egl_module_name', type : 'string', value : '',
         description : 'The file to pass to g_module_open to open the libEGL library (default: libEGL)')
 diff --git a/subprojects/gstreamer/docs/gst/running.md b/subprojects/gstreamer/docs/gst/running.md
-index 08eb86cc1d3..436a7900d33 100644
+index 65f5e6fd24..b7898eeb88 100644
 --- a/subprojects/gstreamer/docs/gst/running.md
 +++ b/subprojects/gstreamer/docs/gst/running.md
-@@ -315,7 +315,7 @@ the encoding does not look like UTF-8.
+@@ -314,7 +314,7 @@ the encoding does not look like UTF-8.
  **`GST_GL_WINDOW`.**
  
  Influences the window system to use by the GStreamer OpenGL library.
@@ -332,10 +296,10 @@ index 08eb86cc1d3..436a7900d33 100644
  **`GST_GL_PLATFORM`.**
  
 diff --git a/subprojects/gstreamer/docs/index.md b/subprojects/gstreamer/docs/index.md
-index 14b04503508..72bf530bebb 100644
+index 4237705e66..45d66fd01f 100644
 --- a/subprojects/gstreamer/docs/index.md
 +++ b/subprojects/gstreamer/docs/index.md
-@@ -325,7 +325,7 @@ the encoding does not look like UTF-8.
+@@ -323,7 +323,7 @@ the encoding does not look like UTF-8.
  **GST_GL_WINDOW.**
  
  Influences the window system to use by the GStreamer OpenGL library.
@@ -344,6 +308,3 @@ index 14b04503508..72bf530bebb 100644
  
  **GST_GL_PLATFORM.**
  
--- 
-GitLab
-

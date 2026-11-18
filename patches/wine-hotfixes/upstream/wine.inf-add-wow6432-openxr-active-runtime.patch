@@ -1,0 +1,22 @@
+From 172e483e0dd7b649d409ea43c87d0e606def23ce Mon Sep 17 00:00:00 2001
+From: Paul Gofman <pgofman@codeweavers.com>
+Date: Mon, 21 Sep 2026 11:26:24 -0600
+Subject: [PATCH] fixup! vrclient: wine.inf: Add OpenXR registry entries.
+
+CW-Bug-Id: #27677
+---
+ loader/wine.inf.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/loader/wine.inf.in b/loader/wine.inf.in
+index 56e3af73d53..344ca6cf37a 100644
+--- a/loader/wine.inf.in
++++ b/loader/wine.inf.in
+@@ -1536,6 +1536,7 @@ HKCU,Software\Wine\AppDefaults\RDR2.exe\DllOverrides,"vulkan-1",,"native"
+ HKCU,Software\Wine\AppDefaults\ActOfWar.exe,"Version",,"winxp"
+ HKCU,Software\Wine\AppDefaults\DarkOmen.exe,"Version",,"winxp"
+ HKLM,Software\Khronos\OpenXR\1,"ActiveRuntime",,"C:\openxr\wineopenxr64.json"
++HKLM,Software\Wow6432Node\Khronos\OpenXR\1,"ActiveRuntime",,"C:\openxr\wineopenxr64.json"
+ ;;Other app-specific overrides
+ HKCU,Software\Wine\AppDefaults\Pentiment.exe\DllOverrides,"SpeechSynthesisWrapper",4,
+ HKCU,Software\Wine\AppDefaults\Maine-Win64-Shipping.exe\DllOverrides,"SpeechSynthWrapper",4,

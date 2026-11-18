@@ -106,12 +106,6 @@ function configure() {
     die "Create a subdirectory in build/ or outside of the tree and run configure.sh from there."
   fi
 
-  # nothing specified, getting the default value from the Makefile to test the
-  # container engine
-  if [[ -z $steamrt_image ]]; then
-    steamrt_image="$(sed -n 's/STEAMRT_IMAGE ?= //p' $SRCDIR/Makefile.in)"
-  fi
-
   # Build name
   local build_name="$arg_build_name"
   if [[ -n $build_name ]]; then
@@ -119,6 +113,24 @@ function configure() {
   else
     build_name="$DEFAULT_BUILD_NAME"
     info "No build name specified, using default: $build_name"
+  fi
+
+  if [[ ${build_name,,} == *proton* ]]; then
+    internal_tool_name=${build_name}
+  else
+    internal_tool_name=${build_name}-proton
+  fi
+
+  local target_arch=x86_64
+  if [[ -n $arg_target_arch ]]; then
+    target_arch="$arg_target_arch"
+  fi
+  info "Build targetting: $target_arch"
+
+  # nothing specified, getting the default value from the Makefile to test the
+  # container engine
+  if [[ -z $steamrt_image ]]; then
+    steamrt_image="$(make --silent "SRCDIR=$srcdir" --file "$srcdir/Makefile.in" "TARGET_ARCH=$target_arch" get-steamrt-image)"
   fi
 
   dependency_command make "GNU Make"
@@ -156,6 +168,8 @@ function configure() {
     echo ""
     echo "SRCDIR     := $(escape_for_make "$srcdir")"
     echo "BUILD_NAME := $(escape_for_make "$build_name")"
+    echo "TARGET_ARCH := $(escape_for_make "$target_arch")"
+    echo "INTERNAL_TOOL_NAME := $(escape_for_make "$internal_tool_name")"
 
     # SteamRT was specified, baking it into the Makefile
     if [[ -n $arg_protonsdk_image ]]; then
@@ -171,9 +185,6 @@ function configure() {
       echo "CONTAINER_MOUNT_OPTS := $CONTAINER_MOUNT_OPTS"
     fi
     echo "ENABLE_CCACHE := 1"
-    if [[ -n "$arg_enable_bear" ]]; then
-      echo "ENABLE_BEAR := 1"
-    fi
 
     # Include base
     echo ""
@@ -190,10 +201,11 @@ function configure() {
 
 arg_protonsdk_image=""
 arg_build_name=""
+arg_target_arch=""
 arg_container_engine=""
 arg_docker_opts=""
 arg_relabel_volumes=""
-arg_enable_bear=""
+arg_enable_ccache=""
 arg_help=""
 invalid_args=""
 function parse_args() {
@@ -230,6 +242,9 @@ function parse_args() {
     elif [[ $arg = --build-name ]]; then
       arg_build_name="$val"
       val_used=1
+    elif [[ $arg = --target-arch ]]; then
+      arg_target_arch="$val"
+      val_used=1
     elif [[ $arg = --container-engine ]]; then
       arg_container_engine="$val"
       val_used=1
@@ -238,8 +253,8 @@ function parse_args() {
       val_used=1
     elif [[ $arg = --relabel-volumes ]]; then
       arg_relabel_volumes="1"
-    elif [[ $arg = --enable-bear ]]; then
-      arg_enable_bear="1"
+    elif [[ $arg = --enable-ccache ]]; then
+      arg_enable_ccache="1"
     elif [[ $arg = --proton-sdk-image ]]; then
       val_used=1
       arg_protonsdk_image="$val"
@@ -286,6 +301,8 @@ usage() {
   "$1" ""
   "$1" "    --build-name=<name>  Set the name of the build that displays when used in Steam"
   "$1" ""
+  "$1" "    --target-arch=<name> Builds for given architecture. x86_64 (default) and arm64 are supported."
+  "$1" ""
   "$1" "    --container-engine=<engine> Which Docker-compatible container engine to use,"
   "$1" "                                e.g. podman. Tries to do autodiscovery when not specified."
   "$1" ""
@@ -293,7 +310,7 @@ usage() {
   "$1" ""
   "$1" "    --relabel-volumes Bind-mounted volumes will be relabeled. Use with caution."
   "$1" ""
-  "$1" "    --enable-bear Invokes make via bear creating compile_commands.json."
+  "$1" "    --enable-ccache Accepted for compatibility; ccache (\$CCACHE_DIR or \$HOME/.ccache) is always enabled."
   "$1" ""
   "$1" "  Steam Runtime"
   "$1" "    Proton builds that are to be installed & run under the steam client must be built with"

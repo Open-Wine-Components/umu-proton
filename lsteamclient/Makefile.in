@@ -58,6 +58,7 @@ SOURCES = \
 	cppISteamApps_STEAMAPPS_INTERFACE_VERSION006.cpp \
 	cppISteamApps_STEAMAPPS_INTERFACE_VERSION007.cpp \
 	cppISteamApps_STEAMAPPS_INTERFACE_VERSION008.cpp \
+	cppISteamApps_STEAMAPPS_INTERFACE_VERSION009.cpp \
 	cppISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001.cpp \
 	cppISteamBilling_SteamBilling002.cpp \
 	cppISteamClient_SteamClient006.cpp \
@@ -129,6 +130,7 @@ SOURCES = \
 	cppISteamInput_SteamInput002.cpp \
 	cppISteamInput_SteamInput005.cpp \
 	cppISteamInput_SteamInput006.cpp \
+	cppISteamInput_SteamInput007.cpp \
 	cppISteamInventory_STEAMINVENTORY_INTERFACE_V001.cpp \
 	cppISteamInventory_STEAMINVENTORY_INTERFACE_V002.cpp \
 	cppISteamInventory_STEAMINVENTORY_INTERFACE_V003.cpp \
@@ -144,6 +146,7 @@ SOURCES = \
 	cppISteamMatchmaking_SteamMatchMaking009.cpp \
 	cppISteamMatchmakingServers_SteamMatchMakingServers001.cpp \
 	cppISteamMatchmakingServers_SteamMatchMakingServers002.cpp \
+	cppISteamMatchmakingServers_SteamMatchMakingServers003.cpp \
 	cppISteamMusic_STEAMMUSIC_INTERFACE_VERSION001.cpp \
 	cppISteamMusicRemote_STEAMMUSICREMOTE_INTERFACE_VERSION001.cpp \
 	cppISteamNetworking_SteamNetworking001.cpp \
@@ -160,6 +163,7 @@ SOURCES = \
 	cppISteamNetworkingSockets_SteamNetworkingSockets008.cpp \
 	cppISteamNetworkingSockets_SteamNetworkingSockets009.cpp \
 	cppISteamNetworkingSockets_SteamNetworkingSockets012.cpp \
+	cppISteamNetworkingSockets_SteamNetworkingSockets013.cpp \
 	cppISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized002.cpp \
 	cppISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized003.cpp \
 	cppISteamNetworkingUtils_SteamNetworkingUtils001.cpp \
@@ -171,6 +175,7 @@ SOURCES = \
 	cppISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001.cpp \
 	cppISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002.cpp \
 	cppISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003.cpp \
+	cppISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION004.cpp \
 	cppISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION001.cpp \
 	cppISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION002.cpp \
 	cppISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION003.cpp \
@@ -252,6 +257,7 @@ SOURCES = \
 	cppISteamUtils_SteamUtils008.cpp \
 	cppISteamUtils_SteamUtils009.cpp \
 	cppISteamUtils_SteamUtils010.cpp \
+	cppISteamUtils_SteamUtils011.cpp \
 	cppISteamVideo_STEAMVIDEO_INTERFACE_V001.cpp \
 	cppISteamVideo_STEAMVIDEO_INTERFACE_V002.cpp \
 	cppISteamVideo_STEAMVIDEO_INTERFACE_V007.cpp \

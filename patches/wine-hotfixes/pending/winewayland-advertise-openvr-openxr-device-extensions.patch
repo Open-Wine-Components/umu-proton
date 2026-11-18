@@ -1,0 +1,13 @@
+diff --git a/dlls/winewayland.drv/vulkan.c b/dlls/winewayland.drv/vulkan.c
+index 543d2b4284d..6a08d62421a 100644
+--- a/dlls/winewayland.drv/vulkan.c
++++ b/dlls/winewayland.drv/vulkan.c
+@@ -95,6 +95,8 @@ static void wayland_map_device_extensions(struct vulkan_device_extensions *exten
+     if (extensions->has_VK_KHR_external_semaphore_fd) extensions->has_VK_KHR_external_semaphore_win32 = 1;
+     if (extensions->has_VK_KHR_external_fence_win32) extensions->has_VK_KHR_external_fence_fd = 1;
+     if (extensions->has_VK_KHR_external_fence_fd) extensions->has_VK_KHR_external_fence_win32 = 1;
++    extensions->has_VK_WINE_openvr_device_extensions = 1;
++    extensions->has_VK_WINE_openxr_device_extensions = 1;
+ }
+ 
+ static const struct vulkan_driver_funcs wayland_vulkan_driver_funcs =

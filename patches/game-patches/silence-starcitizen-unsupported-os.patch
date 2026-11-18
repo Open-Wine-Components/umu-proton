@@ -1,8 +1,8 @@
 diff --git a/dlls/user32/msgbox.c b/dlls/user32/msgbox.c
-index 8d9adce..3ae5e23 100644
+index 009f3858c60..94cd8b2bd79 100644
 --- a/dlls/user32/msgbox.c
 +++ b/dlls/user32/msgbox.c
-@@ -495,6 +495,7 @@ INT WINAPI MessageBoxW( HWND hwnd, LPCWSTR text, LPCWSTR title, UINT type )
+@@ -400,6 +400,7 @@ INT WINAPI MessageBoxW( HWND hwnd, LPCWSTR text, LPCWSTR title, UINT type )
      return MessageBoxExW(hwnd, text, title, type, LANG_NEUTRAL);
  }
  
@@ -10,7 +10,7 @@ index 8d9adce..3ae5e23 100644
  
  /**************************************************************************
   *		MessageBoxExA (USER32.@)
-@@ -504,6 +505,9 @@ INT WINAPI MessageBoxExA( HWND hWnd, LPCSTR text, LPCSTR title,
+@@ -409,6 +410,9 @@ INT WINAPI MessageBoxExA( HWND hWnd, LPCSTR text, LPCSTR title,
  {
      MSGBOXPARAMSA msgbox;
  

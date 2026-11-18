@@ -30,6 +30,13 @@ apply_all_in_dir() {
     git clean -xdf
     popd
 
+    pushd openvr
+    git reset --hard HEAD
+    git clean -xdf
+    echo "OPENVR: do not assume MSVC when _WIN32 is defined (clang build fix)"
+    apply_patch "../patches/openvr/openvr-no-msvc-assumption.patch"
+    popd
+
     pushd gstreamer
     git reset --hard HEAD
     git clean -xdf
@@ -42,7 +49,35 @@ apply_all_in_dir() {
     git clean -xdf
     popd
 
+    pushd wineopenxr
+    git checkout .
+    git clean -xdf
+    echo "WINEOPENXR: patch wineopenxr so it can be built as part of wine and used outside of steam"
+    apply_all_in_dir "../patches/wineopenxr/"
+    popd
+
 ### END PREP SECTION ###
+
+    git checkout steam_helper
+    git checkout umu_helper
+
+    # Ubisoft games stayed "Running" in Steam after quitting: https://github.com/ValveSoftware/Proton/pull/10356
+    echo "STEAM_HELPER: close Ubisoft Connect after the game exits"
+    apply_all_in_dir "patches/steam_helper"
+
+    git checkout -- \
+        lsteamclient/unix_private.h \
+        lsteamclient/unixlib.cpp
+
+    echo "LSTEAMCLIENT: build with clang and libc++"
+    apply_all_in_dir "patches/lsteamclient"
+
+    git checkout -- \
+        vrclient_x64/json_converter.cpp \
+        vrclient_x64/unix_private.h
+
+    echo "VRCLIENT: build with clang and libc++"
+    apply_all_in_dir "patches/vrclient"
 
 ### (2) WINE PATCHING ###
 
@@ -58,6 +93,11 @@ apply_all_in_dir() {
     git revert --no-commit e813ca5771658b00875924ab88d525322e50d39f
 
 ### END PROBLEMATIC COMMIT REVERT SECTION ###
+
+    echo "WINE: -WINEOPENXR- copy files into wine"
+    mkdir -p dlls/wineopenxr
+    cp -R ../wineopenxr/* dlls/wineopenxr/
+
 ### (2-4) GAME PATCH SECTION ###
 
     echo "WINE: -GAME FIXES- assetto corsa hud fix"
@@ -80,6 +120,29 @@ apply_all_in_dir() {
 
 ### (2-5) WINE HOTFIX/BACKPORT SECTION ###
 
+    # Valve bleeding-edge wine fixups needed by 32-bit wineopenxr and by OpenXR outside of steam,
+    # not yet in the proton_11.0 wine branch
+    echo "WINE: -BACKPORT- winevulkan: pass vkGetInstanceProcAddr to the OpenXR device creation callback"
+    apply_patch "../patches/wine-hotfixes/upstream/winevulkan-pass-vkGetInstanceProcAddr-to-device-callback.patch"
+
+    echo "WINE: -BACKPORT- win32u: avoid a crash when __WINE_OPENXR_VK_DEVICE_EXTENSIONS is not set"
+    apply_patch "../patches/wine-hotfixes/upstream/win32u-avoid-crash-without-openxr-device-extensions-env.patch"
+
+    echo "WINE: -BACKPORT- wine.inf: add the OpenXR ActiveRuntime registry entry for 32-bit applications"
+    apply_patch "../patches/wine-hotfixes/upstream/wine.inf-add-wow6432-openxr-active-runtime.patch"
+
+
+    # upstream wine commits from Valve's bleeding-edge wine that the Le Mans Ultimate patches build on,
+    # not yet in the proton_11.0 wine branch
+    echo "WINE: -BACKPORT- d2d1: sprite batch object methods and DrawSpriteBatch() command list recording"
+    apply_patch "../patches/wine-hotfixes/upstream/d2d1-allow-null-value-in-effect-SetInput.patch"
+    apply_patch "../patches/wine-hotfixes/upstream/d2d1-tests-add-sprite-batch-tests.patch"
+    apply_patch "../patches/wine-hotfixes/upstream/d2d1-implement-sprite-batch-object-methods.patch"
+    apply_patch "../patches/wine-hotfixes/upstream/d2d1-implement-DrawSpriteBatch-command-list-recording.patch"
+
+    echo "WINE: -BACKPORT- bcrypt: handle prepended secret buffers in BCryptDeriveKey() for KDF_HASH"
+    apply_patch "../patches/wine-hotfixes/upstream/bcrypt-handle-prepended-secret-buffers-for-KDF_HASH.patch"
+
 ### END WINE HOTFIX/BACKPORT SECTION ###
 
 ### (2-6) WINE PENDING UPSTREAM SECTION ###
@@ -100,10 +163,6 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- ncrypt: NCryptDecrypt implementation (PSN Login for Ghost of Tsushima)"
     apply_patch "../patches/wine-hotfixes/pending/NCryptDecrypt_implementation.patch"
 
-    #https://github.com/GloriousEggroll/proton-ge-custom/issues/283
-    echo "WINE: -PENDING- quartz: backport to allow clannad videos to work"
-    apply_patch "../patches/wine-hotfixes/pending/8848.patch"
-
     # https://github.com/StephenCWills/wine/commits/akiba/
     # https://github.com/ValveSoftware/Proton/issues/651#issuecomment-3564552601
     echo "WINE: -PENDING- add akibas trip undead & undressed patches"
@@ -114,16 +173,34 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- add OpenXR patches"
     apply_patch "../patches/wine-hotfixes/pending/0001-decouple-wineopenxr-from-steamvr-and-integrate-it-in.patch"
 
+    # https://github.com/GloriousEggroll/proton-ge-custom/issues/852
+    echo "WINE: -PENDING- winewayland: advertise the OpenVR/OpenXR Vulkan device pseudo-extensions like winex11"
+    apply_patch "../patches/wine-hotfixes/pending/winewayland-advertise-openvr-openxr-device-extensions.patch"
+
+    # Le Mans Ultimate
+    # https://github.com/GloriousEggroll/proton-ge-custom/issues/777
+    # https://github.com/GloriousEggroll/proton-ge-custom/issues/944
+    echo "WINE: -PENDING- Register Direct2D Tint effect properties for Le Mans Ultimate"
+    apply_patch "../patches/wine-hotfixes/pending/d2d1-register-tint-effect.patch"
+
+    echo "WINE: -PENDING- Render Direct2D sprites, Tint output and layers for Le Mans Ultimate"
+    apply_patch "../patches/wine-hotfixes/pending/d2d1-render-bitmap-sprites-tint-and-layers.patch"
+
+    echo "WINE: -PENDING- Isolate Direct2D target clips for Le Mans Ultimate text rendering"
+    apply_patch "../patches/wine-hotfixes/pending/d2d1-isolate-target-clip-stacks.patch"
+
+    echo "WINE: -PENDING- Le Mans Ultimate VR loads a .cur cursor through D3DX"
+    apply_patch "../patches/wine-hotfixes/pending/d3dx-cur-ico-loading-for-le-mans-ultimate.patch"
+    apply_patch "../patches/wine-hotfixes/pending/d3dx-cur-ico-bounds-and-cursor-alpha-for-le-mans-ultimate.patch"
+
+    echo "WINE: -PENDING- Le Mans Ultimate online key derivation and wheel reconnection"
+    apply_patch "../patches/wine-hotfixes/pending/bcrypt-kdf-secret-append-for-le-mans-ultimate.patch"
+    apply_patch "../patches/wine-hotfixes/pending/dinput-find-hotplugged-devices-for-le-mans-ultimate.patch"
+
 ### END WINE PENDING UPSTREAM SECTION ###
 
 
 ### (2-7) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
-    echo "WINE: -CUSTOM- Downgrade MESSAGE to TRACE to remove write_watches spam"
-    apply_patch "../patches/proton/0001-ntdll-Downgrade-using-kernel-write-watches-from-MESS.patch"
-
-    echo "WINE: -CUSTOM- Fix a crash in ID2D1DeviceContext if no target is set"
-    apply_patch "../patches/proton/fix-a-crash-in-ID2D1DeviceContext-if-no-target-is-set.patch"
-
     # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
     echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some problematic anticheats (notably eac)"
     apply_patch "../patches/proton/wine_host_block_envvar.patch"

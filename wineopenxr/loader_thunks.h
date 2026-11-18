@@ -1,9 +1,9 @@
-/* Automatically generated from Vulkan xr.xml; DO NOT EDIT!
+/* Automatically generated from OpenXR xr.xml; DO NOT EDIT!
  *
- * This file is generated from Vulkan xr.xml file covered
+ * This file is generated from OpenXR xr.xml file covered
  * by the following copyright and permission notice:
  *
- * Copyright (c) 2017-2025 The Khronos Group Inc.
+ * Copyright (c) 2017-2026 The Khronos Group Inc.
  *
  * SPDX-License-Identifier: Apache-2.0 OR MIT
  *
@@ -26,8 +26,9 @@ enum unix_call
 {
     unix_init,
     unix_is_available_instance_function,
-    unix_xrAcquireEnvironmentDepthImageMETA,
+    unix_xrAcquireAppConsumedSwapchainImageEXT,
     unix_xrAcquireSwapchainImage,
+    unix_xrAddTrackableImageDatabaseANDROID,
     unix_xrAllocateWorldMeshBufferML,
     unix_xrApplyForceFeedbackCurlMNDX,
     unix_xrApplyHapticFeedback,
@@ -35,41 +36,52 @@ enum unix_call
     unix_xrBeginFrame,
     unix_xrBeginPlaneDetectionEXT,
     unix_xrBeginSession,
+    unix_xrBeginSpatialContainerRenderingEXT,
     unix_xrCancelFutureEXT,
     unix_xrCaptureSceneAsyncBD,
     unix_xrCaptureSceneCompleteBD,
     unix_xrChangeVirtualKeyboardTextContextMETA,
+    unix_xrCheckVpsAvailabilityAsyncANDROID,
+    unix_xrCheckVpsAvailabilityCompleteANDROID,
     unix_xrClearSpatialAnchorStoreMSFT,
     unix_xrComputeNewSceneMSFT,
+    unix_xrConvertTimeToWin32PerformanceCounterKHR,
+    unix_xrConvertWin32PerformanceCounterToTimeKHR,
     unix_xrCreateAction,
     unix_xrCreateActionSet,
     unix_xrCreateActionSpace,
     unix_xrCreateAnchorSpaceANDROID,
     unix_xrCreateAnchorSpaceBD,
+    unix_xrCreateAppConsumedSwapchainEXT,
     unix_xrCreateBodyTrackerBD,
     unix_xrCreateBodyTrackerFB,
     unix_xrCreateBodyTrackerHTC,
     unix_xrCreateDeviceAnchorPersistenceANDROID,
-    unix_xrCreateEnvironmentDepthProviderMETA,
-    unix_xrCreateEnvironmentDepthSwapchainMETA,
     unix_xrCreateExportedLocalizationMapML,
+    unix_xrCreateEyeTrackerANDROID,
     unix_xrCreateEyeTrackerFB,
     unix_xrCreateFaceTracker2FB,
+    unix_xrCreateFaceTrackerANDROID,
+    unix_xrCreateFaceTrackerBD,
     unix_xrCreateFaceTrackerFB,
     unix_xrCreateFacialExpressionClientML,
     unix_xrCreateFacialTrackerHTC,
     unix_xrCreateFoveationProfileFB,
     unix_xrCreateGeometryInstanceFB,
+    unix_xrCreateGeospatialAnchorANDROID,
+    unix_xrCreateGeospatialTrackerANDROID,
     unix_xrCreateHandMeshSpaceMSFT,
     unix_xrCreateHandTrackerEXT,
     unix_xrCreateInstance,
     unix_xrCreateKeyboardSpaceFB,
+    unix_xrCreateLightEstimatorANDROID,
     unix_xrCreateMarkerDetectorML,
     unix_xrCreateMarkerSpaceML,
     unix_xrCreateMarkerSpaceVARJO,
     unix_xrCreatePassthroughColorLutMETA,
     unix_xrCreatePassthroughFB,
     unix_xrCreatePassthroughHTC,
+    unix_xrCreatePassthroughLayerANDROID,
     unix_xrCreatePassthroughLayerFB,
     unix_xrCreatePersistedAnchorSpaceANDROID,
     unix_xrCreatePlaneDetectorEXT,
@@ -78,9 +90,15 @@ enum unix_call
     unix_xrCreateRenderModelEXT,
     unix_xrCreateRenderModelSpaceEXT,
     unix_xrCreateSceneMSFT,
+    unix_xrCreateSceneMeshSnapshotANDROID,
+    unix_xrCreateSceneMeshingTrackerANDROID,
     unix_xrCreateSceneObserverMSFT,
     unix_xrCreateSenseDataProviderBD,
     unix_xrCreateSession,
+    unix_xrCreateSoundFieldBD,
+    unix_xrCreateSoundObjectBD,
+    unix_xrCreateSoundObstacleBD,
+    unix_xrCreateSoundObstacleMaterialBD,
     unix_xrCreateSpaceUserFB,
     unix_xrCreateSpatialAnchorAsyncBD,
     unix_xrCreateSpatialAnchorCompleteBD,
@@ -89,11 +107,16 @@ enum unix_call
     unix_xrCreateSpatialAnchorFromPersistedNameMSFT,
     unix_xrCreateSpatialAnchorHTC,
     unix_xrCreateSpatialAnchorMSFT,
+    unix_xrCreateSpatialAnchorSpaceANDROID,
+    unix_xrCreateSpatialAnchorSpaceFromIdANDROID,
     unix_xrCreateSpatialAnchorSpaceMSFT,
     unix_xrCreateSpatialAnchorStoreConnectionMSFT,
     unix_xrCreateSpatialAnchorsAsyncML,
     unix_xrCreateSpatialAnchorsCompleteML,
     unix_xrCreateSpatialAnchorsStorageML,
+    unix_xrCreateSpatialAudioRendererBD,
+    unix_xrCreateSpatialContainerEXT,
+    unix_xrCreateSpatialContainerSpaceEXT,
     unix_xrCreateSpatialContextAsyncEXT,
     unix_xrCreateSpatialContextCompleteEXT,
     unix_xrCreateSpatialDiscoverySnapshotAsyncEXT,
@@ -101,12 +124,18 @@ enum unix_call
     unix_xrCreateSpatialEntityAnchorBD,
     unix_xrCreateSpatialEntityFromIdEXT,
     unix_xrCreateSpatialGraphNodeSpaceMSFT,
+    unix_xrCreateSpatialImageTrackingDatabaseAsyncEXT,
+    unix_xrCreateSpatialImageTrackingDatabaseCompleteEXT,
     unix_xrCreateSpatialPersistenceContextAsyncEXT,
     unix_xrCreateSpatialPersistenceContextCompleteEXT,
+    unix_xrCreateSpatialRaycastSnapshotANDROID,
     unix_xrCreateSpatialUpdateSnapshotEXT,
+    unix_xrCreateSurfaceAnchorAsyncANDROID,
+    unix_xrCreateSurfaceAnchorCompleteANDROID,
     unix_xrCreateSwapchain,
+    unix_xrCreateTrackableImageDatabaseAsyncANDROID,
+    unix_xrCreateTrackableImageDatabaseCompleteANDROID,
     unix_xrCreateTrackableTrackerANDROID,
-    unix_xrCreateTriangleMeshFB,
     unix_xrCreateVirtualKeyboardMETA,
     unix_xrCreateVirtualKeyboardSpaceMETA,
     unix_xrCreateWorldMeshDetectorML,
@@ -116,66 +145,87 @@ enum unix_call
     unix_xrDestroyAction,
     unix_xrDestroyActionSet,
     unix_xrDestroyAnchorBD,
+    unix_xrDestroyAppConsumedSwapchainEXT,
     unix_xrDestroyBodyTrackerBD,
     unix_xrDestroyBodyTrackerFB,
     unix_xrDestroyBodyTrackerHTC,
     unix_xrDestroyDeviceAnchorPersistenceANDROID,
-    unix_xrDestroyEnvironmentDepthProviderMETA,
-    unix_xrDestroyEnvironmentDepthSwapchainMETA,
     unix_xrDestroyExportedLocalizationMapML,
+    unix_xrDestroyEyeTrackerANDROID,
     unix_xrDestroyEyeTrackerFB,
     unix_xrDestroyFaceTracker2FB,
+    unix_xrDestroyFaceTrackerANDROID,
+    unix_xrDestroyFaceTrackerBD,
     unix_xrDestroyFaceTrackerFB,
     unix_xrDestroyFacialExpressionClientML,
     unix_xrDestroyFacialTrackerHTC,
     unix_xrDestroyFoveationProfileFB,
     unix_xrDestroyGeometryInstanceFB,
+    unix_xrDestroyGeospatialTrackerANDROID,
     unix_xrDestroyHandTrackerEXT,
     unix_xrDestroyInstance,
+    unix_xrDestroyLightEstimatorANDROID,
     unix_xrDestroyMarkerDetectorML,
     unix_xrDestroyPassthroughColorLutMETA,
     unix_xrDestroyPassthroughFB,
     unix_xrDestroyPassthroughHTC,
+    unix_xrDestroyPassthroughLayerANDROID,
     unix_xrDestroyPassthroughLayerFB,
     unix_xrDestroyPlaneDetectorEXT,
     unix_xrDestroyRenderModelAssetEXT,
     unix_xrDestroyRenderModelEXT,
     unix_xrDestroySceneMSFT,
+    unix_xrDestroySceneMeshSnapshotANDROID,
+    unix_xrDestroySceneMeshingTrackerANDROID,
     unix_xrDestroySceneObserverMSFT,
     unix_xrDestroySenseDataProviderBD,
     unix_xrDestroySenseDataSnapshotBD,
     unix_xrDestroySession,
+    unix_xrDestroySoundFieldBD,
+    unix_xrDestroySoundObjectBD,
+    unix_xrDestroySoundObstacleBD,
+    unix_xrDestroySoundObstacleMaterialBD,
     unix_xrDestroySpace,
     unix_xrDestroySpaceUserFB,
     unix_xrDestroySpatialAnchorMSFT,
     unix_xrDestroySpatialAnchorStoreConnectionMSFT,
     unix_xrDestroySpatialAnchorsStorageML,
+    unix_xrDestroySpatialAudioRendererBD,
+    unix_xrDestroySpatialContainerEXT,
     unix_xrDestroySpatialContextEXT,
     unix_xrDestroySpatialEntityEXT,
     unix_xrDestroySpatialGraphNodeBindingMSFT,
+    unix_xrDestroySpatialImageTrackingDatabaseEXT,
     unix_xrDestroySpatialPersistenceContextEXT,
     unix_xrDestroySpatialSnapshotEXT,
     unix_xrDestroySwapchain,
+    unix_xrDestroyTrackableImageDatabaseANDROID,
     unix_xrDestroyTrackableTrackerANDROID,
-    unix_xrDestroyTriangleMeshFB,
     unix_xrDestroyVirtualKeyboardMETA,
     unix_xrDestroyWorldMeshDetectorML,
-    unix_xrDiscoverSpacesMETA,
     unix_xrDownloadSharedSpatialAnchorAsyncBD,
     unix_xrDownloadSharedSpatialAnchorCompleteBD,
     unix_xrEnableLocalizationEventsML,
     unix_xrEnableUserCalibrationEventsML,
+    unix_xrEndAudioPeriodBD,
     unix_xrEndFrame,
     unix_xrEndSession,
+    unix_xrEndSpatialContainerRenderingEXT,
     unix_xrEnumerateApiLayerProperties,
+    unix_xrEnumerateAppConsumedSwapchainImagesEXT,
     unix_xrEnumerateBoundSourcesForAction,
     unix_xrEnumerateColorSpacesFB,
+    unix_xrEnumerateColorSpacesSONY,
     unix_xrEnumerateDisplayRefreshRatesFB,
     unix_xrEnumerateEnvironmentBlendModes,
-    unix_xrEnumerateEnvironmentDepthSwapchainImagesMETA,
+    unix_xrEnumerateEnvironmentTexturePixelFormatsBD,
+    unix_xrEnumerateEnvironmentTextureResolutionsBD,
+    unix_xrEnumerateEnvironmentTextureTransferTypesBD,
     unix_xrEnumerateExternalCamerasOCULUS,
+    unix_xrEnumerateFacialSimulationModesBD,
     unix_xrEnumerateInstanceExtensionProperties,
     unix_xrEnumerateInteractionRenderModelIdsEXT,
+    unix_xrEnumeratePerformanceMetricsCounterPathsANDROID,
     unix_xrEnumeratePerformanceMetricsCounterPathsMETA,
     unix_xrEnumeratePersistedAnchorsANDROID,
     unix_xrEnumeratePersistedSpatialAnchorNamesMSFT,
@@ -186,15 +236,23 @@ enum unix_call
     unix_xrEnumerateReprojectionModesMSFT,
     unix_xrEnumerateSceneComputeFeaturesMSFT,
     unix_xrEnumerateSpaceSupportedComponentsFB,
+    unix_xrEnumerateSpatialAnchorAttachableComponentsANDROID,
+    unix_xrEnumerateSpatialArchetypeComponentTypesEXT,
+    unix_xrEnumerateSpatialArchetypesEXT,
     unix_xrEnumerateSpatialCapabilitiesEXT,
     unix_xrEnumerateSpatialCapabilityComponentTypesEXT,
     unix_xrEnumerateSpatialCapabilityFeaturesEXT,
     unix_xrEnumerateSpatialEntityComponentTypesBD,
     unix_xrEnumerateSpatialPersistenceScopesEXT,
+    unix_xrEnumerateSpatialReferenceImageFormatsEXT,
     unix_xrEnumerateSupportedAnchorTrackableTypesANDROID,
+    unix_xrEnumerateSupportedAudioSampleRateBD,
     unix_xrEnumerateSupportedPersistenceAnchorTypesANDROID,
+    unix_xrEnumerateSupportedSemanticLabelSetsANDROID,
+    unix_xrEnumerateSupportedSpatialContainerGraphicsPresentationsEXT,
     unix_xrEnumerateSupportedTrackableTypesANDROID,
     unix_xrEnumerateSwapchainFormats,
+    unix_xrEnumerateSwapchainFormats2EXT,
     unix_xrEnumerateSwapchainImages,
     unix_xrEnumerateViewConfigurationViews,
     unix_xrEnumerateViewConfigurations,
@@ -207,30 +265,40 @@ enum unix_call
     unix_xrGetActionStateFloat,
     unix_xrGetActionStatePose,
     unix_xrGetActionStateVector2f,
+    unix_xrGetAllSubmeshStatesANDROID,
     unix_xrGetAllTrackablesANDROID,
     unix_xrGetAnchorPersistStateANDROID,
     unix_xrGetAnchorUuidBD,
+    unix_xrGetAppConsumedSwapchainPropertiesEXT,
     unix_xrGetAudioInputDeviceGuidOculus,
     unix_xrGetAudioOutputDeviceGuidOculus,
     unix_xrGetBodySkeletonFB,
     unix_xrGetBodySkeletonHTC,
+    unix_xrGetBodyTrackingStateBD,
+    unix_xrGetCoarseTrackingEyesInfoANDROID,
     unix_xrGetControllerModelKeyMSFT,
     unix_xrGetControllerModelPropertiesMSFT,
     unix_xrGetControllerModelStateMSFT,
     unix_xrGetCurrentInteractionProfile,
     unix_xrGetDeviceSampleRateFB,
     unix_xrGetDisplayRefreshRateFB,
-    unix_xrGetEnvironmentDepthSwapchainStateMETA,
     unix_xrGetExportedLocalizationMapDataML,
     unix_xrGetEyeGazesFB,
+    unix_xrGetFaceCalibrationStateANDROID,
     unix_xrGetFaceExpressionWeights2FB,
     unix_xrGetFaceExpressionWeightsFB,
+    unix_xrGetFaceStateANDROID,
     unix_xrGetFacialExpressionBlendShapePropertiesML,
     unix_xrGetFacialExpressionsHTC,
+    unix_xrGetFacialSimulationDataBD,
+    unix_xrGetFacialSimulationModeBD,
+    unix_xrGetFineTrackingEyesInfoANDROID,
     unix_xrGetFoveationEyeTrackedStateMETA,
+    unix_xrGetHandGestureQCOM,
     unix_xrGetHandMeshFB,
     unix_xrGetInputSourceLocalizedName,
     unix_xrGetInstanceProperties,
+    unix_xrGetLightEstimateANDROID,
     unix_xrGetMarkerDetectorStateML,
     unix_xrGetMarkerLengthML,
     unix_xrGetMarkerNumberML,
@@ -241,6 +309,7 @@ enum unix_call
     unix_xrGetOpenGLGraphicsRequirementsKHR,
     unix_xrGetPassthroughCameraStateANDROID,
     unix_xrGetPassthroughPreferencesMETA,
+    unix_xrGetPerformanceMetricsStateANDROID,
     unix_xrGetPerformanceMetricsStateMETA,
     unix_xrGetPlaneDetectionStateEXT,
     unix_xrGetPlaneDetectionsEXT,
@@ -267,6 +336,8 @@ enum unix_call
     unix_xrGetSpaceComponentStatusFB,
     unix_xrGetSpaceContainerFB,
     unix_xrGetSpaceRoomLayoutFB,
+    unix_xrGetSpaceRoomMeshFaceIndicesMETA,
+    unix_xrGetSpaceRoomMeshMETA,
     unix_xrGetSpaceSemanticLabelsFB,
     unix_xrGetSpaceTriangleMeshMETA,
     unix_xrGetSpaceUserIdFB,
@@ -280,15 +351,21 @@ enum unix_call
     unix_xrGetSpatialBufferUint8EXT,
     unix_xrGetSpatialBufferVector2fEXT,
     unix_xrGetSpatialBufferVector3fEXT,
+    unix_xrGetSpatialContainerBoundsEXT,
+    unix_xrGetSpatialContainerStateEXT,
     unix_xrGetSpatialEntityComponentDataBD,
     unix_xrGetSpatialEntityUuidBD,
     unix_xrGetSpatialGraphNodeBindingPropertiesMSFT,
+    unix_xrGetStationaryReferenceSpaceGenerationIdEXT,
+    unix_xrGetSubmeshDataANDROID,
     unix_xrGetSwapchainStateFB,
     unix_xrGetSystem,
     unix_xrGetSystemProperties,
+    unix_xrGetTrackableImageANDROID,
     unix_xrGetTrackableMarkerANDROID,
     unix_xrGetTrackableObjectANDROID,
     unix_xrGetTrackablePlaneANDROID,
+    unix_xrGetTrackableQrCodeANDROID,
     unix_xrGetViewConfigurationProperties,
     unix_xrGetVirtualKeyboardDirtyTexturesMETA,
     unix_xrGetVirtualKeyboardModelAnimationStatesMETA,
@@ -302,17 +379,21 @@ enum unix_call
     unix_xrGetVulkanGraphicsRequirementsKHR,
     unix_xrGetVulkanInstanceExtensionsKHR,
     unix_xrGetWorldMeshBufferRecommendSizeML,
+    unix_xrHapticParametricGetPropertiesEXT,
     unix_xrImportLocalizationMapML,
     unix_xrLoadControllerModelMSFT,
     unix_xrLoadRenderModelFB,
     unix_xrLocateBodyJointsBD,
     unix_xrLocateBodyJointsFB,
     unix_xrLocateBodyJointsHTC,
+    unix_xrLocateGeospatialPoseANDROID,
+    unix_xrLocateGeospatialPoseFromPoseANDROID,
     unix_xrLocateHandJointsEXT,
     unix_xrLocateSceneComponentsMSFT,
     unix_xrLocateSpace,
     unix_xrLocateSpaces,
     unix_xrLocateSpacesKHR,
+    unix_xrLocateSpatialContainerViewsEXT,
     unix_xrLocateViews,
     unix_xrPassthroughLayerPauseFB,
     unix_xrPassthroughLayerResumeFB,
@@ -333,7 +414,9 @@ enum unix_call
     unix_xrPollFutureEXT,
     unix_xrPublishSpatialAnchorsAsyncML,
     unix_xrPublishSpatialAnchorsCompleteML,
+    unix_xrQueryFramesPerBufferRangeBD,
     unix_xrQueryLocalizationMapsML,
+    unix_xrQueryPerformanceMetricsCounterANDROID,
     unix_xrQueryPerformanceMetricsCounterMETA,
     unix_xrQuerySenseDataAsyncBD,
     unix_xrQuerySenseDataCompleteBD,
@@ -343,19 +426,25 @@ enum unix_call
     unix_xrQuerySpatialComponentDataEXT,
     unix_xrQuerySystemTrackedKeyboardFB,
     unix_xrRaycastANDROID,
+    unix_xrReleaseAppConsumedSwapchainImageEXT,
     unix_xrReleaseSwapchainImage,
+    unix_xrRemoveTrackableImageDatabaseANDROID,
+    unix_xrRequestBodyTrackingFidelityMETA,
+    unix_xrRequestBoundaryVisibilityMETA,
     unix_xrRequestDisplayRefreshRateFB,
     unix_xrRequestExitSession,
     unix_xrRequestMapLocalizationML,
     unix_xrRequestSceneCaptureFB,
+    unix_xrRequestSpatialContainerBoundsModeEXT,
+    unix_xrRequestSpatialContainerVisibleEXT,
     unix_xrRequestWorldMeshAsyncML,
     unix_xrRequestWorldMeshCompleteML,
     unix_xrRequestWorldMeshStateAsyncML,
     unix_xrRequestWorldMeshStateCompleteML,
     unix_xrResetBodyTrackingCalibrationMETA,
     unix_xrResultToString,
+    unix_xrResultToString2KHR,
     unix_xrResumeSimultaneousHandsAndControllersTrackingMETA,
-    unix_xrRetrieveSpaceDiscoveryResultsMETA,
     unix_xrRetrieveSpaceQueryResultsFB,
     unix_xrSaveSpaceFB,
     unix_xrSaveSpaceListFB,
@@ -364,7 +453,11 @@ enum unix_call
     unix_xrSetColorSpaceFB,
     unix_xrSetDigitalLensControlALMALENCE,
     unix_xrSetEnvironmentDepthEstimationVARJO,
-    unix_xrSetEnvironmentDepthHandRemovalMETA,
+    unix_xrSetFacialSimulationModeBD,
+    unix_xrSetGoogleCloudAuthAsyncANDROID,
+    unix_xrSetGoogleCloudAuthCompleteANDROID,
+    unix_xrSetHandTrackingFrequencyHintMETA,
+    unix_xrSetHdrMetadataSONY,
     unix_xrSetInputDeviceActiveEXT,
     unix_xrSetInputDeviceLocationEXT,
     unix_xrSetInputDeviceStateBoolEXT,
@@ -373,9 +466,12 @@ enum unix_call
     unix_xrSetMarkerTrackingPredictionVARJO,
     unix_xrSetMarkerTrackingTimeoutVARJO,
     unix_xrSetMarkerTrackingVARJO,
+    unix_xrSetPassthroughLayerMeshANDROID,
+    unix_xrSetPerformanceMetricsStateANDROID,
     unix_xrSetPerformanceMetricsStateMETA,
     unix_xrSetSpaceComponentStatusFB,
     unix_xrSetSystemNotificationsML,
+    unix_xrSetTilePropertiesHintMETA,
     unix_xrSetTrackingOptimizationSettingsHintQCOM,
     unix_xrSetViewOffsetVARJO,
     unix_xrSetVirtualKeyboardModelVisibilityMETA,
@@ -384,30 +480,25 @@ enum unix_call
     unix_xrShareSpatialAnchorAsyncBD,
     unix_xrShareSpatialAnchorCompleteBD,
     unix_xrSnapshotMarkerDetectorML,
+    unix_xrStartBodyTrackingCalibrationAppBD,
     unix_xrStartColocationAdvertisementMETA,
     unix_xrStartColocationDiscoveryMETA,
-    unix_xrStartEnvironmentDepthProviderMETA,
     unix_xrStartSenseDataProviderAsyncBD,
     unix_xrStartSenseDataProviderCompleteBD,
     unix_xrStopColocationAdvertisementMETA,
     unix_xrStopColocationDiscoveryMETA,
-    unix_xrStopEnvironmentDepthProviderMETA,
     unix_xrStopHapticFeedback,
     unix_xrStopSenseDataProviderBD,
     unix_xrStringToPath,
     unix_xrStructureTypeToString,
     unix_xrStructureTypeToString2KHR,
+    unix_xrSubmitSoundFieldBufferBD,
+    unix_xrSubmitSoundObjectBufferBD,
     unix_xrSuggestBodyTrackingCalibrationOverrideMETA,
     unix_xrSuggestInteractionProfileBindings,
     unix_xrSuggestVirtualKeyboardLocationMETA,
     unix_xrSyncActions,
     unix_xrThermalGetTemperatureTrendEXT,
-    unix_xrTriangleMeshBeginUpdateFB,
-    unix_xrTriangleMeshBeginVertexBufferUpdateFB,
-    unix_xrTriangleMeshEndUpdateFB,
-    unix_xrTriangleMeshEndVertexBufferUpdateFB,
-    unix_xrTriangleMeshGetIndexBufferFB,
-    unix_xrTriangleMeshGetVertexBufferFB,
     unix_xrTryCreateSpatialGraphStaticNodeBindingMSFT,
     unix_xrUnpersistAnchorANDROID,
     unix_xrUnpersistSpatialAnchorAsyncBD,
@@ -417,33 +508,45 @@ enum unix_call
     unix_xrUnpersistSpatialEntityCompleteEXT,
     unix_xrUpdateHandMeshMSFT,
     unix_xrUpdatePassthroughColorLutMETA,
+    unix_xrUpdateSoundFieldConfigBD,
+    unix_xrUpdateSoundObjectConfigBD,
+    unix_xrUpdateSoundObstacleConfigBD,
+    unix_xrUpdateSoundObstacleMaterialConfigBD,
     unix_xrUpdateSpatialAnchorsExpirationAsyncML,
     unix_xrUpdateSpatialAnchorsExpirationCompleteML,
     unix_xrUpdateSwapchainFB,
+    unix_xrWaitAudioPeriodBD,
     unix_xrWaitFrame,
     unix_xrWaitSwapchainImage,
     unix_count,
 };
 
-struct xrAcquireEnvironmentDepthImageMETA_params
+struct xrAcquireAppConsumedSwapchainImageEXT_params
 {
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    const XrEnvironmentDepthImageAcquireInfoMETA *acquireInfo;
-    XrEnvironmentDepthImageMETA *environmentDepthImage;
+    XrAppConsumedSwapchainEXT DECLSPEC_ALIGN(8) appConsumedSwapchain;
+    const XrAppConsumedSwapchainImageAcquireInfoEXT *acquireInfo;
+    XrAppConsumedSwapchainImageStateEXT *image;
     XrResult result;
 };
 
 struct xrAcquireSwapchainImage_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     const XrSwapchainImageAcquireInfo *acquireInfo;
     uint32_t *index;
     XrResult result;
 };
 
+struct xrAddTrackableImageDatabaseANDROID_params
+{
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
+    XrTrackableImageDatabaseANDROID DECLSPEC_ALIGN(8) database;
+    XrResult result;
+};
+
 struct xrAllocateWorldMeshBufferML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshBufferSizeML *size;
     XrWorldMeshBufferML *buffer;
     XrResult result;
@@ -451,14 +554,14 @@ struct xrAllocateWorldMeshBufferML_params
 
 struct xrApplyForceFeedbackCurlMNDX_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     const XrForceFeedbackCurlApplyLocationsMNDX *locations;
     XrResult result;
 };
 
 struct xrApplyHapticFeedback_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrHapticActionInfo *hapticActionInfo;
     const XrHapticBaseHeader *hapticFeedback;
     XrResult result;
@@ -466,42 +569,49 @@ struct xrApplyHapticFeedback_params
 
 struct xrAttachSessionActionSets_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSessionActionSetsAttachInfo *attachInfo;
     XrResult result;
 };
 
 struct xrBeginFrame_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFrameBeginInfo *frameBeginInfo;
     XrResult result;
 };
 
 struct xrBeginPlaneDetectionEXT_params
 {
-    XrPlaneDetectorEXT planeDetector;
+    XrPlaneDetectorEXT DECLSPEC_ALIGN(8) planeDetector;
     const XrPlaneDetectorBeginInfoEXT *beginInfo;
     XrResult result;
 };
 
 struct xrBeginSession_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSessionBeginInfo *beginInfo;
+    XrResult result;
+};
+
+struct xrBeginSpatialContainerRenderingEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialContainerBeginInfoEXT *beginInfo;
     XrResult result;
 };
 
 struct xrCancelFutureEXT_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrFutureCancelInfoEXT *cancelInfo;
     XrResult result;
 };
 
 struct xrCaptureSceneAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSceneCaptureInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -509,35 +619,68 @@ struct xrCaptureSceneAsyncBD_params
 
 struct xrCaptureSceneCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrChangeVirtualKeyboardTextContextMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     const XrVirtualKeyboardTextContextChangeInfoMETA *changeInfo;
+    XrResult result;
+};
+
+struct xrCheckVpsAvailabilityAsyncANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    double DECLSPEC_ALIGN(8) latitude;
+    double DECLSPEC_ALIGN(8) longitude;
+    XrFutureEXT *future;
+    XrResult result;
+};
+
+struct xrCheckVpsAvailabilityCompleteANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
+    XrVPSAvailabilityCheckCompletionANDROID *completion;
     XrResult result;
 };
 
 struct xrClearSpatialAnchorStoreMSFT_params
 {
-    XrSpatialAnchorStoreConnectionMSFT spatialAnchorStore;
+    XrSpatialAnchorStoreConnectionMSFT DECLSPEC_ALIGN(8) spatialAnchorStore;
     XrResult result;
 };
 
 struct xrComputeNewSceneMSFT_params
 {
-    XrSceneObserverMSFT sceneObserver;
+    XrSceneObserverMSFT DECLSPEC_ALIGN(8) sceneObserver;
     const XrNewSceneComputeInfoMSFT *computeInfo;
+    XrResult result;
+};
+
+struct xrConvertTimeToWin32PerformanceCounterKHR_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrTime DECLSPEC_ALIGN(8) time;
+    LARGE_INTEGER *performanceCounter;
+    XrResult result;
+};
+
+struct xrConvertWin32PerformanceCounterToTimeKHR_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    const LARGE_INTEGER *performanceCounter;
+    XrTime *time;
     XrResult result;
 };
 
 struct xrCreateAction_params
 {
-    XrActionSet actionSet;
+    XrActionSet DECLSPEC_ALIGN(8) actionSet;
     const XrActionCreateInfo *createInfo;
     XrAction *action;
     XrResult result;
@@ -545,7 +688,7 @@ struct xrCreateAction_params
 
 struct xrCreateActionSet_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrActionSetCreateInfo *createInfo;
     XrActionSet *actionSet;
     XrResult result;
@@ -553,7 +696,7 @@ struct xrCreateActionSet_params
 
 struct xrCreateActionSpace_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionSpaceCreateInfo *createInfo;
     XrSpace *space;
     XrResult result;
@@ -561,7 +704,7 @@ struct xrCreateActionSpace_params
 
 struct xrCreateAnchorSpaceANDROID_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrAnchorSpaceCreateInfoANDROID *createInfo;
     XrSpace *anchorOutput;
     XrResult result;
@@ -569,15 +712,23 @@ struct xrCreateAnchorSpaceANDROID_params
 
 struct xrCreateAnchorSpaceBD_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrAnchorSpaceCreateInfoBD *createInfo;
     XrSpace *space;
     XrResult result;
 };
 
+struct xrCreateAppConsumedSwapchainEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrAppConsumedSwapchainCreateInfoEXT *createInfo;
+    XrAppConsumedSwapchainEXT *appConsumedSwapchain;
+    XrResult result;
+};
+
 struct xrCreateBodyTrackerBD_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrBodyTrackerCreateInfoBD *createInfo;
     XrBodyTrackerBD *bodyTracker;
     XrResult result;
@@ -585,7 +736,7 @@ struct xrCreateBodyTrackerBD_params
 
 struct xrCreateBodyTrackerFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrBodyTrackerCreateInfoFB *createInfo;
     XrBodyTrackerFB *bodyTracker;
     XrResult result;
@@ -593,7 +744,7 @@ struct xrCreateBodyTrackerFB_params
 
 struct xrCreateBodyTrackerHTC_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrBodyTrackerCreateInfoHTC *createInfo;
     XrBodyTrackerHTC *bodyTracker;
     XrResult result;
@@ -601,39 +752,31 @@ struct xrCreateBodyTrackerHTC_params
 
 struct xrCreateDeviceAnchorPersistenceANDROID_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrDeviceAnchorPersistenceCreateInfoANDROID *createInfo;
     XrDeviceAnchorPersistenceANDROID *outHandle;
     XrResult result;
 };
 
-struct xrCreateEnvironmentDepthProviderMETA_params
-{
-    XrSession session;
-    const XrEnvironmentDepthProviderCreateInfoMETA *createInfo;
-    XrEnvironmentDepthProviderMETA *environmentDepthProvider;
-    XrResult result;
-};
-
-struct xrCreateEnvironmentDepthSwapchainMETA_params
-{
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    const XrEnvironmentDepthSwapchainCreateInfoMETA *createInfo;
-    XrEnvironmentDepthSwapchainMETA *swapchain;
-    XrResult result;
-};
-
 struct xrCreateExportedLocalizationMapML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrUuidEXT *mapUuid;
     XrExportedLocalizationMapML *map;
     XrResult result;
 };
 
+struct xrCreateEyeTrackerANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrEyeTrackerCreateInfoANDROID *createInfo;
+    XrEyeTrackerANDROID *eyeTracker;
+    XrResult result;
+};
+
 struct xrCreateEyeTrackerFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrEyeTrackerCreateInfoFB *createInfo;
     XrEyeTrackerFB *eyeTracker;
     XrResult result;
@@ -641,15 +784,31 @@ struct xrCreateEyeTrackerFB_params
 
 struct xrCreateFaceTracker2FB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFaceTrackerCreateInfo2FB *createInfo;
     XrFaceTracker2FB *faceTracker;
     XrResult result;
 };
 
+struct xrCreateFaceTrackerANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrFaceTrackerCreateInfoANDROID *createInfo;
+    XrFaceTrackerANDROID *faceTracker;
+    XrResult result;
+};
+
+struct xrCreateFaceTrackerBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrFaceTrackerCreateInfoBD *createInfo;
+    XrFaceTrackerBD *tracker;
+    XrResult result;
+};
+
 struct xrCreateFaceTrackerFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFaceTrackerCreateInfoFB *createInfo;
     XrFaceTrackerFB *faceTracker;
     XrResult result;
@@ -657,7 +816,7 @@ struct xrCreateFaceTrackerFB_params
 
 struct xrCreateFacialExpressionClientML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFacialExpressionClientCreateInfoML *createInfo;
     XrFacialExpressionClientML *facialExpressionClient;
     XrResult result;
@@ -665,7 +824,7 @@ struct xrCreateFacialExpressionClientML_params
 
 struct xrCreateFacialTrackerHTC_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFacialTrackerCreateInfoHTC *createInfo;
     XrFacialTrackerHTC *facialTracker;
     XrResult result;
@@ -673,7 +832,7 @@ struct xrCreateFacialTrackerHTC_params
 
 struct xrCreateFoveationProfileFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFoveationProfileCreateInfoFB *createInfo;
     XrFoveationProfileFB *profile;
     XrResult result;
@@ -681,15 +840,31 @@ struct xrCreateFoveationProfileFB_params
 
 struct xrCreateGeometryInstanceFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrGeometryInstanceCreateInfoFB *createInfo;
     XrGeometryInstanceFB *outGeometryInstance;
     XrResult result;
 };
 
+struct xrCreateGeospatialAnchorANDROID_params
+{
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    const XrGeospatialAnchorCreateInfoANDROID *createInfo;
+    XrSpatialEntityIdEXT *anchorEntityId;
+    XrResult result;
+};
+
+struct xrCreateGeospatialTrackerANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrGeospatialTrackerCreateInfoANDROID *createInfo;
+    XrGeospatialTrackerANDROID *geospatialTrackerOutput;
+    XrResult result;
+};
+
 struct xrCreateHandMeshSpaceMSFT_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     const XrHandMeshSpaceCreateInfoMSFT *createInfo;
     XrSpace *space;
     XrResult result;
@@ -697,7 +872,7 @@ struct xrCreateHandMeshSpaceMSFT_params
 
 struct xrCreateHandTrackerEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrHandTrackerCreateInfoEXT *createInfo;
     XrHandTrackerEXT *handTracker;
     XrResult result;
@@ -712,15 +887,23 @@ struct xrCreateInstance_params
 
 struct xrCreateKeyboardSpaceFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrKeyboardSpaceCreateInfoFB *createInfo;
     XrSpace *keyboardSpace;
     XrResult result;
 };
 
+struct xrCreateLightEstimatorANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrLightEstimatorCreateInfoANDROID *createInfo;
+    XrLightEstimatorANDROID *outHandle;
+    XrResult result;
+};
+
 struct xrCreateMarkerDetectorML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrMarkerDetectorCreateInfoML *createInfo;
     XrMarkerDetectorML *markerDetector;
     XrResult result;
@@ -728,7 +911,7 @@ struct xrCreateMarkerDetectorML_params
 
 struct xrCreateMarkerSpaceML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrMarkerSpaceCreateInfoML *createInfo;
     XrSpace *space;
     XrResult result;
@@ -736,7 +919,7 @@ struct xrCreateMarkerSpaceML_params
 
 struct xrCreateMarkerSpaceVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrMarkerSpaceCreateInfoVARJO *createInfo;
     XrSpace *space;
     XrResult result;
@@ -744,7 +927,7 @@ struct xrCreateMarkerSpaceVARJO_params
 
 struct xrCreatePassthroughColorLutMETA_params
 {
-    XrPassthroughFB passthrough;
+    XrPassthroughFB DECLSPEC_ALIGN(8) passthrough;
     const XrPassthroughColorLutCreateInfoMETA *createInfo;
     XrPassthroughColorLutMETA *colorLut;
     XrResult result;
@@ -752,7 +935,7 @@ struct xrCreatePassthroughColorLutMETA_params
 
 struct xrCreatePassthroughFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPassthroughCreateInfoFB *createInfo;
     XrPassthroughFB *outPassthrough;
     XrResult result;
@@ -760,15 +943,23 @@ struct xrCreatePassthroughFB_params
 
 struct xrCreatePassthroughHTC_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPassthroughCreateInfoHTC *createInfo;
     XrPassthroughHTC *passthrough;
     XrResult result;
 };
 
+struct xrCreatePassthroughLayerANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrPassthroughLayerCreateInfoANDROID *createInfo;
+    XrPassthroughLayerANDROID *layer;
+    XrResult result;
+};
+
 struct xrCreatePassthroughLayerFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPassthroughLayerCreateInfoFB *createInfo;
     XrPassthroughLayerFB *outLayer;
     XrResult result;
@@ -776,7 +967,7 @@ struct xrCreatePassthroughLayerFB_params
 
 struct xrCreatePersistedAnchorSpaceANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     const XrPersistedAnchorSpaceCreateInfoANDROID *createInfo;
     XrSpace *anchorOutput;
     XrResult result;
@@ -784,7 +975,7 @@ struct xrCreatePersistedAnchorSpaceANDROID_params
 
 struct xrCreatePlaneDetectorEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPlaneDetectorCreateInfoEXT *createInfo;
     XrPlaneDetectorEXT *planeDetector;
     XrResult result;
@@ -792,7 +983,7 @@ struct xrCreatePlaneDetectorEXT_params
 
 struct xrCreateReferenceSpace_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrReferenceSpaceCreateInfo *createInfo;
     XrSpace *space;
     XrResult result;
@@ -800,7 +991,7 @@ struct xrCreateReferenceSpace_params
 
 struct xrCreateRenderModelAssetEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRenderModelAssetCreateInfoEXT *createInfo;
     XrRenderModelAssetEXT *asset;
     XrResult result;
@@ -808,7 +999,7 @@ struct xrCreateRenderModelAssetEXT_params
 
 struct xrCreateRenderModelEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRenderModelCreateInfoEXT *createInfo;
     XrRenderModelEXT *renderModel;
     XrResult result;
@@ -816,7 +1007,7 @@ struct xrCreateRenderModelEXT_params
 
 struct xrCreateRenderModelSpaceEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRenderModelSpaceCreateInfoEXT *createInfo;
     XrSpace *space;
     XrResult result;
@@ -824,15 +1015,31 @@ struct xrCreateRenderModelSpaceEXT_params
 
 struct xrCreateSceneMSFT_params
 {
-    XrSceneObserverMSFT sceneObserver;
+    XrSceneObserverMSFT DECLSPEC_ALIGN(8) sceneObserver;
     const XrSceneCreateInfoMSFT *createInfo;
     XrSceneMSFT *scene;
     XrResult result;
 };
 
+struct xrCreateSceneMeshSnapshotANDROID_params
+{
+    XrSceneMeshingTrackerANDROID DECLSPEC_ALIGN(8) tracker;
+    const XrSceneMeshSnapshotCreateInfoANDROID *createInfo;
+    XrSceneMeshSnapshotCreationResultANDROID *outSnapshotCreationResult;
+    XrResult result;
+};
+
+struct xrCreateSceneMeshingTrackerANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSceneMeshingTrackerCreateInfoANDROID *createInfo;
+    XrSceneMeshingTrackerANDROID *tracker;
+    XrResult result;
+};
+
 struct xrCreateSceneObserverMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSceneObserverCreateInfoMSFT *createInfo;
     XrSceneObserverMSFT *sceneObserver;
     XrResult result;
@@ -840,7 +1047,7 @@ struct xrCreateSceneObserverMSFT_params
 
 struct xrCreateSenseDataProviderBD_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSenseDataProviderCreateInfoBD *createInfo;
     XrSenseDataProviderBD *provider;
     XrResult result;
@@ -848,15 +1055,48 @@ struct xrCreateSenseDataProviderBD_params
 
 struct xrCreateSession_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrSessionCreateInfo *createInfo;
     XrSession *session;
     XrResult result;
 };
 
+struct xrCreateSoundFieldBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    const XrSoundFieldConfigBD *config;
+    XrSoundFieldBD *soundField;
+    XrResult result;
+};
+
+struct xrCreateSoundObjectBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    const XrSoundObjectConfigBD *config;
+    XrSoundObjectBD *soundObject;
+    XrResult result;
+};
+
+struct xrCreateSoundObstacleBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    const XrSoundObstacleConfigBD *config;
+    const XrSoundTriangleMeshBD *mesh;
+    XrSoundObstacleBD *soundObstacle;
+    XrResult result;
+};
+
+struct xrCreateSoundObstacleMaterialBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    const XrSoundObstacleMaterialConfigBD *config;
+    XrSoundObstacleMaterialBD *material;
+    XrResult result;
+};
+
 struct xrCreateSpaceUserFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceUserCreateInfoFB *info;
     XrSpaceUserFB *user;
     XrResult result;
@@ -864,7 +1104,7 @@ struct xrCreateSpaceUserFB_params
 
 struct xrCreateSpatialAnchorAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSpatialAnchorCreateInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -872,15 +1112,15 @@ struct xrCreateSpatialAnchorAsyncBD_params
 
 struct xrCreateSpatialAnchorCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSpatialAnchorCreateCompletionBD *completion;
     XrResult result;
 };
 
 struct xrCreateSpatialAnchorEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     const XrSpatialAnchorCreateInfoEXT *createInfo;
     XrSpatialEntityIdEXT *anchorEntityId;
     XrSpatialEntityEXT *anchorEntity;
@@ -889,7 +1129,7 @@ struct xrCreateSpatialAnchorEXT_params
 
 struct xrCreateSpatialAnchorFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorCreateInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -897,7 +1137,7 @@ struct xrCreateSpatialAnchorFB_params
 
 struct xrCreateSpatialAnchorFromPersistedNameMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorFromPersistedAnchorCreateInfoMSFT *spatialAnchorCreateInfo;
     XrSpatialAnchorMSFT *spatialAnchor;
     XrResult result;
@@ -905,7 +1145,7 @@ struct xrCreateSpatialAnchorFromPersistedNameMSFT_params
 
 struct xrCreateSpatialAnchorHTC_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorCreateInfoHTC *createInfo;
     XrSpace *anchor;
     XrResult result;
@@ -913,15 +1153,34 @@ struct xrCreateSpatialAnchorHTC_params
 
 struct xrCreateSpatialAnchorMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorCreateInfoMSFT *createInfo;
     XrSpatialAnchorMSFT *anchor;
     XrResult result;
 };
 
+struct xrCreateSpatialAnchorSpaceANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    const XrSpatialAnchorCreateInfoEXT *createInfo;
+    XrSpatialEntityIdEXT *anchorEntityId;
+    XrSpace *anchorSpace;
+    XrResult result;
+};
+
+struct xrCreateSpatialAnchorSpaceFromIdANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    const XrSpatialAnchorSpaceFromIdCreateInfoANDROID *createInfo;
+    XrSpace *anchorSpace;
+    XrResult result;
+};
+
 struct xrCreateSpatialAnchorSpaceMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorSpaceCreateInfoMSFT *createInfo;
     XrSpace *space;
     XrResult result;
@@ -929,14 +1188,14 @@ struct xrCreateSpatialAnchorSpaceMSFT_params
 
 struct xrCreateSpatialAnchorStoreConnectionMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrSpatialAnchorStoreConnectionMSFT *spatialAnchorStore;
     XrResult result;
 };
 
 struct xrCreateSpatialAnchorsAsyncML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorsCreateInfoBaseHeaderML *createInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -944,23 +1203,47 @@ struct xrCreateSpatialAnchorsAsyncML_params
 
 struct xrCreateSpatialAnchorsCompleteML_params
 {
-    XrSession session;
-    XrFutureEXT future;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrCreateSpatialAnchorsCompletionML *completion;
     XrResult result;
 };
 
 struct xrCreateSpatialAnchorsStorageML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialAnchorsCreateStorageInfoML *createInfo;
     XrSpatialAnchorsStorageML *storage;
     XrResult result;
 };
 
+struct xrCreateSpatialAudioRendererBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialAudioRendererCreateInfoBD *createInfo;
+    XrSpatialAudioRendererBD *renderer;
+    XrResult result;
+};
+
+struct xrCreateSpatialContainerEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialContainerCreateInfoEXT *createInfo;
+    XrSpatialContainerEXT *spatialContainer;
+    XrResult result;
+};
+
+struct xrCreateSpatialContainerSpaceEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialContainerSpaceCreateInfoEXT *createInfo;
+    XrSpace *space;
+    XrResult result;
+};
+
 struct xrCreateSpatialContextAsyncEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialContextCreateInfoEXT *createInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -968,15 +1251,15 @@ struct xrCreateSpatialContextAsyncEXT_params
 
 struct xrCreateSpatialContextCompleteEXT_params
 {
-    XrSession session;
-    XrFutureEXT future;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrCreateSpatialContextCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrCreateSpatialDiscoverySnapshotAsyncEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     const XrSpatialDiscoverySnapshotCreateInfoEXT *createInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -984,7 +1267,7 @@ struct xrCreateSpatialDiscoverySnapshotAsyncEXT_params
 
 struct xrCreateSpatialDiscoverySnapshotCompleteEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     const XrCreateSpatialDiscoverySnapshotCompletionInfoEXT *createSnapshotCompletionInfo;
     XrCreateSpatialDiscoverySnapshotCompletionEXT *completion;
     XrResult result;
@@ -992,7 +1275,7 @@ struct xrCreateSpatialDiscoverySnapshotCompleteEXT_params
 
 struct xrCreateSpatialEntityAnchorBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSpatialEntityAnchorCreateInfoBD *createInfo;
     XrAnchorBD *anchor;
     XrResult result;
@@ -1000,7 +1283,7 @@ struct xrCreateSpatialEntityAnchorBD_params
 
 struct xrCreateSpatialEntityFromIdEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     const XrSpatialEntityFromIdCreateInfoEXT *createInfo;
     XrSpatialEntityEXT *spatialEntity;
     XrResult result;
@@ -1008,15 +1291,31 @@ struct xrCreateSpatialEntityFromIdEXT_params
 
 struct xrCreateSpatialGraphNodeSpaceMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialGraphNodeSpaceCreateInfoMSFT *createInfo;
     XrSpace *space;
     XrResult result;
 };
 
+struct xrCreateSpatialImageTrackingDatabaseAsyncEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialImageTrackingDatabaseCreateInfoEXT *createInfo;
+    XrFutureEXT *future;
+    XrResult result;
+};
+
+struct xrCreateSpatialImageTrackingDatabaseCompleteEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
+    XrCreateSpatialImageTrackingDatabaseCompletionEXT *completion;
+    XrResult result;
+};
+
 struct xrCreateSpatialPersistenceContextAsyncEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialPersistenceContextCreateInfoEXT *createInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -1024,47 +1323,79 @@ struct xrCreateSpatialPersistenceContextAsyncEXT_params
 
 struct xrCreateSpatialPersistenceContextCompleteEXT_params
 {
-    XrSession session;
-    XrFutureEXT future;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrCreateSpatialPersistenceContextCompletionEXT *completion;
+    XrResult result;
+};
+
+struct xrCreateSpatialRaycastSnapshotANDROID_params
+{
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    const XrSpatialRaycastSnapshotCreateInfoANDROID *createInfo;
+    XrSpatialSnapshotEXT *snapshot;
     XrResult result;
 };
 
 struct xrCreateSpatialUpdateSnapshotEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     const XrSpatialUpdateSnapshotCreateInfoEXT *createInfo;
     XrSpatialSnapshotEXT *snapshot;
     XrResult result;
 };
 
+struct xrCreateSurfaceAnchorAsyncANDROID_params
+{
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    const XrSurfaceAnchorCreateInfoANDROID *createInfo;
+    XrFutureEXT *future;
+    XrResult result;
+};
+
+struct xrCreateSurfaceAnchorCompleteANDROID_params
+{
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
+    XrSurfaceAnchorCreateCompletionANDROID *completion;
+    XrResult result;
+};
+
 struct xrCreateSwapchain_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSwapchainCreateInfo *createInfo;
     XrSwapchain *swapchain;
     XrResult result;
 };
 
+struct xrCreateTrackableImageDatabaseAsyncANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrTrackableImageDatabaseCreateInfoANDROID *createInfo;
+    XrFutureEXT *future;
+    XrResult result;
+};
+
+struct xrCreateTrackableImageDatabaseCompleteANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
+    XrCreateTrackableImageDatabaseCompletionANDROID *completion;
+    XrResult result;
+};
+
 struct xrCreateTrackableTrackerANDROID_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrTrackableTrackerCreateInfoANDROID *createInfo;
     XrTrackableTrackerANDROID *trackableTracker;
     XrResult result;
 };
 
-struct xrCreateTriangleMeshFB_params
-{
-    XrSession session;
-    const XrTriangleMeshCreateInfoFB *createInfo;
-    XrTriangleMeshFB *outTriangleMesh;
-    XrResult result;
-};
-
 struct xrCreateVirtualKeyboardMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrVirtualKeyboardCreateInfoMETA *createInfo;
     XrVirtualKeyboardMETA *keyboard;
     XrResult result;
@@ -1072,8 +1403,8 @@ struct xrCreateVirtualKeyboardMETA_params
 
 struct xrCreateVirtualKeyboardSpaceMETA_params
 {
-    XrSession session;
-    XrVirtualKeyboardMETA keyboard;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     const XrVirtualKeyboardSpaceCreateInfoMETA *createInfo;
     XrSpace *keyboardSpace;
     XrResult result;
@@ -1081,7 +1412,7 @@ struct xrCreateVirtualKeyboardSpaceMETA_params
 
 struct xrCreateWorldMeshDetectorML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrWorldMeshDetectorCreateInfoML *createInfo;
     XrWorldMeshDetectorML *detector;
     XrResult result;
@@ -1089,7 +1420,7 @@ struct xrCreateWorldMeshDetectorML_params
 
 struct xrDeleteSpatialAnchorsAsyncML_params
 {
-    XrSpatialAnchorsStorageML storage;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
     const XrSpatialAnchorsDeleteInfoML *deleteInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -1097,312 +1428,388 @@ struct xrDeleteSpatialAnchorsAsyncML_params
 
 struct xrDeleteSpatialAnchorsCompleteML_params
 {
-    XrSpatialAnchorsStorageML storage;
-    XrFutureEXT future;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSpatialAnchorsDeleteCompletionML *completion;
     XrResult result;
 };
 
 struct xrDeserializeSceneMSFT_params
 {
-    XrSceneObserverMSFT sceneObserver;
+    XrSceneObserverMSFT DECLSPEC_ALIGN(8) sceneObserver;
     const XrSceneDeserializeInfoMSFT *deserializeInfo;
     XrResult result;
 };
 
 struct xrDestroyAction_params
 {
-    XrAction action;
+    XrAction DECLSPEC_ALIGN(8) action;
     XrResult result;
 };
 
 struct xrDestroyActionSet_params
 {
-    XrActionSet actionSet;
+    XrActionSet DECLSPEC_ALIGN(8) actionSet;
     XrResult result;
 };
 
 struct xrDestroyAnchorBD_params
 {
-    XrAnchorBD anchor;
+    XrAnchorBD DECLSPEC_ALIGN(8) anchor;
+    XrResult result;
+};
+
+struct xrDestroyAppConsumedSwapchainEXT_params
+{
+    XrAppConsumedSwapchainEXT DECLSPEC_ALIGN(8) appConsumedSwapchain;
     XrResult result;
 };
 
 struct xrDestroyBodyTrackerBD_params
 {
-    XrBodyTrackerBD bodyTracker;
+    XrBodyTrackerBD DECLSPEC_ALIGN(8) bodyTracker;
     XrResult result;
 };
 
 struct xrDestroyBodyTrackerFB_params
 {
-    XrBodyTrackerFB bodyTracker;
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
     XrResult result;
 };
 
 struct xrDestroyBodyTrackerHTC_params
 {
-    XrBodyTrackerHTC bodyTracker;
+    XrBodyTrackerHTC DECLSPEC_ALIGN(8) bodyTracker;
     XrResult result;
 };
 
 struct xrDestroyDeviceAnchorPersistenceANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
-    XrResult result;
-};
-
-struct xrDestroyEnvironmentDepthProviderMETA_params
-{
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    XrResult result;
-};
-
-struct xrDestroyEnvironmentDepthSwapchainMETA_params
-{
-    XrEnvironmentDepthSwapchainMETA swapchain;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     XrResult result;
 };
 
 struct xrDestroyExportedLocalizationMapML_params
 {
-    XrExportedLocalizationMapML map;
+    XrExportedLocalizationMapML DECLSPEC_ALIGN(8) map;
+    XrResult result;
+};
+
+struct xrDestroyEyeTrackerANDROID_params
+{
+    XrEyeTrackerANDROID DECLSPEC_ALIGN(8) eyeTracker;
     XrResult result;
 };
 
 struct xrDestroyEyeTrackerFB_params
 {
-    XrEyeTrackerFB eyeTracker;
+    XrEyeTrackerFB DECLSPEC_ALIGN(8) eyeTracker;
     XrResult result;
 };
 
 struct xrDestroyFaceTracker2FB_params
 {
-    XrFaceTracker2FB faceTracker;
+    XrFaceTracker2FB DECLSPEC_ALIGN(8) faceTracker;
+    XrResult result;
+};
+
+struct xrDestroyFaceTrackerANDROID_params
+{
+    XrFaceTrackerANDROID DECLSPEC_ALIGN(8) faceTracker;
+    XrResult result;
+};
+
+struct xrDestroyFaceTrackerBD_params
+{
+    XrFaceTrackerBD DECLSPEC_ALIGN(8) tracker;
     XrResult result;
 };
 
 struct xrDestroyFaceTrackerFB_params
 {
-    XrFaceTrackerFB faceTracker;
+    XrFaceTrackerFB DECLSPEC_ALIGN(8) faceTracker;
     XrResult result;
 };
 
 struct xrDestroyFacialExpressionClientML_params
 {
-    XrFacialExpressionClientML facialExpressionClient;
+    XrFacialExpressionClientML DECLSPEC_ALIGN(8) facialExpressionClient;
     XrResult result;
 };
 
 struct xrDestroyFacialTrackerHTC_params
 {
-    XrFacialTrackerHTC facialTracker;
+    XrFacialTrackerHTC DECLSPEC_ALIGN(8) facialTracker;
     XrResult result;
 };
 
 struct xrDestroyFoveationProfileFB_params
 {
-    XrFoveationProfileFB profile;
+    XrFoveationProfileFB DECLSPEC_ALIGN(8) profile;
     XrResult result;
 };
 
 struct xrDestroyGeometryInstanceFB_params
 {
-    XrGeometryInstanceFB instance;
+    XrGeometryInstanceFB DECLSPEC_ALIGN(8) instance;
+    XrResult result;
+};
+
+struct xrDestroyGeospatialTrackerANDROID_params
+{
+    XrGeospatialTrackerANDROID DECLSPEC_ALIGN(8) geospatialTracker;
     XrResult result;
 };
 
 struct xrDestroyHandTrackerEXT_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     XrResult result;
 };
 
 struct xrDestroyInstance_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrResult result;
+};
+
+struct xrDestroyLightEstimatorANDROID_params
+{
+    XrLightEstimatorANDROID DECLSPEC_ALIGN(8) estimator;
     XrResult result;
 };
 
 struct xrDestroyMarkerDetectorML_params
 {
-    XrMarkerDetectorML markerDetector;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
     XrResult result;
 };
 
 struct xrDestroyPassthroughColorLutMETA_params
 {
-    XrPassthroughColorLutMETA colorLut;
+    XrPassthroughColorLutMETA DECLSPEC_ALIGN(8) colorLut;
     XrResult result;
 };
 
 struct xrDestroyPassthroughFB_params
 {
-    XrPassthroughFB passthrough;
+    XrPassthroughFB DECLSPEC_ALIGN(8) passthrough;
     XrResult result;
 };
 
 struct xrDestroyPassthroughHTC_params
 {
-    XrPassthroughHTC passthrough;
+    XrPassthroughHTC DECLSPEC_ALIGN(8) passthrough;
+    XrResult result;
+};
+
+struct xrDestroyPassthroughLayerANDROID_params
+{
+    XrPassthroughLayerANDROID DECLSPEC_ALIGN(8) layer;
     XrResult result;
 };
 
 struct xrDestroyPassthroughLayerFB_params
 {
-    XrPassthroughLayerFB layer;
+    XrPassthroughLayerFB DECLSPEC_ALIGN(8) layer;
     XrResult result;
 };
 
 struct xrDestroyPlaneDetectorEXT_params
 {
-    XrPlaneDetectorEXT planeDetector;
+    XrPlaneDetectorEXT DECLSPEC_ALIGN(8) planeDetector;
     XrResult result;
 };
 
 struct xrDestroyRenderModelAssetEXT_params
 {
-    XrRenderModelAssetEXT asset;
+    XrRenderModelAssetEXT DECLSPEC_ALIGN(8) asset;
     XrResult result;
 };
 
 struct xrDestroyRenderModelEXT_params
 {
-    XrRenderModelEXT renderModel;
+    XrRenderModelEXT DECLSPEC_ALIGN(8) renderModel;
     XrResult result;
 };
 
 struct xrDestroySceneMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
+    XrResult result;
+};
+
+struct xrDestroySceneMeshSnapshotANDROID_params
+{
+    XrSceneMeshSnapshotANDROID DECLSPEC_ALIGN(8) snapshot;
+    XrResult result;
+};
+
+struct xrDestroySceneMeshingTrackerANDROID_params
+{
+    XrSceneMeshingTrackerANDROID DECLSPEC_ALIGN(8) tracker;
     XrResult result;
 };
 
 struct xrDestroySceneObserverMSFT_params
 {
-    XrSceneObserverMSFT sceneObserver;
+    XrSceneObserverMSFT DECLSPEC_ALIGN(8) sceneObserver;
     XrResult result;
 };
 
 struct xrDestroySenseDataProviderBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     XrResult result;
 };
 
 struct xrDestroySenseDataSnapshotBD_params
 {
-    XrSenseDataSnapshotBD snapshot;
+    XrSenseDataSnapshotBD DECLSPEC_ALIGN(8) snapshot;
     XrResult result;
 };
 
 struct xrDestroySession_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrResult result;
+};
+
+struct xrDestroySoundFieldBD_params
+{
+    XrSoundFieldBD DECLSPEC_ALIGN(8) soundField;
+    XrResult result;
+};
+
+struct xrDestroySoundObjectBD_params
+{
+    XrSoundObjectBD DECLSPEC_ALIGN(8) soundObject;
+    XrResult result;
+};
+
+struct xrDestroySoundObstacleBD_params
+{
+    XrSoundObstacleBD DECLSPEC_ALIGN(8) soundObstacle;
+    XrResult result;
+};
+
+struct xrDestroySoundObstacleMaterialBD_params
+{
+    XrSoundObstacleMaterialBD DECLSPEC_ALIGN(8) material;
     XrResult result;
 };
 
 struct xrDestroySpace_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrResult result;
 };
 
 struct xrDestroySpaceUserFB_params
 {
-    XrSpaceUserFB user;
+    XrSpaceUserFB DECLSPEC_ALIGN(8) user;
     XrResult result;
 };
 
 struct xrDestroySpatialAnchorMSFT_params
 {
-    XrSpatialAnchorMSFT anchor;
+    XrSpatialAnchorMSFT DECLSPEC_ALIGN(8) anchor;
     XrResult result;
 };
 
 struct xrDestroySpatialAnchorStoreConnectionMSFT_params
 {
-    XrSpatialAnchorStoreConnectionMSFT spatialAnchorStore;
+    XrSpatialAnchorStoreConnectionMSFT DECLSPEC_ALIGN(8) spatialAnchorStore;
     XrResult result;
 };
 
 struct xrDestroySpatialAnchorsStorageML_params
 {
-    XrSpatialAnchorsStorageML storage;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
+    XrResult result;
+};
+
+struct xrDestroySpatialAudioRendererBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    XrResult result;
+};
+
+struct xrDestroySpatialContainerEXT_params
+{
+    XrSpatialContainerEXT DECLSPEC_ALIGN(8) spatialContainer;
     XrResult result;
 };
 
 struct xrDestroySpatialContextEXT_params
 {
-    XrSpatialContextEXT spatialContext;
+    XrSpatialContextEXT DECLSPEC_ALIGN(8) spatialContext;
     XrResult result;
 };
 
 struct xrDestroySpatialEntityEXT_params
 {
-    XrSpatialEntityEXT spatialEntity;
+    XrSpatialEntityEXT DECLSPEC_ALIGN(8) spatialEntity;
     XrResult result;
 };
 
 struct xrDestroySpatialGraphNodeBindingMSFT_params
 {
-    XrSpatialGraphNodeBindingMSFT nodeBinding;
+    XrSpatialGraphNodeBindingMSFT DECLSPEC_ALIGN(8) nodeBinding;
+    XrResult result;
+};
+
+struct xrDestroySpatialImageTrackingDatabaseEXT_params
+{
+    XrSpatialImageTrackingDatabaseEXT DECLSPEC_ALIGN(8) database;
     XrResult result;
 };
 
 struct xrDestroySpatialPersistenceContextEXT_params
 {
-    XrSpatialPersistenceContextEXT persistenceContext;
+    XrSpatialPersistenceContextEXT DECLSPEC_ALIGN(8) persistenceContext;
     XrResult result;
 };
 
 struct xrDestroySpatialSnapshotEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     XrResult result;
 };
 
 struct xrDestroySwapchain_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
+    XrResult result;
+};
+
+struct xrDestroyTrackableImageDatabaseANDROID_params
+{
+    XrTrackableImageDatabaseANDROID DECLSPEC_ALIGN(8) database;
     XrResult result;
 };
 
 struct xrDestroyTrackableTrackerANDROID_params
 {
-    XrTrackableTrackerANDROID trackableTracker;
-    XrResult result;
-};
-
-struct xrDestroyTriangleMeshFB_params
-{
-    XrTriangleMeshFB mesh;
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) trackableTracker;
     XrResult result;
 };
 
 struct xrDestroyVirtualKeyboardMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     XrResult result;
 };
 
 struct xrDestroyWorldMeshDetectorML_params
 {
-    XrWorldMeshDetectorML detector;
-    XrResult result;
-};
-
-struct xrDiscoverSpacesMETA_params
-{
-    XrSession session;
-    const XrSpaceDiscoveryInfoMETA *info;
-    XrAsyncRequestIdFB *requestId;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     XrResult result;
 };
 
 struct xrDownloadSharedSpatialAnchorAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSharedSpatialAnchorDownloadInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -1410,36 +1817,49 @@ struct xrDownloadSharedSpatialAnchorAsyncBD_params
 
 struct xrDownloadSharedSpatialAnchorCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrEnableLocalizationEventsML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrLocalizationEnableEventsInfoML *info;
     XrResult result;
 };
 
 struct xrEnableUserCalibrationEventsML_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrUserCalibrationEnableEventsInfoML *enableInfo;
+    XrResult result;
+};
+
+struct xrEndAudioPeriodBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
     XrResult result;
 };
 
 struct xrEndFrame_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFrameEndInfo *frameEndInfo;
     XrResult result;
 };
 
 struct xrEndSession_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrResult result;
+};
+
+struct xrEndSpatialContainerRenderingEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialContainerEndInfoEXT *endInfo;
     XrResult result;
 };
 
@@ -1451,9 +1871,18 @@ struct xrEnumerateApiLayerProperties_params
     XrResult result;
 };
 
+struct xrEnumerateAppConsumedSwapchainImagesEXT_params
+{
+    XrAppConsumedSwapchainEXT DECLSPEC_ALIGN(8) appConsumedSwapchain;
+    uint32_t imageCapacityInput;
+    uint32_t *imageCountOutput;
+    XrSwapchainImageBaseHeader *images;
+    XrResult result;
+};
+
 struct xrEnumerateBoundSourcesForAction_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrBoundSourcesForActionEnumerateInfo *enumerateInfo;
     uint32_t sourceCapacityInput;
     uint32_t *sourceCountOutput;
@@ -1463,16 +1892,26 @@ struct xrEnumerateBoundSourcesForAction_params
 
 struct xrEnumerateColorSpacesFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint32_t colorSpaceCapacityInput;
     uint32_t *colorSpaceCountOutput;
     XrColorSpaceFB *colorSpaces;
     XrResult result;
 };
 
+struct xrEnumerateColorSpacesSONY_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrColorSpacesEnumerateInfoSONY *enumerateInfo;
+    uint32_t colorSpaceCapacityInput;
+    uint32_t *colorSpaceCountOutput;
+    XrColorSpaceSONY *colorSpaces;
+    XrResult result;
+};
+
 struct xrEnumerateDisplayRefreshRatesFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint32_t displayRefreshRateCapacityInput;
     uint32_t *displayRefreshRateCountOutput;
     float *displayRefreshRates;
@@ -1481,8 +1920,8 @@ struct xrEnumerateDisplayRefreshRatesFB_params
 
 struct xrEnumerateEnvironmentBlendModes_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrViewConfigurationType viewConfigurationType;
     uint32_t environmentBlendModeCapacityInput;
     uint32_t *environmentBlendModeCountOutput;
@@ -1490,21 +1929,48 @@ struct xrEnumerateEnvironmentBlendModes_params
     XrResult result;
 };
 
-struct xrEnumerateEnvironmentDepthSwapchainImagesMETA_params
+struct xrEnumerateEnvironmentTexturePixelFormatsBD_params
 {
-    XrEnvironmentDepthSwapchainMETA swapchain;
-    uint32_t imageCapacityInput;
-    uint32_t *imageCountOutput;
-    XrSwapchainImageBaseHeader *images;
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t pixelFormatCapacityInput;
+    uint32_t *pixelFormatCountOutput;
+    XrEnvironmentTexturePixelFormatBD *pixelFormats;
+    XrResult result;
+};
+
+struct xrEnumerateEnvironmentTextureResolutionsBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t resolutionCapacityInput;
+    uint32_t *resolutionCountOutput;
+    XrEnvironmentTextureResolutionBD *resolutions;
+    XrResult result;
+};
+
+struct xrEnumerateEnvironmentTextureTransferTypesBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t transferTypeCapacityInput;
+    uint32_t *transferTypeCountOutput;
+    XrEnvironmentTextureTransferTypeBD *transferTypes;
     XrResult result;
 };
 
 struct xrEnumerateExternalCamerasOCULUS_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint32_t cameraCapacityInput;
     uint32_t *cameraCountOutput;
     XrExternalCameraOCULUS *cameras;
+    XrResult result;
+};
+
+struct xrEnumerateFacialSimulationModesBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t modeCapacityInput;
+    uint32_t *modeCountOutput;
+    XrFacialSimulationModeBD *modes;
     XrResult result;
 };
 
@@ -1519,7 +1985,7 @@ struct xrEnumerateInstanceExtensionProperties_params
 
 struct xrEnumerateInteractionRenderModelIdsEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrInteractionRenderModelIdsEnumerateInfoEXT *getInfo;
     uint32_t renderModelIdCapacityInput;
     uint32_t *renderModelIdCountOutput;
@@ -1527,9 +1993,18 @@ struct xrEnumerateInteractionRenderModelIdsEXT_params
     XrResult result;
 };
 
+struct xrEnumeratePerformanceMetricsCounterPathsANDROID_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    uint32_t counterPathCapacityInput;
+    uint32_t *counterPathCountOutput;
+    XrPath *counterPaths;
+    XrResult result;
+};
+
 struct xrEnumeratePerformanceMetricsCounterPathsMETA_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     uint32_t counterPathCapacityInput;
     uint32_t *counterPathCountOutput;
     XrPath *counterPaths;
@@ -1538,7 +2013,7 @@ struct xrEnumeratePerformanceMetricsCounterPathsMETA_params
 
 struct xrEnumeratePersistedAnchorsANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     uint32_t anchorIdCapacityInput;
     uint32_t *anchorIdCountOutput;
     XrUuidEXT *anchorIds;
@@ -1547,7 +2022,7 @@ struct xrEnumeratePersistedAnchorsANDROID_params
 
 struct xrEnumeratePersistedSpatialAnchorNamesMSFT_params
 {
-    XrSpatialAnchorStoreConnectionMSFT spatialAnchorStore;
+    XrSpatialAnchorStoreConnectionMSFT DECLSPEC_ALIGN(8) spatialAnchorStore;
     uint32_t spatialAnchorNameCapacityInput;
     uint32_t *spatialAnchorNameCountOutput;
     XrSpatialAnchorPersistenceNameMSFT *spatialAnchorNames;
@@ -1556,8 +2031,8 @@ struct xrEnumeratePersistedSpatialAnchorNamesMSFT_params
 
 struct xrEnumerateRaycastSupportedTrackableTypesANDROID_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t trackableTypeCapacityInput;
     uint32_t *trackableTypeCountOutput;
     XrTrackableTypeANDROID *trackableTypes;
@@ -1566,7 +2041,7 @@ struct xrEnumerateRaycastSupportedTrackableTypesANDROID_params
 
 struct xrEnumerateReferenceSpaces_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint32_t spaceCapacityInput;
     uint32_t *spaceCountOutput;
     XrReferenceSpaceType *spaces;
@@ -1575,7 +2050,7 @@ struct xrEnumerateReferenceSpaces_params
 
 struct xrEnumerateRenderModelPathsFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint32_t pathCapacityInput;
     uint32_t *pathCountOutput;
     XrRenderModelPathInfoFB *paths;
@@ -1584,7 +2059,7 @@ struct xrEnumerateRenderModelPathsFB_params
 
 struct xrEnumerateRenderModelSubactionPathsEXT_params
 {
-    XrRenderModelEXT renderModel;
+    XrRenderModelEXT DECLSPEC_ALIGN(8) renderModel;
     const XrInteractionRenderModelSubactionPathInfoEXT *info;
     uint32_t pathCapacityInput;
     uint32_t *pathCountOutput;
@@ -1594,8 +2069,8 @@ struct xrEnumerateRenderModelSubactionPathsEXT_params
 
 struct xrEnumerateReprojectionModesMSFT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrViewConfigurationType viewConfigurationType;
     uint32_t modeCapacityInput;
     uint32_t *modeCountOutput;
@@ -1605,8 +2080,8 @@ struct xrEnumerateReprojectionModesMSFT_params
 
 struct xrEnumerateSceneComputeFeaturesMSFT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t featureCapacityInput;
     uint32_t *featureCountOutput;
     XrSceneComputeFeatureMSFT *features;
@@ -1615,17 +2090,46 @@ struct xrEnumerateSceneComputeFeaturesMSFT_params
 
 struct xrEnumerateSpaceSupportedComponentsFB_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     uint32_t componentTypeCapacityInput;
     uint32_t *componentTypeCountOutput;
     XrSpaceComponentTypeFB *componentTypes;
     XrResult result;
 };
 
+struct xrEnumerateSpatialAnchorAttachableComponentsANDROID_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    uint32_t attachableComponentCapacityInput;
+    uint32_t *attachableComponentCountOutput;
+    XrSpatialComponentTypeEXT *attachableComponents;
+    XrResult result;
+};
+
+struct xrEnumerateSpatialArchetypeComponentTypesEXT_params
+{
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
+    XrSpatialArchetypeIdEXT DECLSPEC_ALIGN(8) archetype;
+    uint32_t componentTypeCapacityInput;
+    uint32_t *componentTypeCountOutput;
+    XrSpatialComponentTypeEXT *componentTypes;
+    XrResult result;
+};
+
+struct xrEnumerateSpatialArchetypesEXT_params
+{
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
+    uint32_t archetypeCapacityInput;
+    uint32_t *archetypeCountOutput;
+    XrSpatialArchetypeIdEXT *archetypes;
+    XrResult result;
+};
+
 struct xrEnumerateSpatialCapabilitiesEXT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t capabilityCapacityInput;
     uint32_t *capabilityCountOutput;
     XrSpatialCapabilityEXT *capabilities;
@@ -1634,8 +2138,8 @@ struct xrEnumerateSpatialCapabilitiesEXT_params
 
 struct xrEnumerateSpatialCapabilityComponentTypesEXT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrSpatialCapabilityEXT capability;
     XrSpatialCapabilityComponentTypesEXT *capabilityComponents;
     XrResult result;
@@ -1643,8 +2147,8 @@ struct xrEnumerateSpatialCapabilityComponentTypesEXT_params
 
 struct xrEnumerateSpatialCapabilityFeaturesEXT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrSpatialCapabilityEXT capability;
     uint32_t capabilityFeatureCapacityInput;
     uint32_t *capabilityFeatureCountOutput;
@@ -1654,8 +2158,8 @@ struct xrEnumerateSpatialCapabilityFeaturesEXT_params
 
 struct xrEnumerateSpatialEntityComponentTypesBD_params
 {
-    XrSenseDataSnapshotBD snapshot;
-    XrSpatialEntityIdBD entityId;
+    XrSenseDataSnapshotBD DECLSPEC_ALIGN(8) snapshot;
+    XrSpatialEntityIdBD DECLSPEC_ALIGN(8) entityId;
     uint32_t componentTypeCapacityInput;
     uint32_t *componentTypeCountOutput;
     XrSpatialEntityComponentTypeBD *componentTypes;
@@ -1664,38 +2168,78 @@ struct xrEnumerateSpatialEntityComponentTypesBD_params
 
 struct xrEnumerateSpatialPersistenceScopesEXT_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t persistenceScopeCapacityInput;
     uint32_t *persistenceScopeCountOutput;
     XrSpatialPersistenceScopeEXT *persistenceScopes;
     XrResult result;
 };
 
+struct xrEnumerateSpatialReferenceImageFormatsEXT_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    XrSpatialCapabilityEXT capability;
+    uint32_t formatCapacityInput;
+    uint32_t *formatCountOutput;
+    XrSpatialReferenceImageFormatEXT *formats;
+    XrResult result;
+};
+
 struct xrEnumerateSupportedAnchorTrackableTypesANDROID_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t trackableTypeCapacityInput;
     uint32_t *trackableTypeCountOutput;
     XrTrackableTypeANDROID *trackableTypes;
+    XrResult result;
+};
+
+struct xrEnumerateSupportedAudioSampleRateBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t sampleRateCapacityInput;
+    uint32_t *sampleRateCountOutput;
+    XrAudioSampleRateBD *sampleRates;
     XrResult result;
 };
 
 struct xrEnumerateSupportedPersistenceAnchorTypesANDROID_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t trackableTypeCapacityInput;
     uint32_t *trackableTypeCountOutput;
     XrTrackableTypeANDROID *trackableTypes;
     XrResult result;
 };
 
+struct xrEnumerateSupportedSemanticLabelSetsANDROID_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    uint32_t supportedSemanticLabelSetsInputCapacity;
+    uint32_t *supportedSemanticLabelSetsOutputCount;
+    XrSceneMeshSemanticLabelSetANDROID *supportedSemanticLabelSets;
+    XrResult result;
+};
+
+struct xrEnumerateSupportedSpatialContainerGraphicsPresentationsEXT_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
+    uint32_t graphicsPresentationCapacityInput;
+    uint32_t *graphicsPresentationCountOutput;
+    XrSpatialContainerGraphicsPresentationEXT *graphicsPresentations;
+    XrResult result;
+};
+
 struct xrEnumerateSupportedTrackableTypesANDROID_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t trackableTypeCapacityInput;
     uint32_t *trackableTypeCountOutput;
     XrTrackableTypeANDROID *trackableTypes;
@@ -1704,7 +2248,17 @@ struct xrEnumerateSupportedTrackableTypesANDROID_params
 
 struct xrEnumerateSwapchainFormats_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
+    uint32_t formatCapacityInput;
+    uint32_t *formatCountOutput;
+    int64_t *formats;
+    XrResult result;
+};
+
+struct xrEnumerateSwapchainFormats2EXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSwapchainFormatsEnumerateInfoEXT *enumerateInfo;
     uint32_t formatCapacityInput;
     uint32_t *formatCountOutput;
     int64_t *formats;
@@ -1713,7 +2267,7 @@ struct xrEnumerateSwapchainFormats_params
 
 struct xrEnumerateSwapchainImages_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     uint32_t imageCapacityInput;
     uint32_t *imageCountOutput;
     XrSwapchainImageBaseHeader *images;
@@ -1722,8 +2276,8 @@ struct xrEnumerateSwapchainImages_params
 
 struct xrEnumerateViewConfigurationViews_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrViewConfigurationType viewConfigurationType;
     uint32_t viewCapacityInput;
     uint32_t *viewCountOutput;
@@ -1733,8 +2287,8 @@ struct xrEnumerateViewConfigurationViews_params
 
 struct xrEnumerateViewConfigurations_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t viewConfigurationTypeCapacityInput;
     uint32_t *viewConfigurationTypeCountOutput;
     XrViewConfigurationType *viewConfigurationTypes;
@@ -1743,7 +2297,7 @@ struct xrEnumerateViewConfigurations_params
 
 struct xrEnumerateViveTrackerPathsHTCX_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     uint32_t pathCapacityInput;
     uint32_t *pathCountOutput;
     XrViveTrackerPathsHTCX *paths;
@@ -1752,7 +2306,7 @@ struct xrEnumerateViveTrackerPathsHTCX_params
 
 struct xrEraseSpaceFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceEraseInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -1760,7 +2314,7 @@ struct xrEraseSpaceFB_params
 
 struct xrEraseSpacesMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpacesEraseInfoMETA *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -1768,21 +2322,21 @@ struct xrEraseSpacesMETA_params
 
 struct xrFreeWorldMeshBufferML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshBufferML *buffer;
     XrResult result;
 };
 
 struct xrGeometryInstanceSetTransformFB_params
 {
-    XrGeometryInstanceFB instance;
+    XrGeometryInstanceFB DECLSPEC_ALIGN(8) instance;
     const XrGeometryInstanceTransformFB *transformation;
     XrResult result;
 };
 
 struct xrGetActionStateBoolean_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionStateGetInfo *getInfo;
     XrActionStateBoolean *state;
     XrResult result;
@@ -1790,7 +2344,7 @@ struct xrGetActionStateBoolean_params
 
 struct xrGetActionStateFloat_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionStateGetInfo *getInfo;
     XrActionStateFloat *state;
     XrResult result;
@@ -1798,7 +2352,7 @@ struct xrGetActionStateFloat_params
 
 struct xrGetActionStatePose_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionStateGetInfo *getInfo;
     XrActionStatePose *state;
     XrResult result;
@@ -1806,15 +2360,24 @@ struct xrGetActionStatePose_params
 
 struct xrGetActionStateVector2f_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionStateGetInfo *getInfo;
     XrActionStateVector2f *state;
     XrResult result;
 };
 
+struct xrGetAllSubmeshStatesANDROID_params
+{
+    XrSceneMeshSnapshotANDROID DECLSPEC_ALIGN(8) snapshot;
+    uint32_t submeshStateCapacityInput;
+    uint32_t *submeshStateCountOutput;
+    XrSceneSubmeshStateANDROID *submeshStates;
+    XrResult result;
+};
+
 struct xrGetAllTrackablesANDROID_params
 {
-    XrTrackableTrackerANDROID trackableTracker;
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) trackableTracker;
     uint32_t trackableCapacityInput;
     uint32_t *trackableCountOutput;
     XrTrackableANDROID *trackables;
@@ -1823,7 +2386,7 @@ struct xrGetAllTrackablesANDROID_params
 
 struct xrGetAnchorPersistStateANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     const XrUuidEXT *anchorId;
     XrAnchorPersistStateANDROID *persistState;
     XrResult result;
@@ -1831,76 +2394,98 @@ struct xrGetAnchorPersistStateANDROID_params
 
 struct xrGetAnchorUuidBD_params
 {
-    XrAnchorBD anchor;
+    XrAnchorBD DECLSPEC_ALIGN(8) anchor;
     XrUuidEXT *uuid;
+    XrResult result;
+};
+
+struct xrGetAppConsumedSwapchainPropertiesEXT_params
+{
+    XrAppConsumedSwapchainEXT DECLSPEC_ALIGN(8) appConsumedSwapchain;
+    XrAppConsumedSwapchainPropertiesEXT *properties;
     XrResult result;
 };
 
 struct xrGetAudioInputDeviceGuidOculus_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     wchar_t *buffer;
     XrResult result;
 };
 
 struct xrGetAudioOutputDeviceGuidOculus_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     wchar_t *buffer;
     XrResult result;
 };
 
 struct xrGetBodySkeletonFB_params
 {
-    XrBodyTrackerFB bodyTracker;
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
     XrBodySkeletonFB *skeleton;
     XrResult result;
 };
 
 struct xrGetBodySkeletonHTC_params
 {
-    XrBodyTrackerHTC bodyTracker;
-    XrSpace baseSpace;
+    XrBodyTrackerHTC DECLSPEC_ALIGN(8) bodyTracker;
+    XrSpace DECLSPEC_ALIGN(8) baseSpace;
     uint32_t skeletonGenerationId;
     XrBodySkeletonHTC *skeleton;
     XrResult result;
 };
 
+struct xrGetBodyTrackingStateBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrBodyTrackingStateBD *state;
+    XrResult result;
+};
+
+struct xrGetCoarseTrackingEyesInfoANDROID_params
+{
+    XrEyeTrackerANDROID DECLSPEC_ALIGN(8) eyeTracker;
+    const XrEyesGetInfoANDROID *getInfo;
+    XrEyesANDROID *eyesOutput;
+    XrResult result;
+};
+
 struct xrGetControllerModelKeyMSFT_params
 {
-    XrSession session;
-    XrPath topLevelUserPath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelUserPath;
     XrControllerModelKeyStateMSFT *controllerModelKeyState;
     XrResult result;
 };
 
 struct xrGetControllerModelPropertiesMSFT_params
 {
-    XrSession session;
-    XrControllerModelKeyMSFT modelKey;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrControllerModelKeyMSFT DECLSPEC_ALIGN(8) modelKey;
     XrControllerModelPropertiesMSFT *properties;
     XrResult result;
 };
 
 struct xrGetControllerModelStateMSFT_params
 {
-    XrSession session;
-    XrControllerModelKeyMSFT modelKey;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrControllerModelKeyMSFT DECLSPEC_ALIGN(8) modelKey;
     XrControllerModelStateMSFT *state;
     XrResult result;
 };
 
 struct xrGetCurrentInteractionProfile_params
 {
-    XrSession session;
-    XrPath topLevelUserPath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelUserPath;
     XrInteractionProfileState *interactionProfile;
     XrResult result;
 };
 
 struct xrGetDeviceSampleRateFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrHapticActionInfo *hapticActionInfo;
     XrDevicePcmSampleRateGetInfoFB *deviceSampleRate;
     XrResult result;
@@ -1908,21 +2493,14 @@ struct xrGetDeviceSampleRateFB_params
 
 struct xrGetDisplayRefreshRateFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     float *displayRefreshRate;
-    XrResult result;
-};
-
-struct xrGetEnvironmentDepthSwapchainStateMETA_params
-{
-    XrEnvironmentDepthSwapchainMETA swapchain;
-    XrEnvironmentDepthSwapchainStateMETA *state;
     XrResult result;
 };
 
 struct xrGetExportedLocalizationMapDataML_params
 {
-    XrExportedLocalizationMapML map;
+    XrExportedLocalizationMapML DECLSPEC_ALIGN(8) map;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     char *buffer;
@@ -1931,15 +2509,22 @@ struct xrGetExportedLocalizationMapDataML_params
 
 struct xrGetEyeGazesFB_params
 {
-    XrEyeTrackerFB eyeTracker;
+    XrEyeTrackerFB DECLSPEC_ALIGN(8) eyeTracker;
     const XrEyeGazesInfoFB *gazeInfo;
     XrEyeGazesFB *eyeGazes;
     XrResult result;
 };
 
+struct xrGetFaceCalibrationStateANDROID_params
+{
+    XrFaceTrackerANDROID DECLSPEC_ALIGN(8) faceTracker;
+    XrBool32 *faceIsCalibratedOutput;
+    XrResult result;
+};
+
 struct xrGetFaceExpressionWeights2FB_params
 {
-    XrFaceTracker2FB faceTracker;
+    XrFaceTracker2FB DECLSPEC_ALIGN(8) faceTracker;
     const XrFaceExpressionInfo2FB *expressionInfo;
     XrFaceExpressionWeights2FB *expressionWeights;
     XrResult result;
@@ -1947,15 +2532,23 @@ struct xrGetFaceExpressionWeights2FB_params
 
 struct xrGetFaceExpressionWeightsFB_params
 {
-    XrFaceTrackerFB faceTracker;
+    XrFaceTrackerFB DECLSPEC_ALIGN(8) faceTracker;
     const XrFaceExpressionInfoFB *expressionInfo;
     XrFaceExpressionWeightsFB *expressionWeights;
     XrResult result;
 };
 
+struct xrGetFaceStateANDROID_params
+{
+    XrFaceTrackerANDROID DECLSPEC_ALIGN(8) faceTracker;
+    const XrFaceStateGetInfoANDROID *getInfo;
+    XrFaceStateANDROID *faceStateOutput;
+    XrResult result;
+};
+
 struct xrGetFacialExpressionBlendShapePropertiesML_params
 {
-    XrFacialExpressionClientML facialExpressionClient;
+    XrFacialExpressionClientML DECLSPEC_ALIGN(8) facialExpressionClient;
     const XrFacialExpressionBlendShapeGetInfoML *blendShapeGetInfo;
     uint32_t blendShapeCount;
     XrFacialExpressionBlendShapePropertiesML *blendShapes;
@@ -1964,28 +2557,59 @@ struct xrGetFacialExpressionBlendShapePropertiesML_params
 
 struct xrGetFacialExpressionsHTC_params
 {
-    XrFacialTrackerHTC facialTracker;
+    XrFacialTrackerHTC DECLSPEC_ALIGN(8) facialTracker;
     XrFacialExpressionsHTC *facialExpressions;
+    XrResult result;
+};
+
+struct xrGetFacialSimulationDataBD_params
+{
+    XrFaceTrackerBD DECLSPEC_ALIGN(8) tracker;
+    const XrFacialSimulationDataGetInfoBD *info;
+    XrFacialSimulationDataBD *facialData;
+    XrResult result;
+};
+
+struct xrGetFacialSimulationModeBD_params
+{
+    XrFaceTrackerBD DECLSPEC_ALIGN(8) tracker;
+    XrFacialSimulationModeBD *mode;
+    XrResult result;
+};
+
+struct xrGetFineTrackingEyesInfoANDROID_params
+{
+    XrEyeTrackerANDROID DECLSPEC_ALIGN(8) eyeTracker;
+    const XrEyesGetInfoANDROID *getInfo;
+    XrEyesANDROID *eyesOutput;
     XrResult result;
 };
 
 struct xrGetFoveationEyeTrackedStateMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrFoveationEyeTrackedStateMETA *foveationState;
+    XrResult result;
+};
+
+struct xrGetHandGestureQCOM_params
+{
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
+    XrTime DECLSPEC_ALIGN(8) time;
+    XrHandGestureQCOM *handGesture;
     XrResult result;
 };
 
 struct xrGetHandMeshFB_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     XrHandTrackingMeshFB *mesh;
     XrResult result;
 };
 
 struct xrGetInputSourceLocalizedName_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrInputSourceLocalizedNameGetInfo *getInfo;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -1995,45 +2619,53 @@ struct xrGetInputSourceLocalizedName_params
 
 struct xrGetInstanceProperties_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     XrInstanceProperties *instanceProperties;
+    XrResult result;
+};
+
+struct xrGetLightEstimateANDROID_params
+{
+    XrLightEstimatorANDROID DECLSPEC_ALIGN(8) estimator;
+    const XrLightEstimateGetInfoANDROID *input;
+    XrLightEstimateANDROID *output;
     XrResult result;
 };
 
 struct xrGetMarkerDetectorStateML_params
 {
-    XrMarkerDetectorML markerDetector;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
     XrMarkerDetectorStateML *state;
     XrResult result;
 };
 
 struct xrGetMarkerLengthML_params
 {
-    XrMarkerDetectorML markerDetector;
-    XrMarkerML marker;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
+    XrMarkerML DECLSPEC_ALIGN(8) marker;
     float *meters;
     XrResult result;
 };
 
 struct xrGetMarkerNumberML_params
 {
-    XrMarkerDetectorML markerDetector;
-    XrMarkerML marker;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
+    XrMarkerML DECLSPEC_ALIGN(8) marker;
     uint64_t *number;
     XrResult result;
 };
 
 struct xrGetMarkerReprojectionErrorML_params
 {
-    XrMarkerDetectorML markerDetector;
-    XrMarkerML marker;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
+    XrMarkerML DECLSPEC_ALIGN(8) marker;
     float *reprojectionErrorMeters;
     XrResult result;
 };
 
 struct xrGetMarkerSizeVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint64_t DECLSPEC_ALIGN(8) markerId;
     XrExtent2Df *size;
     XrResult result;
@@ -2041,8 +2673,8 @@ struct xrGetMarkerSizeVARJO_params
 
 struct xrGetMarkerStringML_params
 {
-    XrMarkerDetectorML markerDetector;
-    XrMarkerML marker;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
+    XrMarkerML DECLSPEC_ALIGN(8) marker;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     char *buffer;
@@ -2051,7 +2683,7 @@ struct xrGetMarkerStringML_params
 
 struct xrGetMarkersML_params
 {
-    XrMarkerDetectorML markerDetector;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
     uint32_t markerCapacityInput;
     uint32_t *markerCountOutput;
     XrMarkerML *markers;
@@ -2060,15 +2692,15 @@ struct xrGetMarkersML_params
 
 struct xrGetOpenGLGraphicsRequirementsKHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrGraphicsRequirementsOpenGLKHR *graphicsRequirements;
     XrResult result;
 };
 
 struct xrGetPassthroughCameraStateANDROID_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPassthroughCameraStateGetInfoANDROID *getInfo;
     XrPassthroughCameraStateANDROID *cameraStateOutput;
     XrResult result;
@@ -2076,28 +2708,35 @@ struct xrGetPassthroughCameraStateANDROID_params
 
 struct xrGetPassthroughPreferencesMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrPassthroughPreferencesMETA *preferences;
+    XrResult result;
+};
+
+struct xrGetPerformanceMetricsStateANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPerformanceMetricsStateANDROID *state;
     XrResult result;
 };
 
 struct xrGetPerformanceMetricsStateMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrPerformanceMetricsStateMETA *state;
     XrResult result;
 };
 
 struct xrGetPlaneDetectionStateEXT_params
 {
-    XrPlaneDetectorEXT planeDetector;
+    XrPlaneDetectorEXT DECLSPEC_ALIGN(8) planeDetector;
     XrPlaneDetectionStateEXT *state;
     XrResult result;
 };
 
 struct xrGetPlaneDetectionsEXT_params
 {
-    XrPlaneDetectorEXT planeDetector;
+    XrPlaneDetectorEXT DECLSPEC_ALIGN(8) planeDetector;
     const XrPlaneDetectorGetInfoEXT *info;
     XrPlaneDetectorLocationsEXT *locations;
     XrResult result;
@@ -2105,7 +2744,7 @@ struct xrGetPlaneDetectionsEXT_params
 
 struct xrGetPlanePolygonBufferEXT_params
 {
-    XrPlaneDetectorEXT planeDetector;
+    XrPlaneDetectorEXT DECLSPEC_ALIGN(8) planeDetector;
     uint64_t DECLSPEC_ALIGN(8) planeId;
     uint32_t polygonBufferIndex;
     XrPlaneDetectorPolygonBufferEXT *polygonBuffer;
@@ -2114,7 +2753,7 @@ struct xrGetPlanePolygonBufferEXT_params
 
 struct xrGetQueriedSenseDataBD_params
 {
-    XrSenseDataSnapshotBD snapshot;
+    XrSenseDataSnapshotBD DECLSPEC_ALIGN(8) snapshot;
     XrQueriedSenseDataGetInfoBD *getInfo;
     XrQueriedSenseDataBD *queriedSenseData;
     XrResult result;
@@ -2122,7 +2761,7 @@ struct xrGetQueriedSenseDataBD_params
 
 struct xrGetRecommendedLayerResolutionMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRecommendedLayerResolutionGetInfoMETA *info;
     XrRecommendedLayerResolutionMETA *resolution;
     XrResult result;
@@ -2130,7 +2769,7 @@ struct xrGetRecommendedLayerResolutionMETA_params
 
 struct xrGetReferenceSpaceBoundsRect_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrReferenceSpaceType referenceSpaceType;
     XrExtent2Df *bounds;
     XrResult result;
@@ -2138,7 +2777,7 @@ struct xrGetReferenceSpaceBoundsRect_params
 
 struct xrGetRenderModelAssetDataEXT_params
 {
-    XrRenderModelAssetEXT asset;
+    XrRenderModelAssetEXT DECLSPEC_ALIGN(8) asset;
     const XrRenderModelAssetDataGetInfoEXT *getInfo;
     XrRenderModelAssetDataEXT *buffer;
     XrResult result;
@@ -2146,7 +2785,7 @@ struct xrGetRenderModelAssetDataEXT_params
 
 struct xrGetRenderModelAssetPropertiesEXT_params
 {
-    XrRenderModelAssetEXT asset;
+    XrRenderModelAssetEXT DECLSPEC_ALIGN(8) asset;
     const XrRenderModelAssetPropertiesGetInfoEXT *getInfo;
     XrRenderModelAssetPropertiesEXT *properties;
     XrResult result;
@@ -2154,7 +2793,7 @@ struct xrGetRenderModelAssetPropertiesEXT_params
 
 struct xrGetRenderModelPoseTopLevelUserPathEXT_params
 {
-    XrRenderModelEXT renderModel;
+    XrRenderModelEXT DECLSPEC_ALIGN(8) renderModel;
     const XrInteractionRenderModelTopLevelUserPathGetInfoEXT *info;
     XrPath *topLevelUserPath;
     XrResult result;
@@ -2162,7 +2801,7 @@ struct xrGetRenderModelPoseTopLevelUserPathEXT_params
 
 struct xrGetRenderModelPropertiesEXT_params
 {
-    XrRenderModelEXT renderModel;
+    XrRenderModelEXT DECLSPEC_ALIGN(8) renderModel;
     const XrRenderModelPropertiesGetInfoEXT *getInfo;
     XrRenderModelPropertiesEXT *properties;
     XrResult result;
@@ -2170,15 +2809,15 @@ struct xrGetRenderModelPropertiesEXT_params
 
 struct xrGetRenderModelPropertiesFB_params
 {
-    XrSession session;
-    XrPath path;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) path;
     XrRenderModelPropertiesFB *properties;
     XrResult result;
 };
 
 struct xrGetRenderModelStateEXT_params
 {
-    XrRenderModelEXT renderModel;
+    XrRenderModelEXT DECLSPEC_ALIGN(8) renderModel;
     const XrRenderModelStateGetInfoEXT *getInfo;
     XrRenderModelStateEXT *state;
     XrResult result;
@@ -2186,7 +2825,7 @@ struct xrGetRenderModelStateEXT_params
 
 struct xrGetSceneComponentsMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrSceneComponentsGetInfoMSFT *getInfo;
     XrSceneComponentsMSFT *components;
     XrResult result;
@@ -2194,14 +2833,14 @@ struct xrGetSceneComponentsMSFT_params
 
 struct xrGetSceneComputeStateMSFT_params
 {
-    XrSceneObserverMSFT sceneObserver;
+    XrSceneObserverMSFT DECLSPEC_ALIGN(8) sceneObserver;
     XrSceneComputeStateMSFT *state;
     XrResult result;
 };
 
 struct xrGetSceneMarkerDecodedStringMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrUuidMSFT *markerId;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2211,7 +2850,7 @@ struct xrGetSceneMarkerDecodedStringMSFT_params
 
 struct xrGetSceneMarkerRawDataMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrUuidMSFT *markerId;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2221,7 +2860,7 @@ struct xrGetSceneMarkerRawDataMSFT_params
 
 struct xrGetSceneMeshBuffersMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrSceneMeshBuffersGetInfoMSFT *getInfo;
     XrSceneMeshBuffersMSFT *buffers;
     XrResult result;
@@ -2229,14 +2868,14 @@ struct xrGetSceneMeshBuffersMSFT_params
 
 struct xrGetSenseDataProviderStateBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     XrSenseDataProviderStateBD *state;
     XrResult result;
 };
 
 struct xrGetSerializedSceneFragmentDataMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrSerializedSceneFragmentDataGetInfoMSFT *getInfo;
     uint32_t countInput;
     uint32_t *readOutput;
@@ -2246,31 +2885,31 @@ struct xrGetSerializedSceneFragmentDataMSFT_params
 
 struct xrGetSpaceBoundary2DFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrBoundary2DFB *boundary2DOutput;
     XrResult result;
 };
 
 struct xrGetSpaceBoundingBox2DFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrRect2Df *boundingBox2DOutput;
     XrResult result;
 };
 
 struct xrGetSpaceBoundingBox3DFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrRect3DfFB *boundingBox3DOutput;
     XrResult result;
 };
 
 struct xrGetSpaceComponentStatusFB_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrSpaceComponentTypeFB componentType;
     XrSpaceComponentStatusFB *status;
     XrResult result;
@@ -2278,31 +2917,47 @@ struct xrGetSpaceComponentStatusFB_params
 
 struct xrGetSpaceContainerFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrSpaceContainerFB *spaceContainerOutput;
     XrResult result;
 };
 
 struct xrGetSpaceRoomLayoutFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrRoomLayoutFB *roomLayoutOutput;
+    XrResult result;
+};
+
+struct xrGetSpaceRoomMeshFaceIndicesMETA_params
+{
+    XrSpace DECLSPEC_ALIGN(8) space;
+    const XrUuid *faceUuid;
+    XrRoomMeshFaceIndicesMETA *roomMeshFaceIndicesOutput;
+    XrResult result;
+};
+
+struct xrGetSpaceRoomMeshMETA_params
+{
+    XrSpace DECLSPEC_ALIGN(8) space;
+    const XrSpaceRoomMeshGetInfoMETA *getInfo;
+    XrRoomMeshMETA *roomMeshOutput;
     XrResult result;
 };
 
 struct xrGetSpaceSemanticLabelsFB_params
 {
-    XrSession session;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrSemanticLabelsFB *semanticLabelsOutput;
     XrResult result;
 };
 
 struct xrGetSpaceTriangleMeshMETA_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     const XrSpaceTriangleMeshGetInfoMETA *getInfo;
     XrSpaceTriangleMeshMETA *triangleMeshOutput;
     XrResult result;
@@ -2310,35 +2965,35 @@ struct xrGetSpaceTriangleMeshMETA_params
 
 struct xrGetSpaceUserIdFB_params
 {
-    XrSpaceUserFB user;
+    XrSpaceUserFB DECLSPEC_ALIGN(8) user;
     XrSpaceUserIdFB *userId;
     XrResult result;
 };
 
 struct xrGetSpaceUuidFB_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrUuidEXT *uuid;
     XrResult result;
 };
 
 struct xrGetSpatialAnchorNameHTC_params
 {
-    XrSpace anchor;
+    XrSpace DECLSPEC_ALIGN(8) anchor;
     XrSpatialAnchorNameHTC *name;
     XrResult result;
 };
 
 struct xrGetSpatialAnchorStateML_params
 {
-    XrSpace anchor;
+    XrSpace DECLSPEC_ALIGN(8) anchor;
     XrSpatialAnchorStateML *state;
     XrResult result;
 };
 
 struct xrGetSpatialBufferFloatEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2348,7 +3003,7 @@ struct xrGetSpatialBufferFloatEXT_params
 
 struct xrGetSpatialBufferStringEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2358,7 +3013,7 @@ struct xrGetSpatialBufferStringEXT_params
 
 struct xrGetSpatialBufferUint16EXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2368,7 +3023,7 @@ struct xrGetSpatialBufferUint16EXT_params
 
 struct xrGetSpatialBufferUint32EXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2378,7 +3033,7 @@ struct xrGetSpatialBufferUint32EXT_params
 
 struct xrGetSpatialBufferUint8EXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2388,7 +3043,7 @@ struct xrGetSpatialBufferUint8EXT_params
 
 struct xrGetSpatialBufferVector2fEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2398,7 +3053,7 @@ struct xrGetSpatialBufferVector2fEXT_params
 
 struct xrGetSpatialBufferVector3fEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialBufferGetInfoEXT *info;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
@@ -2406,9 +3061,25 @@ struct xrGetSpatialBufferVector3fEXT_params
     XrResult result;
 };
 
+struct xrGetSpatialContainerBoundsEXT_params
+{
+    XrSpatialContainerEXT DECLSPEC_ALIGN(8) spatialContainer;
+    const XrSpatialContainerBoundsGetInfoEXT *getInfo;
+    XrSpatialContainerBoundsEXT *bounds;
+    XrResult result;
+};
+
+struct xrGetSpatialContainerStateEXT_params
+{
+    XrSpatialContainerEXT DECLSPEC_ALIGN(8) spatialContainer;
+    const XrSpatialContainerStateGetInfoEXT *getInfo;
+    XrSpatialContainerStateEXT *state;
+    XrResult result;
+};
+
 struct xrGetSpatialEntityComponentDataBD_params
 {
-    XrSenseDataSnapshotBD snapshot;
+    XrSenseDataSnapshotBD DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialEntityComponentGetInfoBD *getInfo;
     XrSpatialEntityComponentDataBaseHeaderBD *componentData;
     XrResult result;
@@ -2416,30 +3087,46 @@ struct xrGetSpatialEntityComponentDataBD_params
 
 struct xrGetSpatialEntityUuidBD_params
 {
-    XrSenseDataSnapshotBD snapshot;
-    XrSpatialEntityIdBD entityId;
+    XrSenseDataSnapshotBD DECLSPEC_ALIGN(8) snapshot;
+    XrSpatialEntityIdBD DECLSPEC_ALIGN(8) entityId;
     XrUuidEXT *uuid;
     XrResult result;
 };
 
 struct xrGetSpatialGraphNodeBindingPropertiesMSFT_params
 {
-    XrSpatialGraphNodeBindingMSFT nodeBinding;
+    XrSpatialGraphNodeBindingMSFT DECLSPEC_ALIGN(8) nodeBinding;
     const XrSpatialGraphNodeBindingPropertiesGetInfoMSFT *getInfo;
     XrSpatialGraphNodeBindingPropertiesMSFT *properties;
     XrResult result;
 };
 
+struct xrGetStationaryReferenceSpaceGenerationIdEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrStationaryReferenceSpaceGenerationIdGetInfoEXT *getInfo;
+    XrStationaryReferenceSpaceGenerationIdResultEXT *generationIdResult;
+    XrResult result;
+};
+
+struct xrGetSubmeshDataANDROID_params
+{
+    XrSceneMeshSnapshotANDROID DECLSPEC_ALIGN(8) snapshot;
+    uint32_t submeshDataCount;
+    XrSceneSubmeshDataANDROID *inoutSubmeshData;
+    XrResult result;
+};
+
 struct xrGetSwapchainStateFB_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     XrSwapchainStateBaseHeaderFB *state;
     XrResult result;
 };
 
 struct xrGetSystem_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrSystemGetInfo *getInfo;
     XrSystemId *systemId;
     XrResult result;
@@ -2447,15 +3134,23 @@ struct xrGetSystem_params
 
 struct xrGetSystemProperties_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrSystemProperties *properties;
+    XrResult result;
+};
+
+struct xrGetTrackableImageANDROID_params
+{
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
+    const XrTrackableGetInfoANDROID *getInfo;
+    XrTrackableImageANDROID *trackable;
     XrResult result;
 };
 
 struct xrGetTrackableMarkerANDROID_params
 {
-    XrTrackableTrackerANDROID tracker;
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
     const XrTrackableGetInfoANDROID *getInfo;
     XrTrackableMarkerANDROID *markerOutput;
     XrResult result;
@@ -2463,7 +3158,7 @@ struct xrGetTrackableMarkerANDROID_params
 
 struct xrGetTrackableObjectANDROID_params
 {
-    XrTrackableTrackerANDROID tracker;
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
     const XrTrackableGetInfoANDROID *getInfo;
     XrTrackableObjectANDROID *objectOutput;
     XrResult result;
@@ -2471,16 +3166,24 @@ struct xrGetTrackableObjectANDROID_params
 
 struct xrGetTrackablePlaneANDROID_params
 {
-    XrTrackableTrackerANDROID trackableTracker;
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) trackableTracker;
     const XrTrackableGetInfoANDROID *getInfo;
     XrTrackablePlaneANDROID *planeOutput;
     XrResult result;
 };
 
+struct xrGetTrackableQrCodeANDROID_params
+{
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
+    const XrTrackableGetInfoANDROID *getInfo;
+    XrTrackableQrCodeANDROID *qrCodeOutput;
+    XrResult result;
+};
+
 struct xrGetViewConfigurationProperties_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrViewConfigurationType viewConfigurationType;
     XrViewConfigurationProperties *configurationProperties;
     XrResult result;
@@ -2488,7 +3191,7 @@ struct xrGetViewConfigurationProperties_params
 
 struct xrGetVirtualKeyboardDirtyTexturesMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     uint32_t textureIdCapacityInput;
     uint32_t *textureIdCountOutput;
     uint64_t *textureIds;
@@ -2497,21 +3200,21 @@ struct xrGetVirtualKeyboardDirtyTexturesMETA_params
 
 struct xrGetVirtualKeyboardModelAnimationStatesMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     XrVirtualKeyboardModelAnimationStatesMETA *animationStates;
     XrResult result;
 };
 
 struct xrGetVirtualKeyboardScaleMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     float *scale;
     XrResult result;
 };
 
 struct xrGetVirtualKeyboardTextureDataMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     uint64_t DECLSPEC_ALIGN(8) textureId;
     XrVirtualKeyboardTextureDataMETA *textureData;
     XrResult result;
@@ -2519,7 +3222,7 @@ struct xrGetVirtualKeyboardTextureDataMETA_params
 
 struct xrGetVisibilityMaskKHR_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrViewConfigurationType viewConfigurationType;
     uint32_t viewIndex;
     XrVisibilityMaskTypeKHR visibilityMaskType;
@@ -2529,8 +3232,8 @@ struct xrGetVisibilityMaskKHR_params
 
 struct xrGetVulkanDeviceExtensionsKHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     char *buffer;
@@ -2539,7 +3242,7 @@ struct xrGetVulkanDeviceExtensionsKHR_params
 
 struct xrGetVulkanGraphicsDevice2KHR_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrVulkanGraphicsDeviceGetInfoKHR *getInfo;
     VkPhysicalDevice *vulkanPhysicalDevice;
     XrResult result;
@@ -2547,8 +3250,8 @@ struct xrGetVulkanGraphicsDevice2KHR_params
 
 struct xrGetVulkanGraphicsDeviceKHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     VkInstance vkInstance;
     VkPhysicalDevice *vkPhysicalDevice;
     XrResult result;
@@ -2556,24 +3259,24 @@ struct xrGetVulkanGraphicsDeviceKHR_params
 
 struct xrGetVulkanGraphicsRequirements2KHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrGraphicsRequirementsVulkanKHR *graphicsRequirements;
     XrResult result;
 };
 
 struct xrGetVulkanGraphicsRequirementsKHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     XrGraphicsRequirementsVulkanKHR *graphicsRequirements;
     XrResult result;
 };
 
 struct xrGetVulkanInstanceExtensionsKHR_params
 {
-    XrInstance instance;
-    XrSystemId systemId;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrSystemId DECLSPEC_ALIGN(8) systemId;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     char *buffer;
@@ -2582,15 +3285,23 @@ struct xrGetVulkanInstanceExtensionsKHR_params
 
 struct xrGetWorldMeshBufferRecommendSizeML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshBufferRecommendedSizeInfoML *sizeInfo;
     XrWorldMeshBufferSizeML *size;
     XrResult result;
 };
 
+struct xrHapticParametricGetPropertiesEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrHapticActionInfo *hapticActionInfo;
+    XrHapticParametricPropertiesEXT *parametricProperties;
+    XrResult result;
+};
+
 struct xrImportLocalizationMapML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrLocalizationMapImportInfoML *importInfo;
     XrUuidEXT *mapUuid;
     XrResult result;
@@ -2598,8 +3309,8 @@ struct xrImportLocalizationMapML_params
 
 struct xrLoadControllerModelMSFT_params
 {
-    XrSession session;
-    XrControllerModelKeyMSFT modelKey;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrControllerModelKeyMSFT DECLSPEC_ALIGN(8) modelKey;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     uint8_t *buffer;
@@ -2608,7 +3319,7 @@ struct xrLoadControllerModelMSFT_params
 
 struct xrLoadRenderModelFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRenderModelLoadInfoFB *info;
     XrRenderModelBufferFB *buffer;
     XrResult result;
@@ -2616,7 +3327,7 @@ struct xrLoadRenderModelFB_params
 
 struct xrLocateBodyJointsBD_params
 {
-    XrBodyTrackerBD bodyTracker;
+    XrBodyTrackerBD DECLSPEC_ALIGN(8) bodyTracker;
     const XrBodyJointsLocateInfoBD *locateInfo;
     XrBodyJointLocationsBD *locations;
     XrResult result;
@@ -2624,7 +3335,7 @@ struct xrLocateBodyJointsBD_params
 
 struct xrLocateBodyJointsFB_params
 {
-    XrBodyTrackerFB bodyTracker;
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
     const XrBodyJointsLocateInfoFB *locateInfo;
     XrBodyJointLocationsFB *locations;
     XrResult result;
@@ -2632,15 +3343,31 @@ struct xrLocateBodyJointsFB_params
 
 struct xrLocateBodyJointsHTC_params
 {
-    XrBodyTrackerHTC bodyTracker;
+    XrBodyTrackerHTC DECLSPEC_ALIGN(8) bodyTracker;
     const XrBodyJointsLocateInfoHTC *locateInfo;
     XrBodyJointLocationsHTC *locations;
     XrResult result;
 };
 
+struct xrLocateGeospatialPoseANDROID_params
+{
+    XrGeospatialTrackerANDROID DECLSPEC_ALIGN(8) geospatialTracker;
+    const XrGeospatialPoseLocateInfoANDROID *locateInfo;
+    XrSpaceLocation *location;
+    XrResult result;
+};
+
+struct xrLocateGeospatialPoseFromPoseANDROID_params
+{
+    XrGeospatialTrackerANDROID DECLSPEC_ALIGN(8) geospatialTracker;
+    const XrGeospatialPoseFromPoseLocateInfoANDROID *locateInfo;
+    XrGeospatialPoseResultANDROID *geospatialPoseResult;
+    XrResult result;
+};
+
 struct xrLocateHandJointsEXT_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     const XrHandJointsLocateInfoEXT *locateInfo;
     XrHandJointLocationsEXT *locations;
     XrResult result;
@@ -2648,7 +3375,7 @@ struct xrLocateHandJointsEXT_params
 
 struct xrLocateSceneComponentsMSFT_params
 {
-    XrSceneMSFT scene;
+    XrSceneMSFT DECLSPEC_ALIGN(8) scene;
     const XrSceneComponentsLocateInfoMSFT *locateInfo;
     XrSceneComponentLocationsMSFT *locations;
     XrResult result;
@@ -2656,16 +3383,16 @@ struct xrLocateSceneComponentsMSFT_params
 
 struct xrLocateSpace_params
 {
-    XrSpace space;
-    XrSpace baseSpace;
-    XrTime time;
+    XrSpace DECLSPEC_ALIGN(8) space;
+    XrSpace DECLSPEC_ALIGN(8) baseSpace;
+    XrTime DECLSPEC_ALIGN(8) time;
     XrSpaceLocation *location;
     XrResult result;
 };
 
 struct xrLocateSpaces_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpacesLocateInfo *locateInfo;
     XrSpaceLocations *spaceLocations;
     XrResult result;
@@ -2673,15 +3400,26 @@ struct xrLocateSpaces_params
 
 struct xrLocateSpacesKHR_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpacesLocateInfo *locateInfo;
     XrSpaceLocations *spaceLocations;
     XrResult result;
 };
 
+struct xrLocateSpatialContainerViewsEXT_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrSpatialContainerViewsLocateInfoEXT *locateInfo;
+    uint32_t viewStateCount;
+    XrSpatialContainerViewStateEXT *viewStates;
+    uint32_t viewCount;
+    XrView *views;
+    XrResult result;
+};
+
 struct xrLocateViews_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrViewLocateInfo *viewLocateInfo;
     XrViewState *viewState;
     uint32_t viewCapacityInput;
@@ -2692,46 +3430,46 @@ struct xrLocateViews_params
 
 struct xrPassthroughLayerPauseFB_params
 {
-    XrPassthroughLayerFB layer;
+    XrPassthroughLayerFB DECLSPEC_ALIGN(8) layer;
     XrResult result;
 };
 
 struct xrPassthroughLayerResumeFB_params
 {
-    XrPassthroughLayerFB layer;
+    XrPassthroughLayerFB DECLSPEC_ALIGN(8) layer;
     XrResult result;
 };
 
 struct xrPassthroughLayerSetKeyboardHandsIntensityFB_params
 {
-    XrPassthroughLayerFB layer;
+    XrPassthroughLayerFB DECLSPEC_ALIGN(8) layer;
     const XrPassthroughKeyboardHandsIntensityFB *intensity;
     XrResult result;
 };
 
 struct xrPassthroughLayerSetStyleFB_params
 {
-    XrPassthroughLayerFB layer;
+    XrPassthroughLayerFB DECLSPEC_ALIGN(8) layer;
     const XrPassthroughStyleFB *style;
     XrResult result;
 };
 
 struct xrPassthroughPauseFB_params
 {
-    XrPassthroughFB passthrough;
+    XrPassthroughFB DECLSPEC_ALIGN(8) passthrough;
     XrResult result;
 };
 
 struct xrPassthroughStartFB_params
 {
-    XrPassthroughFB passthrough;
+    XrPassthroughFB DECLSPEC_ALIGN(8) passthrough;
     XrResult result;
 };
 
 struct xrPathToString_params
 {
-    XrInstance instance;
-    XrPath path;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrPath DECLSPEC_ALIGN(8) path;
     uint32_t bufferCapacityInput;
     uint32_t *bufferCountOutput;
     char *buffer;
@@ -2740,14 +3478,14 @@ struct xrPathToString_params
 
 struct xrPauseSimultaneousHandsAndControllersTrackingMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSimultaneousHandsAndControllersTrackingPauseInfoMETA *pauseInfo;
     XrResult result;
 };
 
 struct xrPerfSettingsSetPerformanceLevelEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrPerfSettingsDomainEXT domain;
     XrPerfSettingsLevelEXT level;
     XrResult result;
@@ -2755,7 +3493,7 @@ struct xrPerfSettingsSetPerformanceLevelEXT_params
 
 struct xrPersistAnchorANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     const XrPersistedAnchorSpaceInfoANDROID *persistedInfo;
     XrUuidEXT *anchorIdOutput;
     XrResult result;
@@ -2763,7 +3501,7 @@ struct xrPersistAnchorANDROID_params
 
 struct xrPersistSpatialAnchorAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSpatialAnchorPersistInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -2771,22 +3509,22 @@ struct xrPersistSpatialAnchorAsyncBD_params
 
 struct xrPersistSpatialAnchorCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrPersistSpatialAnchorMSFT_params
 {
-    XrSpatialAnchorStoreConnectionMSFT spatialAnchorStore;
+    XrSpatialAnchorStoreConnectionMSFT DECLSPEC_ALIGN(8) spatialAnchorStore;
     const XrSpatialAnchorPersistenceInfoMSFT *spatialAnchorPersistenceInfo;
     XrResult result;
 };
 
 struct xrPersistSpatialEntityAsyncEXT_params
 {
-    XrSpatialPersistenceContextEXT persistenceContext;
+    XrSpatialPersistenceContextEXT DECLSPEC_ALIGN(8) persistenceContext;
     const XrSpatialEntityPersistInfoEXT *persistInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -2794,22 +3532,22 @@ struct xrPersistSpatialEntityAsyncEXT_params
 
 struct xrPersistSpatialEntityCompleteEXT_params
 {
-    XrSpatialPersistenceContextEXT persistenceContext;
-    XrFutureEXT future;
+    XrSpatialPersistenceContextEXT DECLSPEC_ALIGN(8) persistenceContext;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrPersistSpatialEntityCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrPollEvent_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     XrEventDataBuffer *eventData;
     XrResult result;
 };
 
 struct xrPollFutureEXT_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrFuturePollInfoEXT *pollInfo;
     XrFuturePollResultEXT *pollResult;
     XrResult result;
@@ -2817,7 +3555,7 @@ struct xrPollFutureEXT_params
 
 struct xrPublishSpatialAnchorsAsyncML_params
 {
-    XrSpatialAnchorsStorageML storage;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
     const XrSpatialAnchorsPublishInfoML *publishInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -2825,15 +3563,24 @@ struct xrPublishSpatialAnchorsAsyncML_params
 
 struct xrPublishSpatialAnchorsCompleteML_params
 {
-    XrSpatialAnchorsStorageML storage;
-    XrFutureEXT future;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSpatialAnchorsPublishCompletionML *completion;
+    XrResult result;
+};
+
+struct xrQueryFramesPerBufferRangeBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrAudioSampleRateBD sampleRate;
+    uint32_t *min;
+    uint32_t *max;
     XrResult result;
 };
 
 struct xrQueryLocalizationMapsML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrLocalizationMapQueryInfoBaseHeaderML *queryInfo;
     uint32_t mapCapacityInput;
     uint32_t *mapCountOutput;
@@ -2841,17 +3588,25 @@ struct xrQueryLocalizationMapsML_params
     XrResult result;
 };
 
+struct xrQueryPerformanceMetricsCounterANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) counterPath;
+    XrPerformanceMetricsCounterANDROID *counter;
+    XrResult result;
+};
+
 struct xrQueryPerformanceMetricsCounterMETA_params
 {
-    XrSession session;
-    XrPath counterPath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) counterPath;
     XrPerformanceMetricsCounterMETA *counter;
     XrResult result;
 };
 
 struct xrQuerySenseDataAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSenseDataQueryInfoBD *queryInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -2859,15 +3614,15 @@ struct xrQuerySenseDataAsyncBD_params
 
 struct xrQuerySenseDataCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSenseDataQueryCompletionBD *completion;
     XrResult result;
 };
 
 struct xrQuerySpacesFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceQueryInfoBaseHeaderFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -2875,7 +3630,7 @@ struct xrQuerySpacesFB_params
 
 struct xrQuerySpatialAnchorsAsyncML_params
 {
-    XrSpatialAnchorsStorageML storage;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
     const XrSpatialAnchorsQueryInfoBaseHeaderML *queryInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -2883,15 +3638,15 @@ struct xrQuerySpatialAnchorsAsyncML_params
 
 struct xrQuerySpatialAnchorsCompleteML_params
 {
-    XrSpatialAnchorsStorageML storage;
-    XrFutureEXT future;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSpatialAnchorsQueryCompletionML *completion;
     XrResult result;
 };
 
 struct xrQuerySpatialComponentDataEXT_params
 {
-    XrSpatialSnapshotEXT snapshot;
+    XrSpatialSnapshotEXT DECLSPEC_ALIGN(8) snapshot;
     const XrSpatialComponentDataQueryConditionEXT *queryCondition;
     XrSpatialComponentDataQueryResultEXT *queryResult;
     XrResult result;
@@ -2899,7 +3654,7 @@ struct xrQuerySpatialComponentDataEXT_params
 
 struct xrQuerySystemTrackedKeyboardFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrKeyboardTrackingQueryFB *queryInfo;
     XrKeyboardTrackingDescriptionFB *keyboard;
     XrResult result;
@@ -2907,50 +3662,92 @@ struct xrQuerySystemTrackedKeyboardFB_params
 
 struct xrRaycastANDROID_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrRaycastInfoANDROID *rayInfo;
     XrRaycastHitResultsANDROID *results;
     XrResult result;
 };
 
+struct xrReleaseAppConsumedSwapchainImageEXT_params
+{
+    XrAppConsumedSwapchainEXT DECLSPEC_ALIGN(8) appConsumedSwapchain;
+    const XrAppConsumedSwapchainImageReleaseInfoEXT *releaseInfo;
+    XrResult result;
+};
+
 struct xrReleaseSwapchainImage_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     const XrSwapchainImageReleaseInfo *releaseInfo;
+    XrResult result;
+};
+
+struct xrRemoveTrackableImageDatabaseANDROID_params
+{
+    XrTrackableTrackerANDROID DECLSPEC_ALIGN(8) tracker;
+    XrTrackableImageDatabaseANDROID DECLSPEC_ALIGN(8) database;
+    XrResult result;
+};
+
+struct xrRequestBodyTrackingFidelityMETA_params
+{
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
+    XrBodyTrackingFidelityMETA fidelity;
+    XrResult result;
+};
+
+struct xrRequestBoundaryVisibilityMETA_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrBoundaryVisibilityMETA boundaryVisibility;
     XrResult result;
 };
 
 struct xrRequestDisplayRefreshRateFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     float displayRefreshRate;
     XrResult result;
 };
 
 struct xrRequestExitSession_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrResult result;
 };
 
 struct xrRequestMapLocalizationML_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrMapLocalizationRequestInfoML *requestInfo;
     XrResult result;
 };
 
 struct xrRequestSceneCaptureFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSceneCaptureRequestInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
 };
 
+struct xrRequestSpatialContainerBoundsModeEXT_params
+{
+    XrSpatialContainerEXT DECLSPEC_ALIGN(8) spatialContainer;
+    const XrSpatialContainerBoundsModeRequestInfoEXT *info;
+    XrResult result;
+};
+
+struct xrRequestSpatialContainerVisibleEXT_params
+{
+    XrSpatialContainerEXT DECLSPEC_ALIGN(8) spatialContainer;
+    const XrSpatialContainerVisibleRequestInfoEXT *info;
+    XrResult result;
+};
+
 struct xrRequestWorldMeshAsyncML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshGetInfoML *getInfo;
     XrWorldMeshBufferML *buffer;
     XrFutureEXT *future;
@@ -2959,16 +3756,16 @@ struct xrRequestWorldMeshAsyncML_params
 
 struct xrRequestWorldMeshCompleteML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshRequestCompletionInfoML *completionInfo;
-    XrFutureEXT future;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrWorldMeshRequestCompletionML *completion;
     XrResult result;
 };
 
 struct xrRequestWorldMeshStateAsyncML_params
 {
-    XrWorldMeshDetectorML detector;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
     const XrWorldMeshStateRequestInfoML *stateRequest;
     XrFutureEXT *future;
     XrResult result;
@@ -2976,21 +3773,29 @@ struct xrRequestWorldMeshStateAsyncML_params
 
 struct xrRequestWorldMeshStateCompleteML_params
 {
-    XrWorldMeshDetectorML detector;
-    XrFutureEXT future;
+    XrWorldMeshDetectorML DECLSPEC_ALIGN(8) detector;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrWorldMeshStateRequestCompletionML *completion;
     XrResult result;
 };
 
 struct xrResetBodyTrackingCalibrationMETA_params
 {
-    XrBodyTrackerFB bodyTracker;
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
     XrResult result;
 };
 
 struct xrResultToString_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
+    XrResult value;
+    char *buffer;
+    XrResult result;
+};
+
+struct xrResultToString2KHR_params
+{
+    XrInstance DECLSPEC_ALIGN(8) instance;
     XrResult value;
     char *buffer;
     XrResult result;
@@ -2998,30 +3803,22 @@ struct xrResultToString_params
 
 struct xrResumeSimultaneousHandsAndControllersTrackingMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSimultaneousHandsAndControllersTrackingResumeInfoMETA *resumeInfo;
-    XrResult result;
-};
-
-struct xrRetrieveSpaceDiscoveryResultsMETA_params
-{
-    XrSession session;
-    XrAsyncRequestIdFB requestId;
-    XrSpaceDiscoveryResultsMETA *results;
     XrResult result;
 };
 
 struct xrRetrieveSpaceQueryResultsFB_params
 {
-    XrSession session;
-    XrAsyncRequestIdFB requestId;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrAsyncRequestIdFB DECLSPEC_ALIGN(8) requestId;
     XrSpaceQueryResultsFB *results;
     XrResult result;
 };
 
 struct xrSaveSpaceFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceSaveInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3029,7 +3826,7 @@ struct xrSaveSpaceFB_params
 
 struct xrSaveSpaceListFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceListSaveInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3037,7 +3834,7 @@ struct xrSaveSpaceListFB_params
 
 struct xrSaveSpacesMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpacesSaveInfoMETA *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3045,7 +3842,7 @@ struct xrSaveSpacesMETA_params
 
 struct xrSendVirtualKeyboardInputMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     const XrVirtualKeyboardInputInfoMETA *info;
     XrPosef *interactorRootPose;
     XrResult result;
@@ -3053,81 +3850,111 @@ struct xrSendVirtualKeyboardInputMETA_params
 
 struct xrSetColorSpaceFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrColorSpaceFB colorSpace;
     XrResult result;
 };
 
 struct xrSetDigitalLensControlALMALENCE_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrDigitalLensControlALMALENCE *digitalLensControl;
     XrResult result;
 };
 
 struct xrSetEnvironmentDepthEstimationVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrBool32 enabled;
     XrResult result;
 };
 
-struct xrSetEnvironmentDepthHandRemovalMETA_params
+struct xrSetFacialSimulationModeBD_params
 {
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    const XrEnvironmentDepthHandRemovalSetInfoMETA *setInfo;
+    XrFaceTrackerBD DECLSPEC_ALIGN(8) tracker;
+    XrFacialSimulationModeBD mode;
+    XrResult result;
+};
+
+struct xrSetGoogleCloudAuthAsyncANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrGoogleCloudAuthInfoBaseHeaderANDROID *authInfo;
+    XrFutureEXT *future;
+    XrResult result;
+};
+
+struct xrSetGoogleCloudAuthCompleteANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
+    XrFutureCompletionEXT *completion;
+    XrResult result;
+};
+
+struct xrSetHandTrackingFrequencyHintMETA_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrHandTrackingFrequencyHintMETA frequencyHint;
+    XrResult result;
+};
+
+struct xrSetHdrMetadataSONY_params
+{
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
+    const XrHdrMetadataSONY *hdrMetadata;
     XrResult result;
 };
 
 struct xrSetInputDeviceActiveEXT_params
 {
-    XrSession session;
-    XrPath interactionProfile;
-    XrPath topLevelPath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) interactionProfile;
+    XrPath DECLSPEC_ALIGN(8) topLevelPath;
     XrBool32 isActive;
     XrResult result;
 };
 
 struct xrSetInputDeviceLocationEXT_params
 {
-    XrSession session;
-    XrPath topLevelPath;
-    XrPath inputSourcePath;
-    XrSpace space;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelPath;
+    XrPath DECLSPEC_ALIGN(8) inputSourcePath;
+    XrSpace DECLSPEC_ALIGN(8) space;
     XrPosef pose;
     XrResult result;
 };
 
 struct xrSetInputDeviceStateBoolEXT_params
 {
-    XrSession session;
-    XrPath topLevelPath;
-    XrPath inputSourcePath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelPath;
+    XrPath DECLSPEC_ALIGN(8) inputSourcePath;
     XrBool32 state;
     XrResult result;
 };
 
 struct xrSetInputDeviceStateFloatEXT_params
 {
-    XrSession session;
-    XrPath topLevelPath;
-    XrPath inputSourcePath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelPath;
+    XrPath DECLSPEC_ALIGN(8) inputSourcePath;
     float state;
     XrResult result;
 };
 
 struct xrSetInputDeviceStateVector2fEXT_params
 {
-    XrSession session;
-    XrPath topLevelPath;
-    XrPath inputSourcePath;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrPath DECLSPEC_ALIGN(8) topLevelPath;
+    XrPath DECLSPEC_ALIGN(8) inputSourcePath;
     XrVector2f state;
     XrResult result;
 };
 
 struct xrSetMarkerTrackingPredictionVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint64_t DECLSPEC_ALIGN(8) markerId;
     XrBool32 enable;
     XrResult result;
@@ -3135,29 +3962,43 @@ struct xrSetMarkerTrackingPredictionVARJO_params
 
 struct xrSetMarkerTrackingTimeoutVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     uint64_t DECLSPEC_ALIGN(8) markerId;
-    XrDuration timeout;
+    XrDuration DECLSPEC_ALIGN(8) timeout;
     XrResult result;
 };
 
 struct xrSetMarkerTrackingVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrBool32 enabled;
+    XrResult result;
+};
+
+struct xrSetPassthroughLayerMeshANDROID_params
+{
+    XrPassthroughLayerANDROID DECLSPEC_ALIGN(8) layer;
+    const XrPassthroughLayerMeshANDROID *mesh;
+    XrResult result;
+};
+
+struct xrSetPerformanceMetricsStateANDROID_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrPerformanceMetricsStateANDROID *state;
     XrResult result;
 };
 
 struct xrSetPerformanceMetricsStateMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrPerformanceMetricsStateMETA *state;
     XrResult result;
 };
 
 struct xrSetSpaceComponentStatusFB_params
 {
-    XrSpace space;
+    XrSpace DECLSPEC_ALIGN(8) space;
     const XrSpaceComponentStatusSetInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3165,14 +4006,21 @@ struct xrSetSpaceComponentStatusFB_params
 
 struct xrSetSystemNotificationsML_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrSystemNotificationsSetInfoML *info;
+    XrResult result;
+};
+
+struct xrSetTilePropertiesHintMETA_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
+    const XrTilePropertiesHintMETA *properties;
     XrResult result;
 };
 
 struct xrSetTrackingOptimizationSettingsHintQCOM_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrTrackingOptimizationSettingsDomainQCOM domain;
     XrTrackingOptimizationSettingsHintQCOM hint;
     XrResult result;
@@ -3180,21 +4028,21 @@ struct xrSetTrackingOptimizationSettingsHintQCOM_params
 
 struct xrSetViewOffsetVARJO_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     float offset;
     XrResult result;
 };
 
 struct xrSetVirtualKeyboardModelVisibilityMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     const XrVirtualKeyboardModelVisibilitySetInfoMETA *modelVisibility;
     XrResult result;
 };
 
 struct xrShareSpacesFB_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpaceShareInfoFB *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3202,7 +4050,7 @@ struct xrShareSpacesFB_params
 
 struct xrShareSpacesMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrShareSpacesInfoMETA *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3210,7 +4058,7 @@ struct xrShareSpacesMETA_params
 
 struct xrShareSpatialAnchorAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSpatialAnchorShareInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -3218,22 +4066,28 @@ struct xrShareSpatialAnchorAsyncBD_params
 
 struct xrShareSpatialAnchorCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrSnapshotMarkerDetectorML_params
 {
-    XrMarkerDetectorML markerDetector;
+    XrMarkerDetectorML DECLSPEC_ALIGN(8) markerDetector;
     XrMarkerDetectorSnapshotInfoML *snapshotInfo;
+    XrResult result;
+};
+
+struct xrStartBodyTrackingCalibrationAppBD_params
+{
+    XrSession DECLSPEC_ALIGN(8) session;
     XrResult result;
 };
 
 struct xrStartColocationAdvertisementMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrColocationAdvertisementStartInfoMETA *info;
     XrAsyncRequestIdFB *advertisementRequestId;
     XrResult result;
@@ -3241,21 +4095,15 @@ struct xrStartColocationAdvertisementMETA_params
 
 struct xrStartColocationDiscoveryMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrColocationDiscoveryStartInfoMETA *info;
     XrAsyncRequestIdFB *discoveryRequestId;
     XrResult result;
 };
 
-struct xrStartEnvironmentDepthProviderMETA_params
-{
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    XrResult result;
-};
-
 struct xrStartSenseDataProviderAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSenseDataProviderStartInfoBD *startInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -3263,15 +4111,15 @@ struct xrStartSenseDataProviderAsyncBD_params
 
 struct xrStartSenseDataProviderCompleteBD_params
 {
-    XrSession session;
-    XrFutureEXT future;
+    XrSession DECLSPEC_ALIGN(8) session;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrStopColocationAdvertisementMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrColocationAdvertisementStopInfoMETA *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
@@ -3279,34 +4127,28 @@ struct xrStopColocationAdvertisementMETA_params
 
 struct xrStopColocationDiscoveryMETA_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrColocationDiscoveryStopInfoMETA *info;
     XrAsyncRequestIdFB *requestId;
     XrResult result;
 };
 
-struct xrStopEnvironmentDepthProviderMETA_params
-{
-    XrEnvironmentDepthProviderMETA environmentDepthProvider;
-    XrResult result;
-};
-
 struct xrStopHapticFeedback_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrHapticActionInfo *hapticActionInfo;
     XrResult result;
 };
 
 struct xrStopSenseDataProviderBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     XrResult result;
 };
 
 struct xrStringToPath_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const char *pathString;
     XrPath *path;
     XrResult result;
@@ -3314,7 +4156,7 @@ struct xrStringToPath_params
 
 struct xrStructureTypeToString_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     XrStructureType value;
     char *buffer;
     XrResult result;
@@ -3322,43 +4164,57 @@ struct xrStructureTypeToString_params
 
 struct xrStructureTypeToString2KHR_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     XrStructureType value;
     char *buffer;
     XrResult result;
 };
 
+struct xrSubmitSoundFieldBufferBD_params
+{
+    XrSoundFieldBD DECLSPEC_ALIGN(8) soundField;
+    const XrAudioBufferBD *buffer;
+    XrResult result;
+};
+
+struct xrSubmitSoundObjectBufferBD_params
+{
+    XrSoundObjectBD DECLSPEC_ALIGN(8) soundObject;
+    const XrAudioBufferBD *buffer;
+    XrResult result;
+};
+
 struct xrSuggestBodyTrackingCalibrationOverrideMETA_params
 {
-    XrBodyTrackerFB bodyTracker;
+    XrBodyTrackerFB DECLSPEC_ALIGN(8) bodyTracker;
     const XrBodyTrackingCalibrationInfoMETA *calibrationInfo;
     XrResult result;
 };
 
 struct xrSuggestInteractionProfileBindings_params
 {
-    XrInstance instance;
+    XrInstance DECLSPEC_ALIGN(8) instance;
     const XrInteractionProfileSuggestedBinding *suggestedBindings;
     XrResult result;
 };
 
 struct xrSuggestVirtualKeyboardLocationMETA_params
 {
-    XrVirtualKeyboardMETA keyboard;
+    XrVirtualKeyboardMETA DECLSPEC_ALIGN(8) keyboard;
     const XrVirtualKeyboardLocationInfoMETA *locationInfo;
     XrResult result;
 };
 
 struct xrSyncActions_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrActionsSyncInfo *syncInfo;
     XrResult result;
 };
 
 struct xrThermalGetTemperatureTrendEXT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     XrPerfSettingsDomainEXT domain;
     XrPerfSettingsNotificationLevelEXT *notificationLevel;
     float *tempHeadroom;
@@ -3366,50 +4222,9 @@ struct xrThermalGetTemperatureTrendEXT_params
     XrResult result;
 };
 
-struct xrTriangleMeshBeginUpdateFB_params
-{
-    XrTriangleMeshFB mesh;
-    XrResult result;
-};
-
-struct xrTriangleMeshBeginVertexBufferUpdateFB_params
-{
-    XrTriangleMeshFB mesh;
-    uint32_t *outVertexCount;
-    XrResult result;
-};
-
-struct xrTriangleMeshEndUpdateFB_params
-{
-    XrTriangleMeshFB mesh;
-    uint32_t vertexCount;
-    uint32_t triangleCount;
-    XrResult result;
-};
-
-struct xrTriangleMeshEndVertexBufferUpdateFB_params
-{
-    XrTriangleMeshFB mesh;
-    XrResult result;
-};
-
-struct xrTriangleMeshGetIndexBufferFB_params
-{
-    XrTriangleMeshFB mesh;
-    uint32_t **outIndexBuffer;
-    XrResult result;
-};
-
-struct xrTriangleMeshGetVertexBufferFB_params
-{
-    XrTriangleMeshFB mesh;
-    XrVector3f **outVertexBuffer;
-    XrResult result;
-};
-
 struct xrTryCreateSpatialGraphStaticNodeBindingMSFT_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrSpatialGraphStaticNodeBindingCreateInfoMSFT *createInfo;
     XrSpatialGraphNodeBindingMSFT *nodeBinding;
     XrResult result;
@@ -3417,14 +4232,14 @@ struct xrTryCreateSpatialGraphStaticNodeBindingMSFT_params
 
 struct xrUnpersistAnchorANDROID_params
 {
-    XrDeviceAnchorPersistenceANDROID handle;
+    XrDeviceAnchorPersistenceANDROID DECLSPEC_ALIGN(8) handle;
     const XrUuidEXT *anchorId;
     XrResult result;
 };
 
 struct xrUnpersistSpatialAnchorAsyncBD_params
 {
-    XrSenseDataProviderBD provider;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
     const XrSpatialAnchorUnpersistInfoBD *info;
     XrFutureEXT *future;
     XrResult result;
@@ -3432,22 +4247,22 @@ struct xrUnpersistSpatialAnchorAsyncBD_params
 
 struct xrUnpersistSpatialAnchorCompleteBD_params
 {
-    XrSenseDataProviderBD provider;
-    XrFutureEXT future;
+    XrSenseDataProviderBD DECLSPEC_ALIGN(8) provider;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrFutureCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrUnpersistSpatialAnchorMSFT_params
 {
-    XrSpatialAnchorStoreConnectionMSFT spatialAnchorStore;
+    XrSpatialAnchorStoreConnectionMSFT DECLSPEC_ALIGN(8) spatialAnchorStore;
     const XrSpatialAnchorPersistenceNameMSFT *spatialAnchorPersistenceName;
     XrResult result;
 };
 
 struct xrUnpersistSpatialEntityAsyncEXT_params
 {
-    XrSpatialPersistenceContextEXT persistenceContext;
+    XrSpatialPersistenceContextEXT DECLSPEC_ALIGN(8) persistenceContext;
     const XrSpatialEntityUnpersistInfoEXT *unpersistInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -3455,15 +4270,15 @@ struct xrUnpersistSpatialEntityAsyncEXT_params
 
 struct xrUnpersistSpatialEntityCompleteEXT_params
 {
-    XrSpatialPersistenceContextEXT persistenceContext;
-    XrFutureEXT future;
+    XrSpatialPersistenceContextEXT DECLSPEC_ALIGN(8) persistenceContext;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrUnpersistSpatialEntityCompletionEXT *completion;
     XrResult result;
 };
 
 struct xrUpdateHandMeshMSFT_params
 {
-    XrHandTrackerEXT handTracker;
+    XrHandTrackerEXT DECLSPEC_ALIGN(8) handTracker;
     const XrHandMeshUpdateInfoMSFT *updateInfo;
     XrHandMeshMSFT *handMesh;
     XrResult result;
@@ -3471,14 +4286,46 @@ struct xrUpdateHandMeshMSFT_params
 
 struct xrUpdatePassthroughColorLutMETA_params
 {
-    XrPassthroughColorLutMETA colorLut;
+    XrPassthroughColorLutMETA DECLSPEC_ALIGN(8) colorLut;
     const XrPassthroughColorLutUpdateInfoMETA *updateInfo;
+    XrResult result;
+};
+
+struct xrUpdateSoundFieldConfigBD_params
+{
+    XrSoundFieldBD DECLSPEC_ALIGN(8) soundField;
+    const XrSoundFieldConfigBD *config;
+    XrSoundFieldFlagsBD DECLSPEC_ALIGN(8) flags;
+    XrResult result;
+};
+
+struct xrUpdateSoundObjectConfigBD_params
+{
+    XrSoundObjectBD DECLSPEC_ALIGN(8) soundObject;
+    const XrSoundObjectConfigBD *config;
+    XrSoundObjectFlagsBD DECLSPEC_ALIGN(8) flags;
+    XrResult result;
+};
+
+struct xrUpdateSoundObstacleConfigBD_params
+{
+    XrSoundObstacleBD DECLSPEC_ALIGN(8) soundObstacle;
+    const XrSoundObstacleConfigBD *config;
+    const XrSoundTriangleMeshBD *mesh;
+    XrSoundObstacleFlagsBD DECLSPEC_ALIGN(8) flags;
+    XrResult result;
+};
+
+struct xrUpdateSoundObstacleMaterialConfigBD_params
+{
+    XrSoundObstacleMaterialBD DECLSPEC_ALIGN(8) material;
+    const XrSoundObstacleMaterialConfigBD *config;
     XrResult result;
 };
 
 struct xrUpdateSpatialAnchorsExpirationAsyncML_params
 {
-    XrSpatialAnchorsStorageML storage;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
     const XrSpatialAnchorsUpdateExpirationInfoML *updateInfo;
     XrFutureEXT *future;
     XrResult result;
@@ -3486,22 +4333,29 @@ struct xrUpdateSpatialAnchorsExpirationAsyncML_params
 
 struct xrUpdateSpatialAnchorsExpirationCompleteML_params
 {
-    XrSpatialAnchorsStorageML storage;
-    XrFutureEXT future;
+    XrSpatialAnchorsStorageML DECLSPEC_ALIGN(8) storage;
+    XrFutureEXT DECLSPEC_ALIGN(8) future;
     XrSpatialAnchorsUpdateExpirationCompletionML *completion;
     XrResult result;
 };
 
 struct xrUpdateSwapchainFB_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     const XrSwapchainStateBaseHeaderFB *state;
+    XrResult result;
+};
+
+struct xrWaitAudioPeriodBD_params
+{
+    XrSpatialAudioRendererBD DECLSPEC_ALIGN(8) renderer;
+    XrDuration DECLSPEC_ALIGN(8) timeout;
     XrResult result;
 };
 
 struct xrWaitFrame_params
 {
-    XrSession session;
+    XrSession DECLSPEC_ALIGN(8) session;
     const XrFrameWaitInfo *frameWaitInfo;
     XrFrameState *frameState;
     XrResult result;
@@ -3509,7 +4363,7 @@ struct xrWaitFrame_params
 
 struct xrWaitSwapchainImage_params
 {
-    XrSwapchain swapchain;
+    XrSwapchain DECLSPEC_ALIGN(8) swapchain;
     const XrSwapchainImageWaitInfo *waitInfo;
     XrResult result;
 };

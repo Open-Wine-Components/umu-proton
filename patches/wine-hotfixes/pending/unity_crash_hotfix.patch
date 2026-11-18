@@ -1,6 +1,8 @@
---- a/dlls/dxgi/dxgi_main.c	
-+++ a/dlls/dxgi/dxgi_main.c
-@@ -268,8 +268,6 @@ HRESULT WINAPI DXGID3D10RegisterLayers(const struct dxgi_device_layer *layers, UINT layer_count)
+diff --git a/dlls/dxgi/dxgi_main.c b/dlls/dxgi/dxgi_main.c
+index ca1fb525535..245061a08e8 100644
+--- a/dlls/dxgi/dxgi_main.c
++++ b/dlls/dxgi/dxgi_main.c
+@@ -245,8 +245,6 @@ HRESULT WINAPI DXGID3D10RegisterLayers(const struct dxgi_device_layer *layers, U
  
  HRESULT WINAPI DXGIGetDebugInterface1(UINT flags, REFIID iid, void **debug)
  {
@@ -9,5 +11,3 @@
      WARN("Returning DXGI_ERROR_SDK_COMPONENT_MISSING.\n");
      return DXGI_ERROR_SDK_COMPONENT_MISSING;
  }
-
-

@@ -121,7 +121,9 @@ template< typename Umsg, typename Wmsg >
 static void receive_messages_utow( uint32_t count, Umsg **u_msgs, ptr32< Wmsg** > w_msgs )
 {
     Wmsg **msgs = new Wmsg *[count];
-    while (count--) msgs[count] = w_msgs[count];
+    uint32_t i;
+
+    for (i = 0; i < count; ++i) msgs[i] = w_msgs[i];
     receive_messages_utow( count, u_msgs, msgs );
     delete[] msgs;
 }
@@ -153,7 +155,9 @@ template< typename Wmsg, typename Umsg >
 static void send_messages_wtou( uint32_t count, ptr32< Wmsg *const* > w_msgs, Umsg **u_msgs )
 {
     Wmsg **msgs = new Wmsg *[count];
-    while (count--) msgs[count] = w_msgs[count];
+    uint32_t i;
+
+    for (i = 0; i < count; ++i) msgs[i] = w_msgs[i];
     send_messages_wtou( count, msgs, u_msgs );
     delete[] msgs;
 }
@@ -162,7 +166,9 @@ template< typename Wmsg, typename Umsg >
 static void send_messages_wtou( uint32_t count, ptr32< Wmsg** > w_msgs, Umsg **u_msgs )
 {
     Wmsg **msgs = new Wmsg *[count];
-    while (count--) msgs[count] = w_msgs[count];
+    uint32_t i;
+
+    for (i = 0; i < count; ++i) msgs[i] = w_msgs[i];
     send_messages_wtou( count, msgs, u_msgs );
     delete[] msgs;
 }
@@ -219,12 +225,39 @@ static NTSTATUS ISteamNetworkingSockets_ReceiveMessagesOnListenSocket( Iface *if
     return 0;
 }
 
+template<bool has_bDeleteFailedMessages>
+struct call_SendMessages
+{
+    template<typename Iface, typename Params, typename Umsg>
+    static void call(Iface *iface, Params *params, Umsg *u_msgs);
+};
+
+template <>
+template<typename Iface, typename Params, typename Umsg>
+void call_SendMessages<false>::call(Iface *iface, Params *params, Umsg *u_msgs)
+{
+    iface->SendMessages( params->nMessages, u_msgs, params->pOutMessageNumberOrResult );
+}
+
+template <>
+template<typename Iface, typename Params, typename Umsg>
+void call_SendMessages<true>::call(Iface *iface, Params *params, Umsg *u_msgs)
+{
+    iface->SendMessages( params->nMessages, u_msgs, params->pOutMessageNumberOrResult, params->bDeleteFailedMessages );
+}
+
 template< typename Iface, typename Params, typename Umsg >
 static NTSTATUS ISteamNetworkingSockets_SendMessages( Iface *iface, Params *params, bool wow64, Umsg const& )
 {
     Umsg **u_msgs = new Umsg*[params->nMessages];
     send_messages_wtou( params->nMessages, params->pMessages, u_msgs );
-    iface->SendMessages( params->nMessages, u_msgs, params->pOutMessageNumberOrResult );
+    constexpr bool has_delete_failed = !(std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets002>::value
+                                       || std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets004>::value
+                                       || std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets006>::value
+                                       || std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets008>::value
+                                       || std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets009>::value
+                                       || std::is_same<Iface, u_ISteamNetworkingSockets_SteamNetworkingSockets012>::value);
+    call_SendMessages<has_delete_failed>::call(iface, params, u_msgs);
     delete[] u_msgs;
     return 0;
 }
@@ -543,6 +576,18 @@ LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets012, Conn
 LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets012, ConnectToHostedDedicatedServer );
 LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets012, CreateHostedDedicatedServerListenSocket );
 LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets012, CreateListenSocketP2PFakeIP );
+
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ReceiveMessagesOnConnection, u_SteamNetworkingMessage_t_153a() );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ReceiveMessagesOnPollGroup, u_SteamNetworkingMessage_t_153a() );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, SendMessages, u_SteamNetworkingMessage_t_153a() );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, CreateListenSocketIP );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ConnectP2PCustomSignaling, u_SteamNetworkingMessage_t_153a() );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ConnectByIPAddress );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, CreateListenSocketP2P );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ConnectP2P );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, ConnectToHostedDedicatedServer );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, CreateHostedDedicatedServerListenSocket );
+LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingSockets, SteamNetworkingSockets013, CreateListenSocketP2PFakeIP );
 
 LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingUtils, SteamNetworkingUtils003, AllocateMessage, u_SteamNetworkingMessage_t_147() );
 LSTEAMCLIENT_UNIX_IMPL( ISteamNetworkingUtils, SteamNetworkingUtils003, SetConfigValue, u_SteamNetworkingMessage_t_147() );

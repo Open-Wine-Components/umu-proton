@@ -1919,9 +1919,31 @@ struct SteamNetConnectionRealTimeLaneStatus_t
 };
 #pragma pack( pop )
 
-typedef struct SteamNetConnectionRealTimeStatus_t SteamNetConnectionRealTimeStatus_t;
+typedef struct SteamNetConnectionRealTimeStatus_t_164 SteamNetConnectionRealTimeStatus_t_164;
 #pragma pack( push, 8 )
-struct SteamNetConnectionRealTimeStatus_t
+struct SteamNetConnectionRealTimeStatus_t_164
+{
+    uint32_t m_eState;
+    int32_t m_nPing;
+    float m_flConnectionQualityLocal;
+    float m_flConnectionQualityRemote;
+    float m_flOutPacketsPerSec;
+    float m_flOutBytesPerSec;
+    float m_flInPacketsPerSec;
+    float m_flInBytesPerSec;
+    int32_t m_nSendRateBytesPerSecond;
+    int32_t m_cbPendingUnreliable;
+    int32_t m_cbPendingReliable;
+    int32_t m_cbSentUnackedReliable;
+    int64_t m_usecQueueTime;
+    int32_t m_usecMaxJitter;
+    uint32_t (reserved)[15];
+};
+#pragma pack( pop )
+
+typedef struct SteamNetConnectionRealTimeStatus_t_153a SteamNetConnectionRealTimeStatus_t_153a;
+#pragma pack( push, 8 )
+struct SteamNetConnectionRealTimeStatus_t_153a
 {
     uint32_t m_eState;
     int32_t m_nPing;
@@ -2055,6 +2077,17 @@ struct SteamRelayNetworkStatus_t
     uint32_t m_eAvailNetworkConfig;
     uint32_t m_eAvailAnyRelay;
     char (m_debugMsg)[256];
+};
+#pragma pack( pop )
+
+typedef struct SteamRemotePlaySessionAvatarLoaded_t SteamRemotePlaySessionAvatarLoaded_t;
+#pragma pack( push, 4 )
+struct SteamRemotePlaySessionAvatarLoaded_t
+{
+    uint32_t m_unSessionID;
+    int32_t m_iImage;
+    int32_t m_iWide;
+    int32_t m_iTall;
 };
 #pragma pack( pop )
 
@@ -2378,6 +2411,35 @@ struct WorkshopEULAStatus_t
 };
 #pragma pack( pop )
 
+typedef struct gameserveritem_t_165 gameserveritem_t_165;
+#pragma pack( push, 4 )
+struct gameserveritem_t_165
+{
+    servernetadr_t m_NetAdr;
+    int32_t m_nPing;
+    int8_t m_bHadSuccessfulResponse;
+    int8_t m_bDoNotRefresh;
+    char (m_szGameDir)[32];
+    char (m_szMap)[32];
+    char (m_szGameDescription)[64];
+    uint8_t __pad_142[2];
+    uint32_t m_nAppID;
+    int32_t m_nPlayers;
+    int32_t m_nMaxPlayers;
+    int32_t m_nBotPlayers;
+    int8_t m_bPassword;
+    int8_t m_bSecure;
+    uint8_t __pad_162[2];
+    uint32_t m_ulTimeLastPlayed;
+    int32_t m_nServerVersion;
+    char (m_szServerName)[64];
+    char (m_szGameTags)[128];
+    CSteamID m_steamID;
+    int32_t m_nCurrentFriendCount;
+    int32_t m_nTotalFriendCount;
+};
+#pragma pack( pop )
+
 typedef struct gameserveritem_t_105 gameserveritem_t_105;
 #pragma pack( push, 4 )
 struct gameserveritem_t_105
@@ -2607,6 +2669,12 @@ typedef struct u_ISteamMatchmakingRulesResponse u32_ISteamMatchmakingRulesRespon
 typedef struct w_ISteamMatchmakingRulesResponse w_ISteamMatchmakingRulesResponse;
 typedef struct w_ISteamMatchmakingRulesResponse w64_ISteamMatchmakingRulesResponse;
 typedef struct w_ISteamMatchmakingRulesResponse w32_ISteamMatchmakingRulesResponse;
+typedef struct u_ISteamMatchmakingServerFriendsResponse u_ISteamMatchmakingServerFriendsResponse;
+typedef struct u_ISteamMatchmakingServerFriendsResponse u64_ISteamMatchmakingServerFriendsResponse;
+typedef struct u_ISteamMatchmakingServerFriendsResponse u32_ISteamMatchmakingServerFriendsResponse;
+typedef struct w_ISteamMatchmakingServerFriendsResponse w_ISteamMatchmakingServerFriendsResponse;
+typedef struct w_ISteamMatchmakingServerFriendsResponse w64_ISteamMatchmakingServerFriendsResponse;
+typedef struct w_ISteamMatchmakingServerFriendsResponse w32_ISteamMatchmakingServerFriendsResponse;
 typedef struct u_ISteamMatchmakingServerListResponse_106 u_ISteamMatchmakingServerListResponse_106;
 typedef struct u_ISteamMatchmakingServerListResponse_106 u64_ISteamMatchmakingServerListResponse_106;
 typedef struct u_ISteamMatchmakingServerListResponse_106 u32_ISteamMatchmakingServerListResponse_106;
@@ -5690,7 +5758,7 @@ typedef u64_HTTPRequestHeadersReceived_t_121x u_HTTPRequestHeadersReceived_t_121
 struct w_ISteamMatchmakingPingResponse
 {
 #ifdef __cplusplus
-    virtual void ServerResponded( gameserveritem_t_105 * ) = 0;
+    virtual void ServerResponded( gameserveritem_t_165 * ) = 0;
     virtual void ServerFailedToRespond(  ) = 0;
 #endif /* __cplusplus */
 };
@@ -5698,7 +5766,7 @@ struct w_ISteamMatchmakingPingResponse
 struct u_ISteamMatchmakingPingResponse
 {
 #ifdef __cplusplus
-    virtual void ServerResponded( gameserveritem_t_105 * ) = 0;
+    virtual void ServerResponded( gameserveritem_t_165 * ) = 0;
     virtual void ServerFailedToRespond(  ) = 0;
 #endif /* __cplusplus */
 };
@@ -5736,6 +5804,24 @@ struct u_ISteamMatchmakingRulesResponse
     virtual void RulesResponded( const char *, const char * ) = 0;
     virtual void RulesFailedToRespond(  ) = 0;
     virtual void RulesRefreshComplete(  ) = 0;
+#endif /* __cplusplus */
+};
+
+struct w_ISteamMatchmakingServerFriendsResponse
+{
+#ifdef __cplusplus
+    virtual void AddFriendToList( CSteamID, const char *, int8_t ) = 0;
+    virtual void FriendsFailedToRespond(  ) = 0;
+    virtual void FriendsRefreshComplete(  ) = 0;
+#endif /* __cplusplus */
+};
+
+struct u_ISteamMatchmakingServerFriendsResponse
+{
+#ifdef __cplusplus
+    virtual void AddFriendToList( CSteamID, const char *, int8_t ) = 0;
+    virtual void FriendsFailedToRespond(  ) = 0;
+    virtual void FriendsRefreshComplete(  ) = 0;
 #endif /* __cplusplus */
 };
 

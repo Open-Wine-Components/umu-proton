@@ -1,5 +1,5 @@
 diff --git a/dlls/ws2_32/protocol.c b/dlls/ws2_32/protocol.c
-index eef2c34b3e4..7d1c137ec7d 100644
+index 3e91ab80c3e..2dd25ebbc44 100644
 --- a/dlls/ws2_32/protocol.c
 +++ b/dlls/ws2_32/protocol.c
 @@ -148,6 +148,40 @@ static int dns_only_query( const char *node, const struct addrinfo *hints, struc
@@ -56,7 +56,7 @@ index eef2c34b3e4..7d1c137ec7d 100644
          if (eac_download_hack() && !strcmp(node, "download-alt.easyanticheat.net"))
          {
              SetLastError(WSAHOST_NOT_FOUND);
-@@ -952,6 +992,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
+@@ -967,6 +1007,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
          return NULL;
      }
  

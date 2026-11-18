@@ -11,6 +11,8 @@ import os
 import re
 
 SDK_VERSIONS = [
+    "165",
+    "164",
     "163",
     "162",
     "161",
@@ -292,6 +294,7 @@ MANUAL_METHODS = {
     "ISteamMatchmakingServers_RequestInternetServerList": lambda ver, abi: abi == 'u' or ver >= 2,
     "ISteamMatchmakingServers_RequestLANServerList": lambda ver, abi: abi == 'u' or ver >= 2,
     "ISteamMatchmakingServers_RequestSpectatorServerList": lambda ver, abi: abi == 'u' or ver >= 2,
+    "ISteamMatchmakingServers_ServerFriends": lambda ver, abi: abi == 'u',
     "ISteamMatchmakingServers_ServerRules": lambda ver, abi: abi == 'u',
 
     "ISteamNetworkingUtils_AllocateMessage": True,
@@ -572,6 +575,8 @@ class Struct:
         for cursor in self.type.get_fields():
             assert not cursor.is_bitfield()
             offset = self.type.get_offset(cursor.spelling)
+            if offset % 8 != 0:
+                print(cursor.spelling, ', offset=', offset)
             assert offset % 8 == 0
             offset = offset // 8
             # assert offset >= size or type(self) is Union

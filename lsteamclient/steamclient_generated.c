@@ -14,6 +14,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"STEAMAPPS_INTERFACE_VERSION006", &create_winISteamApps_STEAMAPPS_INTERFACE_VERSION006},
     {"STEAMAPPS_INTERFACE_VERSION007", &create_winISteamApps_STEAMAPPS_INTERFACE_VERSION007},
     {"STEAMAPPS_INTERFACE_VERSION008", &create_winISteamApps_STEAMAPPS_INTERFACE_VERSION008},
+    {"STEAMAPPS_INTERFACE_VERSION009", &create_winISteamApps_STEAMAPPS_INTERFACE_VERSION009},
     {"STEAMAPPTICKET_INTERFACE_VERSION001", &create_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001},
     {"STEAMCONTROLLER_INTERFACE_VERSION", &create_winISteamController_STEAMCONTROLLER_INTERFACE_VERSION},
     {"STEAMHTMLSURFACE_INTERFACE_VERSION_001", &create_winISteamHTMLSurface_STEAMHTMLSURFACE_INTERFACE_VERSION_001},
@@ -33,6 +34,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"STEAMREMOTEPLAY_INTERFACE_VERSION001", &create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001},
     {"STEAMREMOTEPLAY_INTERFACE_VERSION002", &create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002},
     {"STEAMREMOTEPLAY_INTERFACE_VERSION003", &create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003},
+    {"STEAMREMOTEPLAY_INTERFACE_VERSION004", &create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION004},
     {"STEAMREMOTESTORAGE_INTERFACE_VERSION001", &create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION001},
     {"STEAMREMOTESTORAGE_INTERFACE_VERSION002", &create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION002},
     {"STEAMREMOTESTORAGE_INTERFACE_VERSION003", &create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION003},
@@ -151,6 +153,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"SteamInput002", &create_winISteamInput_SteamInput002},
     {"SteamInput005", &create_winISteamInput_SteamInput005},
     {"SteamInput006", &create_winISteamInput_SteamInput006},
+    {"SteamInput007", &create_winISteamInput_SteamInput007},
     {"SteamMasterServerUpdater001", &create_winISteamMasterServerUpdater_SteamMasterServerUpdater001},
     {"SteamMatchGameSearch001", &create_winISteamGameSearch_SteamMatchGameSearch001},
     {"SteamMatchMaking001", &create_winISteamMatchmaking_SteamMatchMaking001},
@@ -164,6 +167,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"SteamMatchMaking009", &create_winISteamMatchmaking_SteamMatchMaking009},
     {"SteamMatchMakingServers001", &create_winISteamMatchmakingServers_SteamMatchMakingServers001},
     {"SteamMatchMakingServers002", &create_winISteamMatchmakingServers_SteamMatchMakingServers002},
+    {"SteamMatchMakingServers003", &create_winISteamMatchmakingServers_SteamMatchMakingServers003},
     {"SteamNetworking001", &create_winISteamNetworking_SteamNetworking001},
     {"SteamNetworking002", &create_winISteamNetworking_SteamNetworking002},
     {"SteamNetworking003", &create_winISteamNetworking_SteamNetworking003},
@@ -179,6 +183,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"SteamNetworkingSockets008", &create_winISteamNetworkingSockets_SteamNetworkingSockets008},
     {"SteamNetworkingSockets009", &create_winISteamNetworkingSockets_SteamNetworkingSockets009},
     {"SteamNetworkingSockets012", &create_winISteamNetworkingSockets_SteamNetworkingSockets012},
+    {"SteamNetworkingSockets013", &create_winISteamNetworkingSockets_SteamNetworkingSockets013},
     {"SteamNetworkingSocketsSerialized002", &create_winISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized002},
     {"SteamNetworkingSocketsSerialized001", &create_winISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized002}, /* alias */
     {"SteamNetworkingSocketsSerialized003", &create_winISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized003},
@@ -217,6 +222,7 @@ static const struct { const char *iface_version; iface_constructor ctor; } const
     {"SteamUtils008", &create_winISteamUtils_SteamUtils008},
     {"SteamUtils009", &create_winISteamUtils_SteamUtils009},
     {"SteamUtils010", &create_winISteamUtils_SteamUtils010},
+    {"SteamUtils011", &create_winISteamUtils_SteamUtils011},
 };
 
 iface_constructor find_iface_constructor( const char *iface_version )

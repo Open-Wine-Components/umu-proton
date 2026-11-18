@@ -1,8 +1,8 @@
 diff --git a/dlls/kernelbase/file.c b/dlls/kernelbase/file.c
-index f4f9d14518f..69005607224 100644
+index 6a821d788e6..12a7fe64110 100644
 --- a/dlls/kernelbase/file.c
 +++ b/dlls/kernelbase/file.c
-@@ -2918,6 +2918,21 @@ BOOL WINAPI DECLSPEC_HOTPATCH SetCurrentDirectoryW( LPCWSTR dir )
+@@ -2963,6 +2963,21 @@ BOOL WINAPI DECLSPEC_HOTPATCH SetCurrentDirectoryW( LPCWSTR dir )
  {
      UNICODE_STRING dirW;
  

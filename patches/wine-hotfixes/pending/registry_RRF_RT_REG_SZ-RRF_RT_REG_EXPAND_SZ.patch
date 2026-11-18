@@ -1,8 +1,8 @@
 diff --git a/dlls/kernelbase/registry.c b/dlls/kernelbase/registry.c
-index 7908501..ad6a981 100644
+index 936902480ce..cf056b66347 100644
 --- a/dlls/kernelbase/registry.c
 +++ b/dlls/kernelbase/registry.c
-@@ -1914,10 +1914,6 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
+@@ -1956,10 +1956,6 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
      if (pvData && !pcbData)
          return ERROR_INVALID_PARAMETER;
  
@@ -13,7 +13,7 @@ index 7908501..ad6a981 100644
      if ((dwFlags & RRF_WOW64_MASK) == RRF_WOW64_MASK)
          return ERROR_INVALID_PARAMETER;
  
-@@ -1933,6 +1929,9 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
+@@ -1975,6 +1971,9 @@ LSTATUS WINAPI RegGetValueW( HKEY hKey, LPCWSTR pszSubKey, LPCWSTR pszValue,
      }
  
      ret = RegQueryValueExW(hKey, pszValue, NULL, &dwType, pvData, &cbData);

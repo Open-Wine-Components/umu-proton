@@ -9,6 +9,7 @@ extern struct w_iface *create_winISteamApps_STEAMAPPS_INTERFACE_VERSION005( stru
 extern struct w_iface *create_winISteamApps_STEAMAPPS_INTERFACE_VERSION006( struct u_iface );
 extern struct w_iface *create_winISteamApps_STEAMAPPS_INTERFACE_VERSION007( struct u_iface );
 extern struct w_iface *create_winISteamApps_STEAMAPPS_INTERFACE_VERSION008( struct u_iface );
+extern struct w_iface *create_winISteamApps_STEAMAPPS_INTERFACE_VERSION009( struct u_iface );
 extern struct w_iface *create_winISteamAppTicket_STEAMAPPTICKET_INTERFACE_VERSION001( struct u_iface );
 extern struct w_iface *create_winISteamController_STEAMCONTROLLER_INTERFACE_VERSION( struct u_iface );
 extern struct w_iface *create_winISteamHTMLSurface_STEAMHTMLSURFACE_INTERFACE_VERSION_001( struct u_iface );
@@ -28,6 +29,7 @@ extern struct w_iface *create_winISteamParentalSettings_STEAMPARENTALSETTINGS_IN
 extern struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION001( struct u_iface );
 extern struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION002( struct u_iface );
 extern struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION003( struct u_iface );
+extern struct w_iface *create_winISteamRemotePlay_STEAMREMOTEPLAY_INTERFACE_VERSION004( struct u_iface );
 extern struct w_iface *create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION001( struct u_iface );
 extern struct w_iface *create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION002( struct u_iface );
 extern struct w_iface *create_winISteamRemoteStorage_STEAMREMOTESTORAGE_INTERFACE_VERSION003( struct u_iface );
@@ -144,6 +146,7 @@ extern struct w_iface *create_winISteamInput_SteamInput001( struct u_iface );
 extern struct w_iface *create_winISteamInput_SteamInput002( struct u_iface );
 extern struct w_iface *create_winISteamInput_SteamInput005( struct u_iface );
 extern struct w_iface *create_winISteamInput_SteamInput006( struct u_iface );
+extern struct w_iface *create_winISteamInput_SteamInput007( struct u_iface );
 extern struct w_iface *create_winISteamMasterServerUpdater_SteamMasterServerUpdater001( struct u_iface );
 extern struct w_iface *create_winISteamGameSearch_SteamMatchGameSearch001( struct u_iface );
 extern struct w_iface *create_winISteamMatchmaking_SteamMatchMaking001( struct u_iface );
@@ -157,6 +160,7 @@ extern struct w_iface *create_winISteamMatchmaking_SteamMatchMaking008( struct u
 extern struct w_iface *create_winISteamMatchmaking_SteamMatchMaking009( struct u_iface );
 extern struct w_iface *create_winISteamMatchmakingServers_SteamMatchMakingServers001( struct u_iface );
 extern struct w_iface *create_winISteamMatchmakingServers_SteamMatchMakingServers002( struct u_iface );
+extern struct w_iface *create_winISteamMatchmakingServers_SteamMatchMakingServers003( struct u_iface );
 extern struct w_iface *create_winISteamNetworking_SteamNetworking001( struct u_iface );
 extern struct w_iface *create_winISteamNetworking_SteamNetworking002( struct u_iface );
 extern struct w_iface *create_winISteamNetworking_SteamNetworking003( struct u_iface );
@@ -171,6 +175,7 @@ extern struct w_iface *create_winISteamNetworkingSockets_SteamNetworkingSockets0
 extern struct w_iface *create_winISteamNetworkingSockets_SteamNetworkingSockets008( struct u_iface );
 extern struct w_iface *create_winISteamNetworkingSockets_SteamNetworkingSockets009( struct u_iface );
 extern struct w_iface *create_winISteamNetworkingSockets_SteamNetworkingSockets012( struct u_iface );
+extern struct w_iface *create_winISteamNetworkingSockets_SteamNetworkingSockets013( struct u_iface );
 extern struct w_iface *create_winISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized002( struct u_iface );
 extern struct w_iface *create_winISteamNetworkingSocketsSerialized_SteamNetworkingSocketsSerialized003( struct u_iface );
 extern struct w_iface *create_winISteamNetworkingUtils_SteamNetworkingUtils001( struct u_iface );
@@ -206,3 +211,4 @@ extern struct w_iface *create_winISteamUtils_SteamUtils007( struct u_iface );
 extern struct w_iface *create_winISteamUtils_SteamUtils008( struct u_iface );
 extern struct w_iface *create_winISteamUtils_SteamUtils009( struct u_iface );
 extern struct w_iface *create_winISteamUtils_SteamUtils010( struct u_iface );
+extern struct w_iface *create_winISteamUtils_SteamUtils011( struct u_iface );

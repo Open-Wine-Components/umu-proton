@@ -1,9 +1,9 @@
 diff --git a/dlls/ntdll/unix/file.c b/dlls/ntdll/unix/file.c
-index 870c5e39271..3162d36a803 100644
+index 435751ce1a2..dcdb785ff38 100644
 --- a/dlls/ntdll/unix/file.c
 +++ b/dlls/ntdll/unix/file.c
-@@ -1511,16 +1511,20 @@ static BOOL append_entry( struct dir_data *data, const char *long_name,
-     if (long_len == ARRAY_SIZE(long_nameW)) return TRUE;
+@@ -1597,16 +1597,20 @@ static BOOL append_entry( struct dir_data *data, const char *long_name,
+     if (long_nameW[long_len - 1] == '?') --long_len;
      long_nameW[long_len] = 0;
  
 -    if (short_name)
@@ -33,18 +33,18 @@ index 870c5e39271..3162d36a803 100644
      short_nameW[short_len] = 0;
      wcsupr( short_nameW );
 diff --git a/dlls/ntdll/unix/loader.c b/dlls/ntdll/unix/loader.c
-index 5f7f114b286..cbea0dc5d2d 100644
+index f8aa468a3ab..e2b21d0750a 100644
 --- a/dlls/ntdll/unix/loader.c
 +++ b/dlls/ntdll/unix/loader.c
-@@ -2152,6 +2152,7 @@ const unixlib_entry_t __wine_unix_call_funcs[] =
-     debugstr_pc,
- };
+@@ -2272,6 +2272,7 @@ static ULONG_PTR get_image_address(void)
+ }
  
+ BOOL process_termination_delay;
 +BOOL disable_sfn;
  BOOL ac_odyssey;
- BOOL fsync_simulate_sched_quantum;
- BOOL alert_simulate_sched_quantum;
-@@ -2175,6 +2176,12 @@ static void hacks_init(void)
+ BOOL fsync_help_simulated_pulse;
+ BOOL localsystem_sid;
+@@ -2294,6 +2295,12 @@ static void hacks_init(void)
          ERR( "HACK: ram_reporting_bias %lldMB.\n", ram_reporting_bias / (1024 * 1024) );
      }
  
@@ -54,18 +54,18 @@ index 5f7f114b286..cbea0dc5d2d 100644
 +    else if (main_argc > 1 && (strstr(main_argv[1], "Yakuza5.exe") ))
 +        disable_sfn = TRUE;
 +
-     env_str = getenv("WINE_SIMULATE_ASYNC_READ");
-     if (env_str)
-         ac_odyssey = !!atoi(env_str);
+     if (inproc_device_fd >= 0)
+     {
+         env_str = getenv("WINE_SIMULATE_ASYNC_READ");
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index cae15947bbd..6403dad858d 100644
+index 2f649ca399e..f3aa0682992 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
-@@ -182,6 +182,7 @@ extern SYSTEM_CPU_INFORMATION cpu_info;
- extern struct ldt_copy __wine_ldt_copy;
- #endif
+@@ -220,6 +220,7 @@ extern BOOL alert_simulate_sched_quantum;
+ extern BOOL fsync_simulate_sched_quantum;
+ extern BOOL fsync_yield_to_waiters;
  
 +extern BOOL disable_sfn;
  extern BOOL ac_odyssey;
- extern BOOL fsync_simulate_sched_quantum;
- extern BOOL alert_simulate_sched_quantum;
+ 
+ extern void init_environment(void);

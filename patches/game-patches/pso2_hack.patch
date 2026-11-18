@@ -1,8 +1,8 @@
 diff --git a/dlls/ntdll/unix/file.c b/dlls/ntdll/unix/file.c
-index eb526f6aa9a..2925252b6c8 100644
+index 964752cbc81..435751ce1a2 100644
 --- a/dlls/ntdll/unix/file.c
 +++ b/dlls/ntdll/unix/file.c
-@@ -3457,6 +3457,7 @@ static NTSTATUS lookup_unix_name( const WCHAR *name, int name_len, char **buffer
+@@ -3696,6 +3696,7 @@ static NTSTATUS lookup_unix_name( int root_fd, OBJECT_ATTRIBUTES *attr, UNICODE_
      struct stat st;
      char *unix_name = *buffer;
      const WCHAR *ptr, *end;
@@ -10,7 +10,7 @@ index eb526f6aa9a..2925252b6c8 100644
  
      /* check syntax of individual components */
  
-@@ -3503,6 +3504,13 @@ static NTSTATUS lookup_unix_name( const WCHAR *name, int name_len, char **buffer
+@@ -3742,6 +3743,13 @@ static NTSTATUS lookup_unix_name( int root_fd, OBJECT_ATTRIBUTES *attr, UNICODE_
      if (is_unix && (disposition == FILE_OPEN || disposition == FILE_OVERWRITE))
          return STATUS_OBJECT_NAME_NOT_FOUND;
  

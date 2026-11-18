@@ -50,10 +50,13 @@ dependencies on the host side.
 
 ## Preparing the build environment
 
-You need either a Docker or a Podman setup. We highly recommend [the rootless
-Podman setup][rootless-podman]. Please refer to your distribution's
-documentation for setup instructions (e.g. Arch [Podman][arch-podman] /
-[Docker][arch-docker], Debian [Podman][debian-podman] /
+You need either a Docker or a Podman setup which Proton's build system uses
+internally. You should never need to use either container engine manually unless
+working on those parts of build system directly.
+
+We highly recommend [the rootless Podman setup][rootless-podman]. Please refer
+to your distribution's documentation for setup instructions (e.g. Arch
+[Podman][arch-podman] / [Docker][arch-docker], Debian [Podman][debian-podman] /
 [Docker][debian-docker]).
 
 [rootless-podman]: https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md
@@ -150,6 +153,28 @@ is only useful after building Proton.
 `make dxvk` / `make vkd3d-proton` - rebuild DXVK / vkd3d-proton.
 
 
+### Figuring Out What Failed To Build
+
+Proton build system invokes builds of many subprojects in parallel. If one
+subprojects fails there can be thousands of lines printed by other sub-builds
+before the top level exits. This can make the real reason of the build failing
+hard to find.
+
+Appending `2>&1 | tee build.log` will log the full build output to a `build.log`
+file. Searching that file from the bottom up for occurrences of `Error` should
+point to the right area. E.g.:
+
+```
+make 2>&1 | tee build.log
+grep -n '] Error [0-9]' build.log
+```
+
+```
+11220:make: *** [../Makefile.in:465: /builds/proton/proton/build-dir/.kaldi-i386-configure] Error 1
+12427:make: *** [../Makefile.in:1323: deploy] Error 2
+```
+
+
 ### Debug Builds
 
 To prevent symbol stripping add `UNSTRIPPED_BUILD=1` to the `make`
@@ -162,6 +187,13 @@ mkdir ../debug-proton-build && cd ../debug-proton-build
 ../proton/configure.sh --enable-ccache --build-name=debug_build
 make UNSTRIPPED_BUILD=1 install
 ```
+
+
+### ARM64 Builds
+
+You need an ARM64 build machine and pass `--target-arch=arm64` to `configure.sh`.
+
+It's not possible to use the resulting builds in x86 Steam running via FEX.
 
 
 Install Proton locally
@@ -218,7 +250,8 @@ need to be explicitly loaded by the debugging tools. For GDB there's a helper
 script `wine/tools/gdbinit.py` (source it) that provides `load-symbol-files`
 (or `lsf` for short) command which loads the symbols for all the mapped files.
 
-For tips on debugging see [docs/DEBUGGING.md](docs/DEBUGGING.md).
+For tips on debugging see [docs/DEBUGGING-LINUX.md](docs/DEBUGGING-LINUX.md)
+and [docs/DEBUGGING-WINDOWS.md](docs/DEBUGGING-WINDOWS.md).
 
 
 `compile_commands.json`
@@ -227,13 +260,10 @@ For tips on debugging see [docs/DEBUGGING.md](docs/DEBUGGING.md).
 For use with [clangd](https://clangd.llvm.org/) LSP server and similar tooling.
 
 Projects built using cmake or meson (e.g. vkd3d-proton) automatically come with
-`compile_commands.json`. For autotools (e.g. wine) you have to [configure the
-build](#configuring-the-build) with `--enable-bear` that uses
-[bear](https://github.com/rizsotto/Bear) to create the compilation database.
-It's not on by default as it make the build slightly slower.
+`compile_commands.json`. Wine also generates the file on its own via `makedep`.
 
-The build system collects all the created compile_commands.json files in a
-build subdirectory named `compile_commands/`.
+Proton's build system collects all the `compile_commands.json` files in a build
+subdirectory named `compile_commands/`.
 
 The paths are translated to point to the real source (i.e. not the rsynced
 copy). It still may depend on build directory for things like auto-generated
@@ -248,12 +278,12 @@ You can then configure your editor to use that file for clangd in a few ways:
 cd src/proton/wine/
 cat > .clangd <<EOF
 CompileFlags:
-  CompilationDatabase: ../build/current-dev/compile_commands/wine64/
+  CompilationDatabase: ../build/current-dev/compile_commands/wine-x86_64/
 EOF
 ```
 3) by symlinking:
 ```bash
-ln -s ../build/current-dev/compile_commands/wine64/compile_commands.json .
+ln -s ../build/current-dev/compile_commands/wine-x86_64/compile_commands.json .
 ```
 
 
@@ -291,9 +321,10 @@ the Wine prefix. Removing the option will revert to the previous behavior.
 | `wined3d`             | `PROTON_USE_WINED3D`               | Use OpenGL-based wined3d instead of Vulkan-based DXVK for d3d11, d3d10, and d3d9. |
 | `nod3d11`             | `PROTON_NO_D3D11`                  | Disable `d3d11.dll`, for d3d11 games which can fall back to and run better with d3d9. |
 | `nod3d10`             | `PROTON_NO_D3D10`                  | Disable `d3d10.dll` and `dxgi.dll`, for d3d10 games which can fall back to and run better with d3d9. |
-| `noesync`             | `PROTON_NO_ESYNC`                  | Do not use eventfd-based in-process synchronization primitives. |
+| `dxvkd3d8`            | `PROTON_DXVK_D3D8`                 | Use DXVK's `d3d8.dll`. |
 | `nofsync`             | `PROTON_NO_FSYNC`                  | Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no `FUTEX_WAIT_MULTIPLE` support.) |
-| `noxim`               | `PROTON_NO_XIM`                    | Enabled by default. Do not attempt to use XIM (X Input Methods) support. XIM support is known to cause crashes with libx11 older than version 1.7. |
+|                       | `PROTON_NO_NTSYNC`                 | Do not use ntsync. |
+|                       | `HOST_LC_ALL`                      | Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of `LC_ALL`. |
 | `disablenvapi`        | `PROTON_DISABLE_NVAPI`             | Disable NVIDIA's NVAPI GPU support library. |
 | `nativevulkanloader`  |                                    | Use the Vulkan loader shipped with the game instead of Proton's built-in Vulkan loader. This breaks VR support, but is required by a few games. |
 | `forcelgadd`          | `PROTON_FORCE_LARGE_ADDRESS_AWARE` | Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. Enabled by default. |
@@ -307,10 +338,12 @@ the Wine prefix. Removing the option will revert to the previous behavior.
 | `noopwr`              | `WINE_DISABLE_VULKAN_OPWR`               | Enable hack to disable Vulkan other process window rendering which sometimes causes issues on Wayland due to blit being one frame behind. |
 | `hidenvgpu`           | `PROTON_HIDE_NVIDIA_GPU`           | Force Nvidia GPUs to always be reported as AMD GPUs. Some games require this if they depend on Windows-only Nvidia driver functionality. See also DXVK's nvapiHack config, which only affects reporting from Direct3D. |
 |                       | `WINE_FULLSCREEN_INTEGER_SCALING`  | Enable integer scaling mode, to give sharp pixels when upscaling. |
+|                       | `WINE_USE_KWIN_HACKS`              | Enable KDE-specific windowing hacks that may improve experience with KDE older than 6.4 on Wayland and KDE older than 6.6 on X11. |
 | `cmdlineappend:`      |                                    | Append the string after the colon as an argument to the game command. May be specified more than once. Escape commas and backslashes with a backslash. |
-| `nowritewatch`        | `PROTON_NO_WRITE_WATCH`            | Disable support for memory write watches in ntdll. This is a very dangerous hack and should only be applied if you have verified that the game can operate without write watches. This improves performance for some very specific games (e.g. CoreRT-based games). |
-| `nosteamffmpeg`       | `PROTON_NO_STEAM_FFMPEG`           | Ignore ffmpeg that ships with Steam. Some videos may not play. |
+| `xalia` or `noxalia`  | `PROTON_USE_XALIA`                 | Enable Xalia, a program that can add a gamepad UI for some keyboard/mouse interfaces, or set to 0 to disable. The default is to enable it dynamically based on window contents. |
+| `fnad3d11`            | `FNA3D_FORCE_DRIVER=D3D11`         | Force FNA to use D3D11 for rendering. |
 | `seccomp`             | `PROTON_USE_SECCOMP`               | **Note: Obsoleted in Proton 5.13.** In older versions, enable seccomp-bpf filter to emulate native syscalls, required for some DRM protections to work. |
 | `d9vk`                | `PROTON_USE_D9VK`                  | **Note: Obsoleted in Proton 5.0.** In older versions, use Vulkan-based DXVK instead of OpenGL-based wined3d for d3d9. |
+| `noesync`             | `PROTON_NO_ESYNC`                  | **Note: Obsoleted in Proton 11.0.** In older versions, do not use eventfd-based in-process synchronization primitives. |
 
 <!-- Target:  GitHub Flavor Markdown.  To test locally:  pandoc -f markdown_github -t html README.md  -->

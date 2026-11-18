@@ -29,6 +29,13 @@ rules-cargo = $(call create-rules-cargo,$(1),$(call toupper,$(1)),$(2),$(3))
 
 i386-unix_CARGO_TARGET := i686-unknown-linux-gnu
 x86_64-unix_CARGO_TARGET := x86_64-unknown-linux-gnu
+aarch64-unix_CARGO_TARGET := aarch64-unknown-linux-gnu
 
 i386-unix_CARGO_ARGS := --target $(i386-unix_CARGO_TARGET)
 x86_64-unix_CARGO_ARGS := --target $(x86_64-unix_CARGO_TARGET)
+aarch64-unix_CARGO_ARGS := --target $(aarch64-unix_CARGO_TARGET)
+
+# Used in rules-common.mk
+# We need to specify the linker explicitly for at least --target architecture as
+# well as host's architecture - some crates build things on host via build.rs
+CARGO_LINKERS :=  $(foreach a,$(unix_ARCHS),CARGO_TARGET_$(call toupper,$($(a)-unix_CARGO_TARGET))_LINKER="$($(a)-unix_TARGET)-gcc")

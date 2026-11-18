@@ -14,10 +14,10 @@ Subject: [PATCH] Apply patch to fall back on async bytestream read calls in
  create mode 100644 include/imfbytestream_read_hack.h
 
 diff --git a/dlls/mfplat/main.c b/dlls/mfplat/main.c
-index 01d9d2ddd898..df5baa1f0f95 100644
+index dd489e3587f..f0fa6290a1d 100644
 --- a/dlls/mfplat/main.c
 +++ b/dlls/mfplat/main.c
-@@ -55,6 +55,8 @@
+@@ -56,6 +56,8 @@
  
  WINE_DEFAULT_DEBUG_CHANNEL(mfplat);
  
@@ -26,7 +26,7 @@ index 01d9d2ddd898..df5baa1f0f95 100644
  struct local_handler
  {
      struct list entry;
-@@ -6265,7 +6267,7 @@ static HRESULT resolver_get_bytestream_url_hint(IMFByteStream *stream, WCHAR con
+@@ -6266,7 +6268,7 @@ static HRESULT resolver_get_bytestream_url_hint(IMFByteStream *stream, WCHAR con
          return hr;
      if (position && FAILED(hr = IMFByteStream_SetCurrentPosition(stream, 0)))
          return hr;
@@ -36,7 +36,7 @@ index 01d9d2ddd898..df5baa1f0f95 100644
  
      if (length < sizeof(buffer))
 diff --git a/dlls/mfsrcsnk/media_source.c b/dlls/mfsrcsnk/media_source.c
-index b084db6ee6bd..760b05dc1389 100644
+index 09c611dfa6e..0041e424a53 100644
 --- a/dlls/mfsrcsnk/media_source.c
 +++ b/dlls/mfsrcsnk/media_source.c
 @@ -69,6 +69,8 @@ WINE_DEFAULT_DEBUG_CHANNEL(mfplat);
@@ -48,17 +48,17 @@ index b084db6ee6bd..760b05dc1389 100644
  #define DEFINE_MF_ASYNC_CALLBACK_(type, name, impl_from, pfx, mem, expr)                           \
      static struct type *impl_from(IMFAsyncCallback *iface)                                         \
      {                                                                                              \
-@@ -1739,7 +1741,7 @@ static NTSTATUS CDECL media_source_read_cb(struct winedmo_stream *stream, BYTE *
-     struct media_source *source = CONTAINING_RECORD(stream, struct media_source, winedmo_stream);
-     TRACE("stream %p, buffer %p, size %p\n", stream, buffer, size);
+@@ -1784,7 +1786,7 @@ static NTSTATUS CDECL media_source_read_cb(struct winedmo_stream *stream, BYTE *
+             && FAILED(IMFByteStream_SetCurrentPosition(source->stream, source->position)))
+         WARN("Failed to set current position\n");
  
 -    if (FAILED(IMFByteStream_Read(source->stream, buffer, *size, size)))
 +    if (FAILED(IMFByteStream_Read_Hack(source->stream, buffer, *size, size)))
          return STATUS_UNSUCCESSFUL;
-     return STATUS_SUCCESS;
- }
+ 
+     source->position += *size;
 diff --git a/dlls/winegstreamer/media_source.c b/dlls/winegstreamer/media_source.c
-index 05166d78cdb7..0cb68ff33c0a 100644
+index 3b925c3d751..93eaff77412 100644
 --- a/dlls/winegstreamer/media_source.c
 +++ b/dlls/winegstreamer/media_source.c
 @@ -27,6 +27,8 @@
@@ -70,7 +70,129 @@ index 05166d78cdb7..0cb68ff33c0a 100644
  struct object_context
  {
      IUnknown IUnknown_iface;
-@@ -924,7 +926,7 @@ static DWORD CALLBACK read_thread(void *arg)
+@@ -130,6 +132,8 @@ struct media_stream
+ 
+     wg_parser_stream_t wg_stream;
+ 
++    CRITICAL_SECTION sample_cs;
++
+     IUnknown **token_queue;
+     LONG token_queue_count;
+     LONG token_queue_cap;
+@@ -712,9 +716,8 @@ static HRESULT media_source_stop(struct media_source *source)
+     return IMFMediaEventQueue_QueueEventParamVar(source->event_queue, MESourceStopped, &GUID_NULL, S_OK, NULL);
+ }
+ 
+-static HRESULT media_stream_send_sample(struct media_stream *stream, const struct wg_parser_buffer *wg_buffer, IUnknown *token)
++static HRESULT media_stream_add_sample_buffer(struct media_stream *stream, IMFSample *sample, const struct wg_parser_buffer *wg_buffer)
+ {
+-    IMFSample *sample = NULL;
+     IMFMediaBuffer *buffer;
+     HRESULT hr;
+     BYTE *data;
+@@ -738,23 +741,9 @@ static HRESULT media_stream_send_sample(struct media_stream *stream, const struc
+     if (FAILED(hr = IMFMediaBuffer_Unlock(buffer)))
+         goto out;
+ 
+-    if (FAILED(hr = MFCreateSample(&sample)))
+-        goto out;
+-    if (FAILED(hr = IMFSample_AddBuffer(sample, buffer)))
+-        goto out;
+-    if (FAILED(hr = IMFSample_SetSampleTime(sample, wg_buffer->pts)))
+-        goto out;
+-    if (FAILED(hr = IMFSample_SetSampleDuration(sample, wg_buffer->duration)))
+-        goto out;
+-    if (token && FAILED(hr = IMFSample_SetUnknown(sample, &MFSampleExtension_Token, token)))
+-        goto out;
+-
+-    hr = IMFMediaEventQueue_QueueEventParamUnk(stream->event_queue, MEMediaSample,
+-            &GUID_NULL, S_OK, (IUnknown *)sample);
++    hr = IMFSample_AddBuffer(sample, buffer);
+ 
+ out:
+-    if (sample)
+-        IMFSample_Release(sample);
+     IMFMediaBuffer_Release(buffer);
+     return hr;
+ }
+@@ -799,22 +788,70 @@ static bool stream_get_buffer(struct media_stream *stream, struct wg_parser_buff
+ 
+ static HRESULT wait_on_sample(struct media_stream *stream, IUnknown *token)
+ {
++    UINT64 minimum_sample_duration = 0;
+     struct media_source *source = impl_from_IMFMediaSource(stream->media_source);
+     struct wg_parser_buffer buffer;
++    struct wg_format format;
++    IMFSample *sample;
++    UINT64 sample_duration;
++    HRESULT hr = S_OK;
+ 
+     TRACE("%p, %p\n", stream, token);
+ 
+-    while (stream_get_buffer(stream, &buffer))
++    LeaveCriticalSection(&source->cs);
++    EnterCriticalSection(&stream->sample_cs);
++    EnterCriticalSection(&source->cs);
++
++    if (!stream_get_buffer(stream, &buffer))
++    {
++        if (source->state == SOURCE_SHUTDOWN)
++            goto out;
++        hr = media_stream_send_eos(source, stream);
++        goto out;
++    }
++
++    if (FAILED(hr = MFCreateSample(&sample)))
++        goto out;
++    if (FAILED(hr = IMFSample_SetSampleTime(sample, buffer.pts)))
++        goto release;
++    if (FAILED(hr = media_stream_add_sample_buffer(stream, sample, &buffer)))
++        goto release;
++    sample_duration = buffer.duration;
++
++    if (SUCCEEDED(hr = wg_format_from_stream_descriptor(stream->descriptor, &format)))
+     {
+-        HRESULT hr = media_stream_send_sample(stream, &buffer, token);
+-        if (hr != S_FALSE)
+-            return hr;
++        if (format.major_type == WG_MAJOR_TYPE_AUDIO)
++            minimum_sample_duration = 500000llu;
+     }
+ 
++    while (sample_duration < minimum_sample_duration)
++    {
++        if (!stream_get_buffer(stream, &buffer))
++            break;
++        if (source->state == SOURCE_SHUTDOWN)
++            goto release;
++        if (FAILED(hr = media_stream_add_sample_buffer(stream, sample, &buffer)))
++            goto release;
++        sample_duration += buffer.duration;
++    }
+     if (source->state == SOURCE_SHUTDOWN)
+-        return S_OK;
++        goto release;
+ 
+-    return media_stream_send_eos(source, stream);
++    if (FAILED(hr = IMFSample_SetSampleDuration(sample, sample_duration)))
++        goto release;
++    if (token && FAILED(hr = IMFSample_SetUnknown(sample, &MFSampleExtension_Token, token)))
++        goto release;
++    hr = IMFMediaEventQueue_QueueEventParamUnk(stream->event_queue, MEMediaSample,
++            &GUID_NULL, S_OK, (IUnknown *)sample);
++
++release:
++    IMFSample_Release(sample);
++
++out:
++    LeaveCriticalSection(&source->cs);
++    LeaveCriticalSection(&stream->sample_cs);
++    EnterCriticalSection(&source->cs);
++    return hr;
+ }
+ 
+ static HRESULT WINAPI source_async_commands_Invoke(IMFAsyncCallback *iface, IMFAsyncResult *result)
+@@ -924,7 +961,7 @@ static DWORD CALLBACK read_thread(void *arg)
          ret_size = 0;
  
          if (SUCCEEDED(hr = IMFByteStream_SetCurrentPosition(byte_stream, offset)))
@@ -79,8 +201,43 @@ index 05166d78cdb7..0cb68ff33c0a 100644
          if (FAILED(hr))
              ERR("Failed to read %u bytes at offset %I64u, hr %#lx.\n", size, offset, hr);
          else if (ret_size != size)
+@@ -983,6 +1020,8 @@ static ULONG WINAPI media_stream_Release(IMFMediaStream *iface)
+         IMFStreamDescriptor_Release(stream->descriptor);
+         IMFMediaEventQueue_Release(stream->event_queue);
+         flush_token_queue(stream, FALSE);
++        stream->sample_cs.DebugInfo->Spare[0] = 0;
++        DeleteCriticalSection(&stream->sample_cs);
+         free(stream);
+     }
+ 
+@@ -1081,6 +1120,7 @@ static HRESULT WINAPI media_stream_RequestSample(IMFMediaStream *iface, IUnknown
+ 
+     TRACE("%p, %p.\n", iface, token);
+ 
++    EnterCriticalSection(&stream->sample_cs);
+     EnterCriticalSection(&source->cs);
+ 
+     if (source->state == SOURCE_SHUTDOWN)
+@@ -1102,6 +1142,7 @@ static HRESULT WINAPI media_stream_RequestSample(IMFMediaStream *iface, IUnknown
+     }
+ 
+     LeaveCriticalSection(&source->cs);
++    LeaveCriticalSection(&stream->sample_cs);
+ 
+     return hr;
+ }
+@@ -1149,6 +1190,9 @@ static HRESULT media_stream_create(IMFMediaSource *source, IMFStreamDescriptor *
+     object->eos = FALSE;
+     object->wg_stream = wg_stream;
+ 
++    InitializeCriticalSectionEx(&object->sample_cs, 0, RTL_CRITICAL_SECTION_FLAG_FORCE_DEBUG_INFO);
++    object->sample_cs.DebugInfo->Spare[0] = (DWORD_PTR)(__FILE__ ": sample_cs");
++
+     TRACE("Created stream object %p.\n", object);
+ 
+     *out = object;
 diff --git a/include/Makefile.in b/include/Makefile.in
-index 9a4a00ceed8f..51f053ad3184 100644
+index 435158167fc..6707b4aabc3 100644
 --- a/include/Makefile.in
 +++ b/include/Makefile.in
 @@ -391,6 +391,7 @@ SOURCES = \
@@ -93,7 +250,7 @@ index 9a4a00ceed8f..51f053ad3184 100644
  	imnact.idl \
 diff --git a/include/imfbytestream_read_hack.h b/include/imfbytestream_read_hack.h
 new file mode 100644
-index 000000000000..e5950ea5a0d4
+index 00000000000..e5950ea5a0d
 --- /dev/null
 +++ b/include/imfbytestream_read_hack.h
 @@ -0,0 +1,158 @@
@@ -255,173 +412,3 @@ index 000000000000..e5950ea5a0d4
 +}
 +
 +#endif /* READ_HACK_INCLUDED */
-From 363cdd148e779710874b0175a9b6c5a6d90aad9a Mon Sep 17 00:00:00 2001
-From: staphen <staphen@gmail.com>
-Date: Sun, 8 Feb 2026 15:58:33 -0500
-Subject: [PATCH] Accumulate data in wg media source
-
----
- dlls/winegstreamer/media_source.c | 88 +++++++++++++++++++++++--------
- 1 file changed, 65 insertions(+), 23 deletions(-)
-
-diff --git a/dlls/winegstreamer/media_source.c b/dlls/winegstreamer/media_source.c
-index 0cb68ff33c0a..74421a1ebefa 100644
---- a/dlls/winegstreamer/media_source.c
-+++ b/dlls/winegstreamer/media_source.c
-@@ -132,6 +132,8 @@ struct media_stream
- 
-     wg_parser_stream_t wg_stream;
- 
-+    CRITICAL_SECTION sample_cs;
-+
-     IUnknown **token_queue;
-     LONG token_queue_count;
-     LONG token_queue_cap;
-@@ -714,9 +716,8 @@ static HRESULT media_source_stop(struct media_source *source)
-     return IMFMediaEventQueue_QueueEventParamVar(source->event_queue, MESourceStopped, &GUID_NULL, S_OK, NULL);
- }
- 
--static HRESULT media_stream_send_sample(struct media_stream *stream, const struct wg_parser_buffer *wg_buffer, IUnknown *token)
-+static HRESULT media_stream_add_sample_buffer(struct media_stream *stream, IMFSample *sample, const struct wg_parser_buffer *wg_buffer)
- {
--    IMFSample *sample = NULL;
-     IMFMediaBuffer *buffer;
-     HRESULT hr;
-     BYTE *data;
-@@ -740,23 +741,9 @@ static HRESULT media_stream_send_sample(struct media_stream *stream, const struc
-     if (FAILED(hr = IMFMediaBuffer_Unlock(buffer)))
-         goto out;
- 
--    if (FAILED(hr = MFCreateSample(&sample)))
--        goto out;
--    if (FAILED(hr = IMFSample_AddBuffer(sample, buffer)))
--        goto out;
--    if (FAILED(hr = IMFSample_SetSampleTime(sample, wg_buffer->pts)))
--        goto out;
--    if (FAILED(hr = IMFSample_SetSampleDuration(sample, wg_buffer->duration)))
--        goto out;
--    if (token && FAILED(hr = IMFSample_SetUnknown(sample, &MFSampleExtension_Token, token)))
--        goto out;
--
--    hr = IMFMediaEventQueue_QueueEventParamUnk(stream->event_queue, MEMediaSample,
--            &GUID_NULL, S_OK, (IUnknown *)sample);
-+    hr = IMFSample_AddBuffer(sample, buffer);
- 
- out:
--    if (sample)
--        IMFSample_Release(sample);
-     IMFMediaBuffer_Release(buffer);
-     return hr;
- }
-@@ -801,22 +788,70 @@ static bool stream_get_buffer(struct media_stream *stream, struct wg_parser_buff
- 
- static HRESULT wait_on_sample(struct media_stream *stream, IUnknown *token)
- {
-+    UINT64 minimum_sample_duration = 0;
-     struct media_source *source = impl_from_IMFMediaSource(stream->media_source);
-     struct wg_parser_buffer buffer;
-+    struct wg_format format;
-+    IMFSample *sample;
-+    UINT64 sample_duration;
-+    HRESULT hr = S_OK;
- 
-     TRACE("%p, %p\n", stream, token);
- 
--    while (stream_get_buffer(stream, &buffer))
-+    LeaveCriticalSection(&source->cs);
-+    EnterCriticalSection(&stream->sample_cs);
-+    EnterCriticalSection(&source->cs);
-+
-+    if (!stream_get_buffer(stream, &buffer))
-     {
--        HRESULT hr = media_stream_send_sample(stream, &buffer, token);
--        if (hr != S_FALSE)
--            return hr;
-+        if (source->state == SOURCE_SHUTDOWN)
-+            goto out;
-+        hr = media_stream_send_eos(source, stream);
-+        goto out;
-     }
- 
-+    if (FAILED(hr = MFCreateSample(&sample)))
-+        goto out;
-+    if (FAILED(hr = IMFSample_SetSampleTime(sample, buffer.pts)))
-+        goto release;
-+    if (FAILED(hr = media_stream_add_sample_buffer(stream, sample, &buffer)))
-+        goto release;
-+    sample_duration = buffer.duration;
-+
-+    if (SUCCEEDED(hr = wg_format_from_stream_descriptor(stream->descriptor, &format)))
-+    {
-+        if (format.major_type == WG_MAJOR_TYPE_AUDIO)
-+            minimum_sample_duration = 500000llu;
-+    }
-+
-+    while (sample_duration < minimum_sample_duration)
-+    {
-+        if (!stream_get_buffer(stream, &buffer))
-+            break;
-+        if (source->state == SOURCE_SHUTDOWN)
-+            goto release;
-+        if (FAILED(hr = media_stream_add_sample_buffer(stream, sample, &buffer)))
-+            goto release;
-+        sample_duration += buffer.duration;
-+    }
-     if (source->state == SOURCE_SHUTDOWN)
--        return S_OK;
-+        goto release;
-+
-+    if (FAILED(hr = IMFSample_SetSampleDuration(sample, sample_duration)))
-+        goto release;
-+    if (token && FAILED(hr = IMFSample_SetUnknown(sample, &MFSampleExtension_Token, token)))
-+        goto release;
-+    hr = IMFMediaEventQueue_QueueEventParamUnk(stream->event_queue, MEMediaSample,
-+            &GUID_NULL, S_OK, (IUnknown *)sample);
- 
--    return media_stream_send_eos(source, stream);
-+release:
-+    IMFSample_Release(sample);
-+
-+out:
-+    LeaveCriticalSection(&source->cs);
-+    LeaveCriticalSection(&stream->sample_cs);
-+    EnterCriticalSection(&source->cs);
-+    return hr;
- }
- 
- static HRESULT WINAPI source_async_commands_Invoke(IMFAsyncCallback *iface, IMFAsyncResult *result)
-@@ -985,6 +1020,8 @@ static ULONG WINAPI media_stream_Release(IMFMediaStream *iface)
-         IMFStreamDescriptor_Release(stream->descriptor);
-         IMFMediaEventQueue_Release(stream->event_queue);
-         flush_token_queue(stream, FALSE);
-+        stream->sample_cs.DebugInfo->Spare[0] = 0;
-+        DeleteCriticalSection(&stream->sample_cs);
-         free(stream);
-     }
- 
-@@ -1083,6 +1120,7 @@ static HRESULT WINAPI media_stream_RequestSample(IMFMediaStream *iface, IUnknown
- 
-     TRACE("%p, %p.\n", iface, token);
- 
-+    EnterCriticalSection(&stream->sample_cs);
-     EnterCriticalSection(&source->cs);
- 
-     if (source->state == SOURCE_SHUTDOWN)
-@@ -1104,6 +1142,7 @@ static HRESULT WINAPI media_stream_RequestSample(IMFMediaStream *iface, IUnknown
-     }
- 
-     LeaveCriticalSection(&source->cs);
-+    LeaveCriticalSection(&stream->sample_cs);
- 
-     return hr;
- }
-@@ -1151,6 +1190,9 @@ static HRESULT media_stream_create(IMFMediaSource *source, IMFStreamDescriptor *
-     object->eos = FALSE;
-     object->wg_stream = wg_stream;
- 
-+    InitializeCriticalSectionEx(&object->sample_cs, 0, RTL_CRITICAL_SECTION_FLAG_FORCE_DEBUG_INFO);
-+    object->sample_cs.DebugInfo->Spare[0] = (DWORD_PTR)(__FILE__ ": sample_cs");
-+
-     TRACE("Created stream object %p.\n", object);
- 
-     *out = object;
