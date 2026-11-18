@@ -472,6 +472,22 @@ $(eval $(call rules-source,piper,$(SRCDIR)/piper))
 $(eval $(call rules-cmake,piper,x86_64,unix))
 $(eval $(call rules-cmake,piper,aarch64,unix))
 
+# piper needs a prebuilt onnxruntime, taken from Microsoft's NuGet package (see patches/piper).
+ONNXRUNTIME_VER := 1.14.1
+ONNXRUNTIME_NUPKG := microsoft.ml.onnxruntime.$(ONNXRUNTIME_VER).nupkg
+ONNXRUNTIME_NUPKG_URL := https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime/$(ONNXRUNTIME_VER)/$(ONNXRUNTIME_NUPKG)
+
+$(SRC)/contrib/$(ONNXRUNTIME_NUPKG):
+	mkdir -p $(dir $@)
+	wget --no-use-server-timestamps -O $@ $(ONNXRUNTIME_NUPKG_URL) || (rm $@; false)
+
+PIPER_CMAKE_ARGS = \
+  -DONNXRUNTIME_VERSION=$(ONNXRUNTIME_VER) \
+  -DONNXRUNTIME_NUPKG=$(SRC)/contrib/$(ONNXRUNTIME_NUPKG)
+
+$(OBJ)/.piper-x86_64-configure: $(SRC)/contrib/$(ONNXRUNTIME_NUPKG)
+$(OBJ)/.piper-aarch64-configure: $(SRC)/contrib/$(ONNXRUNTIME_NUPKG)
+
 $(OBJ)/.piper-x86_64-post-build:
 	mkdir -p $(PIPER_x86_64_DST)/lib/$(x86_64-unix_TARGET)
 	mv $(PIPER_x86_64_DST)/*.so* $(PIPER_x86_64_DST)/lib/$(x86_64-unix_TARGET)

@@ -1409,9 +1409,6 @@ def default_compat_config():
     if "SteamAppId" in os.environ:
         appid = os.environ["SteamAppId"]
         if appid in [
-                #affected by CW bug 22265
-                "692890", #Roboquest
-
                 #affected by CW bug 19741
                 "1017900", #Age of Empires: Definitive Edition
 
@@ -1449,10 +1446,6 @@ def default_compat_config():
                 "1180660", #Tell Me Why
                 "1238430", #Tell Me Why Chapter 2
                 "1266670", #Tell Me Why Chapter 3
-                ]:
-            ret.add("noopwrx11")
-
-        if appid in [
                 # Other issues arising from OWPR code path in apps, e. g., hitting unimplemented bits in
                 # d3dcompiler.
                 "230410", #Warframe
@@ -2132,9 +2125,6 @@ class Session:
         if "noopwr" in self.compat_config:
             self.env["WINE_DISABLE_VULKAN_OPWR"] = "1"
 
-        if "noopwrx11" in self.compat_config and "wayland" not in self.compat_config:
-            self.env["WINE_DISABLE_VULKAN_OPWR"] = "1"
-
         if "PROTON_USE_XALIA" not in self.env:
             if "noxalia" in self.compat_config:
                 self.env["PROTON_USE_XALIA"] = "0"
@@ -2157,9 +2147,6 @@ class Session:
             self.env["PROTON_NO_STEAMINPUT"] = "1"
             if "SDL_GAMECONTROLLER_IGNORE_DEVICES" in self.env:
                 del self.env["SDL_GAMECONTROLLER_IGNORE_DEVICES"]
-
-        if "hdr" in self.compat_config:
-            self.env["DXVK_HDR"] = "1"
 
         if "fnad3d11" in self.compat_config and "FNA3D_FORCE_DRIVER" not in self.env:
             self.env["FNA3D_FORCE_DRIVER"] = "D3D11"
@@ -2420,8 +2407,6 @@ if __name__ == "__main__":
     protonfixes.setup_frame_rate(g_session.env, append_to_env_str)
     g_session.check_environment("PROTON_LOCAL_SHADER_CACHE", "localshadercache")
     protonfixes.setup_local_shader_cache(g_session.compat_config, g_session.env)
-    g_session.check_environment("PROTON_FSR4_UPGRADE", "fsr4")
-    protonfixes.setup_upscalers(g_session.compat_config, g_session.env, g_compatdata.base_dir, g_compatdata.prefix_dir)
     protonfixes.execute()
 
     #determine mode

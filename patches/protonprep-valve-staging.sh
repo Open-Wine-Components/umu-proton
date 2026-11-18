@@ -65,6 +65,11 @@ apply_all_in_dir() {
     echo "STEAM_HELPER: close Ubisoft Connect after the game exits"
     apply_all_in_dir "patches/steam_helper"
 
+    git checkout -- piper/CMakeLists.txt
+
+    echo "PIPER: take the prebuilt onnxruntime from NuGet, the GitHub release downloads are gone"
+    apply_all_in_dir "patches/piper"
+
     git checkout -- \
         lsteamclient/unix_private.h \
         lsteamclient/unixlib.cpp
